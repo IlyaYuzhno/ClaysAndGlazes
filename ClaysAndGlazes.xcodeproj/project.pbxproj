@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B060F34261233510090E250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F33261233510090E250 /* AppDelegate.swift */; };
+		5B060F36261233510090E250 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F35261233510090E250 /* SceneDelegate.swift */; };
+		5B060F3D261233550090E250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B060F3C261233550090E250 /* Assets.xcassets */; };
+		5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B060F3E261233550090E250 /* LaunchScreen.storyboard */; };
+		5B060F4B261233560090E250 /* ClaysAndGlazesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F4A261233560090E250 /* ClaysAndGlazesTests.swift */; };
+		5B060F56261233560090E250 /* ClaysAndGlazesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F55261233560090E250 /* ClaysAndGlazesUITests.swift */; };
+		5B060F75261233AF0090E250 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F6D261233AF0090E250 /* Response.swift */; };
+		5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */; };
+		5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F70261233AF0090E250 /* CrackleTableViewController.swift */; };
+		5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F71261233AF0090E250 /* GlazesTableViewController.swift */; };
+		5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F72261233AF0090E250 /* ClaysTableViewController.swift */; };
+		5B060F7A261233AF0090E250 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F74261233AF0090E250 /* Interactor.swift */; };
+		5B060F83261233E40090E250 /* clays.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060F82261233E40090E250 /* clays.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B060F47261233550090E250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B060F28261233510090E250 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B060F2F261233510090E250;
+			remoteInfo = ClaysAndGlazes;
+		};
+		5B060F52261233560090E250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B060F28261233510090E250 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B060F2F261233510090E250;
+			remoteInfo = ClaysAndGlazes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5B060F30261233510090E250 /* ClaysAndGlazes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaysAndGlazes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B060F33261233510090E250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5B060F35261233510090E250 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5B060F3C261233550090E250 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B060F3F261233550090E250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5B060F41261233550090E250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B060F46261233550090E250 /* ClaysAndGlazesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClaysAndGlazesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B060F4A261233560090E250 /* ClaysAndGlazesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysAndGlazesTests.swift; sourceTree = "<group>"; };
+		5B060F4C261233560090E250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B060F51261233560090E250 /* ClaysAndGlazesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClaysAndGlazesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B060F55261233560090E250 /* ClaysAndGlazesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysAndGlazesUITests.swift; sourceTree = "<group>"; };
+		5B060F57261233560090E250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B060F6D261233AF0090E250 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureTableViewController.swift; sourceTree = "<group>"; };
+		5B060F70261233AF0090E250 /* CrackleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrackleTableViewController.swift; sourceTree = "<group>"; };
+		5B060F71261233AF0090E250 /* GlazesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlazesTableViewController.swift; sourceTree = "<group>"; };
+		5B060F72261233AF0090E250 /* ClaysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaysTableViewController.swift; sourceTree = "<group>"; };
+		5B060F74261233AF0090E250 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		5B060F82261233E40090E250 /* clays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clays.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B060F2D261233510090E250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F43261233550090E250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F4E261233560090E250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B060F27261233510090E250 = {
+			isa = PBXGroup;
+			children = (
+				5B060F32261233510090E250 /* ClaysAndGlazes */,
+				5B060F49261233550090E250 /* ClaysAndGlazesTests */,
+				5B060F54261233560090E250 /* ClaysAndGlazesUITests */,
+				5B060F31261233510090E250 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5B060F31261233510090E250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F30261233510090E250 /* ClaysAndGlazes.app */,
+				5B060F46261233550090E250 /* ClaysAndGlazesTests.xctest */,
+				5B060F51261233560090E250 /* ClaysAndGlazesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5B060F32261233510090E250 /* ClaysAndGlazes */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F81261233C60090E250 /* Resources */,
+				5B060F69261233940090E250 /* App */,
+				5B060F41261233550090E250 /* Info.plist */,
+			);
+			path = ClaysAndGlazes;
+			sourceTree = "<group>";
+		};
+		5B060F49261233550090E250 /* ClaysAndGlazesTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F4A261233560090E250 /* ClaysAndGlazesTests.swift */,
+				5B060F4C261233560090E250 /* Info.plist */,
+			);
+			path = ClaysAndGlazesTests;
+			sourceTree = "<group>";
+		};
+		5B060F54261233560090E250 /* ClaysAndGlazesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F55261233560090E250 /* ClaysAndGlazesUITests.swift */,
+				5B060F57261233560090E250 /* Info.plist */,
+			);
+			path = ClaysAndGlazesUITests;
+			sourceTree = "<group>";
+		};
+		5B060F69261233940090E250 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F35261233510090E250 /* SceneDelegate.swift */,
+				5B060F33261233510090E250 /* AppDelegate.swift */,
+				5B060F6B261233AF0090E250 /* Business Logic */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5B060F6B261233AF0090E250 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F6C261233AF0090E250 /* Entity */,
+				5B060F6E261233AF0090E250 /* ViewControllers */,
+				5B060F73261233AF0090E250 /* Interactor */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		5B060F6C261233AF0090E250 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F6D261233AF0090E250 /* Response.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		5B060F6E261233AF0090E250 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */,
+				5B060F70261233AF0090E250 /* CrackleTableViewController.swift */,
+				5B060F71261233AF0090E250 /* GlazesTableViewController.swift */,
+				5B060F72261233AF0090E250 /* ClaysTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5B060F73261233AF0090E250 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F74261233AF0090E250 /* Interactor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		5B060F81261233C60090E250 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F82261233E40090E250 /* clays.json */,
+				5B060F3C261233550090E250 /* Assets.xcassets */,
+				5B060F3E261233550090E250 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5B060F2F261233510090E250 /* ClaysAndGlazes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B060F5A261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazes" */;
+			buildPhases = (
+				5B060F2C261233510090E250 /* Sources */,
+				5B060F2D261233510090E250 /* Frameworks */,
+				5B060F2E261233510090E250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClaysAndGlazes;
+			productName = ClaysAndGlazes;
+			productReference = 5B060F30261233510090E250 /* ClaysAndGlazes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5B060F45261233550090E250 /* ClaysAndGlazesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B060F5D261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesTests" */;
+			buildPhases = (
+				5B060F42261233550090E250 /* Sources */,
+				5B060F43261233550090E250 /* Frameworks */,
+				5B060F44261233550090E250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B060F48261233550090E250 /* PBXTargetDependency */,
+			);
+			name = ClaysAndGlazesTests;
+			productName = ClaysAndGlazesTests;
+			productReference = 5B060F46261233550090E250 /* ClaysAndGlazesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5B060F50261233560090E250 /* ClaysAndGlazesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B060F60261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesUITests" */;
+			buildPhases = (
+				5B060F4D261233560090E250 /* Sources */,
+				5B060F4E261233560090E250 /* Frameworks */,
+				5B060F4F261233560090E250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B060F53261233560090E250 /* PBXTargetDependency */,
+			);
+			name = ClaysAndGlazesUITests;
+			productName = ClaysAndGlazesUITests;
+			productReference = 5B060F51261233560090E250 /* ClaysAndGlazesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5B060F28261233510090E250 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					5B060F2F261233510090E250 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					5B060F45261233550090E250 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 5B060F2F261233510090E250;
+					};
+					5B060F50261233560090E250 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 5B060F2F261233510090E250;
+					};
+				};
+			};
+			buildConfigurationList = 5B060F2B261233510090E250 /* Build configuration list for PBXProject "ClaysAndGlazes" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5B060F27261233510090E250;
+			productRefGroup = 5B060F31261233510090E250 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B060F2F261233510090E250 /* ClaysAndGlazes */,
+				5B060F45261233550090E250 /* ClaysAndGlazesTests */,
+				5B060F50261233560090E250 /* ClaysAndGlazesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B060F2E261233510090E250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
+				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
+				5B060F83261233E40090E250 /* clays.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F44261233550090E250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F4F261233560090E250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B060F2C261233510090E250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B060F75261233AF0090E250 /* Response.swift in Sources */,
+				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
+				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
+				5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */,
+				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
+				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
+				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
+				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F42261233550090E250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B060F4B261233560090E250 /* ClaysAndGlazesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B060F4D261233560090E250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B060F56261233560090E250 /* ClaysAndGlazesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B060F48261233550090E250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B060F2F261233510090E250 /* ClaysAndGlazes */;
+			targetProxy = 5B060F47261233550090E250 /* PBXContainerItemProxy */;
+		};
+		5B060F53261233560090E250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B060F2F261233510090E250 /* ClaysAndGlazes */;
+			targetProxy = 5B060F52261233560090E250 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5B060F3E261233550090E250 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B060F3F261233550090E250 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5B060F58261233560090E250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5B060F59261233560090E250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5B060F5B261233560090E250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5B060F5C261233560090E250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5B060F5E261233560090E250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClaysAndGlazes.app/ClaysAndGlazes";
+			};
+			name = Debug;
+		};
+		5B060F5F261233560090E250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClaysAndGlazes.app/ClaysAndGlazes";
+			};
+			name = Release;
+		};
+		5B060F61261233560090E250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClaysAndGlazes;
+			};
+			name = Debug;
+		};
+		5B060F62261233560090E250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BXDN3Y8FQ8;
+				INFOPLIST_FILE = ClaysAndGlazesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilyad.ClaysAndGlazesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClaysAndGlazes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5B060F2B261233510090E250 /* Build configuration list for PBXProject "ClaysAndGlazes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B060F58261233560090E250 /* Debug */,
+				5B060F59261233560090E250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B060F5A261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B060F5B261233560090E250 /* Debug */,
+				5B060F5C261233560090E250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B060F5D261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B060F5E261233560090E250 /* Debug */,
+				5B060F5F261233560090E250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B060F60261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B060F61261233560090E250 /* Debug */,
+				5B060F62261233560090E250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5B060F28261233510090E250 /* Project object */;
+}

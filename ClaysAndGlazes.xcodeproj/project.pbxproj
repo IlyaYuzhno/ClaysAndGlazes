@@ -19,7 +19,9 @@
 		5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F71261233AF0090E250 /* GlazesTableViewController.swift */; };
 		5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F72261233AF0090E250 /* ClaysTableViewController.swift */; };
 		5B060F7A261233AF0090E250 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F74261233AF0090E250 /* Interactor.swift */; };
-		5B060F83261233E40090E250 /* clays.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060F82261233E40090E250 /* clays.json */; };
+		5B060F98261484440090E250 /* ClayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F97261484440090E250 /* ClayCell.swift */; };
+		5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FA02614A3C60090E250 /* CollapsibleTableViewHeader.swift */; };
+		5B060FCD2614C3B90090E250 /* basicData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FCC2614C3B90090E250 /* basicData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +60,9 @@
 		5B060F71261233AF0090E250 /* GlazesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlazesTableViewController.swift; sourceTree = "<group>"; };
 		5B060F72261233AF0090E250 /* ClaysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaysTableViewController.swift; sourceTree = "<group>"; };
 		5B060F74261233AF0090E250 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		5B060F82261233E40090E250 /* clays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clays.json; sourceTree = "<group>"; };
+		5B060F97261484440090E250 /* ClayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayCell.swift; sourceTree = "<group>"; };
+		5B060FA02614A3C60090E250 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
+		5B060FCC2614C3B90090E250 /* basicData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basicData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 		5B060F6B261233AF0090E250 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5B060F9F2614A36E0090E250 /* Collapsible */,
+				5B060F962614842A0090E250 /* Cells */,
 				5B060F6C261233AF0090E250 /* Entity */,
 				5B060F6E261233AF0090E250 /* ViewControllers */,
 				5B060F73261233AF0090E250 /* Interactor */,
@@ -184,11 +190,35 @@
 		5B060F81261233C60090E250 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5B060F82261233E40090E250 /* clays.json */,
+				5B060FC32614B98B0090E250 /* Data */,
 				5B060F3C261233550090E250 /* Assets.xcassets */,
 				5B060F3E261233550090E250 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5B060F962614842A0090E250 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F97261484440090E250 /* ClayCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5B060F9F2614A36E0090E250 /* Collapsible */ = {
+			isa = PBXGroup;
+			children = (
+				5B060FA02614A3C60090E250 /* CollapsibleTableViewHeader.swift */,
+			);
+			path = Collapsible;
+			sourceTree = "<group>";
+		};
+		5B060FC32614B98B0090E250 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5B060FCC2614C3B90090E250 /* basicData.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +324,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B060FCD2614C3B90090E250 /* basicData.json in Resources */,
 				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
-				5B060F83261233E40090E250 /* clays.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,8 +351,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
+				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
 				5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */,
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,

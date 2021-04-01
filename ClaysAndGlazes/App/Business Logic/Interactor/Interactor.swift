@@ -10,16 +10,18 @@ import Foundation
 
 class Interactor {
 
+let basicJSON = "basicData"
 
-    public func getClays(completion: @escaping ([String]) -> Void) {
+// MARK: - Public
 
-        if let path = Bundle.main.path(forResource: "clays", ofType: "json") {
+    public func getClays(completion: @escaping ([Response]) -> Void) {
+
+        if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-                let clays = jsonResult.map { $0.clay }
                 DispatchQueue.main.async {
-                    completion(clays)
+                    completion(jsonResult)
                 }
             } catch {
                 print(error)
@@ -27,29 +29,27 @@ class Interactor {
         }
     }
 
+    public func getTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
 
-
-    public func getTemperature(for clay: String, completion: @escaping ([String : Response.Crackle]) -> Void) {
-
-        if let path = Bundle.main.path(forResource: "clays", ofType: "json") {
+        if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)
                 let clay = jsonResult.filter { $0.clay == clay }
                 let temperature = clay.map { $0.temperature }
                 DispatchQueue.main.async {
-                    completion(temperature[0])
+                    completion(temperature[0].keys.map { $0 })
                 }
             } catch {
                 print(error)
             }
         }
     }
-
+    //[String : Response.Crackle]
 
     public func getGlazes(for clay: String, temp: String, crackleId: String, completion: @escaping ([String]) -> Void) {
 
-        if let path = Bundle.main.path(forResource: "clays", ofType: "json") {
+        if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)

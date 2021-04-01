@@ -26,24 +26,21 @@ class TemperatureTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "ВЫБЕРИ ТЕМПЕРАТУРУ ОБЖИГА"
+        title =  "\(clay)" //"ТЕМПЕРАТУРА ОБЖИГА ГЛАЗУРИ"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "temperaturesTableView"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         
         // Get temperatures array for clay
         interactor.getTemperature(for: clay) { [weak self] temps in
-            self?.temperatures = temps.keys.map { $0 }
+            self?.temperatures = temps
             self?.tableView.reloadData()
         }
-
-
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return temperatures.count
     }
 

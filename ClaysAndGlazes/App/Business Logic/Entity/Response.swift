@@ -9,7 +9,8 @@ import Foundation
 
 
 class Response: Codable {
-
+    
+    let brand: String
     let clay: String
     let temperature: [String: Crackle]
 

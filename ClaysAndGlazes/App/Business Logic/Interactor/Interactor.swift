@@ -10,9 +10,9 @@ import Foundation
 
 class Interactor {
 
-let basicJSON = "basicData"
+    let basicJSON = "basicData"
 
-// MARK: - Public
+    // MARK: - Public
 
     public func getClays(completion: @escaping ([Response]) -> Void) {
 
@@ -45,41 +45,55 @@ let basicJSON = "basicData"
             }
         }
     }
-    //[String : Response.Crackle]
 
-    public func getGlazes(for clay: String, temp: String, crackleId: String, completion: @escaping ([String]) -> Void) {
+    public func getGlazes(for clay: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
 
         if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-
                 let clay = jsonResult.filter { $0.clay == clay }
-                let temperature = clay.map { $0.temperature }.first
-                let yyy = temperature?.first(where: { $0.key == temp })?.value
+                let crackle = clay.map { $0.temperature }.first?.first(where: { $0.key == temperature })?.value
                 var glazes: [String] = []
 
                 switch crackleId {
                 case "mnogo":
-                    glazes = yyy?.mnogo ?? [""]
+                    glazes = crackle?.mnogo ?? [""]
                 case "malo":
-                    glazes = yyy?.malo ?? [""]
+                    glazes = crackle?.malo ?? [""]
                 case "no":
-                    glazes = yyy?.no ?? [""]
+                    glazes = crackle?.no ?? [""]
                 default:
                     break
                 }
 
-                DispatchQueue.main.async {
+
                     completion(glazes)
-                }
+
             } catch {
                 print(error)
             }
         }
     }
 
+    public func getGlazesBrand(for glaze: String, completion: @escaping ([String]) -> Void) {
+        if let path = Bundle.main.path(forResource: "glazesData", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONDecoder().decode(GlazesResponse.self, from: data)
+                let item = jsonResult.glazes.map { $0 }.filter { $0.list.contains(glaze) }
+                let brand = item.map { $0.brand }
+                DispatchQueue.main.async {
+                    completion(brand)
+                }
+            } catch {
+                print(error)
+            }
 
+        }
 
+    }
+
+    
 
 }

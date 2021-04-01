@@ -26,7 +26,7 @@ class TemperatureTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title =  "\(clay)" //"ТЕМПЕРАТУРА ОБЖИГА ГЛАЗУРИ"
+        title =  "МАССА \(clay)"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "temperaturesTableView"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
@@ -39,6 +39,10 @@ class TemperatureTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return temperatures.count
@@ -64,5 +68,14 @@ class TemperatureTableViewController: UITableViewController {
 
     }
 
+    // MARK: - Section headers setup
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Выбери температуру обжига глазури:"
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
 
 }

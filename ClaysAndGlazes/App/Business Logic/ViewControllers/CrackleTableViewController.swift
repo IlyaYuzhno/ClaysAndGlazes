@@ -12,7 +12,7 @@ class CrackleTableViewController: UITableViewController {
     let interactor: Interactor
     var clay = ""
     var temperature = ""
-    var crackle = ["Много кракле", "Мало кракле", "Нет кракле"]
+    var crackle = ["Много цека", "Мало цека", "Нет цека"]
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -27,7 +27,7 @@ class CrackleTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "НАЛИЧИЕ КРАКЛЕ"
+        title = "НАЛИЧИЕ ЦЕКА"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "cracklesTableView"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")

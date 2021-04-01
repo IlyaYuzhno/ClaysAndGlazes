@@ -14,6 +14,8 @@ class GlazesTableViewController: UITableViewController {
     var temperature = ""
     var crackleId = ""
     var glazes: [String] = []
+    var brand: [String] = []
+
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -25,7 +27,6 @@ class GlazesTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +35,18 @@ class GlazesTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "glazesTableView"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
 
-        // Get glazes
-        interactor.getGlazes(for: clay, temp: temperature, crackleId: crackleId) { [weak self] items in
-            self?.glazes = items
-            self?.tableView.reloadData()
-        }
+        getInfo()
 
     }
 
     // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return brand.count
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return glazes.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -56,6 +55,36 @@ class GlazesTableViewController: UITableViewController {
         cell.textLabel?.text = glazes[indexPath.row]
         
         return cell
+    }
+
+    // MARK: - Section headers setup
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Глазури \(brand[section]):"
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+
+
+    // MARK: - Private
+    private func getInfo() {
+        let serialQueue = DispatchQueue(label: "com.queue.Serial")
+        serialQueue.sync {
+            // Get glazes
+            self.interactor.getGlazes(for: self.clay, temperature: self.temperature, crackleId: self.crackleId) { [weak self] items in
+                self?.glazes = items
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+        
+        // Get glazes brand
+        self.interactor.getGlazesBrand(for: self.glazes.first ?? "") { [weak self] brand in
+            self?.brand = brand
+            self?.tableView.reloadData()
+        }
     }
 
 

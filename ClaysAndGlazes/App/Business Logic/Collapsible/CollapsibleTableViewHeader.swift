@@ -21,8 +21,6 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
-        //self.heightAnchor.constraint(equalToConstant: 60).isActive = true
-
         contentView.backgroundColor = UIColor(hex: 0x2E3944)
 
         let marginGuide = contentView.layoutMarginsGuide

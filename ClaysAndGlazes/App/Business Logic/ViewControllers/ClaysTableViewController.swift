@@ -44,9 +44,6 @@ class ClaysTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isSearching ? filteredClaysList.count : sections[section].collapsed ? 0 : sections[section].items.count
-
-
-        //return sections[section].collapsed ? 0 : sections[section].items.count
     }
 
 
@@ -72,6 +69,7 @@ class ClaysTableViewController: UITableViewController {
 
     }
 
+    // MARK: - Section headers setup
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
 
@@ -101,7 +99,7 @@ class ClaysTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
-        title = "ВЫБЕРИ ГЛИНУ"
+        title = "ВЫБЕРИ МАССУ"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
         tableView.separatorColor = UIColor.clear
@@ -125,6 +123,7 @@ extension ClaysTableViewController {
             let labCeramica = response.filter { $0.brand == "LabCeramica" }.map { $0.clay}
             let valentineClays = response.filter { $0.brand == "ValentineClays" }.map { $0.clay}
             let konakovsky = response.filter { $0.brand == "Konakovsky" }.map { $0.clay}
+            let spain = response.filter { $0.brand == "SiO2, Spain" }.map { $0.clay}
 
             self?.claysList = response.map { $0.clay}
             self?.filteredClaysList = self?.claysList ?? [""]
@@ -134,7 +133,9 @@ extension ClaysTableViewController {
                 Section(name: "Laguna Clay", items: lagunaClay),
                 Section(name: "Lab Ceramica", items: labCeramica),
                 Section(name: "Valentine Clays", items: valentineClays),
-                Section(name: "Конаковский шамот", items: konakovsky)
+                Section(name: "Конаковский шамот", items: konakovsky),
+                Section(name: "SiO2, Spain", items: spain)
+
             ]
             self?.tableView.reloadData()
 

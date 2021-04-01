@@ -8,7 +8,7 @@
 import Foundation
 
 
-class Response: Codable {
+struct Response: Codable {
     
     let brand: String
     let clay: String

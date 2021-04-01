@@ -22,6 +22,8 @@
 		5B060F98261484440090E250 /* ClayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F97261484440090E250 /* ClayCell.swift */; };
 		5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FA02614A3C60090E250 /* CollapsibleTableViewHeader.swift */; };
 		5B060FCD2614C3B90090E250 /* basicData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FCC2614C3B90090E250 /* basicData.json */; };
+		5B060FDB2615FD520090E250 /* glazesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FDA2615FD520090E250 /* glazesData.json */; };
+		5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FDF261605190090E250 /* GlazesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		5B060F97261484440090E250 /* ClayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayCell.swift; sourceTree = "<group>"; };
 		5B060FA02614A3C60090E250 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		5B060FCC2614C3B90090E250 /* basicData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basicData.json; sourceTree = "<group>"; };
+		5B060FDA2615FD520090E250 /* glazesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = glazesData.json; sourceTree = "<group>"; };
+		5B060FDF261605190090E250 /* GlazesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				5B060F6D261233AF0090E250 /* Response.swift */,
+				5B060FDF261605190090E250 /* GlazesResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				5B060FCC2614C3B90090E250 /* basicData.json */,
+				5B060FDA2615FD520090E250 /* glazesData.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				5B060FCD2614C3B90090E250 /* basicData.json in Resources */,
 				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
+				5B060FDB2615FD520090E250 /* glazesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +367,7 @@
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
+				5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

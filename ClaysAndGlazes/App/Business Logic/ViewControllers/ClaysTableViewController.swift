@@ -4,17 +4,19 @@
 //
 //  Created by Ilya Doroshkevitch on 29.03.2021.
 //
-
 import UIKit
 
 class ClaysTableViewController: UITableViewController {
 
     var claysList: [String] = []
     var filteredClaysList: [String] = []
+    var claysInfo: [String] = []
     var isSearching = false
     let interactor: Interactor
     lazy var searchBar: UISearchBar = UISearchBar()
     var sections = [Section]()
+    var indexPath: IndexPath?
+    var clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100), clayName: "", clayInfo: "")
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -33,11 +35,9 @@ class ClaysTableViewController: UITableViewController {
         setUpSearchBar()
 
         getData()
-
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         isSearching ? 1 : sections.count
     }
@@ -46,40 +46,34 @@ class ClaysTableViewController: UITableViewController {
         isSearching ? filteredClaysList.count : sections[section].collapsed ? 0 : sections[section].items.count
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clayCell", for: indexPath) as! ClayCell
-
+        
         isSearching ? cell.configure(item: filteredClaysList[indexPath.row]) : cell.configure(item: sections[indexPath.section].items[indexPath.row])
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        // Go to next VC
         let temperatureViewController = TemperatureTableViewController(interactor: interactor)
-
         if isSearching {
             temperatureViewController.clay = filteredClaysList[indexPath.row]
         } else {
             temperatureViewController.clay = sections[indexPath.section].items[indexPath.row]
         }
-
         self.navigationController?.show(temperatureViewController, sender: self)
-
     }
 
     // MARK: - Section headers setup
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
-
         header.titleLabel.text = sections[section].name
         header.arrowLabel.text = ">"
         header.setCollapsed(collapsed: sections[section].collapsed)
         header.section = section
         header.delegate = self
         return header
-
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -87,34 +81,50 @@ class ClaysTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        isSearching ? 0 : 40
+        isSearching ? 0 : 60
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20
     }
 
-// MARK: - Private
+    // MARK: Tap on information button
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        tableView.isScrollEnabled = false
+        Animation.setBlur(view: self.view, contentView: clayInfoView)
+        self.clayInfoView.alpha = 1
+        if isSearching {
+            showClayInfoView(clayName: filteredClaysList[indexPath.row], clayInfo: "clayInfoWhenSearch")
+        } else {
+            showClayInfoView(clayName: sections[indexPath.section].items[indexPath.row], clayInfo: "Представляет собой порошкообразный продукт, предназначенный для изготовления полуфарфоровых изделий методом шликерного литья в гипсовые формы.\n\nРекомендуемая температура обжига 1070-1100С°.\n\nУсадка: 4 - 9%.\n\nПорошок может быть использован в составах глазурей как источник кремнезёма и глинозёма.")  //claysInfo[indexPath.row])
+        }
+    }
+
+    // MARK: - Private
     fileprivate func setupTableView() {
+        tableView.addSubview(clayInfoView)
+        clayInfoView.alpha = 0
+        clayInfoView.delegate = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
         title = "ВЫБЕРИ МАССУ"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
-        tableView.separatorColor = UIColor.clear
         clearsSelectionOnViewWillAppear = true
-        tableView.separatorStyle = .none
         tableView.register(ClayCell.self, forCellReuseIdentifier: "clayCell")
     }
 
+    fileprivate func showClayInfoView(clayName: String, clayInfo: String) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showInfoView"), object: nil, userInfo: ["clayName": clayName, "clayInfo": clayInfo])
+        Animation.showView(view: clayInfoView)
+    }
+
+
 }
 
-
-
-// MARK: - Extensions
+    // MARK: - Extensions
 extension ClaysTableViewController {
-
     fileprivate func getData() {
         interactor.getClays() { [weak self] response in
             let witgert = response.filter { $0.brand == "Witgert" }.map { $0.clay}
@@ -140,13 +150,18 @@ extension ClaysTableViewController {
             self?.tableView.reloadData()
 
         }
-    }
 
+            /*
+        interactor.getClaysInfo() { [weak self] response in
+            self?.claysInfo = response
+        }
+ */
+
+    }
 
 }
 
 extension ClaysTableViewController: UISearchBarDelegate {
-
     private func setUpSearchBar() {
         searchBar.searchBarStyle = .prominent
         searchBar.placeholder = "  Поиск..."
@@ -172,12 +187,9 @@ extension ClaysTableViewController: UISearchBarDelegate {
         }
 
     }
-
-
 }
 
 extension ClaysTableViewController {
-
     struct Section {
         var name: String
         var items: [String]
@@ -192,7 +204,6 @@ extension ClaysTableViewController {
 }
 
 extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
-
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
         let collapsed = !sections[section].collapsed
 
@@ -202,6 +213,17 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
 
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
-      }
+    }
 
+}
+
+extension ClaysTableViewController: ClayInfoViewDelegate {
+    func okButtonPressed(sender: UISwipeGestureRecognizer) {
+
+        // Hide infoView and remove blur
+        Animation.hideView(view: clayInfoView)
+        Animation.removeBlur()
+        tableView.isScrollEnabled = true
+        
+  }
 }

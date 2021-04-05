@@ -24,17 +24,11 @@ class ClayCell: UITableViewCell {
     }
 
     func configure(item: String) {
+        accessoryType = .detailButton
         accessibilityIdentifier = "clayCell"
-        contentView.layer.shadowColor = .init(red: 0, green: 0, blue: 0, alpha: 1)  //.init(gray: 100, alpha: 1)
-        contentView.layer.shadowOffset = .init(width: 1, height: 1)
-        contentView.layer.shadowRadius = 10.0;
-        contentView.layer.shadowOpacity = 1.0;
-        contentView.layer.cornerRadius = 10.0;
-        contentView.backgroundColor = .white
-        backgroundColor = .black
+        backgroundColor = .white
         textLabel?.numberOfLines = 0
         textLabel?.text = item
-
     }
 
 

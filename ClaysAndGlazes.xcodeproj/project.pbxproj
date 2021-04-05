@@ -24,6 +24,8 @@
 		5B060FCD2614C3B90090E250 /* basicData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FCC2614C3B90090E250 /* basicData.json */; };
 		5B060FDB2615FD520090E250 /* glazesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FDA2615FD520090E250 /* glazesData.json */; };
 		5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FDF261605190090E250 /* GlazesResponse.swift */; };
+		5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FF926174D340090E250 /* ClayInfoView.swift */; };
+		5B06101E261B356D0090E250 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06101D261B356D0090E250 /* Animation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		5B060FCC2614C3B90090E250 /* basicData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basicData.json; sourceTree = "<group>"; };
 		5B060FDA2615FD520090E250 /* glazesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = glazesData.json; sourceTree = "<group>"; };
 		5B060FDF261605190090E250 /* GlazesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesResponse.swift; sourceTree = "<group>"; };
+		5B060FF926174D340090E250 /* ClayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayInfoView.swift; sourceTree = "<group>"; };
+		5B06101D261B356D0090E250 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 		5B060F6B261233AF0090E250 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5B06101C261B35530090E250 /* Animation */,
+				5B060FF826174D150090E250 /* Views */,
 				5B060F9F2614A36E0090E250 /* Collapsible */,
 				5B060F962614842A0090E250 /* Cells */,
 				5B060F6C261233AF0090E250 /* Entity */,
@@ -225,6 +231,22 @@
 				5B060FDA2615FD520090E250 /* glazesData.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		5B060FF826174D150090E250 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B060FF926174D340090E250 /* ClayInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B06101C261B35530090E250 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				5B06101D261B356D0090E250 /* Animation.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,8 +389,10 @@
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
+				5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
+				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

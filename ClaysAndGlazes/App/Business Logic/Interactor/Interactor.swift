@@ -66,9 +66,7 @@ class Interactor {
                 default:
                     break
                 }
-
-
-                    completion(glazes)
+                completion(glazes)
 
             } catch {
                 print(error)
@@ -94,6 +92,23 @@ class Interactor {
 
     }
 
-    
+    /*
+    public func getClaysInfo(completion: @escaping ([String]) -> Void) {
+
+        if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONDecoder().decode([Response].self, from: data)
+                let clayInfo = jsonResult.map { $0.info }
+                DispatchQueue.main.async {
+                    completion(clayInfo)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+
+    */
 
 }

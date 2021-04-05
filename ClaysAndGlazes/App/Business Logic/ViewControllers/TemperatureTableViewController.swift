@@ -52,7 +52,7 @@ class TemperatureTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         cell.accessibilityIdentifier = "temperatureCell"
-
+        
         cell.textLabel?.text = temperatures[indexPath.row].description
 
         return cell

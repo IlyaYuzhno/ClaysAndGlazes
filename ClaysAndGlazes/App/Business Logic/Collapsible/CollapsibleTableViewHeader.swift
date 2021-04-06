@@ -21,8 +21,8 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
-        contentView.backgroundColor = UIColor(hex: 0x2E3944)
-
+        //contentView.backgroundColor = UIColor(hex: 0x2E3944)
+        contentView.backgroundColor = .SectionColor
         let marginGuide = contentView.layoutMarginsGuide
 
         // Arrow label
@@ -59,7 +59,6 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
     }
 
     func setCollapsed(collapsed: Bool) {
-
         arrowLabel.rotate(collapsed ? 0.0 : .pi / 2)
     }
 

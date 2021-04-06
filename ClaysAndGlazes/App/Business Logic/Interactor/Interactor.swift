@@ -92,7 +92,7 @@ class Interactor {
 
     }
 
-    /*
+
     public func getClaysInfo(completion: @escaping ([String]) -> Void) {
 
         if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
@@ -109,6 +109,6 @@ class Interactor {
         }
     }
 
-    */
+    
 
 }

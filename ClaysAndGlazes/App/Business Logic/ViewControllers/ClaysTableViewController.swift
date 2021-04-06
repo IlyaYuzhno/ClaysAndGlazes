@@ -11,6 +11,7 @@ class ClaysTableViewController: UITableViewController {
     var claysList: [String] = []
     var filteredClaysList: [String] = []
     var claysInfo: [String] = []
+    var claysInfoDictionary: [String: String] = [:]
     var isSearching = false
     let interactor: Interactor
     lazy var searchBar: UISearchBar = UISearchBar()
@@ -94,9 +95,9 @@ class ClaysTableViewController: UITableViewController {
         Animation.setBlur(view: self.view, contentView: clayInfoView)
         self.clayInfoView.alpha = 1
         if isSearching {
-            showClayInfoView(clayName: filteredClaysList[indexPath.row], clayInfo: "clayInfoWhenSearch")
+            showClayInfoView(clayName: filteredClaysList[indexPath.row], clayInfo: claysInfoDictionary[filteredClaysList[indexPath.row]] ?? "")
         } else {
-            showClayInfoView(clayName: sections[indexPath.section].items[indexPath.row], clayInfo: "Представляет собой порошкообразный продукт, предназначенный для изготовления полуфарфоровых изделий методом шликерного литья в гипсовые формы.\n\nРекомендуемая температура обжига 1070-1100С°.\n\nУсадка: 4 - 9%.\n\nПорошок может быть использован в составах глазурей как источник кремнезёма и глинозёма.")  //claysInfo[indexPath.row])
+            showClayInfoView(clayName: sections[indexPath.section].items[indexPath.row], clayInfo: sections[indexPath.section].info[indexPath.row])
         }
     }
 
@@ -107,7 +108,8 @@ class ClaysTableViewController: UITableViewController {
         clayInfoView.delegate = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .BackgroundColor1
+        navigationController?.navigationBar.barTintColor = .BackgroundColor1
         title = "ВЫБЕРИ МАССУ"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
@@ -119,8 +121,6 @@ class ClaysTableViewController: UITableViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showInfoView"), object: nil, userInfo: ["clayName": clayName, "clayInfo": clayInfo])
         Animation.showView(view: clayInfoView)
     }
-
-
 }
 
     // MARK: - Extensions
@@ -128,50 +128,56 @@ extension ClaysTableViewController {
     fileprivate func getData() {
         interactor.getClays() { [weak self] response in
             let witgert = response.filter { $0.brand == "Witgert" }.map { $0.clay}
+            let witgertInfo = response.filter { $0.brand == "Witgert" }.map { $0.info}
             let donbass = response.filter { $0.brand == "Donbass" }.map { $0.clay}
+            let donbassInfo = response.filter { $0.brand == "Donbass" }.map { $0.info}
             let lagunaClay = response.filter { $0.brand == "LagunaClay" }.map { $0.clay}
+            let lagunaClayInfo = response.filter { $0.brand == "LagunaClay" }.map { $0.info}
             let labCeramica = response.filter { $0.brand == "LabCeramica" }.map { $0.clay}
+            let labCeramicaInfo = response.filter { $0.brand == "LabCeramica" }.map { $0.info}
             let valentineClays = response.filter { $0.brand == "ValentineClays" }.map { $0.clay}
+            let valentineClaysInfo = response.filter { $0.brand == "ValentineClays" }.map { $0.info}
             let konakovsky = response.filter { $0.brand == "Konakovsky" }.map { $0.clay}
+            let konakovskyInfo = response.filter { $0.brand == "Konakovsky" }.map { $0.info}
             let spain = response.filter { $0.brand == "SiO2, Spain" }.map { $0.clay}
+            let spainInfo = response.filter { $0.brand == "SiO2, Spain" }.map { $0.info}
 
             self?.claysList = response.map { $0.clay}
-            self?.filteredClaysList = self?.claysList ?? [""]
-            self?.sections = [
-                Section(name: "Witgert", items: witgert),
-                Section(name: "Керамические массы Донбасса", items: donbass),
-                Section(name: "Laguna Clay", items: lagunaClay),
-                Section(name: "Lab Ceramica", items: labCeramica),
-                Section(name: "Valentine Clays", items: valentineClays),
-                Section(name: "Конаковский шамот", items: konakovsky),
-                Section(name: "SiO2, Spain", items: spain)
+            self?.claysInfo = response.map { $0.info}
+            self?.claysInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.claysList ?? [""], self?.claysInfo ?? [""]))
 
+            self?.filteredClaysList = self?.claysList ?? [""]
+
+            self?.sections = [
+                Section(name: "Witgert", items: witgert, info: witgertInfo),
+                Section(name: "Керамические массы Донбасса", items: donbass, info: donbassInfo),
+                Section(name: "Laguna Clay", items: lagunaClay, info: lagunaClayInfo),
+                Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
+                Section(name: "Valentine Clays", items: valentineClays, info: valentineClaysInfo),
+                Section(name: "Конаковский шамот", items: konakovsky, info: konakovskyInfo),
+                Section(name: "SiO2, Spain", items: spain, info: spainInfo)
             ]
             self?.tableView.reloadData()
-
         }
-
-            /*
-        interactor.getClaysInfo() { [weak self] response in
-            self?.claysInfo = response
-        }
- */
-
     }
-
 }
 
+// MARK: Searchbar
 extension ClaysTableViewController: UISearchBarDelegate {
     private func setUpSearchBar() {
         searchBar.searchBarStyle = .prominent
-        searchBar.placeholder = "  Поиск..."
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.backgroundImage = UIImage()
+      searchBar.placeholder = "  Поиск..."
+     searchBar.sizeToFit()
+       searchBar.isTranslucent = true
+      searchBar.backgroundImage = UIImage()
+        searchBar.backgroundColor = .clear
+        //searchBar.tintColor = .BackgroundColor2
+        searchBar.searchTextField.backgroundColor = .SearchBarColor
         searchBar.delegate = self
         tableView.tableHeaderView = searchBar
-    }
 
+
+    }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == "" {
@@ -185,19 +191,21 @@ extension ClaysTableViewController: UISearchBarDelegate {
             })
             tableView.reloadData()
         }
-
     }
 }
 
+// MARK: Sections stuff
 extension ClaysTableViewController {
     struct Section {
         var name: String
+        var info: [String]
         var items: [String]
         var collapsed: Bool
 
-        init(name: String, items: [String], collapsed: Bool = false) {
+        init(name: String, items: [String], info: [String], collapsed: Bool = true) {
             self.name = name
             self.items = items
+            self.info = info
             self.collapsed = collapsed
         }
     }
@@ -217,6 +225,7 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
 
 }
 
+// MARK: Info View Delegate
 extension ClaysTableViewController: ClayInfoViewDelegate {
     func okButtonPressed(sender: UISwipeGestureRecognizer) {
 
@@ -224,6 +233,13 @@ extension ClaysTableViewController: ClayInfoViewDelegate {
         Animation.hideView(view: clayInfoView)
         Animation.removeBlur()
         tableView.isScrollEnabled = true
-        
   }
+}
+
+
+extension UIColor {
+  static let BackgroundColor1: UIColor = UIColor(named: "BackgroundColor1")!
+  static let BackgroundColor2: UIColor = UIColor(named: "BackgroundColor2")!
+  static let SectionColor: UIColor = UIColor(named: "SectionColor")!
+  static let SearchBarColor: UIColor = UIColor(named: "SearchBarColor")!
 }

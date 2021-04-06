@@ -12,7 +12,7 @@ struct Response: Codable {
     
     let brand: String
     let clay: String
-   // let info: String
+    let info: String
     let temperature: [String: Crackle]
 
     struct Crackle: Codable {
@@ -20,5 +20,7 @@ struct Response: Codable {
         let malo: [String]
         let no: [String]
     }
+
+
 
 }

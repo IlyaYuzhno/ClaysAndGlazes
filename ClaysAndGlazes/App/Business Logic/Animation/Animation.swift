@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 
-class Animation {
+final class Animation {
     
+    @available(iOS 13.0, *)
     static var blur = UIBlurEffect(style: .systemUltraThinMaterialLight)
     static var visualEffect = UIVisualEffectView()
 
@@ -33,7 +34,8 @@ class Animation {
     }
 
     // MARK: Set blur
-   class func setBlur(view: UIView, contentView: UIView) {
+    @available(iOS 13.0, *)
+    class func setBlur(view: UIView, contentView: UIView) {
 
         visualEffect = UIVisualEffectView(effect: blur)
         visualEffect.frame = view.bounds

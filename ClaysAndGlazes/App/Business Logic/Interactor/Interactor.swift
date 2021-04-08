@@ -4,9 +4,7 @@
 //
 //  Created by Ilya Doroshkevitch on 29.03.2021.
 //
-
 import Foundation
-
 
 class Interactor {
 
@@ -30,7 +28,6 @@ class Interactor {
     }
 
     public func getTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
-
         if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -47,7 +44,6 @@ class Interactor {
     }
 
     public func getGlazes(for clay: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
-
         if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -67,7 +63,6 @@ class Interactor {
                     break
                 }
                 completion(glazes)
-
             } catch {
                 print(error)
             }
@@ -81,9 +76,7 @@ class Interactor {
                 let jsonResult = try JSONDecoder().decode(GlazesResponse.self, from: data)
                 let item = jsonResult.glazes.map { $0 }.filter { $0.list.contains(glaze) }
                 let brand = item.map { $0.brand }
-                DispatchQueue.main.async {
-                    completion(brand)
-                }
+                completion(brand)
             } catch {
                 print(error)
             }
@@ -92,9 +85,7 @@ class Interactor {
 
     }
 
-
     public func getClaysInfo(completion: @escaping ([String]) -> Void) {
-
         if let path = Bundle.main.path(forResource: basicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)

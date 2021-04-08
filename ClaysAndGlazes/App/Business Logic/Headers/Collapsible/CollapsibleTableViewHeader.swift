@@ -24,6 +24,7 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
         //contentView.backgroundColor = UIColor(hex: 0x2E3944)
         contentView.backgroundColor = .SectionColor
         let marginGuide = contentView.layoutMarginsGuide
+        accessibilityIdentifier = "sectionHeader"
 
         // Arrow label
         contentView.addSubview(arrowLabel)
@@ -42,6 +43,14 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
         titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+
+        // Add shadow
+        backgroundColor = .clear
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.23
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = UIColor.black.cgColor
 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapHeader(gestureRecognizer:))))
     }

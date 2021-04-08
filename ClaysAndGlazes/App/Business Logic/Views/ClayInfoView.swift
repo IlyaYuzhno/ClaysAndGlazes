@@ -46,16 +46,6 @@ class ClayInfoView: UIView {
         return line
     }()
 
-    private lazy var okButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("OK", for: .normal)
-        button.backgroundColor = .systemGreen
-        button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(self.okButtonPressed(sender:)), for: .touchUpInside)
-        return button
-    }()
-    
     // MARK: - Init
     init(frame: CGRect, clayName: String, clayInfo: String) {
         self.clay = clayName
@@ -76,7 +66,7 @@ class ClayInfoView: UIView {
     private func setupViews() {
         layer.cornerRadius = 20
         backgroundColor = .white
-        addSubviews(clayNameLabel, clayInfoLabel, okButton, line)
+        addSubviews(clayNameLabel, clayInfoLabel, line)
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         swipe.direction = .down
         addGestureRecognizer(swipe)
@@ -97,12 +87,7 @@ class ClayInfoView: UIView {
 
             clayInfoLabel.topAnchor.constraint(equalTo: clayNameLabel.bottomAnchor, constant: 40),
             clayInfoLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            clayInfoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20),
-
-            okButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            okButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-            okButton.widthAnchor.constraint(equalTo: widthAnchor),
-            okButton.heightAnchor.constraint(equalToConstant: 50)
+            clayInfoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20)
         ])
     }
 

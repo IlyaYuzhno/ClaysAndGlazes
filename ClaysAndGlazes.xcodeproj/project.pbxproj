@@ -26,6 +26,9 @@
 		5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FDF261605190090E250 /* GlazesResponse.swift */; };
 		5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FF926174D340090E250 /* ClayInfoView.swift */; };
 		5B06101E261B356D0090E250 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06101D261B356D0090E250 /* Animation.swift */; };
+		5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06102C261DA2A80090E250 /* DefaultHeader.swift */; };
+		5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061031261DA9B00090E250 /* DefaultCell.swift */; };
+		5B061037261EF0B70090E250 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061036261EF0B70090E250 /* StartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		5B060FDF261605190090E250 /* GlazesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesResponse.swift; sourceTree = "<group>"; };
 		5B060FF926174D340090E250 /* ClayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayInfoView.swift; sourceTree = "<group>"; };
 		5B06101D261B356D0090E250 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		5B06102C261DA2A80090E250 /* DefaultHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHeader.swift; sourceTree = "<group>"; };
+		5B061031261DA9B00090E250 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
+		5B061036261EF0B70090E250 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,9 +165,9 @@
 		5B060F6B261233AF0090E250 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5B06102B261DA22C0090E250 /* Headers */,
 				5B06101C261B35530090E250 /* Animation */,
 				5B060FF826174D150090E250 /* Views */,
-				5B060F9F2614A36E0090E250 /* Collapsible */,
 				5B060F962614842A0090E250 /* Cells */,
 				5B060F6C261233AF0090E250 /* Entity */,
 				5B060F6E261233AF0090E250 /* ViewControllers */,
@@ -212,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				5B060F97261484440090E250 /* ClayCell.swift */,
+				5B061031261DA9B00090E250 /* DefaultCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -237,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				5B060FF926174D340090E250 /* ClayInfoView.swift */,
+				5B061036261EF0B70090E250 /* StartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +255,15 @@
 				5B06101D261B356D0090E250 /* Animation.swift */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		5B06102B261DA22C0090E250 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F9F2614A36E0090E250 /* Collapsible */,
+				5B06102C261DA2A80090E250 /* DefaultHeader.swift */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,7 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
+				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
+				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
@@ -390,6 +409,7 @@
 				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
 				5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */,
+				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesResponse.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
@@ -490,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -545,7 +565,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

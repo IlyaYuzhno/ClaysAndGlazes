@@ -14,21 +14,21 @@ class ClaysAndGlazesUITests: XCTestCase {
     override func setUpWithError() throws {
         app = XCUIApplication()
         app.launch()
-
-
         continueAfterFailure = false
-
     }
 
     override func tearDownWithError() throws {
         app = nil
     }
 
+    // MARK: Test
     func testUI() throws {
+
+        let sectionHeader = app.otherElements["sectionHeader"].firstMatch
+        sectionHeader.tap()
 
         let clayCell = app.cells["clayCell"].firstMatch
         clayCell.tap()
-
 
         let temperatureView = app.tables["temperaturesTableView"].firstMatch
         XCTAssertTrue(temperatureView.waitForExistence(timeout: 5))
@@ -45,9 +45,6 @@ class ClaysAndGlazesUITests: XCTestCase {
         let glazesView = app.tables["glazesTableView"].firstMatch
         XCTAssertTrue(glazesView.waitForExistence(timeout: 5))
     }
-
-
-
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

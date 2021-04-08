@@ -28,24 +28,22 @@ class CrackleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "НАЛИЧИЕ ЦЕКА"
+        tableView.backgroundColor = .BackgroundColor1
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "cracklesTableView"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        tableView.register(DefaultCell.self, forCellReuseIdentifier: "crackleCell")
 
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return crackle.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "crackleCell", for: indexPath) as! DefaultCell
+        cell.configure(item: crackle[indexPath.row])
         cell.accessibilityIdentifier = "crackleCell"
-
-        cell.textLabel?.text = crackle[indexPath.row]
-
         return cell
     }
     
@@ -64,16 +62,17 @@ class CrackleTableViewController: UITableViewController {
             break
         }
 
+        // MARK: Go to next VC
         let glazesViewController = GlazesTableViewController(interactor: interactor)
         glazesViewController.clay = clay
         glazesViewController.temperature = temperature
         glazesViewController.crackleId = crackleId
-        self.navigationController?.show(glazesViewController, sender: self)
-
+        self.navigationController?.pushViewController(glazesViewController, animated: true)
     }
 
-
-
-
-
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.masksToBounds = true
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+    }
 }

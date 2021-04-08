@@ -4,9 +4,7 @@
 //
 //  Created by Ilya Doroshkevitch on 29.03.2021.
 //
-
 import Foundation
-
 
 struct Response: Codable {
     
@@ -20,7 +18,4 @@ struct Response: Codable {
         let malo: [String]
         let no: [String]
     }
-
-
-
 }

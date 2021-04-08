@@ -31,12 +31,4 @@ class ClayCell: UITableViewCell {
         textLabel?.text = item
     }
 
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 5))
-    }
-
-
 }

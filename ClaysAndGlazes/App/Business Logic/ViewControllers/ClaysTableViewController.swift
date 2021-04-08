@@ -17,7 +17,9 @@ class ClaysTableViewController: UITableViewController {
     lazy var searchBar: UISearchBar = UISearchBar()
     var sections = [Section]()
     var indexPath: IndexPath?
-    var clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100), clayName: "", clayInfo: "")
+    let clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100), clayName: "", clayInfo: "")
+    let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
+    var isShown = false
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -34,8 +36,15 @@ class ClaysTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setUpSearchBar()
-
         getData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let isShown: Bool = UserDefaults.standard.bool(forKey: "isShown")
+        if isShown == false {
+            showStartView()
+        }
     }
 
     // MARK: - Table view data source
@@ -63,7 +72,7 @@ class ClaysTableViewController: UITableViewController {
         } else {
             temperatureViewController.clay = sections[indexPath.section].items[indexPath.row]
         }
-        self.navigationController?.show(temperatureViewController, sender: self)
+        self.navigationController?.pushViewController(temperatureViewController, animated: true)
     }
 
     // MARK: - Section headers setup
@@ -103,14 +112,16 @@ class ClaysTableViewController: UITableViewController {
 
     // MARK: - Private
     fileprivate func setupTableView() {
-        tableView.addSubview(clayInfoView)
+        tableView.addSubviews(clayInfoView, startView)
+        startView.alpha = 0
         clayInfoView.alpha = 0
         clayInfoView.delegate = self
+        startView.delegate = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .BackgroundColor1
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
-        title = "ВЫБЕРИ МАССУ"
+        title = "ВЫБЕРИ МАССУ:"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
         clearsSelectionOnViewWillAppear = true
@@ -141,6 +152,10 @@ extension ClaysTableViewController {
             let konakovskyInfo = response.filter { $0.brand == "Konakovsky" }.map { $0.info}
             let spain = response.filter { $0.brand == "SiO2, Spain" }.map { $0.clay}
             let spainInfo = response.filter { $0.brand == "SiO2, Spain" }.map { $0.info}
+            let goerg = response.filter { $0.brand == "GOERG & SCHNEIDER" }.map { $0.clay}
+            let goergInfo = response.filter { $0.brand == "GOERG & SCHNEIDER" }.map { $0.info}
+            let raoul = response.filter { $0.brand == "Raoult & Beck" }.map { $0.clay}
+            let raoulInfo = response.filter { $0.brand == "Raoult & Beck" }.map { $0.info}
 
             self?.claysList = response.map { $0.clay}
             self?.claysInfo = response.map { $0.info}
@@ -155,28 +170,31 @@ extension ClaysTableViewController {
                 Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
                 Section(name: "Valentine Clays", items: valentineClays, info: valentineClaysInfo),
                 Section(name: "Конаковский шамот", items: konakovsky, info: konakovskyInfo),
-                Section(name: "SiO2, Spain", items: spain, info: spainInfo)
+                Section(name: "SiO2, Испания", items: spain, info: spainInfo),
+                Section(name: "GOERG & SCHNEIDER", items: goerg, info: goergInfo),
+                Section(name: "Raoult & Beck", items: raoul, info: raoulInfo)
             ]
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+
         }
     }
 }
 
 // MARK: Searchbar
 extension ClaysTableViewController: UISearchBarDelegate {
+    @available(iOS 13.0, *)
     private func setUpSearchBar() {
         searchBar.searchBarStyle = .prominent
-      searchBar.placeholder = "  Поиск..."
-     searchBar.sizeToFit()
-       searchBar.isTranslucent = true
-      searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "  Поиск..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = true
+        searchBar.backgroundImage = UIImage()
         searchBar.backgroundColor = .clear
-        //searchBar.tintColor = .BackgroundColor2
         searchBar.searchTextField.backgroundColor = .SearchBarColor
         searchBar.delegate = self
         tableView.tableHeaderView = searchBar
-
-
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -234,6 +252,26 @@ extension ClaysTableViewController: ClayInfoViewDelegate {
         Animation.removeBlur()
         tableView.isScrollEnabled = true
   }
+}
+
+// MARK: Show start view
+extension ClaysTableViewController {
+    func showStartView() {
+        tableView.isScrollEnabled = false
+        view.bringSubviewToFront(startView)
+        startView.alpha = 1
+    }
+}
+
+// MARK: Hide start view
+extension ClaysTableViewController: StartViewDelegate {
+    func startViewButtonPressed() {
+        isShown = true
+        startView.alpha = 0
+        startView.removeFromSuperview()
+        tableView.isScrollEnabled = true
+        UserDefaults.standard.set(isShown, forKey: "isShown")
+    }
 }
 
 

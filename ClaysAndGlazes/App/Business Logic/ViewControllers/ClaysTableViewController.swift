@@ -36,6 +36,7 @@ class ClaysTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setUpSearchBar()
+        hideKeyboardWhenTappedAround()
         getData()
     }
 
@@ -280,4 +281,17 @@ extension UIColor {
   static let BackgroundColor2: UIColor = UIColor(named: "BackgroundColor2")!
   static let SectionColor: UIColor = UIColor(named: "SectionColor")!
   static let SearchBarColor: UIColor = UIColor(named: "SearchBarColor")!
+}
+
+
+extension UITableViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UITableViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

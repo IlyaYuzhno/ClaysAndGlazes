@@ -60,7 +60,7 @@ class StartView: UIView {
     // MARK: - Private
     private func setupViews() {
         layer.cornerRadius = 20
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         addSubviews(titleLabel, textLabel, okButton)
     }
 

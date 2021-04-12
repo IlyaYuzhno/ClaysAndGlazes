@@ -21,7 +21,7 @@ class DefaultCell: UITableViewCell {
         layer.shadowColor = UIColor.black.cgColor
 
         // add corner radius on `contentView`
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 8
     }
 
@@ -36,7 +36,7 @@ class DefaultCell: UITableViewCell {
     }
 
     func configure(item: String) {
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         textLabel?.numberOfLines = 0
         textLabel?.text = item
 

@@ -65,7 +65,7 @@ class ClayInfoView: UIView {
     // MARK: SetupViews
     private func setupViews() {
         layer.cornerRadius = 20
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         addSubviews(clayNameLabel, clayInfoLabel, line)
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         swipe.direction = .down

@@ -22,10 +22,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let interactor = Interactor()
 
+        // Creating VC for Tab Bar
         let firstController = ClaysTableViewController(interactor: interactor)
-        let navigationController = UINavigationController(rootViewController: firstController)
-        navigationController.navigationBar.isTranslucent = false
-        window?.rootViewController = navigationController
+        let secondController = ChooseGlazeTableViewController(interactor: interactor)
+
+        // Setup Tab Bar
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.barTintColor = .SearchBarColor
+
+        // Adding VC to Tab Bar
+        firstController.tabBarItem = UITabBarItem(title: "Массы", image: UIImage(named: "clayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "clayIcon")?.withRenderingMode(.alwaysOriginal))
+        secondController.tabBarItem = UITabBarItem(title: "Глазури", image: UIImage(named: "glazeIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "glazeIcon")?.withRenderingMode(.alwaysOriginal))
+        let controllers = [firstController, secondController]
+        tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
+
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 

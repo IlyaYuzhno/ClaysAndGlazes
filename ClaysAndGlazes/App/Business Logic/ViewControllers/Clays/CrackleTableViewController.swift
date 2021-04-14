@@ -11,12 +11,15 @@ class CrackleTableViewController: UITableViewController {
 
     let interactor: Interactor
     var clay = ""
+    var glaze = ""
     var temperature = ""
+    var mode: String
     var crackle = ["Много цека", "Мало цека", "Нет цека"]
 
     // MARK: - Init
-    init(interactor: Interactor) {
+    init(interactor: Interactor, mode: String) {
         self.interactor = interactor
+        self.mode = mode
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -63,11 +66,26 @@ class CrackleTableViewController: UITableViewController {
         }
 
         // MARK: Go to next VC
-        let glazesViewController = GlazesTableViewController(interactor: interactor)
-        glazesViewController.clay = clay
-        glazesViewController.temperature = temperature
-        glazesViewController.crackleId = crackleId
-        self.navigationController?.pushViewController(glazesViewController, animated: true)
+        switch mode {
+        case "clay":
+            let glazesViewController = GlazesTableViewController(interactor: interactor)
+            glazesViewController.clay = clay
+            glazesViewController.temperature = temperature
+            glazesViewController.crackleId = crackleId
+            self.navigationController?.pushViewController(glazesViewController, animated: true)
+
+        case "glaze":
+            let glazeForClaysViewController = GlazeForClaysTableViewController(interactor: interactor)
+            glazeForClaysViewController.glaze = glaze
+            glazeForClaysViewController.temperature = temperature
+            glazeForClaysViewController.crackleId = crackleId
+            self.navigationController?.pushViewController(glazeForClaysViewController, animated: true)
+
+        default:
+            break
+        }
+
+
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

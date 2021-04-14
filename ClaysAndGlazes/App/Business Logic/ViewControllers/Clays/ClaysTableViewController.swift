@@ -35,7 +35,7 @@ class ClaysTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setUpSearchBar()
+        setupSearchBar()
         hideKeyboardWhenTappedAround()
         getData()
     }
@@ -122,7 +122,7 @@ class ClaysTableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .BackgroundColor1
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
-        title = "ВЫБЕРИ МАССУ:"
+        navigationItem.title = "ВЫБЕРИ МАССУ:"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
         clearsSelectionOnViewWillAppear = true
@@ -186,7 +186,7 @@ extension ClaysTableViewController {
 // MARK: Searchbar
 extension ClaysTableViewController: UISearchBarDelegate {
     @available(iOS 13.0, *)
-    private func setUpSearchBar() {
+    private func setupSearchBar() {
         searchBar.searchBarStyle = .prominent
         searchBar.placeholder = "  Поиск..."
         searchBar.sizeToFit()
@@ -214,22 +214,6 @@ extension ClaysTableViewController: UISearchBarDelegate {
 }
 
 // MARK: Sections stuff
-extension ClaysTableViewController {
-    struct Section {
-        var name: String
-        var info: [String]
-        var items: [String]
-        var collapsed: Bool
-
-        init(name: String, items: [String], info: [String], collapsed: Bool = true) {
-            self.name = name
-            self.items = items
-            self.info = info
-            self.collapsed = collapsed
-        }
-    }
-}
-
 extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
         let collapsed = !sections[section].collapsed
@@ -246,7 +230,7 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
 
 // MARK: Info View Delegate
 extension ClaysTableViewController: ClayInfoViewDelegate {
-    func okButtonPressed(sender: UISwipeGestureRecognizer) {
+    func infoViewSwipedDown(sender: UISwipeGestureRecognizer) {
 
         // Hide infoView and remove blur
         Animation.hideView(view: clayInfoView)
@@ -272,26 +256,5 @@ extension ClaysTableViewController: StartViewDelegate {
         startView.removeFromSuperview()
         tableView.isScrollEnabled = true
         UserDefaults.standard.set(isShown, forKey: "isShown")
-    }
-}
-
-
-extension UIColor {
-  static let BackgroundColor1: UIColor = UIColor(named: "BackgroundColor1")!
-  static let BackgroundColor2: UIColor = UIColor(named: "BackgroundColor2")!
-  static let SectionColor: UIColor = UIColor(named: "SectionColor")!
-  static let SearchBarColor: UIColor = UIColor(named: "SearchBarColor")!
-}
-
-
-extension UITableViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UITableViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }

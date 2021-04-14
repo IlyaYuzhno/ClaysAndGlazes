@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ClayInfoViewDelegate: class {
-    func okButtonPressed(sender: UISwipeGestureRecognizer)
+    func infoViewSwipedDown(sender: UISwipeGestureRecognizer)
 }
 
 class ClayInfoView: UIView {
@@ -55,6 +55,7 @@ class ClayInfoView: UIView {
         setupConstraints()
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showInfoView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showGlazeInfoView"), object: nil)
 
     }
 
@@ -92,11 +93,11 @@ class ClayInfoView: UIView {
     }
 
     @objc func okButtonPressed(sender: UISwipeGestureRecognizer) {
-        delegate?.okButtonPressed(sender: sender)
+        delegate?.infoViewSwipedDown(sender: sender)
     }
 
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
-        delegate?.okButtonPressed(sender: sender)
+        delegate?.infoViewSwipedDown(sender: sender)
     }
 
     @objc private func setLabelText(_ notification: NSNotification) {
@@ -107,6 +108,14 @@ class ClayInfoView: UIView {
 
         if let clayInfo = notification.userInfo?["clayInfo"] as? String {
             clayInfoLabel.text = clayInfo
+        }
+
+        if let glazeName = notification.userInfo?["glazeName"] as? String {
+            clayNameLabel.text = glazeName
+        }
+
+        if let glazeInfo = notification.userInfo?["glazeInfo"] as? String {
+            clayInfoLabel.text = glazeInfo
         }
 
     }

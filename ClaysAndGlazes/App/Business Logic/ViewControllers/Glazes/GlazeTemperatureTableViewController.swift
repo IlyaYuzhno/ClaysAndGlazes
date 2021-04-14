@@ -1,17 +1,17 @@
 //
-//  TemperatureTableViewController.swift
-//  Clays & Glazes
+//  GlazeTemperatureTableViewController.swift
+//  ClaysAndGlazes
 //
-//  Created by Ilya Doroshkevitch on 29.03.2021.
+//  Created by Ilya Doroshkevitch on 14.04.2021.
 //
 
 import UIKit
 
-class TemperatureTableViewController: UITableViewController {
+class GlazeTemperatureTableViewController: UITableViewController {
 
     let interactor: Interactor
     var temperatures: [String] = []
-    var clay = ""
+    var glaze = ""
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -26,18 +26,17 @@ class TemperatureTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title =  "МАССА \(clay)"
+        title =  "ГЛАЗУРЬ \(glaze)"
         tableView.backgroundColor = .BackgroundColor1
         tableView.tableFooterView = UIView()
-        tableView.accessibilityIdentifier = "temperaturesTableView"
-        tableView.register(DefaultCell.self, forCellReuseIdentifier: "temperatureCell")
+        tableView.accessibilityIdentifier = "glazeTemperaturesTableView"
+        tableView.register(DefaultCell.self, forCellReuseIdentifier: "glazeTemperatureCell")
 
-        // Get temperatures array for clay
-        interactor.getTemperature(for: clay) { [weak self] temps in
+        // Get temperatures array for glaze
+        interactor.getGlazeTemperature(for: glaze) { [weak self] temps in
             self?.temperatures = temps
             self?.tableView.reloadData()
         }
-
     }
 
     // MARK: - Table view data source
@@ -50,25 +49,23 @@ class TemperatureTableViewController: UITableViewController {
         return temperatures.count
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "temperatureCell", for: indexPath) as! DefaultCell
-        cell.accessibilityIdentifier = "temperatureCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "glazeTemperatureCell", for: indexPath) as! DefaultCell
+        cell.accessibilityIdentifier = "glazeTemperatureCell"
         cell.configure(item: temperatures[indexPath.row].description)
         return cell
     }
 
     // MARK: Go to next VC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let crackleViewController = CrackleTableViewController(interactor: interactor)
-        crackleViewController.clay = clay
+        let crackleViewController = CrackleTableViewController(interactor: interactor, mode: "glaze")
+        crackleViewController.glaze = glaze
         crackleViewController.temperature = temperatures[indexPath.row].description
         self.navigationController?.pushViewController(crackleViewController, animated: true)
 
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // this will turn on `masksToBounds` just before showing the cell
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
@@ -80,9 +77,8 @@ class TemperatureTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "temperatureViewHeader") as? DefaultHeader ?? DefaultHeader(reuseIdentifier: "temperatureViewHeader")
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "glazeTemperatureViewHeader") as? DefaultHeader ?? DefaultHeader(reuseIdentifier: "glazeTemperatureViewHeader")
         header.titleLabel.text = "Выбери температуру обжига глазури:"
         return header
     }
-
 }

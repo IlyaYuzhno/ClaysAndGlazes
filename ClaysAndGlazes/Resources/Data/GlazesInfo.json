@@ -1,0 +1,51 @@
+[
+    {  "brand": "Lab Ceramica",
+        "glaze": "S-0102",
+        "info": "no info yet",
+        "temperature": {
+            "1050°": {
+                "mnogo": ["EM100 Laguna Clay, S-6703/L100", "WC609 Laguna Clay, S-6700/L609", "S-6003, МФФ/МКФ-1", "S-6002, литейная масса МКФ-1", "S-6008, ПГ-100", "S-6010", "S-6016, ГК", "S-6231, палисандр черный", "Witgert 11, S-6501", "Witgert 11sf, S-6519", "Witgert 31sf, S-6504", "Witgert P 11, S-6520", "Witgert F 11, S-6522", "Witgert 120.7, S-6533", "S-6124, Париан", "S-6021, фарфор шамотированный", "S-6123, Bone China", "S-6110, ТФФ-1", "S-6121, Париан пластичный", "S-6130, ТФЛ-1 порошок", "S-6112, ТФФ-1", "Witgert P 011, S-6521", "S-6017, шамот", "S-6015, шамот", "S-6019, ПГ-75", "Witgert 29sf, S-6506", "Witgert Rakuvaria, S-6524", "Witgert Rakuvaria extrem, S-6525", "Witgert 27, S-6526", "Witgert 28, S-6527", "S-6051, МШ-1200", "S-6007", "S-6124-01", "S-6124-02", "S-6124-03", "S-6124-04", "S-6124-05", "S-6124-06", "S-6124-07", "S-6124-08"],
+                "malo": ["S-6141, МКЛ-1", "Witgert 4sf, S-6505", "Witgert 15sf py-G, S-6513", "Witgert 15 py-G, S-6528"],
+                "no": ["WC608 Laguna Clay, S-6702/L608", "WC401 Laguna Clay, S-6701/L401", "S-6004, МКФ-2", "S-6070-13, ES130", "Witgert 6, S-6500", "Witgert 6s, S-6529", "Witgert 6sf, S-6530", "S-6140, ПФЛ-1", "S-6060", "Witgert 312, S-6503", "Witgert 116, S-6507", "Witgert 9, S-6508", "S-6125, Audrey Blackman", "S-6126, ES130"]
+            },
+            "1200°": {
+                "mnogo": ["WC609 Laguna Clay, S-6700/L609", "S-6016, ГК", "S-6124, Париан", "S-6121, Париан пластичный", "Witgert P 011, S-6521", "S-6017, шамот", "Witgert 29sf, S-6506", "S-6051, МШ-1200", "S-6007", "S-6124-01", "S-6124-02", "S-6124-03", "S-6124-04", "S-6124-05", "S-6124-06", "S-6124-07", "S-6124-08"],
+                "malo": ["S-6140, ПФЛ-1", "Witgert 11, S-6501", "Witgert 11sf, S-6519", "Witgert 120.7, S-6533", "S-6021, фарфор шамотированный", "S-6123, Bone China"],
+                "no": ["WC608 Laguna Clay, S-6702/L608", "WC401 Laguna Clay, S-6701/L401", "S-6003, МФФ/МКФ-1", "S-6002, литейная масса МКФ-1", "S-6060", "S-6231, палисандр черный", "Witgert 31sf, S-6504", "Witgert 4sf, S-6505", "Witgert 116, S-6507", "Witgert 15sf py-G, S-6513", "Witgert P 11, S-6520", "Witgert F 11, S-6522", "Witgert 15 py-G, S-6528", "S-6110, ТФФ-1", "S-6130, ТФЛ-1 порошок", "S-6112, ТФФ-1", "S-6125, Audrey Blackman", "S-6015, шамот", "Witgert Rakuvaria, S-6524", "Witgert Rakuvaria extrem, S-6525", "Witgert 27, S-6526", "Witgert 28, S-6527"]
+            }
+        }
+    },
+    {  "brand": "Lab Ceramica",
+        "glaze": "S-0104",
+        "info": "no info yet",
+        "temperature": {
+            "1050°": {
+                "mnogo": ["S-6141, МКЛ-1", "WC609 Laguna Clay, S-6700/L609", "S-6231, палисандр черный", "Witgert 15sf py-G, S-6513", "Witgert 15 py-G, S-6528", "Witgert 120.7, S-6533", "S-6124, Париан", "S-6021, фарфор шамотированный", "S-6123, Bone China", "S-6110, ТФФ-1", "S-6121, Париан пластичный", "S-6130, ТФЛ-1 порошок", "S-6112, ТФФ-1", "Witgert P 011, S-6521", "S-6017, шамот", "S-6015, шамот", "S-6019, ПГ-75", "Witgert 29sf, S-6506", "Witgert Rakuvaria, S-6524", "Witgert Rakuvaria extrem, S-6525", "S-6124-01", "S-6124-01", "S-6124-02", "S-6124-03", "S-6124-04", "S-6124-05", "S-6124-06", "S-6124-07", "S-6124-08"],
+                "malo": ["S-6003, МФФ/МКФ-1", "S-6002, литейная масса МКФ-1", "Witgert P 11, S-6520", "Witgert 27, S-6526", "S-6051, МШ-1200", "S-6007"],
+                "no": ["EM100 Laguna Clay, S-6703/L100", "WC608 Laguna Clay, S-6702/L608", "WC401 Laguna Clay, S-6701/L401", "S-6004, МКФ-2", "S-6008, ПГ-100", "S-6010", "S-6070-13, ES130", "Witgert 6, S-6500", "Witgert 6s, S-6529", "Witgert 6sf, S-6530", "S-6140, ПФЛ-1", "S-6016, ГК", "S-6060", "Witgert 11, S-6501", "Witgert 11sf, S-6519", "Witgert 312, S-6503", "Witgert 31sf, S-6504", "Witgert 4sf, S-6505", "Witgert 116, S-6507", "Witgert 9, S-6508", "Witgert F 11, S-6522", "S-6125, Audrey Blackman", "Witgert 28, S-6527", "S-6126, ES130"]
+            },
+            "1200°": {
+                "mnogo": ["WC609 Laguna Clay, S-6700/L609", "Witgert 120.7, S-6533", "S-6124, Париан", "S-6121, Париан пластичный", "Witgert P 011, S-6521", "S-6017, шамот", "Witgert 29sf, S-6506", "S-6124-01", "S-6124-01", "S-6124-02", "S-6124-03", "S-6124-04", "S-6124-05", "S-6124-06", "S-6124-07", "S-6124-08"],
+                "malo": ["S-6003, МФФ/МКФ-1", "S-6002, литейная масса МКФ-1", "S-6140, ПФЛ-1", "Witgert 11, S-6501", "Witgert 11sf, S-6519", "S-6021, фарфор шамотированный", "S-6123, Bone China", "S-6015, шамот", "S-6051, МШ-1200"],
+                "no": ["WC608 Laguna Clay, S-6702/L608", "S-6016, ГК", "S-6060", "S-6231, палисандр черный", "Witgert 31sf, S-6504", "Witgert 4sf, S-6505", "Witgert 116, S-6507", "Witgert 15sf py-G, S-6513", "Witgert P 11, S-6520", "Witgert F 11, S-6522", "Witgert 15 py-G, S-6528", "S-6110, ТФФ-1", "S-6130, ТФЛ-1 порошок", "S-6112, ТФФ-1", "S-6125, Audrey Blackman", "Witgert Rakuvaria, S-6524", "Witgert Rakuvaria extrem, S-6525", "Witgert 27, S-6526", "Witgert 28, S-6527", "S-6007"]
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

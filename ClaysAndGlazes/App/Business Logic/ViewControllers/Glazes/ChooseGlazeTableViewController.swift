@@ -96,7 +96,7 @@ class ChooseGlazeTableViewController: UITableViewController {
         if isSearching {
             showGlazeInfoView(glazeName: filteredGlazeList[indexPath.row], glazeInfo: glazeInfoDictionary[filteredGlazeList[indexPath.row]] ?? "")
         } else {
-            showGlazeInfoView(glazeName: sections[indexPath.section].items[indexPath.row], glazeInfo: sections[indexPath.section].info[0])
+            showGlazeInfoView(glazeName: sections[indexPath.section].items[indexPath.row], glazeInfo: sections[indexPath.section].info[indexPath.row])
         }
     }
 
@@ -126,21 +126,21 @@ class ChooseGlazeTableViewController: UITableViewController {
 extension ChooseGlazeTableViewController {
     fileprivate func getData() {
         interactor.getGlazesList() { [weak self] response in
-            let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.list }[0]
-            //let witgertInfo = response.filter { $0.brand == "Witgert" }.map { $0.info}
-            let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.list }[0]
+            let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.glaze }
+            let labCeramicaInfo = response.filter { $0.brand == "Lab Ceramica" }.map { $0.info}
+            let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.glaze }
             //let donbassInfo = response.filter { $0.brand == "Donbass" }.map { $0.info}
             
             let testInfo = ["Test Info"]
 
             self?.glazeList = labCeramica + prodesco
-            //self?.glazeInfo = response.map { $0.info}
+            self?.glazeInfo = response.map { $0.info}
             self?.glazeInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.glazeList ?? [""], self?.glazeInfo ?? [""]))
 
             self?.filteredGlazeList = self?.glazeList ?? [""]
 
             self?.sections = [
-                Section(name: "Lab Ceramica", items: labCeramica, info: testInfo),
+                Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
                 Section(name: "Prodesco", items: prodesco, info: testInfo)
             ]
             DispatchQueue.main.async {

@@ -31,12 +31,14 @@
 		5B061037261EF0B70090E250 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061036261EF0B70090E250 /* StartView.swift */; };
 		5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */; };
 		5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04692625D29C00FB1CED /* Extensions.swift */; };
-		5B2C04962626E15200FB1CED /* clayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04952626E15200FB1CED /* clayIcon.png */; };
-		5B2C049E2626E6F900FB1CED /* glazeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C049D2626E6F900FB1CED /* glazeIcon.png */; };
 		5B2C04A32626E88D00FB1CED /* GlazeForClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A22626E88D00FB1CED /* GlazeForClaysTableViewController.swift */; };
 		5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */; };
 		5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04AF262709E200FB1CED /* GlazesInfo.json */; };
 		5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04B72627164B00FB1CED /* GlazesResponse.swift */; };
+		5B2C04C6262B3A6E00FB1CED /* clayIconBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */; };
+		5B2C04CB262B3A7B00FB1CED /* clayGrayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */; };
+		5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */; };
+		5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,12 +89,14 @@
 		5B061036261EF0B70090E250 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04692625D29C00FB1CED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		5B2C04952626E15200FB1CED /* clayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayIcon.png; sourceTree = "<group>"; };
-		5B2C049D2626E6F900FB1CED /* glazeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeIcon.png; sourceTree = "<group>"; };
 		5B2C04A22626E88D00FB1CED /* GlazeForClaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeForClaysTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeTemperatureTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04AF262709E200FB1CED /* GlazesInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GlazesInfo.json; sourceTree = "<group>"; };
 		5B2C04B72627164B00FB1CED /* GlazesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesResponse.swift; sourceTree = "<group>"; };
+		5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayIconBlue.png; sourceTree = "<group>"; };
+		5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayGrayIcon.png; sourceTree = "<group>"; };
+		5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeBrushBlue.png; sourceTree = "<group>"; };
+		5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeBrushGrayIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,8 +254,10 @@
 		5B060FC32614B98B0090E250 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5B2C04952626E15200FB1CED /* clayIcon.png */,
-				5B2C049D2626E6F900FB1CED /* glazeIcon.png */,
+				5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */,
+				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
+				5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */,
+				5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */,
 				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
 				5B060FDA2615FD520090E250 /* GlazesList.json */,
 				5B2C04AF262709E200FB1CED /* GlazesInfo.json */,
@@ -418,12 +424,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B060FCD2614C3B90090E250 /* ClaysInfo.json in Resources */,
-				5B2C04962626E15200FB1CED /* clayIcon.png in Resources */,
-				5B2C049E2626E6F900FB1CED /* glazeIcon.png in Resources */,
 				5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */,
 				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
+				5B2C04CB262B3A7B00FB1CED /* clayGrayIcon.png in Resources */,
+				5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
+				5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */,
 				5B060FDB2615FD520090E250 /* GlazesList.json in Resources */,
+				5B2C04C6262B3A6E00FB1CED /* clayIconBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

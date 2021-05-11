@@ -105,13 +105,28 @@ class Interactor {
 
     let glazesBasicJSON = "GlazesInfo"
 
-    public func getGlazesList(completion: @escaping ([GlazesSearchResponse.Item]) -> Void) {
-        if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
+//    public func getGlazesList(completion: @escaping ([GlazesSearchResponse.Item]) -> Void) {
+//        if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//                let jsonResult = try JSONDecoder().decode(GlazesSearchResponse.self, from: data)
+//                DispatchQueue.main.async {
+//                    completion(jsonResult.glazes)
+//                }
+//            } catch {
+//                print(error)
+//            }
+//
+//        }
+//    }
+
+    public func getGlazesList(completion: @escaping ([GlazesResponse]) -> Void) {
+        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode(GlazesSearchResponse.self, from: data)
+                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
                 DispatchQueue.main.async {
-                    completion(jsonResult.glazes)
+                    completion(jsonResult)
                 }
             } catch {
                 print(error)
@@ -163,5 +178,21 @@ class Interactor {
             }
         }
     }
+
+    public func getGlazeInfo(completion: @escaping ([String]) -> Void) {
+        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
+                let glazeInfo = jsonResult.map { $0.info }
+                DispatchQueue.main.async {
+                    completion(glazeInfo)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+
 
 }

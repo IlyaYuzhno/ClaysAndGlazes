@@ -10,8 +10,10 @@ struct GlazesSearchResponse: Codable {
 
     let glazes: [Item]
 
+
     struct Item: Codable {
         let brand: String
         let list: [String]
+        //let info: String
     }
 }

@@ -31,8 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.barTintColor = .SearchBarColor
 
         // Adding VC to Tab Bar
-        firstController.tabBarItem = UITabBarItem(title: "Массы", image: UIImage(named: "clayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "clayIcon")?.withRenderingMode(.alwaysOriginal))
-        secondController.tabBarItem = UITabBarItem(title: "Глазури", image: UIImage(named: "glazeIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "glazeIcon")?.withRenderingMode(.alwaysOriginal))
+        firstController.tabBarItem = UITabBarItem(title: "Массы", image: UIImage(named: "clayGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "clayIconBlue")?.withRenderingMode(.alwaysOriginal))
+        secondController.tabBarItem = UITabBarItem(title: "Глазури", image: UIImage(named: "glazeBrushGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "glazeBrushBlue")?.withRenderingMode(.alwaysOriginal))
         let controllers = [firstController, secondController]
         tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
 

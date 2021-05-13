@@ -129,11 +129,15 @@ extension ChooseGlazeTableViewController {
             let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.glaze }
             let labCeramicaInfo = response.filter { $0.brand == "Lab Ceramica" }.map { $0.info}
             let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.glaze }
-            //let donbassInfo = response.filter { $0.brand == "Donbass" }.map { $0.info}
-            
-            let testInfo = ["Test Info"]
+            let prodescoInfo = response.filter { $0.brand == "Prodesco" }.map { $0.info}
+            let amaco = response.filter { $0.brand == "Amaco" }.map { $0.glaze }
+            let amacoInfo = response.filter { $0.brand == "Amaco" }.map { $0.info}
+            let terracolor = response.filter { $0.brand == "Terracolor" }.map { $0.glaze }
+            let terracolorInfo = response.filter { $0.brand == "Terracolor" }.map { $0.info}
+            let mayco = response.filter { $0.brand == "Mayco" }.map { $0.glaze }
+            let maycoInfo = response.filter { $0.brand == "Mayco" }.map { $0.info}
 
-            self?.glazeList = labCeramica + prodesco
+            self?.glazeList = labCeramica + prodesco + amaco + terracolor + mayco
             self?.glazeInfo = response.map { $0.info}
             self?.glazeInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.glazeList ?? [""], self?.glazeInfo ?? [""]))
 
@@ -141,7 +145,10 @@ extension ChooseGlazeTableViewController {
 
             self?.sections = [
                 Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
-                Section(name: "Prodesco", items: prodesco, info: testInfo)
+                Section(name: "Prodesco", items: prodesco, info: prodescoInfo),
+                Section(name: "Amaco", items: amaco, info: amacoInfo),
+                Section(name: "Terracolor", items: terracolor, info: terracolorInfo),
+                Section(name: "Mayco", items: mayco, info: maycoInfo),
             ]
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -188,6 +195,7 @@ extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
         // Toggle collapse
         sections[section].collapsed = collapsed
         header.setCollapsed(collapsed: collapsed)
+        tableView.setContentOffset(.zero, animated: true)
 
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)

@@ -221,6 +221,7 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
         // Toggle collapse
         sections[section].collapsed = collapsed
         header.setCollapsed(collapsed: collapsed)
+        tableView.setContentOffset(.zero, animated: true)
 
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)

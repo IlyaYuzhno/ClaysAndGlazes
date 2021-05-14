@@ -136,19 +136,29 @@ extension ChooseGlazeTableViewController {
             let terracolorInfo = response.filter { $0.brand == "Terracolor" }.map { $0.info}
             let mayco = response.filter { $0.brand == "Mayco" }.map { $0.glaze }
             let maycoInfo = response.filter { $0.brand == "Mayco" }.map { $0.info}
+            let botz = response.filter { $0.brand == "Botz" }.map { $0.glaze }
+            let botzInfo = response.filter { $0.brand == "Botz" }.map { $0.info}
+            let spectrum = response.filter { $0.brand == "Spectrum" }.map { $0.glaze }
+            let spectrumInfo = response.filter { $0.brand == "Spectrum" }.map { $0.info}
 
-            self?.glazeList = labCeramica + prodesco + amaco + terracolor + mayco
+            let subList = labCeramica + prodesco + amaco
+            let subListTwo = terracolor + mayco + botz
+
+            self?.glazeList = subList + subListTwo
             self?.glazeInfo = response.map { $0.info}
             self?.glazeInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.glazeList ?? [""], self?.glazeInfo ?? [""]))
 
             self?.filteredGlazeList = self?.glazeList ?? [""]
 
+            // Add new section here
             self?.sections = [
                 Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
                 Section(name: "Prodesco", items: prodesco, info: prodescoInfo),
                 Section(name: "Amaco", items: amaco, info: amacoInfo),
                 Section(name: "Terracolor", items: terracolor, info: terracolorInfo),
                 Section(name: "Mayco", items: mayco, info: maycoInfo),
+                Section(name: "BOTZ", items: botz, info: botzInfo),
+                Section(name: "Spectrum", items: spectrum, info: spectrumInfo),
             ]
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

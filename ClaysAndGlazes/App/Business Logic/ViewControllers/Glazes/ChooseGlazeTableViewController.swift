@@ -144,7 +144,7 @@ extension ChooseGlazeTableViewController {
             let subList = labCeramica + prodesco + amaco
             let subListTwo = terracolor + mayco + botz
 
-            self?.glazeList = subList + subListTwo
+            self?.glazeList = subList + subListTwo + spectrum
             self?.glazeInfo = response.map { $0.info}
             self?.glazeInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.glazeList ?? [""], self?.glazeInfo ?? [""]))
 

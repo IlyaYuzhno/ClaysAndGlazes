@@ -254,13 +254,8 @@
 		5B060FC32614B98B0090E250 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */,
-				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
-				5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */,
-				5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */,
-				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
-				5B060FDA2615FD520090E250 /* GlazesList.json */,
-				5B2C04AF262709E200FB1CED /* GlazesInfo.json */,
+				5B2C04F126539B8E00FB1CED /* JSONs */,
+				5B2C04F026539B7F00FB1CED /* Icons */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -318,6 +313,27 @@
 				5B2C04692625D29C00FB1CED /* Extensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5B2C04F026539B7F00FB1CED /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */,
+				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
+				5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */,
+				5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		5B2C04F126539B8E00FB1CED /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				5B2C04AF262709E200FB1CED /* GlazesInfo.json */,
+				5B060FDA2615FD520090E250 /* GlazesList.json */,
+				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
+			);
+			path = JSONs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

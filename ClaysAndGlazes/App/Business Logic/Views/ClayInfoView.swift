@@ -17,6 +17,14 @@ class ClayInfoView: UIView {
     var clay: String?
     weak var delegate: ClayInfoViewDelegate?
 
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
     private lazy var clayNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
@@ -29,7 +37,7 @@ class ClayInfoView: UIView {
 
     private lazy var clayInfoLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .light)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = clayInfo
@@ -67,7 +75,7 @@ class ClayInfoView: UIView {
     private func setupViews() {
         layer.cornerRadius = 20
         backgroundColor = .systemGray6
-        addSubviews(clayNameLabel, clayInfoLabel, line)
+        addSubviews(imageView, clayNameLabel, clayInfoLabel, line)
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         swipe.direction = .down
         addGestureRecognizer(swipe)
@@ -82,11 +90,16 @@ class ClayInfoView: UIView {
             line.widthAnchor.constraint(equalToConstant: 100),
             line.heightAnchor.constraint(equalToConstant: 8),
 
-            clayNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            clayNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             clayNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             clayNameLabel.widthAnchor.constraint(equalTo: widthAnchor),
 
-            clayInfoLabel.topAnchor.constraint(equalTo: clayNameLabel.bottomAnchor, constant: 40),
+            imageView.topAnchor.constraint(equalTo: clayNameLabel.bottomAnchor, constant: 10),
+            imageView.widthAnchor.constraint(equalToConstant: 190),
+            imageView.heightAnchor.constraint(equalToConstant: 190),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            clayInfoLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             clayInfoLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             clayInfoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20)
         ])
@@ -112,6 +125,9 @@ class ClayInfoView: UIView {
 
         if let glazeName = notification.userInfo?["glazeName"] as? String {
             clayNameLabel.text = glazeName
+
+            //Get image from Firebase and set to imageview
+            Interactor.getGlazeImageFromFirebase(imageName: extractImageName(from: glazeName), imageView: imageView)
         }
 
         if let glazeInfo = notification.userInfo?["glazeInfo"] as? String {
@@ -135,4 +151,14 @@ public extension UIView {
             addSubview(view)
         }
     }
+}
+
+extension ClayInfoView {
+    func extractImageName(from string: String) -> String {
+        let delimiter = " "
+        let imageName = string.components(separatedBy: delimiter)
+        return (imageName[0])
+    }
+
+
 }

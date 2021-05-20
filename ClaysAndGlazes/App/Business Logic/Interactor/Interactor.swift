@@ -5,11 +5,14 @@
 //  Created by Ilya Doroshkevitch on 29.03.2021.
 //
 import Foundation
+import Firebase
+import FirebaseUI
+import UIKit
 
 class Interactor {
 
     let claysBasicJSON = "ClaysInfo"
-
+    static var storage = Storage.storage()
 
     // MARK: - Clays stuff
 
@@ -105,21 +108,6 @@ class Interactor {
 
     let glazesBasicJSON = "GlazesInfo"
 
-//    public func getGlazesList(completion: @escaping ([GlazesSearchResponse.Item]) -> Void) {
-//        if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                let jsonResult = try JSONDecoder().decode(GlazesSearchResponse.self, from: data)
-//                DispatchQueue.main.async {
-//                    completion(jsonResult.glazes)
-//                }
-//            } catch {
-//                print(error)
-//            }
-//
-//        }
-//    }
-
     public func getGlazesList(completion: @escaping ([GlazesResponse]) -> Void) {
         if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
@@ -193,6 +181,15 @@ class Interactor {
             }
         }
     }
+
+    // MARK: Get glaze image from Firebase storage
+    class func getGlazeImageFromFirebase(imageName: String, imageView: UIImageView) {
+        let glazesImagesRef = storage.reference(withPath: "images/glazes")
+        let image = glazesImagesRef.child("\(imageName).png")
+        let placeholderImage = UIImage(named: "placeholder.png")
+        imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
+    }
+
 
 
 }

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D367A0B4D12E00BE7FBB68B /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */; };
 		5B060F34261233510090E250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F33261233510090E250 /* AppDelegate.swift */; };
 		5B060F36261233510090E250 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F35261233510090E250 /* SceneDelegate.swift */; };
 		5B060F3D261233550090E250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B060F3C261233550090E250 /* Assets.xcassets */; };
@@ -39,6 +40,10 @@
 		5B2C04CB262B3A7B00FB1CED /* clayGrayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */; };
 		5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */; };
 		5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */; };
+		5B2C04F62654F67F00FB1CED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04F52654F67F00FB1CED /* GoogleService-Info.plist */; };
+		5B2C052626565A5D00FB1CED /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C052526565A5D00FB1CED /* placeholder.png */; };
+		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
+		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		112EAF20DE61220870820CE1 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes-ClaysAndGlazesUITests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes-ClaysAndGlazesUITests/Pods-ClaysAndGlazes-ClaysAndGlazesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		25B6A23228CE8105209523A5 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes-ClaysAndGlazesUITests.debug.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes-ClaysAndGlazesUITests/Pods-ClaysAndGlazes-ClaysAndGlazesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50085F0E65F43A58F5EA5823 /* Pods-ClaysAndGlazesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.debug.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B060F30261233510090E250 /* ClaysAndGlazes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaysAndGlazes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B060F33261233510090E250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B060F35261233510090E250 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +106,13 @@
 		5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayGrayIcon.png; sourceTree = "<group>"; };
 		5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeBrushBlue.png; sourceTree = "<group>"; };
 		5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeBrushGrayIcon.png; sourceTree = "<group>"; };
+		5B2C04F52654F67F00FB1CED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B2C052526565A5D00FB1CED /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
+		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
+		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82681117FEC80C759899A294 /* Pods-ClaysAndGlazes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.debug.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.debug.xcconfig"; sourceTree = "<group>"; };
+		BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,12 +136,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D367A0B4D12E00BE7FBB68B /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F6F12285ADC8023EAC1A284 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				82681117FEC80C759899A294 /* Pods-ClaysAndGlazes.debug.xcconfig */,
+				5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */,
+				25B6A23228CE8105209523A5 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.debug.xcconfig */,
+				112EAF20DE61220870820CE1 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.release.xcconfig */,
+				50085F0E65F43A58F5EA5823 /* Pods-ClaysAndGlazesTests.debug.xcconfig */,
+				7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5B060F27261233510090E250 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +163,8 @@
 				5B060F49261233550090E250 /* ClaysAndGlazesTests */,
 				5B060F54261233560090E250 /* ClaysAndGlazesUITests */,
 				5B060F31261233510090E250 /* Products */,
+				3F6F12285ADC8023EAC1A284 /* Pods */,
+				A49883B47984966AAAF46FC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +184,7 @@
 				5B060F81261233C60090E250 /* Resources */,
 				5B060F69261233940090E250 /* App */,
 				5B060F41261233550090E250 /* Info.plist */,
+				5B2C04F52654F67F00FB1CED /* GoogleService-Info.plist */,
 			);
 			path = ClaysAndGlazes;
 			sourceTree = "<group>";
@@ -322,6 +357,7 @@
 				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
 				5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */,
 				5B2C04C5262B3A6E00FB1CED /* clayIconBlue.png */,
+				5B2C052526565A5D00FB1CED /* placeholder.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -336,6 +372,16 @@
 			path = JSONs;
 			sourceTree = "<group>";
 		};
+		A49883B47984966AAAF46FC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */,
+				8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */,
+				4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,9 +389,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B060F5A261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazes" */;
 			buildPhases = (
+				70B3CAAF43F5147DF05F2AF8 /* [CP] Check Pods Manifest.lock */,
 				5B060F2C261233510090E250 /* Sources */,
 				5B060F2D261233510090E250 /* Frameworks */,
 				5B060F2E261233510090E250 /* Resources */,
+				78AF68BA8071269E08A03F66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +408,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B060F5D261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesTests" */;
 			buildPhases = (
+				1DA5742E11C37EE90A78E0F2 /* [CP] Check Pods Manifest.lock */,
 				5B060F42261233550090E250 /* Sources */,
 				5B060F43261233550090E250 /* Frameworks */,
 				5B060F44261233550090E250 /* Resources */,
@@ -378,9 +427,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B060F60261233560090E250 /* Build configuration list for PBXNativeTarget "ClaysAndGlazesUITests" */;
 			buildPhases = (
+				F9DAAECDE906E0B5F9FB872B /* [CP] Check Pods Manifest.lock */,
 				5B060F4D261233560090E250 /* Sources */,
 				5B060F4E261233560090E250 /* Frameworks */,
 				5B060F4F261233560090E250 /* Resources */,
+				0705CA9FBCC78EE14B98D84A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -446,7 +497,9 @@
 				5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
 				5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */,
+				5B2C04F62654F67F00FB1CED /* GoogleService-Info.plist in Resources */,
 				5B060FDB2615FD520090E250 /* GlazesList.json in Resources */,
+				5B2C052626565A5D00FB1CED /* placeholder.png in Resources */,
 				5B2C04C6262B3A6E00FB1CED /* clayIconBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +519,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0705CA9FBCC78EE14B98D84A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes-ClaysAndGlazesUITests/Pods-ClaysAndGlazes-ClaysAndGlazesUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes-ClaysAndGlazesUITests/Pods-ClaysAndGlazes-ClaysAndGlazesUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes-ClaysAndGlazesUITests/Pods-ClaysAndGlazes-ClaysAndGlazesUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DA5742E11C37EE90A78E0F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClaysAndGlazesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70B3CAAF43F5147DF05F2AF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClaysAndGlazes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78AF68BA8071269E08A03F66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9DAAECDE906E0B5F9FB872B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClaysAndGlazes-ClaysAndGlazesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B060F2C261233510090E250 /* Sources */ = {
@@ -657,6 +813,7 @@
 		};
 		5B060F5B261233560090E250 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82681117FEC80C759899A294 /* Pods-ClaysAndGlazes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -676,6 +833,7 @@
 		};
 		5B060F5C261233560090E250 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -695,6 +853,7 @@
 		};
 		5B060F5E261233560090E250 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50085F0E65F43A58F5EA5823 /* Pods-ClaysAndGlazesTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -717,6 +876,7 @@
 		};
 		5B060F5F261233560090E250 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -739,6 +899,7 @@
 		};
 		5B060F61261233560090E250 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25B6A23228CE8105209523A5 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -759,6 +920,7 @@
 		};
 		5B060F62261233560090E250 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 112EAF20DE61220870820CE1 /* Pods-ClaysAndGlazes-ClaysAndGlazesUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

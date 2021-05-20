@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
 
         let interactor = Interactor()
-
+        
         // Creating VC for Tab Bar
         let firstController = ClaysTableViewController(interactor: interactor)
         let secondController = ChooseGlazeTableViewController(interactor: interactor)

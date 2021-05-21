@@ -45,3 +45,21 @@ extension UITableViewController {
         view.endEditing(true)
     }
 }
+
+// MARK: - UIView
+public extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for view in views {
+            addSubview(view)
+        }
+    }
+
+    func extractImageName(from string: String) -> String {
+        let delimiter = " "
+        let imageName = string.components(separatedBy: delimiter)
+        return (imageName[0])
+    }
+}
+
+
+

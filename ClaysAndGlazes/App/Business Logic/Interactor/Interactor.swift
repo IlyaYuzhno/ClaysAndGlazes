@@ -104,6 +104,14 @@ class Interactor {
         }
     }
 
+    // MARK: Get clay image from Firebase storage
+    class func getClayImageFromFirebase(imageName: String, imageView: UIImageView) {
+        let claysImagesRef = storage.reference(withPath: "images/clays")
+        let image = claysImagesRef.child("\(imageName).png")
+        let placeholderImage = UIImage(named: "placeholder.png")
+        imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
+    }
+
     // MARK: - Glazes stuff
 
     let glazesBasicJSON = "GlazesInfo"

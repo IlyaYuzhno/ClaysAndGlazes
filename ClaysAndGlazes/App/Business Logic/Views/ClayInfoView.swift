@@ -117,6 +117,9 @@ class ClayInfoView: UIView {
 
         if let clayName = notification.userInfo?["clayName"] as? String {
             clayNameLabel.text = clayName
+
+            //Get image from Firebase and set to imageview
+            Interactor.getClayImageFromFirebase(imageName: extractImageName(from: clayName), imageView: imageView)
         }
 
         if let clayInfo = notification.userInfo?["clayInfo"] as? String {
@@ -139,26 +142,5 @@ class ClayInfoView: UIView {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-}
-
-
-
-// MARK: - Extensions
-public extension UIView {
-    func addSubviews(_ views: UIView...) {
-        for view in views {
-            addSubview(view)
-        }
-    }
-}
-
-extension ClayInfoView {
-    func extractImageName(from string: String) -> String {
-        let delimiter = " "
-        let imageName = string.components(separatedBy: delimiter)
-        return (imageName[0])
-    }
-
 
 }

@@ -17,9 +17,10 @@ class ClaysTableViewController: UITableViewController {
     lazy var searchBar: UISearchBar = UISearchBar()
     var sections = [Section]()
     var indexPath: IndexPath?
-    let clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100), clayName: "", clayInfo: "")
+    let clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
     var isShown = false
+    var initialCenter = CGPoint()
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -109,6 +110,11 @@ class ClaysTableViewController: UITableViewController {
         } else {
             showClayInfoView(clayName: sections[indexPath.section].items[indexPath.row], clayInfo: sections[indexPath.section].info[indexPath.row])
         }
+
+        // Add pan gesture to drag info view
+        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture(sender:)))
+        clayInfoView.addGestureRecognizer(panGesture)
+        panGesture.cancelsTouchesInView = false
     }
 
     // MARK: - Private
@@ -135,7 +141,7 @@ class ClaysTableViewController: UITableViewController {
     }
 }
 
-    // MARK: - Extensions
+// MARK: - Extensions
 extension ClaysTableViewController {
     fileprivate func getData() {
         interactor.getClays() { [weak self] response in
@@ -231,13 +237,15 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
 
 // MARK: Info View Delegate
 extension ClaysTableViewController: ClayInfoViewDelegate {
-    func infoViewSwipedDown(sender: UISwipeGestureRecognizer) {
+    // Hide Nav bar when full screen image shown
+    func hideNavigationBar(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
 
-        // Hide infoView and remove blur
-        Animation.hideView(view: clayInfoView)
-        Animation.removeBlur()
-        tableView.isScrollEnabled = true
-  }
+    // Show Nav bar when full screen image shown
+    func showNavigationBar(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
 }
 
 // MARK: Show start view
@@ -257,5 +265,43 @@ extension ClaysTableViewController: StartViewDelegate {
         startView.removeFromSuperview()
         tableView.isScrollEnabled = true
         UserDefaults.standard.set(isShown, forKey: "isShown")
+    }
+}
+
+// MARK: Drag and Close Info View
+extension ClaysTableViewController {
+    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
+        guard sender.view != nil else {return}
+        let piece = sender.view!
+        let translation = sender.translation(in: piece.superview)
+        let velocity = sender.velocity(in: view)
+
+        switch sender.state {
+        case .began:
+            // Save the view's original position.
+            self.initialCenter = piece.center
+        case .changed:
+            // Add the X and Y translation to the view's original position.
+            let newCenter = CGPoint(x: initialCenter.x, y: initialCenter.y + translation.y)
+            piece.center = newCenter
+        case .failed:
+            piece.center = initialCenter
+        case .cancelled:
+            piece.center = initialCenter
+        case .ended:
+            // If pan velocity is high do the Info View hide
+            if abs(velocity.y) > 500 {
+                // Hide Info View...
+                Animation.hideView(view: clayInfoView)
+                Animation.removeBlur()
+                tableView.isScrollEnabled = true
+            } else {
+                // ...or return it to original center
+                piece.center = initialCenter
+            }
+
+        default:
+            break
+        }
     }
 }

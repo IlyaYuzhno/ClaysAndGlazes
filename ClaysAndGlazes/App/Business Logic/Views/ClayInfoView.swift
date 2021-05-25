@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ClayInfoViewDelegate: class {
-    func infoViewSwipedDown(sender: UISwipeGestureRecognizer)
+    func hideNavigationBar(sender: UITapGestureRecognizer)
+    func showNavigationBar(sender: UITapGestureRecognizer)
 }
 
 class ClayInfoView: UIView {
@@ -21,7 +22,10 @@ class ClayInfoView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openImageFullSize(sender:)))
+        imageView.addGestureRecognizer(tap)
         return imageView
     }()
 
@@ -37,7 +41,7 @@ class ClayInfoView: UIView {
 
     private lazy var clayInfoLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = clayInfo
@@ -71,14 +75,11 @@ class ClayInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: SetupViews
+    // MARK: Setup Views
     private func setupViews() {
         layer.cornerRadius = 20
         backgroundColor = .systemGray6
         addSubviews(imageView, clayNameLabel, clayInfoLabel, line)
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        swipe.direction = .down
-        addGestureRecognizer(swipe)
     }
 
     // MARK: Setup UI constraints
@@ -105,12 +106,28 @@ class ClayInfoView: UIView {
         ])
     }
 
-    @objc func okButtonPressed(sender: UISwipeGestureRecognizer) {
-        delegate?.infoViewSwipedDown(sender: sender)
+    @objc func openImageFullSize(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        newImageView.enableZoom()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(sender:)))
+        tap.cancelsTouchesInView = false
+        newImageView.addGestureRecognizer(tap)
+        addSubview(newImageView)
+
+        // Hide Nav bar on ClaysTableViewController when show full screen image
+        delegate?.hideNavigationBar(sender: sender)
     }
 
-    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
-        delegate?.infoViewSwipedDown(sender: sender)
+    @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        // Show Nav and Tab bars on ClaysTableViewController when close full screen image
+        delegate?.showNavigationBar(sender: sender)
+        
+        sender.view?.removeFromSuperview()
     }
 
     @objc private func setLabelText(_ notification: NSNotification) {
@@ -119,7 +136,7 @@ class ClayInfoView: UIView {
             clayNameLabel.text = clayName
 
             //Get image from Firebase and set to imageview
-            Interactor.getClayImageFromFirebase(imageName: extractImageName(from: clayName), imageView: imageView)
+            Interactor.getClayImageFromFirebase(imageName: extractClayImageName(from: clayName), imageView: imageView)
         }
 
         if let clayInfo = notification.userInfo?["clayInfo"] as? String {

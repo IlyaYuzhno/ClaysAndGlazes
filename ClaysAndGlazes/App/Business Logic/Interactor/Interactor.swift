@@ -109,6 +109,7 @@ class Interactor {
         let claysImagesRef = storage.reference(withPath: "images/clays")
         let image = claysImagesRef.child("\(imageName).png")
         let placeholderImage = UIImage(named: "placeholder.png")
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
     }
 
@@ -195,6 +196,7 @@ class Interactor {
         let glazesImagesRef = storage.reference(withPath: "images/glazes")
         let image = glazesImagesRef.child("\(imageName).png")
         let placeholderImage = UIImage(named: "placeholder.png")
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
     }
 

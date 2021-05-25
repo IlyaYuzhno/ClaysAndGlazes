@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: Sections stuff
+// MARK: - Sections stuff
 extension UITableViewController {
     struct Section {
         var name: String
@@ -27,10 +27,10 @@ extension UITableViewController {
 
 // MARK: - UIColors
 extension UIColor {
-  static let BackgroundColor1: UIColor = UIColor(named: "BackgroundColor1")!
-  static let BackgroundColor2: UIColor = UIColor(named: "BackgroundColor2")!
-  static let SectionColor: UIColor = UIColor(named: "SectionColor")!
-  static let SearchBarColor: UIColor = UIColor(named: "SearchBarColor")!
+    static let BackgroundColor1: UIColor = UIColor(named: "BackgroundColor1")!
+    static let BackgroundColor2: UIColor = UIColor(named: "BackgroundColor2")!
+    static let SectionColor: UIColor = UIColor(named: "SectionColor")!
+    static let SearchBarColor: UIColor = UIColor(named: "SearchBarColor")!
 }
 
 // MARK: - Hide keyboard
@@ -58,6 +58,28 @@ public extension UIView {
         let delimiter = " "
         let imageName = string.components(separatedBy: delimiter)
         return (imageName[0])
+    }
+
+    func extractClayImageName(from string: String) -> String {
+        let delimiter = ","
+        let imageName = string.components(separatedBy: delimiter)
+        return (imageName[0])
+    }
+}
+
+// MARK: - UIImageView
+extension UIImageView {
+    func enableZoom() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(startZooming(_:)))
+        isUserInteractionEnabled = true
+        addGestureRecognizer(pinchGesture)
+    }
+
+    @objc private func startZooming(_ sender: UIPinchGestureRecognizer) {
+        let scaleResult = sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale)
+        guard let scale = scaleResult, scale.a > 1, scale.d > 1 else { return }
+        sender.view?.transform = scale
+        sender.scale = 1
     }
 }
 

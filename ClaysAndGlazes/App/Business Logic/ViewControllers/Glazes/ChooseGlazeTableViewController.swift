@@ -14,9 +14,10 @@ class ChooseGlazeTableViewController: UITableViewController {
     var filteredGlazeList: [String] = []
     var glazeInfo: [String] = []
     var glazeInfoDictionary: [String: String] = [:]
-    let glazeInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100), clayName: "", clayInfo: "")
+    let glazeInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     var isSearching = false
     lazy var searchBar: UISearchBar = UISearchBar()
+    var initialCenter = CGPoint()
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -98,6 +99,10 @@ class ChooseGlazeTableViewController: UITableViewController {
         } else {
             showGlazeInfoView(glazeName: sections[indexPath.section].items[indexPath.row], glazeInfo: sections[indexPath.section].info[indexPath.row])
         }
+
+        // Add pan gesture to drag info view
+        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture(sender:)))
+            glazeInfoView.addGestureRecognizer(panGesture)
     }
 
     // MARK: - Private
@@ -214,11 +219,51 @@ extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
 }
 // MARK: Info View Delegate
 extension ChooseGlazeTableViewController: ClayInfoViewDelegate {
-    func infoViewSwipedDown(sender: UISwipeGestureRecognizer) {
+    // Hide Nav bar when full screen image shown
+    func hideNavigationBar(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
 
-        // Hide infoView and remove blur
-        Animation.hideView(view: glazeInfoView)
-        Animation.removeBlur()
-        tableView.isScrollEnabled = true
-  }
+    // Show Nav bar when full screen image shown
+    func showNavigationBar(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+}
+
+// MARK: Drag and Close Info View
+extension ChooseGlazeTableViewController {
+    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
+        guard sender.view != nil else {return}
+        let piece = sender.view!
+        let translation = sender.translation(in: piece.superview)
+        let velocity = sender.velocity(in: view)
+
+        switch sender.state {
+        case .began:
+            // Save the view's original position.
+            self.initialCenter = piece.center
+        case .changed:
+            // Add the X and Y translation to the view's original position.
+            let newCenter = CGPoint(x: initialCenter.x, y: initialCenter.y + translation.y)
+            piece.center = newCenter
+        case .failed:
+            piece.center = initialCenter
+        case .cancelled:
+            piece.center = initialCenter
+        case .ended:
+            // If pan velocity is high do the Info View close
+            if abs(velocity.y) > 500 {
+                // Hide Info View...
+                Animation.hideView(view: glazeInfoView)
+                Animation.removeBlur()
+                tableView.isScrollEnabled = true
+            } else {
+                // ...or return it to original center
+            piece.center = initialCenter
+            }
+
+        default:
+            break
+        }
+    }
 }

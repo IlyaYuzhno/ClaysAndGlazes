@@ -1,5 +1,5 @@
 //
-//  ClayInfoView.swift
+//  InformationView.swift
 //  ClaysAndGlazes
 //
 //  Created by Ilya Doroshkevitch on 02.04.2021.
@@ -7,16 +7,17 @@
 
 import UIKit
 
-protocol ClayInfoViewDelegate: class {
+protocol InformationViewDelegate: class {
     func hideNavigationBar(sender: UITapGestureRecognizer)
     func showNavigationBar(sender: UITapGestureRecognizer)
 }
 
-class ClayInfoView: UIView {
+class InformationView: UIView {
 
     var clayInfo: String?
     var clay: String?
-    weak var delegate: ClayInfoViewDelegate?
+    var fullSizeImageView: UIImageView?
+    weak var delegate: InformationViewDelegate?
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +30,7 @@ class ClayInfoView: UIView {
         return imageView
     }()
 
-    private lazy var clayNameLabel: UILabel = {
+    private lazy var itemNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textAlignment = .center
@@ -39,7 +40,7 @@ class ClayInfoView: UIView {
         return label
     }()
 
-    private lazy var clayInfoLabel: UILabel = {
+    private lazy var itemInfoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         label.textAlignment = .left
@@ -68,6 +69,8 @@ class ClayInfoView: UIView {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showInfoView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showGlazeInfoView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(closeFullScreenImage), name: Notification.Name("CloseFullScreenImageFromClays"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(closeFullScreenImage), name: Notification.Name("CloseFullScreenImageFromGlazes"), object: nil)
 
     }
 
@@ -79,7 +82,7 @@ class ClayInfoView: UIView {
     private func setupViews() {
         layer.cornerRadius = 20
         backgroundColor = .systemGray6
-        addSubviews(imageView, clayNameLabel, clayInfoLabel, line)
+        addSubviews(imageView, itemNameLabel, itemInfoLabel, line)
     }
 
     // MARK: Setup UI constraints
@@ -91,33 +94,35 @@ class ClayInfoView: UIView {
             line.widthAnchor.constraint(equalToConstant: 100),
             line.heightAnchor.constraint(equalToConstant: 8),
 
-            clayNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            clayNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            clayNameLabel.widthAnchor.constraint(equalTo: widthAnchor),
+            itemNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            itemNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            itemNameLabel.widthAnchor.constraint(equalTo: widthAnchor),
 
-            imageView.topAnchor.constraint(equalTo: clayNameLabel.bottomAnchor, constant: 10),
+            imageView.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: 190),
             imageView.heightAnchor.constraint(equalToConstant: 190),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            clayInfoLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            clayInfoLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            clayInfoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20)
+            itemInfoLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            itemInfoLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            itemInfoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20)
         ])
     }
 
     @objc func openImageFullSize(sender: UITapGestureRecognizer) {
-        let imageView = sender.view as! UIImageView
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        newImageView.enableZoom()
+        let image = sender.view as! UIImageView
+        fullSizeImageView = UIImageView(image: image.image)
+        guard let fullSizeImageView = fullSizeImageView else { return }
+
+        fullSizeImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        fullSizeImageView.backgroundColor = .black
+        fullSizeImageView.contentMode = .scaleAspectFit
+        fullSizeImageView.isUserInteractionEnabled = true
+        fullSizeImageView.enableZoom()
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(sender:)))
         tap.cancelsTouchesInView = false
-        newImageView.addGestureRecognizer(tap)
-        addSubview(newImageView)
+        fullSizeImageView.addGestureRecognizer(tap)
+        addSubview(fullSizeImageView)
 
         // Hide Nav bar on ClaysTableViewController when show full screen image
         delegate?.hideNavigationBar(sender: sender)
@@ -130,28 +135,34 @@ class ClayInfoView: UIView {
         sender.view?.removeFromSuperview()
     }
 
+    
+    @objc func closeFullScreenImage() {
+        fullSizeImageView?.removeFromSuperview()
+    }
+
+
     @objc private func setLabelText(_ notification: NSNotification) {
 
         if let clayName = notification.userInfo?["clayName"] as? String {
-            clayNameLabel.text = clayName
+            itemNameLabel.text = clayName
 
             //Get image from Firebase and set to imageview
             Interactor.getClayImageFromFirebase(imageName: extractClayImageName(from: clayName), imageView: imageView)
         }
 
         if let clayInfo = notification.userInfo?["clayInfo"] as? String {
-            clayInfoLabel.text = clayInfo
+            itemInfoLabel.text = clayInfo
         }
 
         if let glazeName = notification.userInfo?["glazeName"] as? String {
-            clayNameLabel.text = glazeName
+            itemNameLabel.text = glazeName
 
             //Get image from Firebase and set to imageview
             Interactor.getGlazeImageFromFirebase(imageName: extractImageName(from: glazeName), imageView: imageView)
         }
 
         if let glazeInfo = notification.userInfo?["glazeInfo"] as? String {
-            clayInfoLabel.text = glazeInfo
+            itemInfoLabel.text = glazeInfo
         }
 
     }

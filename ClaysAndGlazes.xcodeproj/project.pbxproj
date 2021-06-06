@@ -25,7 +25,7 @@
 		5B060FCD2614C3B90090E250 /* ClaysInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FCC2614C3B90090E250 /* ClaysInfo.json */; };
 		5B060FDB2615FD520090E250 /* GlazesList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B060FDA2615FD520090E250 /* GlazesList.json */; };
 		5B060FE0261605190090E250 /* GlazesSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FDF261605190090E250 /* GlazesSearchResponse.swift */; };
-		5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FF926174D340090E250 /* ClayInfoView.swift */; };
+		5B060FFA26174D340090E250 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FF926174D340090E250 /* InformationView.swift */; };
 		5B06101E261B356D0090E250 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06101D261B356D0090E250 /* Animation.swift */; };
 		5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06102C261DA2A80090E250 /* DefaultHeader.swift */; };
 		5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061031261DA9B00090E250 /* DefaultCell.swift */; };
@@ -91,7 +91,7 @@
 		5B060FCC2614C3B90090E250 /* ClaysInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ClaysInfo.json; sourceTree = "<group>"; };
 		5B060FDA2615FD520090E250 /* GlazesList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GlazesList.json; sourceTree = "<group>"; };
 		5B060FDF261605190090E250 /* GlazesSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesSearchResponse.swift; sourceTree = "<group>"; };
-		5B060FF926174D340090E250 /* ClayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayInfoView.swift; sourceTree = "<group>"; };
+		5B060FF926174D340090E250 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		5B06101D261B356D0090E250 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		5B06102C261DA2A80090E250 /* DefaultHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHeader.swift; sourceTree = "<group>"; };
 		5B061031261DA9B00090E250 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
@@ -298,7 +298,7 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B060FF926174D340090E250 /* ClayInfoView.swift */,
+				5B060FF926174D340090E250 /* InformationView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 			);
 			path = Views;
@@ -644,7 +644,7 @@
 				5B2C04A32626E88D00FB1CED /* GlazeForClaysTableViewController.swift in Sources */,
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
-				5B060FFA26174D340090E250 /* ClayInfoView.swift in Sources */,
+				5B060FFA26174D340090E250 /* InformationView.swift in Sources */,
 				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesSearchResponse.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,

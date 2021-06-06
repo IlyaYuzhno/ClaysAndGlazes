@@ -17,7 +17,7 @@ class ClaysTableViewController: UITableViewController {
     lazy var searchBar: UISearchBar = UISearchBar()
     var sections = [Section]()
     var indexPath: IndexPath?
-    let clayInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
+    let clayInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
     var isShown = false
     var initialCenter = CGPoint()
@@ -236,7 +236,7 @@ extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
 }
 
 // MARK: Info View Delegate
-extension ClaysTableViewController: ClayInfoViewDelegate {
+extension ClaysTableViewController: InformationViewDelegate {
     // Hide Nav bar when full screen image shown
     func hideNavigationBar(sender: UITapGestureRecognizer) {
         self.navigationController?.isNavigationBarHidden = true
@@ -295,6 +295,10 @@ extension ClaysTableViewController {
                 Animation.hideView(view: clayInfoView)
                 Animation.removeBlur()
                 tableView.isScrollEnabled = true
+                self.navigationController?.isNavigationBarHidden = false
+
+                // Close full screen image
+                NotificationCenter.default.post(name: Notification.Name("CloseFullScreenImageFromClays"), object: nil)
             } else {
                 // ...or return it to original center
                 piece.center = initialCenter

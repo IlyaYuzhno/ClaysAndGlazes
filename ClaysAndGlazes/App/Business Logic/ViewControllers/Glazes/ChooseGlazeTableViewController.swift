@@ -14,7 +14,7 @@ class ChooseGlazeTableViewController: UITableViewController {
     var filteredGlazeList: [String] = []
     var glazeInfo: [String] = []
     var glazeInfoDictionary: [String: String] = [:]
-    let glazeInfoView = ClayInfoView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
+    let glazeInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     var isSearching = false
     lazy var searchBar: UISearchBar = UISearchBar()
     var initialCenter = CGPoint()
@@ -218,7 +218,7 @@ extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
 
 }
 // MARK: Info View Delegate
-extension ChooseGlazeTableViewController: ClayInfoViewDelegate {
+extension ChooseGlazeTableViewController: InformationViewDelegate {
     // Hide Nav bar when full screen image shown
     func hideNavigationBar(sender: UITapGestureRecognizer) {
         self.navigationController?.isNavigationBarHidden = true
@@ -257,6 +257,9 @@ extension ChooseGlazeTableViewController {
                 Animation.hideView(view: glazeInfoView)
                 Animation.removeBlur()
                 tableView.isScrollEnabled = true
+                self.navigationController?.isNavigationBarHidden = false
+                // Close full screen image
+                NotificationCenter.default.post(name: Notification.Name("CloseFullScreenImageFromGlazes"), object: nil)
             } else {
                 // ...or return it to original center
             piece.center = initialCenter

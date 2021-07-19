@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol InformationViewDelegate: class {
+protocol InformationViewDelegate: AnyObject {
     func hideNavigationBar(sender: UITapGestureRecognizer)
     func showNavigationBar(sender: UITapGestureRecognizer)
 }

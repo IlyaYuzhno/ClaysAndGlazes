@@ -34,7 +34,7 @@ class ChooseGlazeTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
-        hideKeyboardWhenTappedAround()
+        //hideKeyboardWhenTappedAround()
         getData()
     }
 
@@ -260,11 +260,7 @@ extension ChooseGlazeTableViewController {
                 self.navigationController?.isNavigationBarHidden = false
                 // Close full screen image
                 NotificationCenter.default.post(name: Notification.Name("CloseFullScreenImageFromGlazes"), object: nil)
-            } else {
-                // ...or return it to original center
-            piece.center = initialCenter
             }
-
         default:
             break
         }

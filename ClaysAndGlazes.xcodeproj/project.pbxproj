@@ -42,6 +42,14 @@
 		5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */; };
 		5B2C04F62654F67F00FB1CED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04F52654F67F00FB1CED /* GoogleService-Info.plist */; };
 		5B2C052E2656920300FB1CED /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C052D2656920300FB1CED /* placeholder.png */; };
+		5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5226A5A91C00AB81AC /* Network Service.swift */; };
+		5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */; };
+		5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */; };
+		5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5D26A6BCFC00AB81AC /* Section.swift */; };
+		5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5F26A6CA7A00AB81AC /* Materials.swift */; };
+		5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */; };
+		5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */; };
+		5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -108,6 +116,14 @@
 		5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glazeBrushGrayIcon.png; sourceTree = "<group>"; };
 		5B2C04F52654F67F00FB1CED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B2C052D2656920300FB1CED /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		5B63CE5226A5A91C00AB81AC /* Network Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Service.swift"; sourceTree = "<group>"; };
+		5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTableViewController.swift; sourceTree = "<group>"; };
+		5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialViewController.swift; sourceTree = "<group>"; };
+		5B63CE5D26A6BCFC00AB81AC /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		5B63CE5F26A6CA7A00AB81AC /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
+		5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults extension.swift"; sourceTree = "<group>"; };
+		5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListPresenter.swift; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +236,8 @@
 		5B060F6B261233AF0090E250 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5B63CE6126A6CE7500AB81AC /* LocalStorageService */,
+				5B63CE5C26A6BCE900AB81AC /* Section */,
 				5B2C04682625D27D00FB1CED /* Helpers */,
 				5B06102B261DA22C0090E250 /* Headers */,
 				5B06101C261B35530090E250 /* Animation */,
@@ -238,6 +256,7 @@
 				5B060F6D261233AF0090E250 /* Response.swift */,
 				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
 				5B2C04B72627164B00FB1CED /* GlazesResponse.swift */,
+				5B63CE5F26A6CA7A00AB81AC /* Materials.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 		5B060F6E261233AF0090E250 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B63CE5426A6942700AB81AC /* MaterialsList */,
 				5B2C04622625D04500FB1CED /* Glazes */,
 				5B2C04612625D02B00FB1CED /* Clays */,
 			);
@@ -255,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				5B060F74261233AF0090E250 /* Interactor.swift */,
+				5B63CE5226A5A91C00AB81AC /* Network Service.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -370,6 +391,41 @@
 				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
 			);
 			path = JSONs;
+			sourceTree = "<group>";
+		};
+		5B63CE5426A6942700AB81AC /* MaterialsList */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */,
+				5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */,
+				5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */,
+			);
+			path = MaterialsList;
+			sourceTree = "<group>";
+		};
+		5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */,
+			);
+			path = AddMaterialViewController;
+			sourceTree = "<group>";
+		};
+		5B63CE5C26A6BCE900AB81AC /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE5D26A6BCFC00AB81AC /* Section.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		5B63CE6126A6CE7500AB81AC /* LocalStorageService */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */,
+				5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */,
+			);
+			path = LocalStorageService;
 			sourceTree = "<group>";
 		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
@@ -635,20 +691,28 @@
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
 				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
+				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
 				5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */,
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
+				5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
 				5B2C04A32626E88D00FB1CED /* GlazeForClaysTableViewController.swift in Sources */,
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
+				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
+				5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */,
+				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
+				5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
 				5B060FFA26174D340090E250 /* InformationView.swift in Sources */,
 				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesSearchResponse.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
+				5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */,
+				5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

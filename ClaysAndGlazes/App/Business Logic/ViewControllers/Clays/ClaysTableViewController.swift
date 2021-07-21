@@ -37,7 +37,7 @@ class ClaysTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAroundOnTableView()
         getData()
     }
 
@@ -144,6 +144,14 @@ class ClaysTableViewController: UITableViewController {
 // MARK: - Extensions
 extension ClaysTableViewController {
     fileprivate func getData() {
+
+//        let netwServ = NetworkService()
+//        netwServ.fetchGenericJSONData(resource: "ClaysInfo") { decoded in
+//                print(decoded)
+//
+//        }
+
+
         interactor.getClays() { [weak self] response in
             let witgert = response.filter { $0.brand == "Witgert" }.map { $0.clay}
             let witgertInfo = response.filter { $0.brand == "Witgert" }.map { $0.info}
@@ -299,11 +307,7 @@ extension ClaysTableViewController {
 
                 // Close full screen image
                 NotificationCenter.default.post(name: Notification.Name("CloseFullScreenImageFromClays"), object: nil)
-            } else {
-                // ...or return it to original center
-                piece.center = initialCenter
             }
-
         default:
             break
         }

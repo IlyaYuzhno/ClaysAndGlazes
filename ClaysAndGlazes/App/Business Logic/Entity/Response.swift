@@ -6,14 +6,14 @@
 //
 import Foundation
 
-struct Response: Codable {
+struct Response: Decodable {
     
     let brand: String
     let clay: String
     let info: String
     let temperature: [String: Crackle]
 
-    struct Crackle: Codable {
+    struct Crackle: Decodable {
         let mnogo: [String]
         let malo: [String]
         let no: [String]

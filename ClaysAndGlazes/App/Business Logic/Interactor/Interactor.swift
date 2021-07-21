@@ -16,8 +16,7 @@ class Interactor {
 
     // MARK: - Clays stuff
 
-    public func getClays(completion: @escaping ([Response]) -> Void) {
-
+     func getClays(completion: @escaping ([Response]) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -31,7 +30,7 @@ class Interactor {
         }
     }
 
-    public func getTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
+     func getTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -47,7 +46,7 @@ class Interactor {
         }
     }
 
-    public func getGlazes(for clay: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
+    func getGlazes(for clay: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -73,7 +72,7 @@ class Interactor {
         }
     }
 
-    public func getGlazesBrand(for glaze: String, completion: @escaping ([String]) -> Void) {
+     func getGlazesBrand(for glaze: String, completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -89,7 +88,7 @@ class Interactor {
 
     }
 
-    public func getClaysInfo(completion: @escaping ([String]) -> Void) {
+     func getClaysInfo(completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -117,7 +116,7 @@ class Interactor {
 
     let glazesBasicJSON = "GlazesInfo"
 
-    public func getGlazesList(completion: @escaping ([GlazesResponse]) -> Void) {
+     func getGlazesList(completion: @escaping ([GlazesResponse]) -> Void) {
         if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -132,7 +131,7 @@ class Interactor {
         }
     }
 
-    public func getGlazeTemperature(for glaze: String, completion: @escaping (Array<String>) -> Void) {
+     func getGlazeTemperature(for glaze: String, completion: @escaping (Array<String>) -> Void) {
         if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -148,7 +147,7 @@ class Interactor {
         }
     }
 
-    public func getClaysForGlaze(for glaze: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
+     func getClaysForGlaze(for glaze: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -176,7 +175,7 @@ class Interactor {
         }
     }
 
-    public func getGlazeInfo(completion: @escaping ([String]) -> Void) {
+     func getGlazeInfo(completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -201,5 +200,54 @@ class Interactor {
     }
 
 
+/*
+    func fetchGenericJSONData<T: Decodable>(resource: String, completion: @escaping ([T]) -> Void) {
+        jsonRequest(resource: resource) { data in
+            let decoded = self.decodeJSON(type: [T].self, from: data)
+            completion(decoded!)
+        }
+
+
+/*
+        if let path = Bundle.main.path(forResource: resource, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+
+                let jsonResult = try JSONDecoder().decode([T].self, from: data)
+                DispatchQueue.main.async {
+                    completion(jsonResult)
+                }
+            } catch {
+                print(error)
+            }
+        }
+*/
+
+    }
+
+    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
+        let decoder = JSONDecoder()
+        guard let data = from else { return nil }
+        do {
+            let objects = try decoder.decode(type.self, from: data)
+            return objects
+        } catch let jsonError {
+            print(jsonError)
+            return nil
+        }
+
+    }
+
+    func jsonRequest(resource: String, completion: @escaping (Data?) -> Void) {
+        if let path = Bundle.main.path(forResource: resource, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                completion(data)
+            } catch {
+                print(error)
+            }
+        }
+    }
+ */
 
 }

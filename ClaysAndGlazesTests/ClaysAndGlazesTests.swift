@@ -72,11 +72,4 @@ class ClaysAndGlazesTests: XCTestCase {
         }
         waitForExpectations(timeout: 10)
     }
-
-    func testPerformanceExample() throws {
-        self.measure {
-
-        }
-    }
-
 }

@@ -8,23 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Sections stuff
-extension UITableViewController {
-    struct Section {
-        var name: String
-        var info: [String]
-        var items: [String]
-        var collapsed: Bool
-
-        init(name: String, items: [String], info: [String], collapsed: Bool = true) {
-            self.name = name
-            self.items = items
-            self.info = info
-            self.collapsed = collapsed
-        }
-    }
-}
-
 // MARK: - UIColors
 extension UIColor {
     static let BackgroundColor1: UIColor = UIColor(named: "BackgroundColor1")!
@@ -35,7 +18,7 @@ extension UIColor {
 
 // MARK: - Hide keyboard
 extension UITableViewController {
-    func hideKeyboardWhenTappedAround() {
+    func hideKeyboardWhenTappedAroundOnTableView() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UITableViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -45,6 +28,19 @@ extension UITableViewController {
         view.endEditing(true)
     }
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAroundOnView() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                         action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 
 // MARK: - UIView
 public extension UIView {
@@ -83,5 +79,18 @@ extension UIImageView {
     }
 }
 
+// MARK: - Array removing duplicates
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
 
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
+    }
+}
 

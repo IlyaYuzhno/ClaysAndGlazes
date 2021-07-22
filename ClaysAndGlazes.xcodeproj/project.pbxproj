@@ -50,6 +50,8 @@
 		5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */; };
 		5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */; };
 		5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */; };
+		5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */; };
+		5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -124,6 +126,8 @@
 		5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults extension.swift"; sourceTree = "<group>"; };
 		5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListPresenter.swift; sourceTree = "<group>"; };
+		5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewController.swift; sourceTree = "<group>"; };
+		5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCell.swift; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +299,7 @@
 			children = (
 				5B060F97261484440090E250 /* ClayCell.swift */,
 				5B061031261DA9B00090E250 /* DefaultCell.swift */,
+				5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -396,9 +401,10 @@
 		5B63CE5426A6942700AB81AC /* MaterialsList */ = {
 			isa = PBXGroup;
 			children = (
+				5B63CE6C26A82F7900AB81AC /* Presenter */,
+				5B63CE6926A82F3400AB81AC /* EditMaterialViewController */,
 				5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */,
 				5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */,
-				5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */,
 			);
 			path = MaterialsList;
 			sourceTree = "<group>";
@@ -426,6 +432,22 @@
 				5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */,
 			);
 			path = LocalStorageService;
+			sourceTree = "<group>";
+		};
+		5B63CE6926A82F3400AB81AC /* EditMaterialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */,
+			);
+			path = EditMaterialViewController;
+			sourceTree = "<group>";
+		};
+		5B63CE6C26A82F7900AB81AC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
@@ -688,7 +710,9 @@
 				5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
+				5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */,
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
+				5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */,
 				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,

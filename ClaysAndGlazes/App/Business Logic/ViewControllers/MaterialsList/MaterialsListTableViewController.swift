@@ -46,17 +46,11 @@ class MaterialsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "materialCell", for: indexPath) as! MaterialCell
 
-        if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "reuseIdentifier")
-        }
+        cell.configure(name: sections[indexPath.section].items[indexPath.row], info: sections[indexPath.section].info[indexPath.row], quantity: sections[indexPath.section].quantity?[indexPath.row] ?? "")
 
-        cell?.textLabel?.numberOfLines = 0
-        cell?.textLabel?.text = sections[indexPath.section].items[indexPath.row]
-        cell?.detailTextLabel?.text = sections[indexPath.section].quantity?[indexPath.row]
-
-        return cell!
+        return cell
     }
 
     // MARK: - Edit the Materials table
@@ -66,7 +60,7 @@ class MaterialsListTableViewController: UITableViewController {
             let itemToRemove = sections[indexPath.section].items[indexPath.row]
 
             // Save edited data source to UserDefaults
-            LocalStorageService.saveEdited(itemToRemove: itemToRemove)
+            LocalStorageService.saveEditedList(itemToRemove: itemToRemove)
 
             // Delete the row from the data source
             sections[indexPath.section].info.remove(at: indexPath.row)
@@ -76,6 +70,27 @@ class MaterialsListTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
             loadData()
         }
+    }
+
+    // MARK: - Tap on item to edit
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? MaterialCell else { return }
+
+        let name = currentCell.nameLabel.text ?? ""
+        let info = currentCell.infoLabel.text ?? ""
+        let quantity = currentCell.quantityLabel.text ?? ""
+        let type = sections[indexPath.section].name 
+
+        // Go to edit material VC
+        let editMaterialViewController = EditMaterialViewController(name: name, info: info, quantity: quantity, type: type)
+
+        editMaterialViewController.title = name
+        
+        self.navigationController?.pushViewController(editMaterialViewController, animated: true)
+
+        let itemToEdit = sections[indexPath.section].items[indexPath.row]
+        LocalStorageService.saveEditedList(itemToRemove: itemToEdit)
     }
 
     // MARK: - Section headers setup
@@ -101,7 +116,6 @@ class MaterialsListTableViewController: UITableViewController {
         return 20
     }
 
-
     // MARK: - Setup TableView
     fileprivate func setupTableView() {
         tableView.estimatedRowHeight = 44.0
@@ -112,16 +126,20 @@ class MaterialsListTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "materialsListTableView"
         clearsSelectionOnViewWillAppear = true
-        tableView.register(ClayCell.self, forCellReuseIdentifier: "materialsListCell")
+        tableView.register(MaterialCell.self, forCellReuseIdentifier: "materialCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        75
+    }
+
+    // MARK: - Add Item Button tapped
     @objc func addItemTapped() {
         // Go to add material VC
         let addMaterialViewController = AddMaterialViewController()
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)
     }
-
 
 }
 

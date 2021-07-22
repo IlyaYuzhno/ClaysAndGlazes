@@ -40,7 +40,7 @@ class LocalStorageService {
     }
 
     // Save array of Material after editing
-    class func saveEdited(itemToRemove: String) {
+    class func saveEditedList(itemToRemove: String) {
         DispatchQueue.global(qos: .default).async {
 
             LocalStorageService.retrieve() { materials in

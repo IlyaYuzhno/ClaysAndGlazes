@@ -20,7 +20,7 @@ class DefaultHeader: UITableViewHeaderFooterView {
         // Title label
         contentView.addSubview(titleLabel)
         titleLabel.textColor = .white
-        titleLabel.font = .boldSystemFont(ofSize: 18)//.boldSystemFont(ofSize: 18.0)
+        titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true

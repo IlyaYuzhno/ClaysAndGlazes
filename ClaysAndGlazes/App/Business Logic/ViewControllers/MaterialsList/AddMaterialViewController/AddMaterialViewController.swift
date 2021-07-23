@@ -98,9 +98,10 @@ class AddMaterialViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint .activate([
 
-            itemPicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            itemPicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
             itemPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             itemPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+            itemPicker.heightAnchor.constraint(equalToConstant: 100),
 
             itemNameTextField.topAnchor.constraint(equalTo: itemPicker.bottomAnchor, constant: 40),
             itemNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -117,7 +118,7 @@ class AddMaterialViewController: UIViewController {
             itemInfoTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -5),
             itemInfoTextField.heightAnchor.constraint(equalToConstant: 50),
 
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            addButton.topAnchor.constraint(equalTo: itemInfoTextField.bottomAnchor, constant: 15),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             addButton.heightAnchor.constraint(equalToConstant: 70),
@@ -133,8 +134,8 @@ class AddMaterialViewController: UIViewController {
         let itemQuantity = itemQuantityTextField.text ?? ""
         let itemInfo = itemInfoTextField.text ?? ""
 
-        // Create material
-        let material = Material.init(type: itemType, name: itemName, quantity: itemQuantity, info: itemInfo)
+        // Create material from item parameters
+        let material = Material.init(type: itemType, name: itemName, quantity: itemQuantity, info: itemInfo, marked: false)
 
         // Save material to UserDefaults
         LocalStorageService.save(object: material)

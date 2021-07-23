@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LocalStorageService {
 
@@ -14,7 +15,7 @@ class LocalStorageService {
     // Save new Material object
     class func save(object: Material) {
         DispatchQueue.global(qos: .default).async {
-            checkIfArrayExists()
+            checkIfArrayExists(key: key)
 
             do {
                 let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
@@ -25,6 +26,29 @@ class LocalStorageService {
                 print(error.localizedDescription)
             }
         }
+    }
+
+    class func genericSave<T: Codable>(object: T, key: String) {
+        print(type(of: T.self))
+        do {
+            try UserDefaults.standard.setObject(object, forKey: key)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    class func genericStorageUpdate<T: Codable>(object: T, key: String) {
+        print(type(of: T.self))
+
+            do {
+                let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: T.self)
+                var newArray = currentArray
+                //newArray.append(object)
+                try UserDefaults.standard.setObject(newArray, forKey: key)
+            } catch {
+                print(error.localizedDescription)
+            }
+        
     }
 
     // Retrieve array of Material
@@ -40,25 +64,23 @@ class LocalStorageService {
     }
 
     // Save array of Material after editing
-    class func saveEditedList(itemToRemove: String) {
-        DispatchQueue.global(qos: .default).async {
+    class func removeItemFromDataSource(itemToRemove: Material) {
 
-            LocalStorageService.retrieve() { materials in
-                var materialsToEdit = materials
-                if let idx = materialsToEdit?.firstIndex(where: { $0.name == itemToRemove }) {
-                    materialsToEdit?.remove(at: idx)
-                    do {
-                        try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
+        do {
+            let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
+            var materialsToEdit = materials
+            if let idx = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type}) {
+
+                materialsToEdit.remove(at: idx)
             }
+            try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
     // Check if array in UserDefaults
-    static func checkIfArrayExists() {
+    static func checkIfArrayExists(key: String) {
         do {
             let initialArray: [Material] = []
             let array = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)

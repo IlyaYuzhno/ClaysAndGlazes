@@ -6,9 +6,10 @@
 //
 
 
-struct Material: Codable {
+struct Material: Codable, Hashable {
     var type: String
     var name: String
     var quantity: String
     var info: String
+    var marked: Bool
 }

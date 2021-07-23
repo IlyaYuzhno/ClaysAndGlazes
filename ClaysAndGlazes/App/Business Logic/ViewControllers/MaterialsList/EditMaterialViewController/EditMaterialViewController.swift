@@ -9,19 +9,12 @@ import UIKit
 
 class EditMaterialViewController: UIViewController {
 
-    var name: String = ""
-    var info: String = ""
-    var quantity: String = ""
-    var type: String = ""
+    var itemToRemove: Material
 
     // MARK: - Init
-    init(name: String, info: String, quantity: String, type: String) {
+    init(itemToRemove: Material) {
+        self.itemToRemove = itemToRemove
         super.init(nibName: nil, bundle: nil)
-
-        self.type = type
-        self.info = info
-        self.name = name
-        self.quantity = quantity
     }
 
     required init?(coder: NSCoder) {
@@ -47,7 +40,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .white
-        textField.text = name
+        textField.text = itemToRemove.name
         return textField
     }()
 
@@ -62,7 +55,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .white
-        textField.text = quantity
+        textField.text = itemToRemove.quantity
         return textField
     }()
 
@@ -78,7 +71,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .white
         textField.returnKeyType = .done
-        textField.text = info
+        textField.text = itemToRemove.info
         return textField
     }()
 
@@ -104,7 +97,7 @@ class EditMaterialViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint .activate([
 
-            itemNameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 140),
+            itemNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             itemNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             itemNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -5),
             itemNameTextField.heightAnchor.constraint(equalToConstant: 50),
@@ -129,16 +122,19 @@ class EditMaterialViewController: UIViewController {
     // MARK: - Edit Button Pressed
     @objc func editButtonPressed(sender: UIButton) {
 
-        // Get item parameters
+        // Remove initial material item
+        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+
+        // Get new item parameters
         let itemName = itemNameTextField.text ?? ""
         let itemQuantity = itemQuantityTextField.text ?? ""
         let itemInfo = itemInfoTextField.text ?? ""
 
-        // Create new material
-        let material = Material.init(type: type, name: itemName, quantity: itemQuantity, info: itemInfo)
+        // Create new material from item parameters
+        let material = Material.init(type: itemToRemove.type, name: itemName, quantity: itemQuantity, info: itemInfo, marked: itemToRemove.marked )
 
         // Save new material to UserDefaults
-         LocalStorageService.save(object: material)
+        LocalStorageService.save(object: material)
 
         // Get back to MaterialsList VC
         self.navigationController?.popViewController(animated: true)

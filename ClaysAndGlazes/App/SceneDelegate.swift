@@ -24,19 +24,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let interactor = Interactor()
         
         // Creating VC for Tab Bar
-        let firstController = ClaysTableViewController(interactor: interactor)
-        let secondController = ChooseGlazeTableViewController(interactor: interactor)
+        let claysListController = ClaysTableViewController(interactor: interactor)
+        let glazesListController = ChooseGlazeTableViewController(interactor: interactor)
         let materialsListController = MaterialsListTableViewController()
+        let glazesRecipesController = GlazesRecipesCollectionViewController()
 
-        // Setup Tab Bar MaterialsListTableViewController
+        // Setup TabBar Controller
         let tabBarController = UITabBarController()
         tabBarController.tabBar.barTintColor = .SearchBarColor
 
-        // Adding VC to Tab Bar
-        firstController.tabBarItem = UITabBarItem(title: "Массы", image: UIImage(named: "clayGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "clayIconBlue")?.withRenderingMode(.alwaysOriginal))
-        secondController.tabBarItem = UITabBarItem(title: "Глазури", image: UIImage(named: "glazeBrushGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "glazeBrushBlue")?.withRenderingMode(.alwaysOriginal))
-        materialsListController.tabBarItem = UITabBarItem(title: "Материалы", image: UIImage(systemName: "eye"), selectedImage: UIImage(systemName: "eye"))
-        let controllers = [firstController, secondController, materialsListController]
+        // Adding VCs to TabBar
+        claysListController.tabBarItem = UITabBarItem(title: "Массы", image: UIImage(named: "clayGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "clayIconBlue")?.withRenderingMode(.alwaysOriginal))
+
+        glazesListController.tabBarItem = UITabBarItem(title: "Глазури", image: UIImage(named: "glazeBrushGrayIcon")?.withRenderingMode(.alwaysOriginal), selectedImage: UIImage(named: "glazeBrushBlue")?.withRenderingMode(.alwaysOriginal))
+
+        materialsListController.tabBarItem = UITabBarItem(title: "Материалы", image: UIImage(systemName: "list.bullet.rectangle"), selectedImage: UIImage(systemName: "list.bullet.rectangle"))
+
+        glazesRecipesController.tabBarItem = UITabBarItem(title: "Рецепты", image: UIImage(systemName: "list.number"), selectedImage: UIImage(systemName: "list.number"))
+
+        let controllers = [claysListController, glazesListController, glazesRecipesController, materialsListController]
+
         tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
 
         window?.rootViewController = tabBarController

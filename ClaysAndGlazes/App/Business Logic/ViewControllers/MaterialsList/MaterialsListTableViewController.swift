@@ -24,8 +24,6 @@ class MaterialsListTableViewController: UITableViewController {
 
         // Load sections with data
         loadData()
-
-
     }
 
     // MARK: - Load materials data

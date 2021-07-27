@@ -22,7 +22,7 @@ class AddMaterialViewController: UIViewController {
     // MARK: - Views
     private lazy var itemPicker: UIPickerView = {
         let picker = UIPickerView()
-        picker.backgroundColor = .white
+        picker.backgroundColor = .systemBackground
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -37,7 +37,7 @@ class AddMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         return textField
     }()
 
@@ -51,7 +51,7 @@ class AddMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         return textField
     }()
 
@@ -65,7 +65,7 @@ class AddMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         textField.returnKeyType = .done
         return textField
     }()

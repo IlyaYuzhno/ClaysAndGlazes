@@ -15,8 +15,6 @@ class LocalStorageService {
     // Save new Material object
     class func save(object: Material) {
         DispatchQueue.global(qos: .default).async {
-            checkIfArrayExists(key: key)
-
             do {
                 let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
                 var newArray = currentArray
@@ -37,8 +35,6 @@ class LocalStorageService {
     }
 
     class func genericStorageUpdate<T: Codable>(object: T, key: String) {
-        print(type(of: T.self))
-
             do {
                 let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: T.self)
                 var newArray = currentArray
@@ -52,6 +48,9 @@ class LocalStorageService {
 
     // Retrieve array of Material
     class func retrieve(completion: @escaping ([Material]?, [String : Bool]) -> Void) {
+
+        checkIfDataExists()
+
         DispatchQueue.global(qos: .default).async {
             do {
             let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
@@ -62,7 +61,6 @@ class LocalStorageService {
             }
         }
     }
-
 
     // Save array of Material after editing
     class func removeItemFromDataSource(itemToRemove: Material) {
@@ -80,14 +78,19 @@ class LocalStorageService {
         }
     }
 
-    // Check if array in UserDefaults
-    static func checkIfArrayExists(key: String) {
+    // Check if any data exists in UserDefaults
+    static func checkIfDataExists() {
         do {
             let initialArray: [Material] = []
-            let array = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            if (array == nil) {
+            let initialIsCollapsed = ["" : true]
+
+            let array = try? UserDefaults.standard.getObject(forKey: "Materials", castTo: [Material].self)
+            let isCollapsed = try? UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
+
+            if (array == nil || isCollapsed == nil) {
                 do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: key)
+                    try UserDefaults.standard.setObject(initialArray, forKey: "Materials")
+                    try UserDefaults.standard.setObject(initialIsCollapsed, forKey: "isCollapsed")
                 } catch {
                     print(error.localizedDescription)
                 }

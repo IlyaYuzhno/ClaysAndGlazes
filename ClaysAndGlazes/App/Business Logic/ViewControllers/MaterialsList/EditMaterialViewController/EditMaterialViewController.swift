@@ -39,7 +39,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         textField.text = itemToRemove.name
         return textField
     }()
@@ -54,7 +54,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         textField.text = itemToRemove.quantity
         return textField
     }()
@@ -69,7 +69,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
         textField.returnKeyType = .done
         textField.text = itemToRemove.info
         return textField

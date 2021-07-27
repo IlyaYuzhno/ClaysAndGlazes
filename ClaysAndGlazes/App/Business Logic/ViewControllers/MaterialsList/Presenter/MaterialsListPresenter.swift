@@ -11,7 +11,7 @@ final class MaterialsListPresenter: UITableViewController {
 
     class func present(completion: @escaping ([Section]) -> Void) {
 
-    LocalStorageService.retrieve() { materials in
+        LocalStorageService.retrieve() { materials, isCollapsed in
 
         var sections: [Section] = []
 
@@ -24,16 +24,17 @@ final class MaterialsListPresenter: UITableViewController {
             let info = materials.map { $0.filter { $0.type == sectionNames[i] }.map { $0.info }} ?? [""]
             let marked = materials.map { $0.filter { $0.type == sectionNames[i] }.map { $0.marked }} ?? [false]
 
-            let section = Section(name: sectionNames[i], items: items, info: info, quantity: quantity, marked: marked)
+            // Check if section is collapsed or not
+            let isCollapsed = isCollapsed[sectionNames[i]] ?? true
+
+            // Create a section
+            let section = Section(name: sectionNames[i], items: items, info: info, collapsed: isCollapsed, quantity: quantity, marked: marked)
+
             sections.append(section)
         }
-        LocalStorageService.genericSave(object: sections, key: "Sections")
         completion(sections)
     }
 }
-
-
-
 }
 
 

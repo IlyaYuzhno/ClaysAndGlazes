@@ -158,7 +158,7 @@ extension ChooseGlazeTableViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: Sections stuff
+// MARK: Collapse or not collapse sections
 extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
         let collapsed = !sections[section].collapsed

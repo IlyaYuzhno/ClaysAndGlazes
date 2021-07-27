@@ -29,7 +29,6 @@ class LocalStorageService {
     }
 
     class func genericSave<T: Codable>(object: T, key: String) {
-        print(type(of: T.self))
         do {
             try UserDefaults.standard.setObject(object, forKey: key)
         } catch {
@@ -52,16 +51,18 @@ class LocalStorageService {
     }
 
     // Retrieve array of Material
-    class func retrieve(completion: @escaping ([Material]?) -> Void) {
+    class func retrieve(completion: @escaping ([Material]?, [String : Bool]) -> Void) {
         DispatchQueue.global(qos: .default).async {
             do {
             let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            completion(materials)
+            let isCollapsed = try UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
+            completion(materials, isCollapsed)
             } catch {
                 print(error.localizedDescription)
             }
         }
     }
+
 
     // Save array of Material after editing
     class func removeItemFromDataSource(itemToRemove: Material) {

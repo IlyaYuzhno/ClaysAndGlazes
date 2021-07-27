@@ -10,6 +10,7 @@ import UIKit
 class MaterialsListTableViewController: UITableViewController {
 
     var sections: [Section] = []
+    var isCollapsed: [String : Bool] = [:]
 
    // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ class MaterialsListTableViewController: UITableViewController {
 
         // Load sections with data
         loadData()
+
+
     }
 
     // MARK: - Load materials data
@@ -64,40 +67,21 @@ class MaterialsListTableViewController: UITableViewController {
           return true
         }
 
-    // Leading swipe handler - mark the Material item cell
+    // MARK: - Leading swipe handler - mark the Material item cell
     override func tableView(_ tableView: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let markAction = UIContextualAction(style: .normal, title: "Отметить", handler:{ [weak self]
-            (action:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let markAction = UIContextualAction(style: .normal, title: "Отметить", handler:{ [weak self] (_, _, success) in
 
-            guard let currentCell = tableView.cellForRow(at: indexPath) as? MaterialCell else { return }
+            // Mark or unmark the cell
+            self?.mark(indexPath: indexPath)
 
-            let name = self?.sections[indexPath.section].items[indexPath.row] ?? ""
-            let info = self?.sections[indexPath.section].info[indexPath.row] ?? ""
-            let quantity = self?.sections[indexPath.section].quantity?[indexPath.row] ?? ""
-            let type = self?.sections[indexPath.section].name ?? ""
-            let marked = self?.sections[indexPath.section].marked?[indexPath.row] ?? false
-
-            var markedMaterial = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
-
-            let itemToRemove = markedMaterial
-            LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-
-            markedMaterial.marked = markedMaterial.marked ? false : true
-
-            LocalStorageService.save(object: markedMaterial)
-
-            currentCell.contentView.layer.borderWidth = 2
-            currentCell.contentView.layer.borderColor = UIColor.red.cgColor
-
-            self?.loadData()
             success(true)
         })
 
         markAction.backgroundColor = .BackgroundColor2
-        return UISwipeActionsConfiguration(actions: [markAction])
+        let configuration =  UISwipeActionsConfiguration(actions: [markAction])
+        return configuration
     }
-
 
     // MARK: - Delete the Material Item
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -194,20 +178,53 @@ class MaterialsListTableViewController: UITableViewController {
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)
     }
 
+    // MARK: - Mark the cell
+    private func mark(indexPath: IndexPath) {
+
+        // Get current material
+        let name = self.sections[indexPath.section].items[indexPath.row]
+        let info = self.sections[indexPath.section].info[indexPath.row]
+        let quantity = self.sections[indexPath.section].quantity?[indexPath.row] ?? ""
+        let type = self.sections[indexPath.section].name
+        let marked = self.sections[indexPath.section].marked?[indexPath.row] ?? false
+
+        // Create marked material
+        var markedMaterial = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
+
+        // Remove unmarked material from storage
+        let itemToRemove = markedMaterial
+        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+
+        // Check if material marked or not
+        markedMaterial.marked = markedMaterial.marked ? false : true
+
+        // Save marked Material to storage
+        LocalStorageService.save(object: markedMaterial)
+
+        // Reload data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.loadData()
+        }
+    }
+
 }
 
-// MARK: Sections stuff
+// MARK: Collapse or not collapse sections
 extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
-
         let collapsed = !sections[section].collapsed
 
         // Toggle collapse
         sections[section].collapsed = collapsed
+
+        // Set isCollapsed dictionary values and save it - store section collapse state
+        isCollapsed[sections[section].name] = collapsed
+        LocalStorageService.genericSave(object: isCollapsed, key: "isCollapsed")
+
         header.setCollapsed(collapsed: collapsed)
         tableView.setContentOffset(.zero, animated: true)
 
         // Reload the whole section
-        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
     }
 }

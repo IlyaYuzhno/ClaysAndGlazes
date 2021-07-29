@@ -9,6 +9,22 @@ import UIKit
 
 class MaterialCell: UITableViewCell {
 
+    weak var viewModel: MaterialsTableViewCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            nameLabel.text = viewModel.name
+            infoLabel.text = viewModel.info
+            quantityLabel.text = viewModel.quantity
+
+            if viewModel.marked {
+                contentView.layer.borderWidth = 2
+                contentView.layer.borderColor = UIColor.red.cgColor
+            } else {
+                contentView.layer.borderWidth = 0
+            }
+        }
+    }
+
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
@@ -49,7 +65,6 @@ class MaterialCell: UITableViewCell {
         addSubview(infoLabel)
         addSubview(quantityLabel)
         setupConstraints()
-        tag = 0
     }
 
     private func setupConstraints() {
@@ -93,21 +108,5 @@ class MaterialCell: UITableViewCell {
             quantityLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
             quantityLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 20)
         ])
-    }
-
-
-    // MARK: - Configure
-    func configure(name: String, info: String, quantity: String, marked: Bool) {
-
-        nameLabel.text = name
-        infoLabel.text = info
-        quantityLabel.text = quantity
-
-        if marked {
-            contentView.layer.borderWidth = 2
-            contentView.layer.borderColor = UIColor.red.cgColor
-        } else {
-            contentView.layer.borderWidth = 0
-        }
     }
 }

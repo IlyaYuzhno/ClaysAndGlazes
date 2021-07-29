@@ -9,12 +9,14 @@ import UIKit
 
 class MaterialsListTableViewController: UITableViewController {
 
-    var sections: [Section] = []
+    var viewModel: MaterialsListTableViewViewModelType?
     var isCollapsed: [String : Bool] = [:]
 
    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = MaterialsListViewModel()
         setupTableView()
     }
 
@@ -27,9 +29,8 @@ class MaterialsListTableViewController: UITableViewController {
     }
 
     // MARK: - Load materials data
-    private func loadData() {
-        MaterialsListPresenter.present() { [weak self] sections in
-            self?.sections = sections
+      func loadData() {
+        viewModel?.loadData { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -38,24 +39,23 @@ class MaterialsListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
+        viewModel?.numberOfSections() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections[section].collapsed ? 0 : sections[section].items.count
+        viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "materialCell", for: indexPath) as! MaterialCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "materialCell", for: indexPath) as? MaterialCell
 
-        let name = sections[indexPath.section].items[indexPath.row]
-        let info = sections[indexPath.section].info[indexPath.row]
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? ""
-        let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
 
-        cell.configure(name: name, info: info, quantity: quantity, marked: marked)
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
 
-        return cell
+        tableViewCell.viewModel = cellViewModel
+
+        return tableViewCell
     }
 
     // MARK: - Table view delegate
@@ -71,8 +71,10 @@ class MaterialsListTableViewController: UITableViewController {
         let markAction = UIContextualAction(style: .normal, title: "Отметить", handler:{ [weak self] (_, _, success) in
 
             // Mark or unmark the cell
-            self?.mark(indexPath: indexPath)
-
+            self?.viewModel?.markItem(forIndexPath: indexPath)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self?.loadData()
+            }
             success(true)
         })
 
@@ -81,27 +83,11 @@ class MaterialsListTableViewController: UITableViewController {
         return configuration
     }
 
-    // MARK: - Delete the Material Item
+    // MARK: - Delete the Material Item and table row
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-
-            let name = sections[indexPath.section].items[indexPath.row]
-            let info = sections[indexPath.section].info[indexPath.row]
-            let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? ""
-            let type = sections[indexPath.section].name
-            let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
-
-            let itemToRemove = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
-
-            // Remove deleted item and save edited datasource to UserDefaults
-            LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-
-            // Delete the row from the data source
-            sections[indexPath.section].info.remove(at: indexPath.row)
-            sections[indexPath.section].items.remove(at: indexPath.row)
-            sections[indexPath.section].quantity?.remove(at: indexPath.row)
-            sections[indexPath.section].marked?.remove(at: indexPath.row)
-
+            guard let viewModel = viewModel else { return }
+            viewModel.deleteItem(forIndexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
             loadData()
         }
@@ -110,20 +96,13 @@ class MaterialsListTableViewController: UITableViewController {
     // MARK: - Tap on item to edit
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
 
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? MaterialCell else { return }
+        guard let viewModel = viewModel else { return }
+        viewModel.selectRow(atIndexPath: indexPath)
 
-        let name = currentCell.nameLabel.text ?? ""
-        let info = currentCell.infoLabel.text ?? ""
-        let quantity = currentCell.quantityLabel.text ?? ""
-        let type = sections[indexPath.section].name
-        let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
+        // Go to Edit Material VC
+        let editMaterialViewController = EditMaterialViewController()
 
-        let itemToRemove = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
-
-        // Go to edit material VC
-        let editMaterialViewController = EditMaterialViewController(itemToRemove: itemToRemove)
-
-        editMaterialViewController.title = ("Исправляем \(name)")
+        editMaterialViewController.viewModel = viewModel.viewModelForSelectedRow()
         
         self.navigationController?.pushViewController(editMaterialViewController, animated: true)
     }
@@ -131,16 +110,16 @@ class MaterialsListTableViewController: UITableViewController {
     // MARK: - Section headers setup
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
-        header.titleLabel.text = sections[section].name
+        header.titleLabel.text = viewModel?.sections[section].name
         header.arrowLabel.text = ">"
-        header.setCollapsed(collapsed: sections[section].collapsed)
+        header.setCollapsed(collapsed: (viewModel?.sections[section].collapsed)!)
         header.section = section
         header.delegate = self
         return header
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return sections[(indexPath as NSIndexPath).section].collapsed ? 0 : UITableView.automaticDimension
+        return (viewModel?.sections[(indexPath as NSIndexPath).section].collapsed)! ? 0 : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -165,58 +144,36 @@ class MaterialsListTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
     }
 
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         58
     }
 
+
     // MARK: - Add Item Button tapped
     @objc func addItemTapped() {
+        
         // Go to add material VC
         let addMaterialViewController = AddMaterialViewController()
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)
     }
-
-    // MARK: - Mark the cell
-    private func mark(indexPath: IndexPath) {
-
-        // Get current material
-        let name = self.sections[indexPath.section].items[indexPath.row]
-        let info = self.sections[indexPath.section].info[indexPath.row]
-        let quantity = self.sections[indexPath.section].quantity?[indexPath.row] ?? ""
-        let type = self.sections[indexPath.section].name
-        let marked = self.sections[indexPath.section].marked?[indexPath.row] ?? false
-
-        // Create marked material
-        var markedMaterial = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
-
-        // Remove unmarked material from storage
-        let itemToRemove = markedMaterial
-        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-
-        // Check if material marked or not
-        markedMaterial.marked = markedMaterial.marked ? false : true
-
-        // Save marked Material to storage
-        LocalStorageService.save(object: markedMaterial)
-
-        // Reload data
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.loadData()
-        }
-    }
-
 }
+
 
 // MARK: Collapse or not collapse sections
 extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
-        let collapsed = !sections[section].collapsed
+
+        let collapsed = !(viewModel?.sections[section].collapsed ?? false)
 
         // Toggle collapse
-        sections[section].collapsed = collapsed
+        viewModel?.sections[section].collapsed = collapsed
 
-        // Set isCollapsed dictionary values and save it - store section collapse state
-        isCollapsed[sections[section].name] = collapsed
+        // Get section name
+        guard let sectionName = viewModel?.sections[section].name else { return }
+
+        // Set isCollapsed dictionary value for section name and save it, i.e. store section state
+        isCollapsed[sectionName] = collapsed
         LocalStorageService.genericSave(object: isCollapsed, key: "isCollapsed")
 
         header.setCollapsed(collapsed: collapsed)

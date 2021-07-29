@@ -11,10 +11,13 @@ class AddMaterialViewController: UIViewController {
 
     let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Химия", "Разное"]
 
+    var viewModel: AddMaterialViewControllerViewModelType?
+
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "ДОБАВИТЬ МАТЕРИАЛ"
+        viewModel = AddMaterialViewControllerViewModel()
         setupViews()
         hideKeyboardWhenTappedAroundOnView()
     }
@@ -127,6 +130,7 @@ class AddMaterialViewController: UIViewController {
 
     // MARK: - Add Button Pressed
     @objc func addButtonPressed(sender: UIButton) {
+        guard let viewModel = viewModel else { return }
 
         // Get item parameters
         let itemType = pickerItems[itemPicker.selectedRow(inComponent: 0)]
@@ -134,13 +138,10 @@ class AddMaterialViewController: UIViewController {
         let itemQuantity = itemQuantityTextField.text ?? ""
         let itemInfo = itemInfoTextField.text ?? ""
 
-        // Create material from item parameters
-        let material = Material.init(type: itemType, name: itemName, quantity: itemQuantity, info: itemInfo, marked: false)
+        // Add new material to storage
+        viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, name: itemName, info: itemInfo)
 
-        // Save material to UserDefaults
-        LocalStorageService.save(object: material)
-
-        // Get back to MaterialsList VC
+        // Get back to Materials List VC
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -159,7 +160,6 @@ extension AddMaterialViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             return pickerItems[row]
     }
-
 }
 
 // UITextField delegate
@@ -168,6 +168,4 @@ extension AddMaterialViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
-
 }

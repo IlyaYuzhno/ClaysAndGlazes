@@ -9,23 +9,22 @@ import UIKit
 
 class EditMaterialViewController: UIViewController {
 
-    var itemToRemove: Material
+    var viewModel: EditMaterialViewModelType?
 
-    // MARK: - Init
-    init(itemToRemove: Material) {
-        self.itemToRemove = itemToRemove
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAroundOnView()
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let viewModel = viewModel else { return }
+        itemInfoTextField.text = viewModel.info
+        itemNameTextField.text = viewModel.name
+        itemQuantityTextField.text = viewModel.quantity
     }
 
     // MARK: - Views
@@ -40,7 +39,6 @@ class EditMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
-        textField.text = itemToRemove.name
         return textField
     }()
 
@@ -55,7 +53,6 @@ class EditMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
-        textField.text = itemToRemove.quantity
         return textField
     }()
 
@@ -71,7 +68,6 @@ class EditMaterialViewController: UIViewController {
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
         textField.returnKeyType = .done
-        textField.text = itemToRemove.info
         return textField
     }()
 
@@ -88,6 +84,8 @@ class EditMaterialViewController: UIViewController {
     // MARK: - SetupViews
     func setupViews() {
         view.backgroundColor = .BackgroundColor1
+        guard let viewModel = viewModel else { return }
+        title = ("Исправляем \(viewModel.name)")
         view.addSubviews(itemNameTextField, itemQuantityTextField, itemInfoTextField, editButton)
         itemInfoTextField.delegate = self
         setupConstraints()
@@ -121,8 +119,10 @@ class EditMaterialViewController: UIViewController {
 
     // MARK: - Edit Button Pressed
     @objc func editButtonPressed(sender: UIButton) {
+        guard let viewModel = viewModel else { return }
 
         // Remove initial material item
+        let itemToRemove = viewModel.getMaterial()
         LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
         // Get new item parameters
@@ -131,7 +131,7 @@ class EditMaterialViewController: UIViewController {
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Create new material from item parameters
-        let material = Material.init(type: itemToRemove.type, name: itemName, quantity: itemQuantity, info: itemInfo, marked: itemToRemove.marked )
+        let material = Material.init(type: viewModel.type , name: itemName, quantity: itemQuantity, info: itemInfo, marked: viewModel.marked )
 
         // Save new material to UserDefaults
         LocalStorageService.save(object: material)

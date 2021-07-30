@@ -1,5 +1,5 @@
 //
-//  TableViewCellViewModelType.swift
+//  MateriaTableViewCellViewModel.swift
 //  ClaysAndGlazes
 //
 //  Created by Ilya Doroshkevitch on 28.07.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TableViewCellViewModel: MaterialsTableViewCellViewModelType {
+class MaterialTableViewCellViewModel: MaterialsTableViewCellViewModelType {
 
     private var material: Material
 
@@ -26,7 +26,6 @@ class TableViewCellViewModel: MaterialsTableViewCellViewModelType {
     var marked: Bool {
         return material.marked
     }
-
 
     init(material: Material) {
         self.material = material

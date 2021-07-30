@@ -8,19 +8,13 @@ import UIKit
 
 class ClaysTableViewController: UITableViewController {
 
-    var claysList: [String] = []
-    var filteredClaysList: [String] = []
-    var claysInfo: [String] = []
-    var claysInfoDictionary: [String: String] = [:]
-    var isSearching = false
+    var isShown = false
     let interactor: Interactor
     lazy var searchBar: UISearchBar = UISearchBar()
-    var sections = [Section]()
-    var indexPath: IndexPath?
     let clayInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
-    var isShown = false
     var initialCenter = CGPoint()
+    var viewModel: ClaysTableViewViewModelType?
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -38,7 +32,14 @@ class ClaysTableViewController: UITableViewController {
         setupTableView()
         setupSearchBar()
         hideKeyboardWhenTappedAroundOnTableView()
-        getData()
+        viewModel = ClaysTableViewViewModel(interactor: interactor)
+    
+        // Load data via viewModel
+        viewModel?.loadData { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -51,64 +52,76 @@ class ClaysTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        isSearching ? 1 : sections.count
+        return viewModel?.numberOfSections() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isSearching ? filteredClaysList.count : sections[section].collapsed ? 0 : sections[section].items.count
+        return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "clayCell", for: indexPath) as! ClayCell
-        
-        isSearching ? cell.configure(item: filteredClaysList[indexPath.row]) : cell.configure(item: sections[indexPath.section].items[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "clayCell", for: indexPath) as? ClayCell
 
-        return cell
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+
+        return tableViewCell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+        viewModel.selectRow(atIndexPath: indexPath)
+
         // Go to next VC
         let temperatureViewController = TemperatureTableViewController(interactor: interactor)
-        if isSearching {
-            temperatureViewController.clay = filteredClaysList[indexPath.row]
-        } else {
-            temperatureViewController.clay = sections[indexPath.section].items[indexPath.row]
-        }
+        viewModel.selectRow(atIndexPath: indexPath)
+
+        temperatureViewController.viewModel = viewModel.viewModelForSelectedRow()
+
         self.navigationController?.pushViewController(temperatureViewController, animated: true)
     }
 
     // MARK: - Section headers setup
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let viewModel = viewModel else { return nil}
+
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
-        header.titleLabel.text = sections[section].name
+        header.titleLabel.text = viewModel.sections[section].name
         header.arrowLabel.text = ">"
-        header.setCollapsed(collapsed: sections[section].collapsed)
+        header.setCollapsed(collapsed: viewModel.sections[section].collapsed)
         header.section = section
         header.delegate = self
         return header
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return sections[(indexPath as NSIndexPath).section].collapsed ? 0 : UITableView.automaticDimension
+        guard let viewModel = viewModel else { return UITableView.automaticDimension}
+
+        return viewModel.sections[(indexPath as NSIndexPath).section].collapsed ? 0 : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        isSearching ? 0 : 60
+        guard let viewModel = viewModel else { return 0}
+        return viewModel.isSearching ? 0 : 60
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        20
     }
 
     // MARK: Tap on information button
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+
         tableView.isScrollEnabled = false
         Animation.setBlur(view: self.view, contentView: clayInfoView)
         self.clayInfoView.alpha = 1
-        if isSearching {
-            showClayInfoView(clayName: filteredClaysList[indexPath.row], clayInfo: claysInfoDictionary[filteredClaysList[indexPath.row]] ?? "")
+        if viewModel.isSearching {
+            showClayInfoView(clayName: viewModel.filteredClaysList[indexPath.row], clayInfo: viewModel.claysInfoDictionary[viewModel.filteredClaysList[indexPath.row]] ?? "")
         } else {
-            showClayInfoView(clayName: sections[indexPath.section].items[indexPath.row], clayInfo: sections[indexPath.section].info[indexPath.row])
+            showClayInfoView(clayName: viewModel.sections[indexPath.section].items[indexPath.row], clayInfo: viewModel.sections[indexPath.section].info[indexPath.row])
         }
 
         // Add pan gesture to drag info view
@@ -159,15 +172,17 @@ extension ClaysTableViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
         if searchBar.text == "" {
-            isSearching = false
+            viewModel?.isSearching = false
             tableView.reloadData()
         } else {
-            isSearching = true
-            filteredClaysList = []
-            filteredClaysList = claysList.filter({(dataString: String) -> Bool in
+            viewModel?.isSearching = true
+            viewModel?.filteredClaysList = []
+            let searched = (viewModel?.claysList.filter({(dataString: String) -> Bool in
                 return dataString.range(of: searchText, options: .caseInsensitive) != nil
-            })
+            })) ?? [""]
+            viewModel?.filteredClaysList = searched
             tableView.reloadData()
         }
     }
@@ -176,17 +191,17 @@ extension ClaysTableViewController: UISearchBarDelegate {
 // MARK: Collapse or not collapse sections
 extension ClaysTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
-        let collapsed = !sections[section].collapsed
+
+        let collapsed = !(viewModel?.sections[section].collapsed ?? false)
 
         // Toggle collapse
-        sections[section].collapsed = collapsed
+        viewModel?.sections[section].collapsed = collapsed
         header.setCollapsed(collapsed: collapsed)
         tableView.setContentOffset(.zero, animated: true)
 
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
     }
-
 }
 
 // MARK: Info View Delegate

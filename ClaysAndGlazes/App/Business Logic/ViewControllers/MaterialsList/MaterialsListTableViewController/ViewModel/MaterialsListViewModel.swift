@@ -37,7 +37,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let material = Material(type: "", name: name, quantity: quantity, info: info, marked: marked)
 
-        return TableViewCellViewModel(material: material)
+        return MaterialTableViewCellViewModel(material: material)
     }
 
     func deleteItem(forIndexPath indexPath: IndexPath) {

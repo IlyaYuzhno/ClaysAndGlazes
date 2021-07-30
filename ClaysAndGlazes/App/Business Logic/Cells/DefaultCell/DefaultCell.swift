@@ -9,6 +9,23 @@ import UIKit
 
 class DefaultCell: UITableViewCell {
 
+    weak var viewModel: DefaultCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            backgroundColor = .systemGray6
+            textLabel?.numberOfLines = 0
+            textLabel?.text = viewModel.text
+
+            switch textLabel?.text {
+            case "No info available...":
+                isUserInteractionEnabled = false
+                textLabel?.font = .italicSystemFont(ofSize: 16)
+            default:
+                break
+            }
+        }
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 

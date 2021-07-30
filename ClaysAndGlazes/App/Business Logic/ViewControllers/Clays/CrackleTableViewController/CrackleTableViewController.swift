@@ -10,16 +10,11 @@ import UIKit
 class CrackleTableViewController: UITableViewController {
 
     let interactor: Interactor
-    var clay = ""
-    var glaze = ""
-    var temperature = ""
-    var mode: String
-    var crackle = ["Много цека", "Мало цека", "Нет цека"]
+    var viewModel: CrackleTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: Interactor, mode: String) {
+    init(interactor: Interactor) {
         self.interactor = interactor
-        self.mode = mode
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -35,22 +30,27 @@ class CrackleTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "cracklesTableView"
         tableView.register(DefaultCell.self, forCellReuseIdentifier: "crackleCell")
-
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return crackle.count
+        return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "crackleCell", for: indexPath) as! DefaultCell
-        cell.configure(item: crackle[indexPath.row])
-        cell.accessibilityIdentifier = "crackleCell"
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "crackleCell", for: indexPath) as? DefaultCell
+
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+
+        tableViewCell.accessibilityIdentifier = "crackleCell"
+        return tableViewCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
 
         var crackleId = ""
 
@@ -66,26 +66,26 @@ class CrackleTableViewController: UITableViewController {
         }
 
         // MARK: Go to next VC
-        switch mode {
+        switch viewModel.mode {
         case "clay":
-            let glazesViewController = GlazesTableViewController(interactor: interactor)
-            glazesViewController.clay = clay
-            glazesViewController.temperature = temperature
-            glazesViewController.crackleId = crackleId
+            let glazesViewController = GlazesTableViewController()
+
+            glazesViewController.viewModel = viewModel.viewModelForSelectedRow(interactor: interactor, clay: viewModel.clay, temperature: viewModel.temperature, crackleId: crackleId)
+
             self.navigationController?.pushViewController(glazesViewController, animated: true)
 
         case "glaze":
             let glazeForClaysViewController = GlazeForClaysTableViewController(interactor: interactor)
-            glazeForClaysViewController.glaze = glaze
-            glazeForClaysViewController.temperature = temperature
+
+            glazeForClaysViewController.glaze = viewModel.glaze
+            glazeForClaysViewController.temperature = viewModel.temperature
             glazeForClaysViewController.crackleId = crackleId
+            
             self.navigationController?.pushViewController(glazeForClaysViewController, animated: true)
 
         default:
             break
         }
-
-
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

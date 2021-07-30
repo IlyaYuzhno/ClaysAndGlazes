@@ -58,9 +58,9 @@ class GlazeTemperatureTableViewController: UITableViewController {
 
     // MARK: Go to next VC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let crackleViewController = CrackleTableViewController(interactor: interactor, mode: "glaze")
-        crackleViewController.glaze = glaze
-        crackleViewController.temperature = temperatures[indexPath.row].description
+        let crackleViewController = CrackleTableViewController(interactor: interactor)//)
+        //crackleViewController.glaze = glaze
+        //crackleViewController.temperature = temperatures[indexPath.row].description
         self.navigationController?.pushViewController(crackleViewController, animated: true)
 
     }

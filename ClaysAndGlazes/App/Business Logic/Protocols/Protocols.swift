@@ -18,10 +18,8 @@ protocol MaterialsListTableViewViewModelType {
     func loadData(completion: (@escaping () -> ()?))
     func deleteItem(forIndexPath indexPath: IndexPath)
     func markItem(forIndexPath indexPath: IndexPath)
-
     func viewModelForSelectedRow() -> EditMaterialViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
-
     var sections: [Section] { get set }
 }
 

@@ -16,14 +16,12 @@ class Interactor {
 
     // MARK: - Clays stuff
 
-     func getClays(completion: @escaping ([Response]) -> Void) {
+    func getClays(completion: @escaping ([Response]) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-                DispatchQueue.main.async {
-                    completion(jsonResult)
-                }
+                completion(jsonResult)
             } catch {
                 print(error)
             }

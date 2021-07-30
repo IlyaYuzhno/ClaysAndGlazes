@@ -5,9 +5,9 @@
 //  Created by Ilya Doroshkevitch on 21.07.2021.
 //
 
-import UIKit
+import Foundation
 
-final class MaterialsListPresenter: UITableViewController {
+final class MaterialsListPresenter {
 
     class func present(completion: @escaping ([Section]) -> Void) {
 

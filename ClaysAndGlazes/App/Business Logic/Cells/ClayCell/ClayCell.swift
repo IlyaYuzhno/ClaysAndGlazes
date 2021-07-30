@@ -9,6 +9,17 @@ import UIKit
 
 class ClayCell: UITableViewCell {
 
+    weak var viewModel: ClayCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            accessoryType = .detailButton
+            accessibilityIdentifier = "clayCell"
+            backgroundColor = .systemGray6
+            textLabel?.numberOfLines = 0
+            textLabel?.text = viewModel.text
+        }
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
     }

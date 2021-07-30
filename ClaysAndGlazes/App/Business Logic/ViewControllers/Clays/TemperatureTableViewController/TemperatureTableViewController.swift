@@ -10,7 +10,7 @@ import UIKit
 class TemperatureTableViewController: UITableViewController {
 
     let interactor: Interactor
-    var temperatures: [String] = []
+    var viewModel: TemperatureTableViewViewModelType?
     var clay = ""
 
     // MARK: - Init
@@ -26,48 +26,54 @@ class TemperatureTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title =  "МАССА \(clay)"
+        title = "МАССА \(clay)"
         tableView.backgroundColor = .BackgroundColor1
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "temperaturesTableView"
         tableView.register(DefaultCell.self, forCellReuseIdentifier: "temperatureCell")
+        
+        //viewModel = TemperatureTableViewViewModel(interactor: interactor, clay: clay)
 
         // Get temperatures array for clay
-        interactor.getTemperature(for: clay) { [weak self] temps in
-            self?.temperatures = temps
-            self?.tableView.reloadData()
-        }
-
+        viewModel?.loadData(forClay: viewModel?.clay ?? "", completion: { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        })
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return temperatures.count
+        return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "temperatureCell", for: indexPath) as! DefaultCell
-        cell.accessibilityIdentifier = "temperatureCell"
-        cell.configure(item: temperatures[indexPath.row].description)
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "temperatureCell", for: indexPath) as? DefaultCell
+
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+
+        tableViewCell.accessibilityIdentifier = "temperatureCell"
+        return tableViewCell
     }
 
-    // MARK: Go to next VC
+    // MARK: Go to next CrackleTableVC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let crackleViewController = CrackleTableViewController(interactor: interactor, mode: "clay")
-        crackleViewController.clay = clay
-        crackleViewController.temperature = temperatures[indexPath.row].description
-        self.navigationController?.pushViewController(crackleViewController, animated: true)
 
+        guard let viewModel = viewModel else { return }
+        viewModel.selectRow(atIndexPath: indexPath)
+        viewModel.getValues(mode: "clay")
+
+        let crackleViewController = CrackleTableViewController(interactor: interactor)
+
+        crackleViewController.viewModel = viewModel.viewModelForSelectedRow()
+
+        self.navigationController?.pushViewController(crackleViewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // this will turn on `masksToBounds` just before showing the cell
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath

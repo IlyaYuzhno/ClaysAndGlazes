@@ -2,22 +2,34 @@
 //  ClaysTableViewPresenter.swift
 //  ClaysAndGlazes
 //
-//  Created by Ilya Doroshkevitch on 22.07.2021.
+//  Created by Ilya Doroshkevitch on 30.07.2021.
 //
 
-import UIKit
+import Foundation
 
-extension ClaysTableViewController {
-     func getData() {
+protocol ClaysTableViewPresenterType: AnyObject {
+    var interactor: Interactor? { get set }
+    func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void)
+}
 
-//        let netwServ = NetworkService()
-//        netwServ.fetchGenericJSONData(resource: "ClaysInfo") { decoded in
-//                print(decoded)
-//
-//        }
+final class ClaysTableViewPresenter: ClaysTableViewPresenterType {
 
+    var interactor: Interactor?
 
-        interactor.getClays() { [weak self] response in
+    init(interactor: Interactor) {
+        self.interactor = interactor
+    }
+
+    func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void) {
+        guard let interactor = interactor else { return }
+
+        var sections: [Section] = []
+        var claysList: [String] = []
+        var filteredClaysList: [String] = []
+        var claysInfo: [String] = []
+        var claysInfoDictionary: [String : String] = [:]
+
+        interactor.getClays() { response in
             let witgert = response.filter { $0.brand == "Witgert" }.map { $0.clay}
             let witgertInfo = response.filter { $0.brand == "Witgert" }.map { $0.info}
             let donbass = response.filter { $0.brand == "Donbass" }.map { $0.clay}
@@ -37,13 +49,13 @@ extension ClaysTableViewController {
             let raoul = response.filter { $0.brand == "Raoult & Beck" }.map { $0.clay}
             let raoulInfo = response.filter { $0.brand == "Raoult & Beck" }.map { $0.info}
 
-            self?.claysList = response.map { $0.clay}
-            self?.claysInfo = response.map { $0.info}
-            self?.claysInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.claysList ?? [""], self?.claysInfo ?? [""]))
+            claysList = response.map { $0.clay}
+            claysInfo = response.map { $0.info}
+            claysInfoDictionary = Dictionary(uniqueKeysWithValues: zip(claysList , claysInfo ))
 
-            self?.filteredClaysList = self?.claysList ?? [""]
+             filteredClaysList = claysList
 
-            self?.sections = [
+             sections = [
                 Section(name: "Witgert", items: witgert, info: witgertInfo),
                 Section(name: "Керамические массы Донбасса", items: donbass, info: donbassInfo),
                 Section(name: "Laguna Clay", items: lagunaClay, info: lagunaClayInfo),
@@ -53,12 +65,8 @@ extension ClaysTableViewController {
                 Section(name: "SiO2, Испания", items: spain, info: spainInfo),
                 Section(name: "GOERG & SCHNEIDER", items: goerg, info: goergInfo),
                 Section(name: "Raoult & Beck", items: raoul, info: raoulInfo)
-            ]
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+            ]}
 
-        }
+        completion(sections, claysList, claysInfo, filteredClaysList, claysInfoDictionary)
     }
 }
-

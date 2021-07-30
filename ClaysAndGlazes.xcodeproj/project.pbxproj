@@ -52,14 +52,20 @@
 		5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */; };
 		5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */; };
 		5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */; };
-		5B63CE7126A9516700AB81AC /* ClaysTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE7026A9516700AB81AC /* ClaysTableViewPresenter.swift */; };
 		5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE7326A9532400AB81AC /* GlazesListPresenter.swift */; };
 		5B63CE7926A956A900AB81AC /* GlazesRecipesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE7826A956A900AB81AC /* GlazesRecipesCollectionViewController.swift */; };
 		5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E149A26B161BF0072FB7E /* MaterialsListViewModel.swift */; };
-		5B6E149E26B168AE0072FB7E /* TableViewCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E149D26B168AE0072FB7E /* TableViewCellViewModelType.swift */; };
+		5B6E149E26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E149D26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift */; };
 		5B6E14A326B18DCE0072FB7E /* EditMaterialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */; };
 		5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A626B2BF740072FB7E /* AddMaterialViewModel.swift */; };
 		5B6E14AA26B2C46F0072FB7E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A926B2C46F0072FB7E /* Protocols.swift */; };
+		5B6E14AE26B2C9040072FB7E /* TemperatureTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */; };
+		5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B026B2CE090072FB7E /* DefaultCellViewModel.swift */; };
+		5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B526B2D2720072FB7E /* CrackleTableViewViewModel.swift */; };
+		5B6E14BA26B2E6150072FB7E /* GlazesTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */; };
+		5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14BD26B3EBA10072FB7E /* ClaysTableViewViewModel.swift */; };
+		5B6E14C126B3EC350072FB7E /* ClayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C026B3EC350072FB7E /* ClayCellViewModel.swift */; };
+		5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -136,14 +142,20 @@
 		5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListPresenter.swift; sourceTree = "<group>"; };
 		5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewController.swift; sourceTree = "<group>"; };
 		5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCell.swift; sourceTree = "<group>"; };
-		5B63CE7026A9516700AB81AC /* ClaysTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysTableViewPresenter.swift; sourceTree = "<group>"; };
 		5B63CE7326A9532400AB81AC /* GlazesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesListPresenter.swift; sourceTree = "<group>"; };
 		5B63CE7826A956A900AB81AC /* GlazesRecipesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesRecipesCollectionViewController.swift; sourceTree = "<group>"; };
 		5B6E149A26B161BF0072FB7E /* MaterialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListViewModel.swift; sourceTree = "<group>"; };
-		5B6E149D26B168AE0072FB7E /* TableViewCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelType.swift; sourceTree = "<group>"; };
+		5B6E149D26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A626B2BF740072FB7E /* AddMaterialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A926B2C46F0072FB7E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTableViewModel.swift; sourceTree = "<group>"; };
+		5B6E14B026B2CE090072FB7E /* DefaultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCellViewModel.swift; sourceTree = "<group>"; };
+		5B6E14B526B2D2720072FB7E /* CrackleTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrackleTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14BD26B3EBA10072FB7E /* ClaysTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14C026B3EC350072FB7E /* ClayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayCellViewModel.swift; sourceTree = "<group>"; };
+		5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysListPresenter.swift; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,9 +327,9 @@
 		5B060F962614842A0090E250 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5B060F97261484440090E250 /* ClayCell.swift */,
-				5B061031261DA9B00090E250 /* DefaultCell.swift */,
-				5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */,
+				5B6E14BF26B3EC130072FB7E /* ClayCell */,
+				5B6E14AF26B2CDE00072FB7E /* DefaultCell */,
+				5B6E14B226B2CE420072FB7E /* MaterialCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -368,11 +380,10 @@
 		5B2C04612625D02B00FB1CED /* Clays */ = {
 			isa = PBXGroup;
 			children = (
-				5B63CE6F26A9514E00AB81AC /* Presenter */,
-				5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */,
-				5B060F70261233AF0090E250 /* CrackleTableViewController.swift */,
-				5B060F71261233AF0090E250 /* GlazesTableViewController.swift */,
-				5B060F72261233AF0090E250 /* ClaysTableViewController.swift */,
+				5B6E14BB26B3EB2A0072FB7E /* ClaysTableViewController */,
+				5B6E14AB26B2C8D60072FB7E /* TemperatureTableViewController */,
+				5B6E14B326B2D24D0072FB7E /* CrackleTableViewController */,
+				5B6E14B726B2E5E30072FB7E /* GlazesTableViewController */,
 			);
 			path = Clays;
 			sourceTree = "<group>";
@@ -421,8 +432,8 @@
 		5B63CE5426A6942700AB81AC /* MaterialsList */ = {
 			isa = PBXGroup;
 			children = (
-				5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */,
 				5B63CE6C26A82F7900AB81AC /* Presenter */,
+				5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */,
 				5B63CE6926A82F3400AB81AC /* EditMaterialViewController */,
 				5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */,
 			);
@@ -432,8 +443,8 @@
 		5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5B6E14A526B2BF610072FB7E /* ViewModel */,
 				5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */,
+				5B6E14A526B2BF610072FB7E /* ViewModel */,
 			);
 			path = AddMaterialViewController;
 			sourceTree = "<group>";
@@ -472,14 +483,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		5B63CE6F26A9514E00AB81AC /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				5B63CE7026A9516700AB81AC /* ClaysTableViewPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		5B63CE7226A9530F00AB81AC /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +503,6 @@
 			isa = PBXGroup;
 			children = (
 				5B6E149A26B161BF0072FB7E /* MaterialsListViewModel.swift */,
-				5B6E149D26B168AE0072FB7E /* TableViewCellViewModelType.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -508,8 +510,8 @@
 		5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5B6E149C26B163BF0072FB7E /* ViewModel */,
 				5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */,
+				5B6E149C26B163BF0072FB7E /* ViewModel */,
 			);
 			path = MaterialsListTableViewController;
 			sourceTree = "<group>";
@@ -536,6 +538,110 @@
 				5B6E14A926B2C46F0072FB7E /* Protocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5B6E14AB26B2C8D60072FB7E /* TemperatureTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14AC26B2C8E80072FB7E /* ViewModel */,
+				5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */,
+			);
+			path = TemperatureTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14AC26B2C8E80072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14AF26B2CDE00072FB7E /* DefaultCell */ = {
+			isa = PBXGroup;
+			children = (
+				5B061031261DA9B00090E250 /* DefaultCell.swift */,
+				5B6E14B026B2CE090072FB7E /* DefaultCellViewModel.swift */,
+			);
+			path = DefaultCell;
+			sourceTree = "<group>";
+		};
+		5B6E14B226B2CE420072FB7E /* MaterialCell */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */,
+				5B6E149D26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift */,
+			);
+			path = MaterialCell;
+			sourceTree = "<group>";
+		};
+		5B6E14B326B2D24D0072FB7E /* CrackleTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14B426B2D25D0072FB7E /* ViewModel */,
+				5B060F70261233AF0090E250 /* CrackleTableViewController.swift */,
+			);
+			path = CrackleTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14B426B2D25D0072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14B526B2D2720072FB7E /* CrackleTableViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14B726B2E5E30072FB7E /* GlazesTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14B826B2E5FC0072FB7E /* ViewModel */,
+				5B060F71261233AF0090E250 /* GlazesTableViewController.swift */,
+			);
+			path = GlazesTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14B826B2E5FC0072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14BB26B3EB2A0072FB7E /* ClaysTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14C226B3F86F0072FB7E /* Presenter */,
+				5B6E14BC26B3EB690072FB7E /* ViewModel */,
+				5B060F72261233AF0090E250 /* ClaysTableViewController.swift */,
+			);
+			path = ClaysTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14BC26B3EB690072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14BD26B3EBA10072FB7E /* ClaysTableViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14BF26B3EC130072FB7E /* ClayCell */ = {
+			isa = PBXGroup;
+			children = (
+				5B060F97261484440090E250 /* ClayCell.swift */,
+				5B6E14C026B3EC350072FB7E /* ClayCellViewModel.swift */,
+			);
+			path = ClayCell;
+			sourceTree = "<group>";
+		};
+		5B6E14C226B3F86F0072FB7E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
@@ -796,24 +902,28 @@
 			files = (
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
 				5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */,
+				5B6E14BA26B2E6150072FB7E /* GlazesTableViewViewModel.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
 				5B63CE7926A956A900AB81AC /* GlazesRecipesCollectionViewController.swift in Sources */,
 				5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */,
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
+				5B6E14C126B3EC350072FB7E /* ClayCellViewModel.swift in Sources */,
 				5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */,
 				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B6E14AA26B2C46F0072FB7E /* Protocols.swift in Sources */,
+				5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
+				5B6E14AE26B2C9040072FB7E /* TemperatureTableViewModel.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
 				5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */,
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
-				5B6E149E26B168AE0072FB7E /* TableViewCellViewModelType.swift in Sources */,
+				5B6E149E26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift in Sources */,
 				5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */,
-				5B63CE7126A9516700AB81AC /* ClaysTableViewPresenter.swift in Sources */,
+				5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */,
 				5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */,
 				5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
@@ -824,6 +934,7 @@
 				5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
 				5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */,
+				5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
 				5B060FFA26174D340090E250 /* InformationView.swift in Sources */,
 				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
@@ -832,6 +943,7 @@
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
 				5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */,
+				5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */,
 				5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

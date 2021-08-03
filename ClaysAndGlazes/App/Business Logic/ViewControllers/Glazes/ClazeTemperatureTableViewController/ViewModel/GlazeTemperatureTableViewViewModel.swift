@@ -1,13 +1,13 @@
 //
-//  ClayTemperatureTableViewModel.swift
+//  GlazeTemperatureTableViewViewModel.swift
 //  ClaysAndGlazes
 //
-//  Created by Ilya Doroshkevitch on 29.07.2021.
+//  Created by Ilya Doroshkevitch on 03.08.2021.
 //
 
 import Foundation
 
-class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
+class GlazeTemperatureTableViewViewModel: GlazeTemperatureTableViewViewModelType {
 
     var temperatures: [String] = []
     var interactor: Interactor?
@@ -24,6 +24,22 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
         return temperatures.count
     }
 
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType? {
+
+        let item = temperatures[indexPath.row]
+
+        return DefaultCellViewModel(item: item)
+    }
+
+    func loadData(completion: @escaping (() -> ()?)) {
+        guard let interactor = interactor else { return }
+
+        interactor.getGlazeTemperature(for: item) { [weak self] temps in
+            self?.temperatures = temps
+        }
+        completion()
+    }
+
     func selectRow(atIndexPath indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }
@@ -32,28 +48,12 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
         self.mode = mode
     }
 
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType? {
-
-        let item = temperatures[indexPath.row]
-        
-        return DefaultCellViewModel(item: item)
-    }
-
-    func loadData(completion: @escaping (() -> ()?)) {
-        guard let interactor = interactor else { return }
-
-        interactor.getClayTemperature(for: item) { [weak self] temps in
-            self?.temperatures = temps
-            completion()
-        }
-    }
-
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath else { return nil}
+        guard let selectedIndexPath = self.selectedIndexPath, let interactor = interactor else { return nil}
 
         let temperature = temperatures[selectedIndexPath.row].description
 
-        return CrackleTableViewViewModel(clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
+        return CrackleTableViewViewModel(interactor: interactor, clay:"" , glaze: item, temperature: temperature, mode: mode ?? "")
     }
-}
 
+}

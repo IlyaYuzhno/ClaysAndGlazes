@@ -75,7 +75,7 @@ class ClaysTableViewController: UITableViewController {
         viewModel.selectRow(atIndexPath: indexPath)
 
         // Go to next VC
-        let temperatureViewController = TemperatureTableViewController(interactor: interactor)
+        let temperatureViewController = ClaysTemperatureTableViewController(interactor: interactor)
         viewModel.selectRow(atIndexPath: indexPath)
 
         temperatureViewController.viewModel = viewModel.viewModelForSelectedRow()

@@ -28,16 +28,16 @@ class Interactor {
         }
     }
 
-     func getTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
+     func getClayTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([Response].self, from: data)
                 let clay = jsonResult.filter { $0.clay == clay }
                 let temperature = clay.map { $0.temperature }
-                DispatchQueue.main.async {
+
                     completion(temperature[0].keys.map { $0 })
-                }
+                
             } catch {
                 print(error)
             }
@@ -119,9 +119,7 @@ class Interactor {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
-                DispatchQueue.main.async {
                     completion(jsonResult)
-                }
             } catch {
                 print(error)
             }
@@ -136,9 +134,9 @@ class Interactor {
                 let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
                 let glaze = jsonResult.filter { $0.glaze == glaze }
                 let temperature = glaze.map { $0.temperature }
-                DispatchQueue.main.async {
+
                     completion(temperature[0].keys.map { $0 })
-                }
+
             } catch {
                 print(error)
             }

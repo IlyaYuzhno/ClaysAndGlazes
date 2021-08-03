@@ -9,15 +9,10 @@ import UIKit
 class ChooseGlazeTableViewController: UITableViewController {
 
     let interactor: Interactor
-    var sections = [Section]()
-    var glazeList: [String] = []
-    var filteredGlazeList: [String] = []
-    var glazeInfo: [String] = []
-    var glazeInfoDictionary: [String: String] = [:]
     let glazeInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
-    var isSearching = false
     lazy var searchBar: UISearchBar = UISearchBar()
     var initialCenter = CGPoint()
+    var viewModel: ChooseGlazeTableViewViewModelType?
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -34,69 +29,86 @@ class ChooseGlazeTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
-        getData()
+        viewModel = ChooseGlazeTableViewViewModel(interactor: interactor)
+
+        // Load data via viewModel
+        viewModel?.loadData { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        isSearching ? 1 : sections.count
+        return viewModel?.numberOfSections() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isSearching ? filteredGlazeList.count : sections[section].collapsed ? 0 : sections[section].items.count
+        return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "glazeCell", for: indexPath) as! ClayCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "glazeCell", for: indexPath) as? ClayCell
 
-        isSearching ? cell.configure(item: filteredGlazeList[indexPath.row]) : cell.configure(item: sections[indexPath.section].items[indexPath.row])
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
 
-        return cell
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+
+        return tableViewCell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         // Go to next VC
-        let glazeTemperatureViewController = GlazeTemperatureTableViewController(interactor: interactor)
-        if isSearching {
-            glazeTemperatureViewController.glaze = filteredGlazeList[indexPath.row]
-        } else {
-            glazeTemperatureViewController.glaze = sections[indexPath.section].items[indexPath.row]
-        }
+        let glazeTemperatureViewController = GlazeTemperatureTableViewController()
+        viewModel?.selectRow(atIndexPath: indexPath)
+
+        glazeTemperatureViewController.viewModel = viewModel?.viewModelForSelectedRow()
+
         self.navigationController?.pushViewController(glazeTemperatureViewController, animated: true)
     }
 
     // MARK: - Section headers setup
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let viewModel = viewModel else { return nil}
+
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "glazesListHeader") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "glazesListHeader")
-        header.titleLabel.text = sections[section].name
+        header.titleLabel.text = viewModel.sections[section].name
         header.arrowLabel.text = ">"
-        header.setCollapsed(collapsed: sections[section].collapsed)
+        header.setCollapsed(collapsed: viewModel.sections[section].collapsed)
         header.section = section
         header.delegate = self
         return header
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return sections[(indexPath as NSIndexPath).section].collapsed ? 0 : UITableView.automaticDimension
+        guard let viewModel = viewModel else { return UITableView.automaticDimension}
+
+        return viewModel.sections[(indexPath as NSIndexPath).section].collapsed ? 0 : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        isSearching ? 0 : 60
+        guard let viewModel = viewModel else { return 0}
+        return viewModel.isSearching ? 0 : 60
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        20
     }
 
     // MARK: Tap on information button
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+        
         tableView.isScrollEnabled = false
         Animation.setBlur(view: self.view, contentView: glazeInfoView)
         self.glazeInfoView.alpha = 1
-        if isSearching {
-            showGlazeInfoView(glazeName: filteredGlazeList[indexPath.row], glazeInfo: glazeInfoDictionary[filteredGlazeList[indexPath.row]] ?? "")
+        if viewModel.isSearching {
+            showGlazeInfoView(glazeName: viewModel.filteredItemsList[indexPath.row], glazeInfo: viewModel.itemsInfoDictionary[viewModel.filteredItemsList[indexPath.row]] ?? "")
         } else {
-            showGlazeInfoView(glazeName: sections[indexPath.section].items[indexPath.row], glazeInfo: sections[indexPath.section].info[indexPath.row])
+            showGlazeInfoView(glazeName: viewModel.sections[indexPath.section].items[indexPath.row], glazeInfo: viewModel.sections[indexPath.section].info[indexPath.row])
         }
 
         // Add pan gesture to drag info view
@@ -145,14 +157,15 @@ extension ChooseGlazeTableViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == "" {
-            isSearching = false
+            viewModel?.isSearching = false
             tableView.reloadData()
         } else {
-            isSearching = true
-            filteredGlazeList = []
-            filteredGlazeList = glazeList.filter({(dataString: String) -> Bool in
+            viewModel?.isSearching = true
+            viewModel?.filteredItemsList = []
+            let searched = viewModel?.itemsList.filter({(dataString: String) -> Bool in
                 return dataString.range(of: searchText, options: .caseInsensitive) != nil
-            })
+            }) ?? [""]
+            viewModel?.filteredItemsList = searched
             tableView.reloadData()
         }
     }
@@ -161,10 +174,10 @@ extension ChooseGlazeTableViewController: UISearchBarDelegate {
 // MARK: Collapse or not collapse sections
 extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
     func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
-        let collapsed = !sections[section].collapsed
+        let collapsed = !(viewModel?.sections[section].collapsed ?? false)
 
         // Toggle collapse
-        sections[section].collapsed = collapsed
+        viewModel?.sections[section].collapsed = collapsed
         header.setCollapsed(collapsed: collapsed)
         tableView.setContentOffset(.zero, animated: true)
 

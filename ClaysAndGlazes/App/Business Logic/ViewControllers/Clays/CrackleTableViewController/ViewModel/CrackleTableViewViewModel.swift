@@ -7,31 +7,22 @@
 
 import Foundation
 
-protocol CrackleTableViewViewModelType {
-    var crackle: [String] { get }
-    var clay: String { get }
-    var glaze: String { get }
-    var temperature: String { get }
-    var mode: String { get }
-    func numberOfRowsInSection(forSection section: Int) -> Int
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
-    func viewModelForSelectedRow(interactor: Interactor, clay: String, temperature: String, crackleId: String) -> GlazesTableViewViewModelType?
-}
-
 class CrackleTableViewViewModel: CrackleTableViewViewModelType {
 
     internal var crackle = ["Много цека", "Мало цека", "Нет цека"]
 
+    var interactor: Interactor
     var clay: String
     var glaze: String
     var temperature: String
     var mode: String
 
-    init(clay: String, glaze: String, temperature: String, mode: String) {
+    init(interactor: Interactor,  clay: String, glaze: String, temperature: String, mode: String) {
         self.clay = clay
         self.glaze = glaze
         self.temperature = temperature
         self.mode = mode
+        self.interactor = interactor
     }
 
     func numberOfRowsInSection(forSection section: Int) -> Int {
@@ -45,8 +36,14 @@ class CrackleTableViewViewModel: CrackleTableViewViewModelType {
         return DefaultCellViewModel(item: item)
     }
 
-    func viewModelForSelectedRow(interactor: Interactor, clay: String, temperature: String, crackleId: String) -> GlazesTableViewViewModelType? {
+    func viewModelForGlazesForClay(clay: String, temperature: String, crackleId: String) -> GlazesForClayTableViewViewModelType? {
 
-      return GlazesTableViewViewModel(interactor: interactor, clay: clay, temperature: temperature, crackleId: crackleId)
+      return GlazesForClayTableViewViewModel(interactor: interactor, clay: clay, temperature: temperature, crackleId: crackleId)
     }
+
+    func viewModelForClaysForGlaze(glaze: String, temperature: String, crackleId: String) -> ClaysForGlazesTableViewViewModelType? {
+
+        return ClaysForGlazesTableViewViewModel(interactor: interactor, glaze: glaze, temperature: temperature, crackleId: crackleId)
+    }
+
 }

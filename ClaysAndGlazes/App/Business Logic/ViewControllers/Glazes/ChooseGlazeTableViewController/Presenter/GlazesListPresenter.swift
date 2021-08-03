@@ -7,9 +7,23 @@
 
 import UIKit
 
-extension ChooseGlazeTableViewController {
-     func getData() {
-        interactor.getGlazesList() { [weak self] response in
+final class ChooseGlazeTableViewPresenter: ClaysTableViewPresenterType {
+
+    var interactor: Interactor?
+
+    init(interactor: Interactor) {
+        self.interactor = interactor
+    }
+
+    func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void) {
+
+        var sections: [Section] = []
+        var glazesList: [String] = []
+        var filteredGlazesList: [String] = []
+        var glazesInfo: [String] = []
+        var glazesInfoDictionary: [String : String] = [:]
+
+        interactor?.getGlazesList() { response in
             let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.glaze }
             let labCeramicaInfo = response.filter { $0.brand == "Lab Ceramica" }.map { $0.info}
             let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.glaze }
@@ -28,14 +42,13 @@ extension ChooseGlazeTableViewController {
             let subList = labCeramica + prodesco + amaco
             let subListTwo = terracolor + mayco + botz
 
-            self?.glazeList = subList + subListTwo + spectrum
-            self?.glazeInfo = response.map { $0.info}
-            self?.glazeInfoDictionary = Dictionary(uniqueKeysWithValues: zip(self?.glazeList ?? [""], self?.glazeInfo ?? [""]))
+            glazesList = subList + subListTwo + spectrum
+            glazesInfo = response.map { $0.info}
+            glazesInfoDictionary = Dictionary(uniqueKeysWithValues: zip(glazesList , glazesInfo ))
 
-            self?.filteredGlazeList = self?.glazeList ?? [""]
+            filteredGlazesList = glazesList
 
-            // Add new section here
-            self?.sections = [
+            sections = [
                 Section(name: "Lab Ceramica", items: labCeramica, info: labCeramicaInfo),
                 Section(name: "Prodesco", items: prodesco, info: prodescoInfo),
                 Section(name: "Amaco", items: amaco, info: amacoInfo),
@@ -43,10 +56,8 @@ extension ChooseGlazeTableViewController {
                 Section(name: "Mayco", items: mayco, info: maycoInfo),
                 Section(name: "BOTZ", items: botz, info: botzInfo),
                 Section(name: "Spectrum", items: spectrum, info: spectrumInfo),
-            ]
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
+            ]}
+        completion(sections, glazesList, glazesInfo, filteredGlazesList, glazesInfoDictionary)
     }
 }
+

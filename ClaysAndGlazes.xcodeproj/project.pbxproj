@@ -15,9 +15,9 @@
 		5B060F4B261233560090E250 /* ClaysAndGlazesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F4A261233560090E250 /* ClaysAndGlazesTests.swift */; };
 		5B060F56261233560090E250 /* ClaysAndGlazesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F55261233560090E250 /* ClaysAndGlazesUITests.swift */; };
 		5B060F75261233AF0090E250 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F6D261233AF0090E250 /* Response.swift */; };
-		5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */; };
+		5B060F76261233AF0090E250 /* ClaysTemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F6F261233AF0090E250 /* ClaysTemperatureTableViewController.swift */; };
 		5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F70261233AF0090E250 /* CrackleTableViewController.swift */; };
-		5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F71261233AF0090E250 /* GlazesTableViewController.swift */; };
+		5B060F78261233AF0090E250 /* GlazesForClayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F71261233AF0090E250 /* GlazesForClayTableViewController.swift */; };
 		5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F72261233AF0090E250 /* ClaysTableViewController.swift */; };
 		5B060F7A261233AF0090E250 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F74261233AF0090E250 /* Interactor.swift */; };
 		5B060F98261484440090E250 /* ClayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060F97261484440090E250 /* ClayCell.swift */; };
@@ -32,7 +32,7 @@
 		5B061037261EF0B70090E250 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061036261EF0B70090E250 /* StartView.swift */; };
 		5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */; };
 		5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04692625D29C00FB1CED /* Extensions.swift */; };
-		5B2C04A32626E88D00FB1CED /* GlazeForClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A22626E88D00FB1CED /* GlazeForClaysTableViewController.swift */; };
+		5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */; };
 		5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */; };
 		5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04AF262709E200FB1CED /* GlazesInfo.json */; };
 		5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04B72627164B00FB1CED /* GlazesResponse.swift */; };
@@ -59,13 +59,16 @@
 		5B6E14A326B18DCE0072FB7E /* EditMaterialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */; };
 		5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A626B2BF740072FB7E /* AddMaterialViewModel.swift */; };
 		5B6E14AA26B2C46F0072FB7E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A926B2C46F0072FB7E /* Protocols.swift */; };
-		5B6E14AE26B2C9040072FB7E /* TemperatureTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */; };
+		5B6E14AE26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14AD26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift */; };
 		5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B026B2CE090072FB7E /* DefaultCellViewModel.swift */; };
 		5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B526B2D2720072FB7E /* CrackleTableViewViewModel.swift */; };
-		5B6E14BA26B2E6150072FB7E /* GlazesTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */; };
+		5B6E14BA26B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14B926B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift */; };
 		5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14BD26B3EBA10072FB7E /* ClaysTableViewViewModel.swift */; };
 		5B6E14C126B3EC350072FB7E /* ClayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C026B3EC350072FB7E /* ClayCellViewModel.swift */; };
 		5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */; };
+		5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C926B424300072FB7E /* ChooseGlazeTableViewViewModel.swift */; };
+		5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14CD26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift */; };
+		5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -105,9 +108,9 @@
 		5B060F55261233560090E250 /* ClaysAndGlazesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysAndGlazesUITests.swift; sourceTree = "<group>"; };
 		5B060F57261233560090E250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B060F6D261233AF0090E250 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureTableViewController.swift; sourceTree = "<group>"; };
+		5B060F6F261233AF0090E250 /* ClaysTemperatureTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaysTemperatureTableViewController.swift; sourceTree = "<group>"; };
 		5B060F70261233AF0090E250 /* CrackleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrackleTableViewController.swift; sourceTree = "<group>"; };
-		5B060F71261233AF0090E250 /* GlazesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlazesTableViewController.swift; sourceTree = "<group>"; };
+		5B060F71261233AF0090E250 /* GlazesForClayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlazesForClayTableViewController.swift; sourceTree = "<group>"; };
 		5B060F72261233AF0090E250 /* ClaysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaysTableViewController.swift; sourceTree = "<group>"; };
 		5B060F74261233AF0090E250 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		5B060F97261484440090E250 /* ClayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayCell.swift; sourceTree = "<group>"; };
@@ -122,7 +125,7 @@
 		5B061036261EF0B70090E250 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04692625D29C00FB1CED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		5B2C04A22626E88D00FB1CED /* GlazeForClaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeForClaysTableViewController.swift; sourceTree = "<group>"; };
+		5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysForGlazeTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeTemperatureTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04AF262709E200FB1CED /* GlazesInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GlazesInfo.json; sourceTree = "<group>"; };
 		5B2C04B72627164B00FB1CED /* GlazesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesResponse.swift; sourceTree = "<group>"; };
@@ -149,13 +152,16 @@
 		5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A626B2BF740072FB7E /* AddMaterialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A926B2C46F0072FB7E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTableViewModel.swift; sourceTree = "<group>"; };
+		5B6E14AD26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayTemperatureTableViewModel.swift; sourceTree = "<group>"; };
 		5B6E14B026B2CE090072FB7E /* DefaultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCellViewModel.swift; sourceTree = "<group>"; };
 		5B6E14B526B2D2720072FB7E /* CrackleTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrackleTableViewViewModel.swift; sourceTree = "<group>"; };
-		5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14B926B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesForClayTableViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14BD26B3EBA10072FB7E /* ClaysTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysTableViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14C026B3EC350072FB7E /* ClayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClayCellViewModel.swift; sourceTree = "<group>"; };
 		5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysListPresenter.swift; sourceTree = "<group>"; };
+		5B6E14C926B424300072FB7E /* ChooseGlazeTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14CD26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeTemperatureTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysForGlazeTableViewViewModel.swift; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,10 +397,9 @@
 		5B2C04622625D04500FB1CED /* Glazes */ = {
 			isa = PBXGroup;
 			children = (
-				5B63CE7226A9530F00AB81AC /* Presenter */,
-				5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */,
-				5B2C04A22626E88D00FB1CED /* GlazeForClaysTableViewController.swift */,
-				5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */,
+				5B6E14C726B424040072FB7E /* ChooseGlazeTableViewController */,
+				5B6E14CB26B966710072FB7E /* ClazeTemperatureTableViewController */,
+				5B6E14CF26B97A5B0072FB7E /* ClaysForGlazeTableViewController */,
 			);
 			path = Glazes;
 			sourceTree = "<group>";
@@ -432,7 +437,6 @@
 		5B63CE5426A6942700AB81AC /* MaterialsList */ = {
 			isa = PBXGroup;
 			children = (
-				5B63CE6C26A82F7900AB81AC /* Presenter */,
 				5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */,
 				5B63CE6926A82F3400AB81AC /* EditMaterialViewController */,
 				5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */,
@@ -511,6 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */,
+				5B63CE6C26A82F7900AB81AC /* Presenter */,
 				5B6E149C26B163BF0072FB7E /* ViewModel */,
 			);
 			path = MaterialsListTableViewController;
@@ -544,7 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6E14AC26B2C8E80072FB7E /* ViewModel */,
-				5B060F6F261233AF0090E250 /* TemperatureTableViewController.swift */,
+				5B060F6F261233AF0090E250 /* ClaysTemperatureTableViewController.swift */,
 			);
 			path = TemperatureTableViewController;
 			sourceTree = "<group>";
@@ -552,7 +557,7 @@
 		5B6E14AC26B2C8E80072FB7E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5B6E14AD26B2C9040072FB7E /* TemperatureTableViewModel.swift */,
+				5B6E14AD26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -596,7 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6E14B826B2E5FC0072FB7E /* ViewModel */,
-				5B060F71261233AF0090E250 /* GlazesTableViewController.swift */,
+				5B060F71261233AF0090E250 /* GlazesForClayTableViewController.swift */,
 			);
 			path = GlazesTableViewController;
 			sourceTree = "<group>";
@@ -604,7 +609,7 @@
 		5B6E14B826B2E5FC0072FB7E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5B6E14B926B2E6150072FB7E /* GlazesTableViewViewModel.swift */,
+				5B6E14B926B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -642,6 +647,58 @@
 				5B6E14C326B3F88A0072FB7E /* ClaysListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5B6E14C726B424040072FB7E /* ChooseGlazeTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE7226A9530F00AB81AC /* Presenter */,
+				5B6E14C826B424160072FB7E /* ViewModel */,
+				5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */,
+			);
+			path = ChooseGlazeTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14C826B424160072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14C926B424300072FB7E /* ChooseGlazeTableViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14CB26B966710072FB7E /* ClazeTemperatureTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14CC26B966870072FB7E /* ViewModel */,
+				5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */,
+			);
+			path = ClazeTemperatureTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14CC26B966870072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14CD26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14CF26B97A5B0072FB7E /* ClaysForGlazeTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14D026B97A910072FB7E /* ViewModel */,
+				5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */,
+			);
+			path = ClaysForGlazeTableViewController;
+			sourceTree = "<group>";
+		};
+		5B6E14D026B97A910072FB7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
@@ -902,7 +959,7 @@
 			files = (
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
 				5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */,
-				5B6E14BA26B2E6150072FB7E /* GlazesTableViewViewModel.swift in Sources */,
+				5B6E14BA26B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
 				5B63CE7926A956A900AB81AC /* GlazesRecipesCollectionViewController.swift in Sources */,
@@ -915,22 +972,25 @@
 				5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
-				5B6E14AE26B2C9040072FB7E /* TemperatureTableViewModel.swift in Sources */,
+				5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */,
+				5B6E14AE26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* Interactor.swift in Sources */,
-				5B060F78261233AF0090E250 /* GlazesTableViewController.swift in Sources */,
+				5B060F78261233AF0090E250 /* GlazesForClayTableViewController.swift in Sources */,
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
 				5B6E149E26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift in Sources */,
 				5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */,
 				5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */,
 				5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */,
 				5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */,
-				5B060F76261233AF0090E250 /* TemperatureTableViewController.swift in Sources */,
-				5B2C04A32626E88D00FB1CED /* GlazeForClaysTableViewController.swift in Sources */,
+				5B060F76261233AF0090E250 /* ClaysTemperatureTableViewController.swift in Sources */,
+				5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */,
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
 				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
+				5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */,
+				5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */,
 				5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
 				5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */,

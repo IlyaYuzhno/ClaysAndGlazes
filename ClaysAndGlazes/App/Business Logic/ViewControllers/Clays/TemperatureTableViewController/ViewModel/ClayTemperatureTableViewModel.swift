@@ -49,11 +49,11 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
     }
 
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath else { return nil}
+        guard let selectedIndexPath = self.selectedIndexPath, let interactor = interactor else { return nil}
 
         let temperature = temperatures[selectedIndexPath.row].description
 
-        return CrackleTableViewViewModel(clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
+        return CrackleTableViewViewModel(interactor: interactor, clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
     }
 }
 

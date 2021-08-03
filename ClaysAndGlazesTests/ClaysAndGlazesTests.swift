@@ -22,7 +22,7 @@ class ClaysAndGlazesTests: XCTestCase {
     // MARK: - Tests
     func testGetTemperature() throws {
         let temperature = expectation(description: "Temperatures Received")
-        _ = try XCTUnwrap(interactor).getTemperature(for: "S-6141, МКЛ-1") { response in
+        _ = try XCTUnwrap(interactor).getClayTemperature(for: "S-6141, МКЛ-1") { response in
             switch response[0] {
             case "1050°":
                 temperature.fulfill()

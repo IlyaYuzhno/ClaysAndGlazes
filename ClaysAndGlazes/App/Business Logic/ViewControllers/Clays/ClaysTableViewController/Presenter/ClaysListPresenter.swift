@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol ClaysTableViewPresenterType: AnyObject {
-    var interactor: Interactor? { get set }
-    func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void)
-}
-
 final class ClaysTableViewPresenter: ClaysTableViewPresenterType {
 
     var interactor: Interactor?

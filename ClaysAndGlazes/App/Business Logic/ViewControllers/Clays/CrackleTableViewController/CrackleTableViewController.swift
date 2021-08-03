@@ -9,18 +9,18 @@ import UIKit
 
 class CrackleTableViewController: UITableViewController {
 
-    let interactor: Interactor
+    //let interactor: Interactor
     var viewModel: CrackleTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: Interactor) {
-        self.interactor = interactor
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(interactor: Interactor) {
+//        self.interactor = interactor
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -68,20 +68,18 @@ class CrackleTableViewController: UITableViewController {
         // MARK: Go to next VC
         switch viewModel.mode {
         case "clay":
-            let glazesViewController = GlazesTableViewController()
+            let glazesViewController = GlazesForClayTableViewController()
 
-            glazesViewController.viewModel = viewModel.viewModelForSelectedRow(interactor: interactor, clay: viewModel.clay, temperature: viewModel.temperature, crackleId: crackleId)
+            glazesViewController.viewModel = viewModel.viewModelForGlazesForClay(clay: viewModel.clay, temperature: viewModel.temperature, crackleId: crackleId)
 
             self.navigationController?.pushViewController(glazesViewController, animated: true)
 
         case "glaze":
-            let glazeForClaysViewController = GlazeForClaysTableViewController(interactor: interactor)
+            let claysForGlazeViewController = ClaysForGlazeTableViewController()
 
-            glazeForClaysViewController.glaze = viewModel.glaze
-            glazeForClaysViewController.temperature = viewModel.temperature
-            glazeForClaysViewController.crackleId = crackleId
-            
-            self.navigationController?.pushViewController(glazeForClaysViewController, animated: true)
+            claysForGlazeViewController.viewModel = viewModel.viewModelForClaysForGlaze(glaze: viewModel.glaze, temperature: viewModel.temperature, crackleId: crackleId)
+
+            self.navigationController?.pushViewController(claysForGlazeViewController, animated: true)
 
         default:
             break

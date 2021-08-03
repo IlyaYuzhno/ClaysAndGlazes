@@ -7,11 +7,10 @@
 
 import UIKit
 
-class TemperatureTableViewController: UITableViewController {
+class ClaysTemperatureTableViewController: UITableViewController {
 
     let interactor: Interactor
     var viewModel: TemperatureTableViewViewModelType?
-    var clay = ""
 
     // MARK: - Init
     init(interactor: Interactor) {
@@ -26,16 +25,14 @@ class TemperatureTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "МАССА \(clay)"
+        title = "МАССА \(viewModel?.item ?? "")"
         tableView.backgroundColor = .BackgroundColor1
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "temperaturesTableView"
         tableView.register(DefaultCell.self, forCellReuseIdentifier: "temperatureCell")
-        
-        //viewModel = TemperatureTableViewViewModel(interactor: interactor, clay: clay)
 
         // Get temperatures array for clay
-        viewModel?.loadData(forClay: viewModel?.clay ?? "", completion: { [weak self] in
+        viewModel?.loadData(completion: { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -64,9 +61,9 @@ class TemperatureTableViewController: UITableViewController {
 
         guard let viewModel = viewModel else { return }
         viewModel.selectRow(atIndexPath: indexPath)
-        viewModel.getValues(mode: "clay")
+        viewModel.mode(mode: "clay")
 
-        let crackleViewController = CrackleTableViewController(interactor: interactor)
+        let crackleViewController = CrackleTableViewController()
 
         crackleViewController.viewModel = viewModel.viewModelForSelectedRow()
 

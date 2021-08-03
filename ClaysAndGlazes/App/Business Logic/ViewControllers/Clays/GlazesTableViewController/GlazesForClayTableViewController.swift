@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GlazesTableViewController: UITableViewController {
+class GlazesForClayTableViewController: UITableViewController {
 
-    var viewModel: GlazesTableViewViewModelType?
+    var viewModel: GlazesForClayTableViewViewModelType?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {

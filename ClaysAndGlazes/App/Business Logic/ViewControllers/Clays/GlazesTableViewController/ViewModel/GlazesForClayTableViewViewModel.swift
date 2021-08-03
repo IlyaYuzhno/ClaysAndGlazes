@@ -7,20 +7,7 @@
 
 import Foundation
 
-protocol GlazesTableViewViewModelType {
-    var interactor: Interactor? { get set }
-    var clay: String { get }
-    var temperature: String { get }
-    var crackleId: String { get }
-    var glazes: [String] { get }
-    var brand: [String]{ get }
-    func numberOfSections() -> Int
-    func numberOfRowsInSection(forSection section: Int) -> Int
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
-    func loadData(completion: (@escaping () -> ()?))
-}
-
-class GlazesTableViewViewModel: GlazesTableViewViewModelType {
+class GlazesForClayTableViewViewModel: GlazesForClayTableViewViewModelType {
 
     var interactor: Interactor?
     var clay: String

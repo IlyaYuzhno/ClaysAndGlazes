@@ -9,58 +9,67 @@ import UIKit
 
 class GlazeTemperatureTableViewController: UITableViewController {
 
-    let interactor: Interactor
-    var temperatures: [String] = []
-    var glaze = ""
-
+    //let interactor: Interactor
+    var viewModel: GlazeTemperatureTableViewViewModelType?
+    
     // MARK: - Init
-    init(interactor: Interactor) {
-        self.interactor = interactor
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(interactor: Interactor) {
+//        self.interactor = interactor
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title =  "ГЛАЗУРЬ \(glaze)"
+        title =  "ГЛАЗУРЬ \(viewModel?.item ?? "")"
         tableView.backgroundColor = .BackgroundColor1
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "glazeTemperaturesTableView"
         tableView.register(DefaultCell.self, forCellReuseIdentifier: "glazeTemperatureCell")
 
-        // Get temperatures array for glaze
-        interactor.getGlazeTemperature(for: glaze) { [weak self] temps in
-            self?.temperatures = temps
-            self?.tableView.reloadData()
-        }
+        // Get temperatures array for glaze via viewModel
+        viewModel?.loadData(completion: { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        })
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return temperatures.count
+        viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "glazeTemperatureCell", for: indexPath) as! DefaultCell
-        cell.accessibilityIdentifier = "glazeTemperatureCell"
-        cell.configure(item: temperatures[indexPath.row].description)
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "glazeTemperatureCell", for: indexPath) as? DefaultCell
+
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        tableViewCell.viewModel = cellViewModel
+        tableViewCell.accessibilityIdentifier = "glazeTemperatureCell"
+        return tableViewCell
     }
 
-    // MARK: Go to next VC
+    // MARK: Go to next CrackleTableVC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let crackleViewController = CrackleTableViewController(interactor: interactor)//)
-        //crackleViewController.glaze = glaze
-        //crackleViewController.temperature = temperatures[indexPath.row].description
+        guard let viewModel = viewModel else { return }
+
+        viewModel.selectRow(atIndexPath: indexPath)
+        viewModel.mode(mode: "glaze")
+
+        let crackleViewController = CrackleTableViewController()
+
+        crackleViewController.viewModel = viewModel.viewModelForSelectedRow()
+
         self.navigationController?.pushViewController(crackleViewController, animated: true)
 
     }

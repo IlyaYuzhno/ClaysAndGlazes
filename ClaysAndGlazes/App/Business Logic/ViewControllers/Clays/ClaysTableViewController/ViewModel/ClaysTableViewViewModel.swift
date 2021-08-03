@@ -7,26 +7,6 @@
 
 import Foundation
 
-
-protocol ClaysTableViewViewModelType {
-    var claysList: [String] { get }
-    var filteredClaysList: [String] { get set }
-    var claysInfo: [String] { get }
-    var claysInfoDictionary: [String: String] { get }
-    var sections: [Section] { get set }
-    var isSearching: Bool { get set }
-    var interactor: Interactor? { get set }
-    var presenter: ClaysTableViewPresenterType? { get set }
-
-    func numberOfSections() -> Int
-    func numberOfRowsInSection(forSection section: Int) -> Int
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> ClayCellViewModelType?
-    func loadData(completion: (@escaping () -> ()?))
-    func viewModelForSelectedRow() -> TemperatureTableViewViewModelType?
-    func selectRow(atIndexPath indexPath: IndexPath)
-
-}
-
 class ClaysTableViewViewModel: ClaysTableViewViewModelType {
 
     var interactor: Interactor?
@@ -94,7 +74,7 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
             clay = sections[selectedIndexPath.section].items[selectedIndexPath.row]
         }
 
-        return TemperatureTableViewViewModel(interactor: interactor, clay: clay)
+        return ClayTemperatureTableViewViewModel(interactor: interactor, item: clay)
     }
 
 

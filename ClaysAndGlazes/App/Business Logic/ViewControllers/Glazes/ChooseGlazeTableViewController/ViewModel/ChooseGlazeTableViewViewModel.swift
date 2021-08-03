@@ -7,24 +7,6 @@
 
 import Foundation
 
-protocol ChooseGlazeTableViewViewModelType {
-    var itemsList: [String] { get }
-    var filteredItemsList: [String] { get set }
-    var itemsInfo: [String] { get }
-    var itemsInfoDictionary: [String: String] { get }
-    var sections: [Section] { get set }
-    var isSearching: Bool { get set }
-    var interactor: Interactor? { get set }
-    var presenter: ClaysTableViewPresenterType? { get set }
-
-    func numberOfSections() -> Int
-    func numberOfRowsInSection(forSection section: Int) -> Int
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> ClayCellViewModelType?
-    func loadData(completion: (@escaping () -> ()?))
-    func viewModelForSelectedRow() -> GlazeTemperatureTableViewViewModelType?
-    func selectRow(atIndexPath indexPath: IndexPath)
-}
-
 class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
 
     var itemsList: [String] = []

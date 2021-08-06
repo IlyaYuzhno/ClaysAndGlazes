@@ -10,4 +10,4 @@ Ceramic clays and glazes matching application. Available in AppStore as Clays &a
 
 Choose clay or glaze then firing temperature then crackle amount and get suitable clays or glazes list.
 
-Written on Swift with Firebase backend.
+Written on Swift MVVM with Firebase backend.

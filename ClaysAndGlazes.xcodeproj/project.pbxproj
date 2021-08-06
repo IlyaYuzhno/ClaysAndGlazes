@@ -31,7 +31,7 @@
 		5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061031261DA9B00090E250 /* DefaultCell.swift */; };
 		5B061037261EF0B70090E250 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061036261EF0B70090E250 /* StartView.swift */; };
 		5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */; };
-		5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04692625D29C00FB1CED /* Extensions.swift */; };
+		5B2C046A2625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04692625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift */; };
 		5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */; };
 		5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */; };
 		5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C04AF262709E200FB1CED /* GlazesInfo.json */; };
@@ -69,6 +69,9 @@
 		5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14C926B424300072FB7E /* ChooseGlazeTableViewViewModel.swift */; };
 		5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14CD26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift */; };
 		5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */; };
+		5B6E14D526BD26050072FB7E /* Extensions + ClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D426BD26050072FB7E /* Extensions + ClaysTableViewController.swift */; };
+		5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */; };
+		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -124,7 +127,7 @@
 		5B061031261DA9B00090E250 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		5B061036261EF0B70090E250 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewController.swift; sourceTree = "<group>"; };
-		5B2C04692625D29C00FB1CED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5B2C04692625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift"; sourceTree = "<group>"; };
 		5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysForGlazeTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04A72626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeTemperatureTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04AF262709E200FB1CED /* GlazesInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GlazesInfo.json; sourceTree = "<group>"; };
@@ -162,6 +165,9 @@
 		5B6E14C926B424300072FB7E /* ChooseGlazeTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14CD26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazeTemperatureTableViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysForGlazeTableViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14D426BD26050072FB7E /* Extensions + ClaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ClaysTableViewController.swift"; sourceTree = "<group>"; };
+		5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ChooseGlazeTableViewController.swift"; sourceTree = "<group>"; };
+		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,6 +368,7 @@
 			children = (
 				5B060FF926174D340090E250 /* InformationView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
+				5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,7 +414,7 @@
 		5B2C04682625D27D00FB1CED /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5B2C04692625D29C00FB1CED /* Extensions.swift */,
+				5B2C04692625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -617,6 +624,7 @@
 		5B6E14BB26B3EB2A0072FB7E /* ClaysTableViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5B6E14D326BD25DF0072FB7E /* Extensions */,
 				5B6E14C226B3F86F0072FB7E /* Presenter */,
 				5B6E14BC26B3EB690072FB7E /* ViewModel */,
 				5B060F72261233AF0090E250 /* ClaysTableViewController.swift */,
@@ -652,6 +660,7 @@
 		5B6E14C726B424040072FB7E /* ChooseGlazeTableViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5B6E14D626BD269C0072FB7E /* Extensions */,
 				5B63CE7226A9530F00AB81AC /* Presenter */,
 				5B6E14C826B424160072FB7E /* ViewModel */,
 				5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */,
@@ -699,6 +708,22 @@
 				5B6E14D126B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B6E14D326BD25DF0072FB7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14D426BD26050072FB7E /* Extensions + ClaysTableViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5B6E14D626BD269C0072FB7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
@@ -958,7 +983,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
-				5B2C046A2625D29C00FB1CED /* Extensions.swift in Sources */,
+				5B2C046A2625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift in Sources */,
 				5B6E14BA26B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
@@ -981,8 +1006,10 @@
 				5B060F79261233AF0090E250 /* ClaysTableViewController.swift in Sources */,
 				5B6E149E26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift in Sources */,
 				5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */,
+				5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */,
 				5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */,
 				5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */,
+				5B6E14D526BD26050072FB7E /* Extensions + ClaysTableViewController.swift in Sources */,
 				5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* ClaysTemperatureTableViewController.swift in Sources */,
 				5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */,
@@ -990,6 +1017,7 @@
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
 				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
 				5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */,
+				5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */,
 				5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */,
 				5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,

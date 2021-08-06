@@ -77,6 +77,22 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
         return ClayTemperatureTableViewViewModel(interactor: interactor, item: clay)
     }
 
+    func viewModelForInformationView() -> InformationViewViewModelType? {
+        guard let selectedIndexPath = selectedIndexPath else { return nil}
 
+        var itemName = ""
+        var itemInfo = ""
+
+        if isSearching {
+            itemName = filteredClaysList[selectedIndexPath.row]
+            itemInfo = claysInfoDictionary[filteredClaysList[selectedIndexPath.row]] ?? ""
+        } else {
+            itemName = sections[selectedIndexPath.section].items[selectedIndexPath.row]
+            itemInfo = sections[selectedIndexPath.section].info[selectedIndexPath.row]
+        }
+
+        return InformationViewViewModel(itemName: itemName, itemInfo: itemInfo, mode: "clay")
+
+    }
 
 }

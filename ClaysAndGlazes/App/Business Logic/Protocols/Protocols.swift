@@ -65,6 +65,7 @@ protocol ClaysTableViewViewModelType {
     func loadData(completion: (@escaping () -> ()?))
     func viewModelForSelectedRow() -> TemperatureTableViewViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
+    func viewModelForInformationView() -> InformationViewViewModelType?
 }
 
 // ClaysTableViewPresenter
@@ -135,6 +136,7 @@ protocol ChooseGlazeTableViewViewModelType {
     func loadData(completion: (@escaping () -> ()?))
     func viewModelForSelectedRow() -> GlazeTemperatureTableViewViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
+    func viewModelForInformationView() -> InformationViewViewModelType?
 }
 
 // Glazes temperatures
@@ -164,3 +166,9 @@ protocol ClaysForGlazesTableViewViewModelType {
     func loadData(completion: (@escaping () -> ()?))
 }
 
+// MARK: - Information View ViewModel protocol
+protocol InformationViewViewModelType {
+    var itemName: String { get }
+    var itemInfo: String { get }
+    var mode: String { get }
+}

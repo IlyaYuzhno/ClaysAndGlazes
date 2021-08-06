@@ -79,4 +79,21 @@ class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
         self.selectedIndexPath = indexPath
     }
 
+
+    func viewModelForInformationView() -> InformationViewViewModelType? {
+        guard let selectedIndexPath = selectedIndexPath else { return nil}
+
+        var itemName = ""
+        var itemInfo = ""
+
+        if isSearching {
+            itemName = filteredItemsList[selectedIndexPath.row]
+            itemInfo = itemsInfoDictionary[filteredItemsList[selectedIndexPath.row]] ?? ""
+        } else {
+            itemName = sections[selectedIndexPath.section].items[selectedIndexPath.row]
+            itemInfo = sections[selectedIndexPath.section].info[selectedIndexPath.row]
+        }
+
+        return InformationViewViewModel(itemName: itemName, itemInfo: itemInfo, mode: "glaze")
+    }
 }

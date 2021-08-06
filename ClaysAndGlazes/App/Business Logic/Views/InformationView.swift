@@ -18,6 +18,7 @@ class InformationView: UIView {
     var clay: String?
     var fullSizeImageView: UIImageView?
     weak var delegate: InformationViewDelegate?
+    var viewModel: InformationViewViewModelType?
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -35,7 +36,7 @@ class InformationView: UIView {
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = clay
+        label.text = viewModel?.itemName ?? ""
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,7 +46,7 @@ class InformationView: UIView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.text = clayInfo
+        label.text = viewModel?.itemInfo ?? ""
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,17 +61,14 @@ class InformationView: UIView {
     }()
 
     // MARK: - Init
-    init(frame: CGRect, clayName: String, clayInfo: String) {
-        self.clay = clayName
-        self.clayInfo = clayInfo
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showInfoView"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setLabelText(_:)), name: NSNotification.Name(rawValue: "showGlazeInfoView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(closeFullScreenImage), name: Notification.Name("CloseFullScreenImageFromClays"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(closeFullScreenImage), name: Notification.Name("CloseFullScreenImageFromGlazes"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setInfo), name: NSNotification.Name(rawValue: "ShowInfoView"), object: nil)
 
     }
 
@@ -78,14 +76,14 @@ class InformationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Setup Views
+    // MARK: - Setup Views
     private func setupViews() {
         layer.cornerRadius = 20
         backgroundColor = .systemGray6
         addSubviews(imageView, itemNameLabel, itemInfoLabel, line)
     }
 
-    // MARK: Setup UI constraints
+    // MARK: - Setup UI constraints
     private func setupConstraints() {
         NSLayoutConstraint .activate([
 
@@ -135,34 +133,25 @@ class InformationView: UIView {
         sender.view?.removeFromSuperview()
     }
 
-    
     @objc func closeFullScreenImage() {
         fullSizeImageView?.removeFromSuperview()
     }
 
+    @objc func setInfo() {
+        guard let viewModel = viewModel else { return }
 
-    @objc private func setLabelText(_ notification: NSNotification) {
+        itemNameLabel.text = viewModel.itemName
+        itemInfoLabel.text = viewModel.itemInfo
 
-        if let clayName = notification.userInfo?["clayName"] as? String {
-            itemNameLabel.text = clayName
-
+        switch viewModel.mode {
+        case "clay":
             //Get image from Firebase and set to imageview
-            Interactor.getClayImageFromFirebase(imageName: extractClayImageName(from: clayName), imageView: imageView)
-        }
-
-        if let clayInfo = notification.userInfo?["clayInfo"] as? String {
-            itemInfoLabel.text = clayInfo
-        }
-
-        if let glazeName = notification.userInfo?["glazeName"] as? String {
-            itemNameLabel.text = glazeName
-
+            Interactor.getClayImageFromFirebase(imageName: extractClayImageName(from: viewModel.itemName), imageView: imageView)
+        case "glaze":
             //Get image from Firebase and set to imageview
-            Interactor.getGlazeImageFromFirebase(imageName: extractImageName(from: glazeName), imageView: imageView)
-        }
-
-        if let glazeInfo = notification.userInfo?["glazeInfo"] as? String {
-            itemInfoLabel.text = glazeInfo
+            Interactor.getGlazeImageFromFirebase(imageName: extractImageName(from: viewModel.itemName), imageView: imageView)
+        default:
+            break
         }
 
     }

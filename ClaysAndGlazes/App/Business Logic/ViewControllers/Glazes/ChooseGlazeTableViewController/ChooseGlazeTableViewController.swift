@@ -9,7 +9,6 @@ import UIKit
 class ChooseGlazeTableViewController: UITableViewController {
 
     let interactor: Interactor
-    let glazeInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100), clayName: "", clayInfo: "")
     lazy var searchBar: UISearchBar = UISearchBar()
     var initialCenter = CGPoint()
     var viewModel: ChooseGlazeTableViewViewModelType?
@@ -29,6 +28,7 @@ class ChooseGlazeTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
+        hideKeyboardWhenTappedAroundOnTableView()
         viewModel = ChooseGlazeTableViewViewModel(interactor: interactor)
 
         // Load data via viewModel
@@ -101,15 +101,20 @@ class ChooseGlazeTableViewController: UITableViewController {
     // MARK: Tap on information button
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let viewModel = viewModel else { return }
-        
+        viewModel.selectRow(atIndexPath: indexPath)
+
+        let glazeInfoView = InformationView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height + 20, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 400))
+
+        glazeInfoView.delegate = self
+        glazeInfoView.viewModel = viewModel.viewModelForInformationView()
+        tableView.addSubviews(glazeInfoView)
+
         tableView.isScrollEnabled = false
         Animation.setBlur(view: self.view, contentView: glazeInfoView)
-        self.glazeInfoView.alpha = 1
-        if viewModel.isSearching {
-            showGlazeInfoView(glazeName: viewModel.filteredItemsList[indexPath.row], glazeInfo: viewModel.itemsInfoDictionary[viewModel.filteredItemsList[indexPath.row]] ?? "")
-        } else {
-            showGlazeInfoView(glazeName: viewModel.sections[indexPath.section].items[indexPath.row], glazeInfo: viewModel.sections[indexPath.section].info[indexPath.row])
-        }
+        glazeInfoView.alpha = 1
+        Animation.showView(view: glazeInfoView)
+
+        NotificationCenter.default.post(name: Notification.Name("ShowInfoView"), object: nil)
 
         // Add pan gesture to drag info view
         let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture(sender:)))
@@ -118,9 +123,6 @@ class ChooseGlazeTableViewController: UITableViewController {
 
     // MARK: - Private
     fileprivate func setupTableView() {
-        tableView.addSubview(glazeInfoView)
-        glazeInfoView.alpha = 0
-        glazeInfoView.delegate = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .BackgroundColor1
@@ -130,108 +132,5 @@ class ChooseGlazeTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "chooseGlazeTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(ClayCell.self, forCellReuseIdentifier: "glazeCell")
-    }
-
-    fileprivate func showGlazeInfoView(glazeName: String, glazeInfo: String) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showGlazeInfoView"), object: nil, userInfo: ["glazeName": glazeName, "glazeInfo": glazeInfo])
-        Animation.showView(view: glazeInfoView)
-    }
-}
-
-// MARK: - Extensions
-
-// MARK: Searchbar
-extension ChooseGlazeTableViewController: UISearchBarDelegate {
-    @available(iOS 13.0, *)
-    private func setupSearchBar() {
-        searchBar.searchBarStyle = .prominent
-        searchBar.placeholder = "  Поиск..."
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = true
-        searchBar.backgroundImage = UIImage()
-        searchBar.backgroundColor = .clear
-        searchBar.searchTextField.backgroundColor = .SearchBarColor
-        searchBar.delegate = self
-        tableView.tableHeaderView = searchBar
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == "" {
-            viewModel?.isSearching = false
-            tableView.reloadData()
-        } else {
-            viewModel?.isSearching = true
-            viewModel?.filteredItemsList = []
-            let searched = viewModel?.itemsList.filter({(dataString: String) -> Bool in
-                return dataString.range(of: searchText, options: .caseInsensitive) != nil
-            }) ?? [""]
-            viewModel?.filteredItemsList = searched
-            tableView.reloadData()
-        }
-    }
-}
-
-// MARK: Collapse or not collapse sections
-extension ChooseGlazeTableViewController: CollapsibleTableViewHeaderDelegate {
-    func toggleSection(header: CollapsibleTableViewHeader, section: Int) {
-        let collapsed = !(viewModel?.sections[section].collapsed ?? false)
-
-        // Toggle collapse
-        viewModel?.sections[section].collapsed = collapsed
-        header.setCollapsed(collapsed: collapsed)
-        tableView.setContentOffset(.zero, animated: true)
-
-        // Reload the whole section
-        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
-    }
-
-}
-// MARK: Info View Delegate
-extension ChooseGlazeTableViewController: InformationViewDelegate {
-    // Hide Nav bar when full screen image shown
-    func hideNavigationBar(sender: UITapGestureRecognizer) {
-        self.navigationController?.isNavigationBarHidden = true
-    }
-
-    // Show Nav bar when full screen image shown
-    func showNavigationBar(sender: UITapGestureRecognizer) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-}
-
-// MARK: Drag and Close Info View
-extension ChooseGlazeTableViewController {
-    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
-        guard sender.view != nil else {return}
-        let piece = sender.view!
-        let translation = sender.translation(in: piece.superview)
-        let velocity = sender.velocity(in: view)
-
-        switch sender.state {
-        case .began:
-            // Save the view's original position.
-            self.initialCenter = piece.center
-        case .changed:
-            // Add the X and Y translation to the view's original position.
-            let newCenter = CGPoint(x: initialCenter.x, y: initialCenter.y + translation.y)
-            piece.center = newCenter
-        case .failed:
-            piece.center = initialCenter
-        case .cancelled:
-            piece.center = initialCenter
-        case .ended:
-            // If pan velocity is high do the Info View close
-            if abs(velocity.y) > 500 {
-                // Hide Info View...
-                Animation.hideView(view: glazeInfoView)
-                Animation.removeBlur()
-                tableView.isScrollEnabled = true
-                self.navigationController?.isNavigationBarHidden = false
-                // Close full screen image
-                NotificationCenter.default.post(name: Notification.Name("CloseFullScreenImageFromGlazes"), object: nil)
-            }
-        default:
-            break
-        }
     }
 }

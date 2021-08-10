@@ -18,6 +18,7 @@ class MaterialsListTableViewController: UITableViewController {
 
         viewModel = MaterialsListViewModel()
         setupTableView()
+
     }
 
     // MARK: - ViewDidAppear
@@ -39,7 +40,13 @@ class MaterialsListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel?.numberOfSections() ?? 0
+        if viewModel?.numberOfSections() ?? 0 > 0 {
+            tableView.backgroundView = nil
+            return viewModel?.numberOfSections() ?? 0
+        } else {
+            viewModel?.showEmptyTablePlaceholder(tableView: self.tableView)
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

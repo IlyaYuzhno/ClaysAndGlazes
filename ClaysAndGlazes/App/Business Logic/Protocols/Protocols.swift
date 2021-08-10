@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 // MARK: - MaterialsView protocols
@@ -21,6 +22,7 @@ protocol MaterialsListTableViewViewModelType {
     func viewModelForSelectedRow() -> EditMaterialViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
     var sections: [Section] { get set }
+    func showEmptyTablePlaceholder(tableView: UITableView)
 }
 
 // MaterialsTableView Cell

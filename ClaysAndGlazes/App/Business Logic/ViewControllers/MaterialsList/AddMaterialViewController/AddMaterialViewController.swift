@@ -19,7 +19,8 @@ class AddMaterialViewController: UIViewController {
         title = "ДОБАВИТЬ МАТЕРИАЛ"
         viewModel = AddMaterialViewControllerViewModel()
         setupViews()
-        hideKeyboardWhenTappedAroundOnView()
+        //hideKeyboardWhenTappedAroundOnView()
+        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillHide))
     }
 
     // MARK: - Views
@@ -70,6 +71,8 @@ class AddMaterialViewController: UIViewController {
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
         textField.returnKeyType = .done
+        textField.tag = 0
+        textField.addTarget(self, action: #selector(scrollViews), for: .touchDown)
         return textField
     }()
 
@@ -144,28 +147,30 @@ class AddMaterialViewController: UIViewController {
         // Get back to Materials List VC
         self.navigationController?.popViewController(animated: true)
     }
-}
 
-// MARK: - UIPickerView datasource
-extension AddMaterialViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+    // MARK: - Tap on InfoTextField and move all views up for keyboard
+    @objc func scrollViews(textField: UITextField) {
+        // Height iphone 8, SE - 667, 11 - 896, 12 - 844
+        if UIScreen.main.bounds.height <= 700 && itemInfoTextField.tag == 0 {
+            UIView.animate(withDuration: 0.3) {
+                self.view.frame.origin.y -= 80
+            }
+            itemInfoTextField.tag = 1
+        }
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerItems.count
+    // MARK: - Hide the keyboard and return view in initial position
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if UIScreen.main.bounds.height <= 700 {
+            UIView.animate(withDuration: 0.3) {
+                self.view.frame.origin.y += 80
+            }
+            itemInfoTextField.tag = 0
+        }
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return pickerItems[row]
+    deinit {
+        unsubscribeFromAllNotifications()
     }
-}
 
-// UITextField delegate
-extension AddMaterialViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
 }

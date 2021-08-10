@@ -5,7 +5,7 @@
 //  Created by Ilya Doroshkevitch on 28.07.2021.
 //
 
-import Foundation
+import UIKit
 
 class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
@@ -28,6 +28,17 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         return sections[section].collapsed ? 0 : sections[section].items.count
     }
 
+    func showEmptyTablePlaceholder(tableView: UITableView) {
+        let messageLabel = UILabel(frame: CGRect(x: 20.0, y: 0, width: tableView.bounds.size.width - 40.0, height: tableView.bounds.size.height))
+        messageLabel.text = "Список материалов пуст"
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = NSTextAlignment.center
+        messageLabel.sizeToFit()
+        tableView.backgroundView = messageLabel
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    }
+
+    
     func cellViewModel(forIndexPath indexPath: IndexPath) -> MaterialsTableViewCellViewModelType? {
 
         let name = sections[indexPath.section].items[indexPath.row]

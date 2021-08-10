@@ -72,6 +72,7 @@
 		5B6E14D526BD26050072FB7E /* Extensions + ClaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D426BD26050072FB7E /* Extensions + ClaysTableViewController.swift */; };
 		5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */; };
 		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
+		5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -168,6 +169,7 @@
 		5B6E14D426BD26050072FB7E /* Extensions + ClaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ClaysTableViewController.swift"; sourceTree = "<group>"; };
 		5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ChooseGlazeTableViewController.swift"; sourceTree = "<group>"; };
 		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
+		5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + AddMaterialViewController.swift"; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -366,9 +368,8 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B060FF926174D340090E250 /* InformationView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
-				5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */,
+				5B6E14DB26BD40210072FB7E /* InformationView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -455,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */,
+				5B6E14DC26C262940072FB7E /* Extension */,
 				5B6E14A526B2BF610072FB7E /* ViewModel */,
 			);
 			path = AddMaterialViewController;
@@ -726,6 +728,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5B6E14DB26BD40210072FB7E /* InformationView */ = {
+			isa = PBXGroup;
+			children = (
+				5B060FF926174D340090E250 /* InformationView.swift */,
+				5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */,
+			);
+			path = InformationView;
+			sourceTree = "<group>";
+		};
+		5B6E14DC26C262940072FB7E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,6 +1014,7 @@
 				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B6E14AA26B2C46F0072FB7E /* Protocols.swift in Sources */,
 				5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */,
+				5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
 				5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */,

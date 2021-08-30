@@ -11,7 +11,7 @@ class AddMaterialViewController: UIViewController {
 
     let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Химия", "Разное"]
 
-    var viewModel: AddMaterialViewControllerViewModelType?
+   var viewModel: AddMaterialViewControllerViewModelType?
 
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -19,7 +19,6 @@ class AddMaterialViewController: UIViewController {
         title = "ДОБАВИТЬ МАТЕРИАЛ"
         viewModel = AddMaterialViewControllerViewModel()
         setupViews()
-        //hideKeyboardWhenTappedAroundOnView()
         subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillHide))
     }
 
@@ -98,6 +97,7 @@ class AddMaterialViewController: UIViewController {
         itemInfoTextField.delegate = self
         setPicker()
         setupConstraints()
+        //autoCompleteSetup()
     }
 
     // MARK: Setup UI constraints
@@ -172,5 +172,24 @@ class AddMaterialViewController: UIViewController {
     deinit {
         unsubscribeFromAllNotifications()
     }
-
 }
+
+//extension AddMaterialViewController: UITableViewDelegate, UITableViewDataSource {
+//
+//    func autoCompleteSetup() {
+//        let autocompleteTableView = UITableView(frame: CGRect(x: 0, y: 200, width: Int(UIScreen.main.bounds.width), height: 200), style: .plain)
+//        autocompleteTableView.delegate = self
+//        autocompleteTableView.dataSource = self
+//        autocompleteTableView.isScrollEnabled = true
+//        autocompleteTableView.isHidden = true
+//        view.addSubview(autocompleteTableView)
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        0
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//  }

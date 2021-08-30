@@ -30,7 +30,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
     func showEmptyTablePlaceholder(tableView: UITableView) {
         let messageLabel = UILabel(frame: CGRect(x: 20.0, y: 0, width: tableView.bounds.size.width - 40.0, height: tableView.bounds.size.height))
-        messageLabel.text = "Список материалов пуст"
+        messageLabel.text = "Список пуст"
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = NSTextAlignment.center
         messageLabel.sizeToFit()

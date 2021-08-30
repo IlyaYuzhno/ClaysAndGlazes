@@ -26,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Creating VC for Tab Bar
         let claysListController = ClaysTableViewController(interactor: interactor)
         let glazesListController = ChooseGlazeTableViewController(interactor: interactor)
-        let materialsListController = MaterialsListTableViewController()
+        //let materialsListController = MaterialsListTableViewController()
+        let materialsListController = MaterialsListMainViewController()
         let glazesRecipesController = GlazesRecipesCollectionViewController()
 
         // Setup TabBar Controller

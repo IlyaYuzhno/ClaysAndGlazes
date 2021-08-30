@@ -18,14 +18,11 @@ class MaterialsListTableViewController: UITableViewController {
 
         viewModel = MaterialsListViewModel()
         setupTableView()
-
     }
 
-    // MARK: - ViewDidAppear
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-
-        // Load sections with data
+    // MARK: - ViewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
     }
 
@@ -151,11 +148,9 @@ class MaterialsListTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
     }
 
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         58
     }
-
 
     // MARK: - Add Item Button tapped
     @objc func addItemTapped() {
@@ -165,7 +160,6 @@ class MaterialsListTableViewController: UITableViewController {
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)
     }
 }
-
 
 // MARK: Collapse or not collapse sections
 extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {

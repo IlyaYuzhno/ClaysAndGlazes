@@ -36,16 +36,17 @@ protocol MaterialsTableViewCellViewModelType: AnyObject {
 // EditMaterialsView
 protocol EditMaterialViewModelType {
     var name: String { get }
-    var quantity: String { get }
+    var quantity: Int { get }
     var info: String { get  }
     var type: String { get }
     var marked: Bool { get }
+    var unit: String { get }
     func getMaterial() -> Material
 }
 
 // AddMaterialsView
 protocol AddMaterialViewControllerViewModelType {
-     func addNewMaterial(type: String, quantity: String, name: String, info: String)
+     func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String)
 }
 
 // MARK: - Clays part protocols

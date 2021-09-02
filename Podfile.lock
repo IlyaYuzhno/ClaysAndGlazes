@@ -28,6 +28,7 @@ PODS:
   - GoogleUtilities/Logger (7.3.1):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.5.0)
+  - iOSDropDown (0.3.4)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
     - nanopb/encode (= 2.30907.0)
@@ -40,6 +41,7 @@ PODS:
 
 DEPENDENCIES:
   - FirebaseUI/Storage
+  - iOSDropDown
 
 SPEC REPOS:
   trunk:
@@ -51,6 +53,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - iOSDropDown
     - nanopb
     - PromisesObjC
     - SDWebImage
@@ -64,10 +67,11 @@ SPEC CHECKSUMS:
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: cbefb1a3c07e87479193b68d1c07ec69cadce289
+PODFILE CHECKSUM: 3df5443053cce7fff6cee1e6c6df7bfe3fe22c57
 
 COCOAPODS: 1.10.1

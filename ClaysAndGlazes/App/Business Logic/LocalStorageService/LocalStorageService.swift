@@ -37,7 +37,7 @@ class LocalStorageService {
     class func genericStorageUpdate<T: Codable>(object: T, key: String) {
             do {
                 let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: T.self)
-                var newArray = currentArray
+                let newArray = currentArray
                 //newArray.append(object)
                 try UserDefaults.standard.setObject(newArray, forKey: key)
             } catch {

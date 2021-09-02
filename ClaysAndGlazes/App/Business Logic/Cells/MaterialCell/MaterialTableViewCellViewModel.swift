@@ -20,7 +20,7 @@ class MaterialTableViewCellViewModel: MaterialsTableViewCellViewModelType {
     }
 
     var quantity: String {
-        return material.quantity
+        return String(material.quantity) + " " + material.unit
     }
 
     var marked: Bool {

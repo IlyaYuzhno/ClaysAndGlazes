@@ -9,11 +9,22 @@ import UIKit
 
 class MaterialsListMainViewController: UIViewController {
 
+    var topConstraint: NSLayoutConstraint!
+    var startingConstant: CGFloat  = 0.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
     }
+
+    private var basicView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.backgroundColor = .SearchBarColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        return view
+    }()
 
     private var addMaterialsView: MaterialsListTileView = {
         let view = MaterialsListTileView()
@@ -39,7 +50,7 @@ class MaterialsListMainViewController: UIViewController {
 
     private var purchaseListView: MaterialsListTileView = {
         let view = MaterialsListTileView()
-        view.setTitle("Список   покупок", for: .normal)
+        view.setTitle("Список\nпокупок", for: .normal)
         view.addTarget(self, action: #selector(purchaseListButtonTapped), for: .touchUpInside)
         return view
     }()
@@ -65,9 +76,11 @@ class MaterialsListMainViewController: UIViewController {
     }()
 
     func setupView() {
-        view.backgroundColor = .BackgroundColor1
+        view.backgroundColor = .SectionColor
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
         navigationItem.title = "МОИ МАТЕРИАЛЫ"
+        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(scrollBasicView(sender:)))
+        basicView.addGestureRecognizer(panGesture)
         setupViews()
     }
 
@@ -77,8 +90,10 @@ class MaterialsListMainViewController: UIViewController {
         lowerStack.addArrangedSubview(usedMaterialsView)
         lowerStack.addArrangedSubview(purchaseListView)
 
-        view.addSubview(upperStack)
-        view.addSubview(lowerStack)
+        basicView.addSubview(upperStack)
+        basicView.addSubview(lowerStack)
+
+        view.addSubview(basicView)
         setupConstraints()
     }
 
@@ -96,17 +111,23 @@ class MaterialsListMainViewController: UIViewController {
             purchaseListView.heightAnchor.constraint(equalToConstant: 100),
             purchaseListView.widthAnchor.constraint(equalToConstant: 100),
 
-            upperStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            upperStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            basicView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            basicView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            basicView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            upperStack.leadingAnchor.constraint(equalTo: basicView.leadingAnchor, constant: 20),
+            upperStack.trailingAnchor.constraint(equalTo: basicView.trailingAnchor, constant: -20),
             upperStack.heightAnchor.constraint(equalToConstant: 100),
-            upperStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            upperStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            upperStack.centerXAnchor.constraint(equalTo: basicView.centerXAnchor),
+            upperStack.topAnchor.constraint(equalTo: basicView.topAnchor, constant: 20),
 
             lowerStack.leadingAnchor.constraint(equalTo: upperStack.leadingAnchor),
             lowerStack.trailingAnchor.constraint(equalTo: upperStack.trailingAnchor),
             lowerStack.topAnchor.constraint(equalTo: upperStack.bottomAnchor, constant: 20)
-
         ])
+
+        topConstraint = basicView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50)
+        topConstraint.isActive = true
     }
 
     @objc func addMaterialButtonTapped() {
@@ -123,7 +144,7 @@ class MaterialsListMainViewController: UIViewController {
 
     @objc func usedMaterialsButtonTapped() {
         // Go to used materials table view VC
-        let usedMaterialViewController = EditMaterialViewController()
+        let usedMaterialViewController = UsedMaterialsViewController()
         self.navigationController?.pushViewController(usedMaterialViewController, animated: true)
     }
 
@@ -132,8 +153,23 @@ class MaterialsListMainViewController: UIViewController {
 
     }
 
+    // MARK: - Scroll basic view
+    @objc func scrollBasicView(sender: UIPanGestureRecognizer) {
 
-    
+        switch sender.state {
+        case .began:
+            startingConstant = topConstraint.constant
+        case .changed:
+            let translation = sender.translation(in: view)
+
+            UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 5, initialSpringVelocity: 5, options: .curveLinear) {
+                self.view.layoutIfNeeded()
+                self.topConstraint.constant = self.startingConstant + translation.y
+            }
+        default:
+            break
+        }
+    }
 
 
 }

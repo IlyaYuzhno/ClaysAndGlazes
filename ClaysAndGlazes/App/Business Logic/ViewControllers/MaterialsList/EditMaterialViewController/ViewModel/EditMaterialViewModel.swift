@@ -19,7 +19,7 @@ class EditMaterialViewModel: EditMaterialViewModelType {
         return material.name
     }
 
-    var quantity: String {
+    var quantity: Int {
         return material.quantity
     }
 
@@ -29,6 +29,10 @@ class EditMaterialViewModel: EditMaterialViewModelType {
 
     var type: String {
         return material.type
+    }
+
+    var unit: String {
+        return material.unit
     }
 
     var marked: Bool {

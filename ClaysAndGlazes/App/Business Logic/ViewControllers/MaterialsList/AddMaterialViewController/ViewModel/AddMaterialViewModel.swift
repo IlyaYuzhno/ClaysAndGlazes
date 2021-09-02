@@ -13,7 +13,6 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
     var claysList: [String] = []
     var glazesList: [String] = []
 
-
     func loadClaysList(completion: @escaping (() -> ()?)) {
         guard let presenter = presenter else { return }
 
@@ -23,10 +22,10 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
         completion()
     }
 
-    func addNewMaterial(type: String, quantity: String, name: String, info: String) {
+    func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String) {
 
         // Create material from item parameters
-        let material = Material(type: type, name: name, quantity: quantity, info: info, marked: false)
+        let material = Material(type: type, name: name, quantity: Int(quantity) ?? 0, unit: unit, info: info, marked: false)
 
         // Save material to UserDefaults
         LocalStorageService.save(object: material)

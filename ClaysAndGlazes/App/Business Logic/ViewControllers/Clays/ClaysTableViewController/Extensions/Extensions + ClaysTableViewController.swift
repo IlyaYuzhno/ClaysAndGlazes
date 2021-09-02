@@ -111,11 +111,14 @@ extension ClaysTableViewController {
         switch sender.state {
         case .began:
             // Save the view's original position.
-            self.initialCenter = piece.center
+            initialCenter = piece.center
         case .changed:
             // Add the X and Y translation to the view's original position.
             let newCenter = CGPoint(x: initialCenter.x, y: initialCenter.y + translation.y)
-            piece.center = newCenter
+            UIView.animate(withDuration: 0.2, delay: 0.1, usingSpringWithDamping: 10, initialSpringVelocity: 2, options: .curveLinear) {
+                self.view.layoutIfNeeded()
+                piece.center = newCenter
+            }
         case .failed:
             piece.center = initialCenter
         case .cancelled:
@@ -124,7 +127,7 @@ extension ClaysTableViewController {
             // If pan velocity is high do the Info View hide
             if abs(velocity.y) > 500 {
                 // Hide Info View...
-                //Animation.hideView(view: clayInfoView)
+                Animation.hideView(view: piece)
                 Animation.removeBlur()
                 tableView.isScrollEnabled = true
                 self.navigationController?.isNavigationBarHidden = false
@@ -135,5 +138,6 @@ extension ClaysTableViewController {
         default:
             break
         }
+
     }
 }

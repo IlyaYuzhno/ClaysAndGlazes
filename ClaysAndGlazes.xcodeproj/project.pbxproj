@@ -46,7 +46,7 @@
 		5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */; };
 		5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */; };
 		5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5D26A6BCFC00AB81AC /* Section.swift */; };
-		5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5F26A6CA7A00AB81AC /* Materials.swift */; };
+		5B63CE6026A6CA7A00AB81AC /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5F26A6CA7A00AB81AC /* Material.swift */; };
 		5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */; };
 		5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */; };
 		5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */; };
@@ -73,9 +73,14 @@
 		5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */; };
 		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
 		5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */; };
-		5B6E150426C3FFBE0072FB7E /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E150326C3FFBE0072FB7E /* Autocomplete.swift */; };
 		5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */; };
 		5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */; };
+		5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */; };
+		5BDA425D26DE46F4009523A1 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */; };
+		5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */; };
+		5BDA426126DE61A1009523A1 /* plusButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA426026DE61A1009523A1 /* plusButton.png */; };
+		5BDA426426DF8233009523A1 /* DescribingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA426326DF8232009523A1 /* DescribingView.swift */; };
+		5BDA426826E0B829009523A1 /* okButton25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA426726E0B829009523A1 /* okButton25x25.png */; };
 		B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */; };
 		FDBE40BFE3EC01954761C970 /* Pods_ClaysAndGlazesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */; };
 /* End PBXBuildFile section */
@@ -146,7 +151,7 @@
 		5B63CE5526A694D600AB81AC /* MaterialsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTableViewController.swift; sourceTree = "<group>"; };
 		5B63CE5A26A6AB2A00AB81AC /* AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialViewController.swift; sourceTree = "<group>"; };
 		5B63CE5D26A6BCFC00AB81AC /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		5B63CE5F26A6CA7A00AB81AC /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
+		5B63CE5F26A6CA7A00AB81AC /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults extension.swift"; sourceTree = "<group>"; };
 		5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListPresenter.swift; sourceTree = "<group>"; };
@@ -173,9 +178,14 @@
 		5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ChooseGlazeTableViewController.swift"; sourceTree = "<group>"; };
 		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + AddMaterialViewController.swift"; sourceTree = "<group>"; };
-		5B6E150326C3FFBE0072FB7E /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
 		5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewController.swift; sourceTree = "<group>"; };
 		5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTileView.swift; sourceTree = "<group>"; };
+		5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialsViewController.swift; sourceTree = "<group>"; };
+		5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialView.swift; sourceTree = "<group>"; };
+		5BDA426026DE61A1009523A1 /* plusButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusButton.png; sourceTree = "<group>"; };
+		5BDA426326DF8232009523A1 /* DescribingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribingView.swift; sourceTree = "<group>"; };
+		5BDA426726E0B829009523A1 /* okButton25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = okButton25x25.png; sourceTree = "<group>"; };
 		5C620F75F1347B75AD0B52C1 /* Pods-ClaysAndGlazes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazes.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazes/Pods-ClaysAndGlazes.release.xcconfig"; sourceTree = "<group>"; };
 		7FAF948F4E8DC306AA8C931F /* Pods-ClaysAndGlazesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClaysAndGlazesTests.release.xcconfig"; path = "Target Support Files/Pods-ClaysAndGlazesTests/Pods-ClaysAndGlazesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDA425D26DE46F4009523A1 /* iOSDropDown.framework in Frameworks */,
 				B363CE15067887DB1980F7AC /* Pods_ClaysAndGlazes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +320,7 @@
 				5B060F6D261233AF0090E250 /* Response.swift */,
 				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
 				5B2C04B72627164B00FB1CED /* GlazesResponse.swift */,
-				5B63CE5F26A6CA7A00AB81AC /* Materials.swift */,
+				5B63CE5F26A6CA7A00AB81AC /* Material.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
 				5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 				5B6E14DB26BD40210072FB7E /* InformationView */,
@@ -430,6 +442,8 @@
 		5B2C04F026539B7F00FB1CED /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5BDA426726E0B829009523A1 /* okButton25x25.png */,
+				5BDA426026DE61A1009523A1 /* plusButton.png */,
 				5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */,
 				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
 				5B2C04CF262B3A8900FB1CED /* glazeBrushBlue.png */,
@@ -453,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				5BDA425426DCF334009523A1 /* MaterialsListMainViewController */,
+				5BDA425926DE4212009523A1 /* UsedMaterialsViewController */,
 				5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */,
 				5B63CE6926A82F3400AB81AC /* EditMaterialViewController */,
 				5B63CE5926A6AB0500AB81AC /* AddMaterialViewController */,
@@ -749,7 +764,6 @@
 			isa = PBXGroup;
 			children = (
 				5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */,
-				5B6E150326C3FFBE0072FB7E /* Autocomplete.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -762,9 +776,27 @@
 			path = MaterialsListMainViewController;
 			sourceTree = "<group>";
 		};
+		5BDA425926DE4212009523A1 /* UsedMaterialsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */,
+			);
+			path = UsedMaterialsViewController;
+			sourceTree = "<group>";
+		};
+		5BDA426226DF8206009523A1 /* UsedMaterialViews */ = {
+			isa = PBXGroup;
+			children = (
+				5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */,
+				5BDA426326DF8232009523A1 /* DescribingView.swift */,
+			);
+			path = UsedMaterialViews;
+			sourceTree = "<group>";
+		};
 		A49883B47984966AAAF46FC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */,
 				BF3FA741AF8DFCA0761E0E69 /* Pods_ClaysAndGlazes.framework */,
 				8117FF634E2782306B4DA772 /* Pods_ClaysAndGlazes_ClaysAndGlazesUITests.framework */,
 				4214CE66D5C90856B9A2A727 /* Pods_ClaysAndGlazesTests.framework */,
@@ -881,9 +913,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B060FCD2614C3B90090E250 /* ClaysInfo.json in Resources */,
+				5BDA426126DE61A1009523A1 /* plusButton.png in Resources */,
 				5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */,
 				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
 				5B2C04CB262B3A7B00FB1CED /* clayGrayIcon.png in Resources */,
+				5BDA426826E0B829009523A1 /* okButton25x25.png in Resources */,
 				5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
 				5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */,
@@ -1020,6 +1054,7 @@
 			files = (
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
 				5B2C046A2625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift in Sources */,
+				5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */,
 				5B6E14BA26B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B060F75261233AF0090E250 /* Response.swift in Sources */,
@@ -1033,6 +1068,7 @@
 				5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */,
 				5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */,
 				5B2C04B82627164B00FB1CED /* GlazesResponse.swift in Sources */,
+				5BDA426426DF8233009523A1 /* DescribingView.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
 				5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */,
 				5B6E14AE26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift in Sources */,
@@ -1045,7 +1081,6 @@
 				5B6E14A726B2BF740072FB7E /* AddMaterialViewModel.swift in Sources */,
 				5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */,
 				5B6E14B126B2CE090072FB7E /* DefaultCellViewModel.swift in Sources */,
-				5B6E150426C3FFBE0072FB7E /* Autocomplete.swift in Sources */,
 				5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */,
 				5B6E14D526BD26050072FB7E /* Extensions + ClaysTableViewController.swift in Sources */,
 				5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */,
@@ -1055,10 +1090,11 @@
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
 				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
+				5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */,
 				5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */,
 				5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */,
 				5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */,
-				5B63CE6026A6CA7A00AB81AC /* Materials.swift in Sources */,
+				5B63CE6026A6CA7A00AB81AC /* Material.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
 				5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */,
 				5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */,

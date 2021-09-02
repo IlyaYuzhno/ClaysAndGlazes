@@ -145,20 +145,19 @@ class MaterialsListTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "materialsListTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(MaterialCell.self, forCellReuseIdentifier: "materialCell")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         58
     }
 
-    // MARK: - Add Item Button tapped
-    @objc func addItemTapped() {
-        
-        // Go to add material VC
-        let addMaterialViewController = AddMaterialViewController()
-        self.navigationController?.pushViewController(addMaterialViewController, animated: true)
-    }
+//    // MARK: - Add Item Button tapped
+//    @objc func addItemTapped() {
+//        // Go to add material VC
+//        let addMaterialViewController = AddMaterialViewController()
+//        self.navigationController?.pushViewController(addMaterialViewController, animated: true)
+//    }
 }
 
 // MARK: Collapse or not collapse sections

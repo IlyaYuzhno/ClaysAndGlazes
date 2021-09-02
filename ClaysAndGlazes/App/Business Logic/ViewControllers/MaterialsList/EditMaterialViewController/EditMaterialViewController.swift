@@ -16,7 +16,6 @@ class EditMaterialViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAroundOnView()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -24,7 +23,7 @@ class EditMaterialViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         itemInfoTextField.text = viewModel.info
         itemNameTextField.text = viewModel.name
-        itemQuantityTextField.text = viewModel.quantity
+        itemQuantityTextField.text = String(viewModel.quantity)
     }
 
     // MARK: - Views
@@ -127,11 +126,11 @@ class EditMaterialViewController: UIViewController {
 
         // Get new item parameters
         let itemName = itemNameTextField.text ?? ""
-        let itemQuantity = itemQuantityTextField.text ?? ""
+        let itemQuantity:Int? = Int(itemQuantityTextField.text ?? "")
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Create new material from item parameters
-        let material = Material.init(type: viewModel.type , name: itemName, quantity: itemQuantity, info: itemInfo, marked: viewModel.marked )
+        let material = Material.init(type: viewModel.type , name: itemName, quantity: itemQuantity ?? 0, unit: viewModel.unit, info: itemInfo, marked: viewModel.marked )
 
         // Save new material to UserDefaults
         LocalStorageService.save(object: material)

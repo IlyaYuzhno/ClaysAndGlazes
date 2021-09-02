@@ -8,6 +8,7 @@ target 'ClaysAndGlazes' do
   # Pods for ClaysAndGlazes
 
 pod 'FirebaseUI/Storage'
+pod 'iOSDropDown'
 
 
 

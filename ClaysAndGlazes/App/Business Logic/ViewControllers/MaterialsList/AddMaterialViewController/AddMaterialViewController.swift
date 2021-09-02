@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import iOSDropDown
 
 class AddMaterialViewController: UIViewController {
 
     let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Химия", "Разное"]
+    let unitsDropDownListOptions = ["кг", "л", "шт"]
+    private var unit = ""
 
    var viewModel: AddMaterialViewControllerViewModelType?
 
@@ -58,6 +61,20 @@ class AddMaterialViewController: UIViewController {
         return textField
     }()
 
+    var unitsDropDownList: DropDown = {
+        let dropDown = DropDown()
+        dropDown.backgroundColor = .systemBackground
+        dropDown.translatesAutoresizingMaskIntoConstraints = false
+        dropDown.layer.cornerRadius = 10
+        dropDown.layer.borderWidth = 2
+        dropDown.layer.borderColor = UIColor.systemGray2.cgColor
+        dropDown.selectedRowColor = .BackgroundColor2
+        dropDown.contentMode = .center
+        dropDown.textAlignment = .center
+        dropDown.inputView = UIView()
+        return dropDown
+    }()
+
     private lazy var itemInfoTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 24, weight: .light)
@@ -93,11 +110,12 @@ class AddMaterialViewController: UIViewController {
 
     func setupViews() {
         view.backgroundColor = .BackgroundColor1
-        view.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, itemInfoTextField, addButton)
+        view.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, unitsDropDownList, itemInfoTextField, addButton)
         itemInfoTextField.delegate = self
+        unitsDropDownList.optionArray = unitsDropDownListOptions
+        selectUnit()
         setPicker()
         setupConstraints()
-        //autoCompleteSetup()
     }
 
     // MARK: Setup UI constraints
@@ -115,9 +133,15 @@ class AddMaterialViewController: UIViewController {
             itemNameTextField.heightAnchor.constraint(equalToConstant: 50),
 
             itemQuantityTextField.topAnchor.constraint(equalTo: itemNameTextField.bottomAnchor, constant: 40),
-            itemQuantityTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            itemQuantityTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -5),
+            itemQuantityTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            itemQuantityTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             itemQuantityTextField.heightAnchor.constraint(equalToConstant: 50),
+
+            unitsDropDownList.topAnchor.constraint(equalTo: itemQuantityTextField.topAnchor),
+            unitsDropDownList.leadingAnchor.constraint(equalTo: itemQuantityTextField.trailingAnchor, constant: 10),
+            unitsDropDownList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            unitsDropDownList.heightAnchor.constraint(equalTo: itemQuantityTextField.heightAnchor),
+
 
             itemInfoTextField.topAnchor.constraint(equalTo: itemQuantityTextField.bottomAnchor, constant: 40),
             itemInfoTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -142,7 +166,7 @@ class AddMaterialViewController: UIViewController {
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Add new material to storage
-        viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, name: itemName, info: itemInfo)
+        viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, unit: unit, name: itemName, info: itemInfo)
 
         // Get back to Materials List VC
         self.navigationController?.popViewController(animated: true)
@@ -169,27 +193,13 @@ class AddMaterialViewController: UIViewController {
         }
     }
 
+    func selectUnit() {
+        unitsDropDownList.didSelect { [weak self] (selectedText, _, _) in
+            self?.unit = selectedText
+        }
+    }
+
     deinit {
         unsubscribeFromAllNotifications()
     }
 }
-
-//extension AddMaterialViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func autoCompleteSetup() {
-//        let autocompleteTableView = UITableView(frame: CGRect(x: 0, y: 200, width: Int(UIScreen.main.bounds.width), height: 200), style: .plain)
-//        autocompleteTableView.delegate = self
-//        autocompleteTableView.dataSource = self
-//        autocompleteTableView.isScrollEnabled = true
-//        autocompleteTableView.isHidden = true
-//        view.addSubview(autocompleteTableView)
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//  }

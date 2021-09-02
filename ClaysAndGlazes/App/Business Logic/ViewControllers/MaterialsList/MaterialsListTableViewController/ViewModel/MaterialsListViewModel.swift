@@ -32,7 +32,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let messageLabel = UILabel(frame: CGRect(x: 20.0, y: 0, width: tableView.bounds.size.width - 40.0, height: tableView.bounds.size.height))
         messageLabel.text = "Список пуст"
         messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = NSTextAlignment.center
+        messageLabel.textAlignment = .center
         messageLabel.sizeToFit()
         tableView.backgroundView = messageLabel
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -43,10 +43,11 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let name = sections[indexPath.section].items[indexPath.row]
         let info = sections[indexPath.section].info[indexPath.row]
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? ""
+        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
+        let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
-        let material = Material(type: "", name: name, quantity: quantity, info: info, marked: marked)
+        let material = Material(type: "", name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         return MaterialTableViewCellViewModel(material: material)
     }
@@ -55,11 +56,12 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let name = sections[indexPath.section].items[indexPath.row] 
         let info = sections[indexPath.section].info[indexPath.row] 
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? ""
+        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
+        let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let type = sections[indexPath.section].name 
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
-        let itemToRemove = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
+        let itemToRemove = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         // Remove deleted item and save edited datasource to UserDefaults
         LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
@@ -77,12 +79,13 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         // Get current material
         let name = sections[indexPath.section].items[indexPath.row]
         let info = sections[indexPath.section].info[indexPath.row]
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? ""
+        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
+        let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let type = sections[indexPath.section].name
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
         // Create marked material
-        var markedMaterial = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
+        var markedMaterial = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         // Remove unmarked material from storage
         let itemToRemove = markedMaterial
@@ -105,11 +108,12 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let name = sections[selectedIndexPath.section].items[selectedIndexPath.row]
         let info = sections[selectedIndexPath.section].info[selectedIndexPath.row]
-        let quantity = sections[selectedIndexPath.section].quantity?[selectedIndexPath.row] ?? ""
+        let quantity = sections[selectedIndexPath.section].quantity?[selectedIndexPath.row] ?? 0
+        let unit = sections[selectedIndexPath.section].unit?[selectedIndexPath.row] ?? ""
         let type = sections[selectedIndexPath.section].name
         let marked = sections[selectedIndexPath.section].marked?[selectedIndexPath.row] ?? false
 
-        let itemToEdit = Material(type: type, name: name, quantity: quantity, info: info, marked: marked)
+        let itemToEdit = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         return EditMaterialViewModel(material: itemToEdit)
     }

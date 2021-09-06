@@ -51,19 +51,4 @@ class DefaultCell: UITableViewCell {
         super.awakeFromNib()
 
     }
-
-    func configure(item: String) {
-        backgroundColor = .systemGray6
-        textLabel?.numberOfLines = 0
-        textLabel?.text = item
-
-        switch textLabel?.text {
-        case "No info available...":
-            isUserInteractionEnabled = false
-            textLabel?.font = .italicSystemFont(ofSize: 16)
-        default:
-            break
-        }
-    }
-
 }

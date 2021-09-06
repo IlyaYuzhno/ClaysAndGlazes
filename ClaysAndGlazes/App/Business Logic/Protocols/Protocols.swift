@@ -46,7 +46,7 @@ protocol EditMaterialViewModelType {
 
 // AddMaterialsView
 protocol AddMaterialViewControllerViewModelType {
-     func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String)
+     func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String, viewController: UIViewController)
 }
 
 // MARK: - Clays part protocols
@@ -174,4 +174,13 @@ protocol InformationViewViewModelType {
     var itemName: String { get }
     var itemInfo: String { get }
     var mode: String { get }
+}
+
+// MARK: - Used Material View ViewModel protocol
+protocol UsedMaterialViewViewModelType {
+    var dropDownItemsArray: [String] { get }
+    var materialsDictionary: [String : Material] { get }
+
+    func fetchData(view: UsedMaterialView)
+    func okButtonTapped(stack: UIStackView, self: UIViewController)
 }

@@ -14,7 +14,7 @@ class LocalStorageService {
 
     // Save new Material object
     class func save(object: Material) {
-        DispatchQueue.global(qos: .default).async {
+
             do {
                 let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
                 var newArray = currentArray
@@ -23,7 +23,7 @@ class LocalStorageService {
             } catch {
                 print(error.localizedDescription)
             }
-        }
+        
     }
 
     class func genericSave<T: Codable>(object: T, key: String) {
@@ -65,17 +65,18 @@ class LocalStorageService {
     // Save array of Material after editing
     class func removeItemFromDataSource(itemToRemove: Material) {
 
-        do {
-            let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            var materialsToEdit = materials
-            if let idx = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type}) {
+            do {
+                let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
+                var materialsToEdit = materials
+                if let idx = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type && $0.unit == itemToRemove.unit && $0.marked == itemToRemove.marked}) {
 
-                materialsToEdit.remove(at: idx)
+                    materialsToEdit.remove(at: idx)
+                }
+                try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
+            } catch {
+                print(error.localizedDescription)
             }
-            try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
-        } catch {
-            print(error.localizedDescription)
-        }
+
     }
 
     // Check if any data exists in UserDefaults

@@ -9,9 +9,9 @@ import UIKit
 
 class UsedMaterialsViewController: UIViewController {
 
-    var dropDownItemsArray: [String] = []
-    var materialsDictionary: [String : Material] = [:]
     var dropDownViewIndex = 0
+
+    var viewModel: UsedMaterialViewViewModelType?
 
     var usedMaterialView: UsedMaterialView = {
         let item = UsedMaterialView()
@@ -44,15 +44,16 @@ class UsedMaterialsViewController: UIViewController {
         button.backgroundColor = .white
         button.alpha = 0.5
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(addUsedMaterial), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addUsedMaterialView), for: .touchUpInside)
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = UsedMaterialViewViewModel()
         setupView()
 
-        fetchData()
+        viewModel?.fetchData(view: usedMaterialView)
     }
 
     override func viewWillLayoutSubviews() {
@@ -98,14 +99,14 @@ class UsedMaterialsViewController: UIViewController {
         addUsedMaterialButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         addUsedMaterialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         addUsedMaterialButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-
     }
 
     // MARK: - Add new used material to stack
-    @objc func addUsedMaterial() {
+    @objc func addUsedMaterialView() {
+        guard let viewModel = viewModel else { return }
         let newItem = UsedMaterialView()
         newItem.delegate = self
-        newItem.optionArray = dropDownItemsArray
+        newItem.optionArray = viewModel.dropDownItemsArray
         dropDownViewIndex += 1
         newItem.dropDown.tag = dropDownViewIndex
 
@@ -113,32 +114,6 @@ class UsedMaterialsViewController: UIViewController {
 
         newItem.widthAnchor.constraint(equalTo: usedMaterialView.widthAnchor).isActive = true
         newItem.heightAnchor.constraint(equalTo: usedMaterialView.heightAnchor).isActive = true
-    }
-
-    // MARK: - Fetch materials stock data
-    private func fetchData() {
-        LocalStorageService.retrieve() { [weak self] materials, _ in
-
-            let items = materials.map { $0.map { $0.name }}?.removingDuplicates()
-            let quantity = materials.map { $0.map { $0.quantity }}
-            let info = materials.map { $0.map { $0.info }}
-            let type = materials.map { $0.map { $0.type }}
-            let marked = materials.map { $0.map { $0.marked }}
-            let unit = materials.map { $0.map { $0.unit }}
-
-            var materials: [Material] = []
-
-            guard let names = items, let quant = quantity, let inform = info, let t = type, let mark = marked, let un = unit  else { return }
-
-            (0..<names.count).forEach { i in
-                let material = Material(type: t[i], name: names[i], quantity: quant[i], unit: un[i], info: inform[i], marked: mark[i])
-                materials.append(material)
-            }
-            self?.dropDownItemsArray = names
-            self?.usedMaterialView.optionArray = names
-
-            self?.materialsDictionary = Dictionary(uniqueKeysWithValues: zip(names, materials))
-        }
     }
 
     // MARK: - Add OK button to navbar
@@ -150,43 +125,17 @@ class UsedMaterialsViewController: UIViewController {
     }
 
     @objc private func okButtonTapped() {
-        (0..<stack.arrangedSubviews.count).forEach { i in
-            let view = stack.arrangedSubviews[i] as! UsedMaterialView
-            let selectedText = view.selectedText
-
-            // Remove item from storage
-            guard let itemToRemove = materialsDictionary[selectedText] else { return }
-            LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-
-            //Correcting quantity
-            let newQuantity:Int? = Int(view.materialQuantityTextField.text ?? "0")
-            let oldQuantity = itemToRemove.quantity
-            var updatedQuantity = oldQuantity - (newQuantity ?? 0)
-            if updatedQuantity <= 0 { updatedQuantity = 0 }
-
-            //Create new item
-            let type = materialsDictionary[selectedText]?.type
-            let name = selectedText
-            let info = materialsDictionary[selectedText]?.info
-            let marked = materialsDictionary[selectedText]?.marked
-            let unit = materialsDictionary[selectedText]?.unit
-
-            let updatedItem = Material(type: type ?? "", name: name, quantity: updatedQuantity , unit: unit ?? "", info: info ?? "", marked: marked ?? false)
-
-            // Save new item to storage
-            LocalStorageService.save(object: updatedItem)
-
-            // Get back to Materials Main VC
-            self.navigationController?.popViewController(animated: true)
-        }
+        guard let viewModel = viewModel else { return }
+        viewModel.okButtonTapped(stack: stack, self: self)
     }
+
 
 }
 
 // MARK: - Show material quantity depending on dropDown index
 extension UsedMaterialsViewController: UsedMaterialViewProtocol {
     func showQuantity(for selectedText: String, index: Int) {
-        let unit = materialsDictionary[selectedText]?.unit
+        let unit = viewModel?.materialsDictionary[selectedText]?.unit
         let view = stack.arrangedSubviews[index] as! UsedMaterialView
         view.itemUnit = unit ?? ""
     }

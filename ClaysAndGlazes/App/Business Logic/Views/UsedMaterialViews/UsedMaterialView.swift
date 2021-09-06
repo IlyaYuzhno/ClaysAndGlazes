@@ -48,6 +48,8 @@ class UsedMaterialView: UIView {
         dropDown.layer.borderWidth = 2
         dropDown.layer.borderColor = UIColor.SearchBarColor.cgColor
         dropDown.selectedRowColor = .BackgroundColor2
+        dropDown.handleKeyboard = false
+        dropDown.isSearchEnable = false
         dropDown.inputView = UIView()
         return dropDown
     }()

@@ -14,7 +14,7 @@ class AddMaterialViewController: UIViewController {
     let unitsDropDownListOptions = ["кг", "л", "шт"]
     private var unit = ""
 
-   var viewModel: AddMaterialViewControllerViewModelType?
+    var viewModel: AddMaterialViewControllerViewModelType?
 
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -71,6 +71,9 @@ class AddMaterialViewController: UIViewController {
         dropDown.selectedRowColor = .BackgroundColor2
         dropDown.contentMode = .center
         dropDown.textAlignment = .center
+        dropDown.placeholder = "кг..."
+        dropDown.handleKeyboard = false
+        dropDown.isSearchEnable = false
         dropDown.inputView = UIView()
         return dropDown
     }()
@@ -112,6 +115,7 @@ class AddMaterialViewController: UIViewController {
         view.backgroundColor = .BackgroundColor1
         view.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, unitsDropDownList, itemInfoTextField, addButton)
         itemInfoTextField.delegate = self
+        itemQuantityTextField.delegate = self
         unitsDropDownList.optionArray = unitsDropDownListOptions
         selectUnit()
         setPicker()
@@ -166,10 +170,22 @@ class AddMaterialViewController: UIViewController {
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Add new material to storage
-        viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, unit: unit, name: itemName, info: itemInfo)
+        if itemName != "" && itemQuantity != "" {
+            viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, unit: unit, name: itemName, info: itemInfo, viewController: self)
 
-        // Get back to Materials List VC
-        self.navigationController?.popViewController(animated: true)
+            // Get back to Materials List VC
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+
+            Animation.circularBorderAnimate(sender: itemNameTextField)
+            Animation.circularBorderAnimate(sender: itemQuantityTextField)
+
+            //itemQuantityTextField.animateBorderColor(toColor: .red, duration: 0.3)
+            //itemNameTextField.animateBorderColor(toColor: .red, duration: 0.3)
+    }
+
     }
 
     // MARK: - Tap on InfoTextField and move all views up for keyboard

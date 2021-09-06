@@ -149,8 +149,9 @@ class MaterialsListMainViewController: UIViewController {
     }
 
     @objc func purchaseListButtonTapped() {
-
-
+        // Go to purchase list table view VC
+        let purchaseListTableViewController = PurchaseListTableViewController()
+        self.navigationController?.pushViewController(purchaseListTableViewController, animated: true)
     }
 
     // MARK: - Scroll basic view

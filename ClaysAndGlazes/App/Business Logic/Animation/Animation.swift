@@ -42,13 +42,35 @@ final class Animation {
 
         view.addSubview(visualEffect)
         visualEffect.contentView.addSubview(contentView)
-
     }
 
     // MARK: Remove blur
    class func removeBlur() {
 
         visualEffect.removeFromSuperview()
+    }
+
+
+    // MARK: Animate border color circularry
+   class func circularBorderAnimate(sender: UIView) {
+    let strokeLayer = CAShapeLayer()
+        strokeLayer.fillColor = UIColor.clear.cgColor
+        strokeLayer.strokeColor = UIColor.red.cgColor
+        strokeLayer.lineWidth = 2
+
+        // Create a rounded rect path using button's bounds.
+        strokeLayer.path = CGPath.init(roundedRect: sender.bounds, cornerWidth: 10, cornerHeight: 10, transform: nil) // same path like the empty one ...
+        // Add layer to the button
+        sender.layer.addSublayer(strokeLayer)
+
+        // Create animation layer and add it to the stroke layer.
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = CGFloat(0.0)
+        animation.toValue = CGFloat(1.0)
+        animation.duration = 1
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        strokeLayer.add(animation, forKey: "circleAnimation")
     }
 
 

@@ -11,6 +11,7 @@ import UIKit
 class LocalStorageService {
 
     static let key = "Materials"
+    static let purchaseListKey = "purchaseList"
 
     // Save new Material object
     class func save(object: Material) {
@@ -23,7 +24,39 @@ class LocalStorageService {
             } catch {
                 print(error.localizedDescription)
             }
-        
+    }
+
+    class func saveToPurchaseList(object: Material) {
+            do {
+                let currentArray = try? UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [Material].self)
+
+                if currentArray == nil {
+                    let initialArray: [Material] = []
+                    do {
+                        try UserDefaults.standard.setObject(initialArray, forKey: purchaseListKey)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                var newArray = currentArray ?? []
+                newArray.append(object)
+                try UserDefaults.standard.setObject(newArray, forKey: purchaseListKey)
+            } catch {
+                print(error.localizedDescription)
+            }
+    }
+
+    // Retrieve array of Material
+    class func retrievePurchaseList(completion: @escaping ([Material]?) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            do {
+            let purchaseList = try UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [Material].self)
+            completion(purchaseList)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 
     class func genericSave<T: Codable>(object: T, key: String) {

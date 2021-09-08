@@ -19,7 +19,7 @@ class EditMaterialViewModel: EditMaterialViewModelType {
         return material.name
     }
 
-    var quantity: Int {
+    var quantity: Float {
         return material.quantity
     }
 

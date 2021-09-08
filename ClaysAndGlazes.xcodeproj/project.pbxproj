@@ -48,7 +48,7 @@
 		5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5D26A6BCFC00AB81AC /* Section.swift */; };
 		5B63CE6026A6CA7A00AB81AC /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE5F26A6CA7A00AB81AC /* Material.swift */; };
 		5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */; };
-		5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */; };
+		5B63CE6626A6DB7200AB81AC /* Extension + UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6526A6DB7200AB81AC /* Extension + UserDefaults.swift */; };
 		5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */; };
 		5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */; };
 		5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */; };
@@ -73,6 +73,7 @@
 		5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */; };
 		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
 		5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */; };
+		5BAB806126E7910300D32D06 /* AddItemsToPurchaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806026E7910300D32D06 /* AddItemsToPurchaseListView.swift */; };
 		5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */; };
 		5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */; };
 		5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */; };
@@ -157,7 +158,7 @@
 		5B63CE5D26A6BCFC00AB81AC /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		5B63CE5F26A6CA7A00AB81AC /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
-		5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults extension.swift"; sourceTree = "<group>"; };
+		5B63CE6526A6DB7200AB81AC /* Extension + UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UserDefaults.swift"; sourceTree = "<group>"; };
 		5B63CE6726A8065B00AB81AC /* MaterialsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListPresenter.swift; sourceTree = "<group>"; };
 		5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewController.swift; sourceTree = "<group>"; };
 		5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCell.swift; sourceTree = "<group>"; };
@@ -182,6 +183,7 @@
 		5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ChooseGlazeTableViewController.swift"; sourceTree = "<group>"; };
 		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + AddMaterialViewController.swift"; sourceTree = "<group>"; };
+		5BAB806026E7910300D32D06 /* AddItemsToPurchaseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToPurchaseListView.swift; sourceTree = "<group>"; };
 		5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewController.swift; sourceTree = "<group>"; };
 		5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTileView.swift; sourceTree = "<group>"; };
 		5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialsViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BAB806026E7910300D32D06 /* AddItemsToPurchaseListView.swift */,
 				5BDA427226E24F10009523A1 /* SupportingView.swift */,
 				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
 				5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */,
@@ -507,7 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				5B63CE6226A6CE9300AB81AC /* LocalStorageService.swift */,
-				5B63CE6526A6DB7200AB81AC /* UserDefaults extension.swift */,
+				5B63CE6526A6DB7200AB81AC /* Extension + UserDefaults.swift */,
 			);
 			path = LocalStorageService;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 				5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */,
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
 				5B6E14C126B3EC350072FB7E /* ClayCellViewModel.swift in Sources */,
+				5BAB806126E7910300D32D06 /* AddItemsToPurchaseListView.swift in Sources */,
 				5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */,
 				5B061037261EF0B70090E250 /* StartView.swift in Sources */,
 				5B6E14AA26B2C46F0072FB7E /* Protocols.swift in Sources */,
@@ -1148,7 +1152,7 @@
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
 				5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */,
 				5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */,
-				5B63CE6626A6DB7200AB81AC /* UserDefaults extension.swift in Sources */,
+				5B63CE6626A6DB7200AB81AC /* Extension + UserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ import UIKit
 
 // MaterialsTableView
 protocol MaterialsListTableViewViewModelType {
+    var delegate: MaterialsListViewModelDelegate? { get set }
     func numberOfSections() -> Int
     func numberOfRowsInSection(forSection section: Int) -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> MaterialsTableViewCellViewModelType?
@@ -23,6 +24,7 @@ protocol MaterialsListTableViewViewModelType {
     func selectRow(atIndexPath indexPath: IndexPath)
     var sections: [Section] { get set }
     func showEmptyTablePlaceholder(tableView: UITableView)
+    func addItemsToPurchaseListIfZeroQuantity()
 }
 
 // MaterialsTableView Cell
@@ -36,7 +38,7 @@ protocol MaterialsTableViewCellViewModelType: AnyObject {
 // EditMaterialsView
 protocol EditMaterialViewModelType {
     var name: String { get }
-    var quantity: Int { get }
+    var quantity: Float { get }
     var info: String { get  }
     var type: String { get }
     var marked: Bool { get }

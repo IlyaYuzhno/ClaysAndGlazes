@@ -7,16 +7,22 @@
 
 import UIKit
 
+protocol MaterialsListViewModelDelegate: AnyObject {
+    func showAddToPurchaseListView()
+    func hideAddToPurchaseListView()
+    func reloadDataSource()
+}
+
 class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
     private var selectedIndexPath: IndexPath?
-
     var sections: [Section] = []
+    weak var delegate: MaterialsListViewModelDelegate?
 
     func loadData(completion: (@escaping () -> ()?)) {
         MaterialsListPresenter.present() { [weak self] sections in
-                self?.sections = sections
-                completion()
+            self?.sections = sections
+            completion()
         }
     }
 
@@ -43,7 +49,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let name = sections[indexPath.section].items[indexPath.row]
         let info = sections[indexPath.section].info[indexPath.row]
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
+        let quantity = Float(sections[indexPath.section].quantity?[indexPath.row] ?? 0)
         let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
@@ -56,7 +62,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         let name = sections[indexPath.section].items[indexPath.row] 
         let info = sections[indexPath.section].info[indexPath.row] 
-        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
+        let quantity = Float(sections[indexPath.section].quantity?[indexPath.row] ?? 0)
         let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let type = sections[indexPath.section].name 
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
@@ -85,7 +91,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
         // Create marked material
-        var markedMaterial = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
+        var markedMaterial = Material(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
 
         // Remove unmarked material from storage
         let itemToRemove = markedMaterial
@@ -96,7 +102,6 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         // Save marked Material to storage
         LocalStorageService.save(object: markedMaterial)
-
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {
@@ -113,9 +118,42 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let type = sections[selectedIndexPath.section].name
         let marked = sections[selectedIndexPath.section].marked?[selectedIndexPath.row] ?? false
 
-        let itemToEdit = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
+        let itemToEdit = Material(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
 
         return EditMaterialViewModel(material: itemToEdit)
     }
+
+    func addItemsToPurchaseListIfZeroQuantity() {
+        if sections.contains(where: { $0.quantity?.contains(0.0) ?? false }) {
+            delegate?.showAddToPurchaseListView()
+        }
+    }
+
+}
+
+extension MaterialsListViewModel: AddItemsToPurchaseListViewDelegate {
+    func okButtonTapped() {
+
+// Check every section and every item if quantity == 0 and delete item from storage
+        (0..<sections.count).forEach { j in
+            (0..<sections[j].items.count).forEach { i in
+                if sections[j].quantity?[i] == 0 {
+
+                    let zeroQuantityMaterial = Material(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
+
+                    LocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial)
+
+                    LocalStorageService.removeItemFromDataSource(itemToRemove: zeroQuantityMaterial)
+
+                }
+            }
+        }
+        delegate?.reloadDataSource()
+    }
+
+    func cancelButtonTapped() {
+        delegate?.hideAddToPurchaseListView()
+    }
+
 
 }

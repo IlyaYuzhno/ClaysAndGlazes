@@ -9,7 +9,7 @@ struct Section {
     var name: String
     var info: [String]
     var items: [String]
-    var quantity: [Int]?
+    var quantity: [Float]?
     var unit: [String]?
     var collapsed: Bool
     var marked: [Bool]?
@@ -21,7 +21,7 @@ struct Section {
         self.collapsed = collapsed
     }
 
-    init(name: String, items: [String], info: [String], collapsed: Bool = true, quantity: [Int], unit: [String], marked: [Bool]) {
+    init(name: String, items: [String], info: [String], collapsed: Bool = true, quantity: [Float], unit: [String], marked: [Bool]) {
         self.name = name
         self.items = items
         self.info = info

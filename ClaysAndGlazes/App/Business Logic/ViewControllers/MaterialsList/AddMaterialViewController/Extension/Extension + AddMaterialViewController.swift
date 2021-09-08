@@ -27,9 +27,24 @@ extension AddMaterialViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 // MARK: - UITextField delegate
 extension AddMaterialViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         textField.resignFirstResponder()
+        
         return true
     }
+    
+    // Correcting "," to "." in quantity
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.tag == 100 {
+        if string.contains(",") {
+              textField.text = textField.text! + "."
+              return false
+          }
+        }
+          return true
+
+  }
+    
 }
 
 // MARK: - Notifications handling

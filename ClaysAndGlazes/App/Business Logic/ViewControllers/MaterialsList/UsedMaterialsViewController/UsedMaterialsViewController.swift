@@ -23,7 +23,7 @@ class UsedMaterialsViewController: UIViewController {
         return view
     }()
 
-    var scrollView = UIScrollView()
+    private var scrollView = UIScrollView()
 
     var stack: UIStackView = {
         let stack = UIStackView()
@@ -101,7 +101,7 @@ class UsedMaterialsViewController: UIViewController {
         addUsedMaterialButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 
-    // MARK: - Add new used material to stack
+    // MARK: - Add new used material view to stack
     @objc func addUsedMaterialView() {
         guard let viewModel = viewModel else { return }
         let newItem = UsedMaterialView()

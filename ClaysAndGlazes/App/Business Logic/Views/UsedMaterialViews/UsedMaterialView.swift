@@ -129,4 +129,14 @@ extension UsedMaterialView: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
+    // Correcting "," to "." in quantity
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if string.contains(",") {
+              textField.text = textField.text! + "."
+              return false
+          }
+          return true
+  }
 }

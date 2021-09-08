@@ -15,12 +15,19 @@ class PurchaseListTableViewController: UITableViewController {
         super.viewDidLoad()
         viewModel = PurchaseListTableViewViewModel()
         setupTableView()
+
+        viewModel?.loadData { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (viewModel?.numberOfRowsInSection(forSection: section) ?? 0) > 0 {
-        return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
+            tableView.backgroundView = nil
+            return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
         } else {
             viewModel?.showEmptyTablePlaceholder(tableView: self.tableView)
             return 0

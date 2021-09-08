@@ -126,7 +126,7 @@ class EditMaterialViewController: UIViewController {
 
         // Get new item parameters
         let itemName = itemNameTextField.text ?? ""
-        let itemQuantity:Int? = Int(itemQuantityTextField.text ?? "")
+        let itemQuantity:Float? = Float(itemQuantityTextField.text ?? "")
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Create new material from item parameters

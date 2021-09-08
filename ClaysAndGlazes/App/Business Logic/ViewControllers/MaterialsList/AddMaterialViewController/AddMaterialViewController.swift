@@ -10,20 +10,12 @@ import iOSDropDown
 
 class AddMaterialViewController: UIViewController {
 
-    let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Химия", "Разное"]
-    let unitsDropDownListOptions = ["кг", "л", "шт"]
+    let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Глазурная химия", "Разное"]
+    let unitsDropDownListOptions = ["кг", "л", "шт", "oz."]
     private var unit = ""
+    private var scrollView = UIScrollView()
 
     var viewModel: AddMaterialViewControllerViewModelType?
-
-    // MARK: - ViewDidLoad
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "ДОБАВИТЬ МАТЕРИАЛ"
-        viewModel = AddMaterialViewControllerViewModel()
-        setupViews()
-        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillHide))
-    }
 
     // MARK: - Views
     private lazy var itemPicker: UIPickerView = {
@@ -58,6 +50,8 @@ class AddMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
+        textField.returnKeyType = .done
+        textField.tag = 100
         return textField
     }()
 
@@ -105,6 +99,22 @@ class AddMaterialViewController: UIViewController {
         return button
     }()
 
+    // MARK: - ViewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "ДОБАВИТЬ МАТЕРИАЛ"
+        viewModel = AddMaterialViewControllerViewModel()
+        setupViews()
+        //subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillHide))
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        scrollView.contentSize.height = 2000
+        scrollView.contentSize.width = scrollView.frame.size.width
+        scrollView.contentMode = .scaleAspectFit
+    }
+
     // MARK: - UIPicker setup
     func setPicker() {
         self.itemPicker.delegate = self
@@ -113,7 +123,9 @@ class AddMaterialViewController: UIViewController {
 
     func setupViews() {
         view.backgroundColor = .BackgroundColor1
-        view.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, unitsDropDownList, itemInfoTextField, addButton)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, unitsDropDownList, itemInfoTextField, addButton)
+        view.addSubview(scrollView)
         itemInfoTextField.delegate = self
         itemQuantityTextField.delegate = self
         unitsDropDownList.optionArray = unitsDropDownListOptions
@@ -126,19 +138,24 @@ class AddMaterialViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint .activate([
 
-            itemPicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
-            itemPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            itemPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            itemPicker.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            itemPicker.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            itemPicker.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             itemPicker.heightAnchor.constraint(equalToConstant: 100),
 
             itemNameTextField.topAnchor.constraint(equalTo: itemPicker.bottomAnchor, constant: 40),
-            itemNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            itemNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -5),
+            itemNameTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            itemNameTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             itemNameTextField.heightAnchor.constraint(equalToConstant: 50),
 
             itemQuantityTextField.topAnchor.constraint(equalTo: itemNameTextField.bottomAnchor, constant: 40),
-            itemQuantityTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            itemQuantityTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            itemQuantityTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            itemQuantityTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.75),
             itemQuantityTextField.heightAnchor.constraint(equalToConstant: 50),
 
             unitsDropDownList.topAnchor.constraint(equalTo: itemQuantityTextField.topAnchor),
@@ -146,10 +163,9 @@ class AddMaterialViewController: UIViewController {
             unitsDropDownList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             unitsDropDownList.heightAnchor.constraint(equalTo: itemQuantityTextField.heightAnchor),
 
-
             itemInfoTextField.topAnchor.constraint(equalTo: itemQuantityTextField.bottomAnchor, constant: 40),
-            itemInfoTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            itemInfoTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -5),
+            itemInfoTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            itemInfoTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             itemInfoTextField.heightAnchor.constraint(equalToConstant: 50),
 
             addButton.topAnchor.constraint(equalTo: itemInfoTextField.bottomAnchor, constant: 15),
@@ -178,12 +194,9 @@ class AddMaterialViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         } else {
-
+            
             Animation.circularBorderAnimate(sender: itemNameTextField)
             Animation.circularBorderAnimate(sender: itemQuantityTextField)
-
-            //itemQuantityTextField.animateBorderColor(toColor: .red, duration: 0.3)
-            //itemNameTextField.animateBorderColor(toColor: .red, duration: 0.3)
     }
 
     }
@@ -191,7 +204,7 @@ class AddMaterialViewController: UIViewController {
     // MARK: - Tap on InfoTextField and move all views up for keyboard
     @objc func scrollViews(textField: UITextField) {
         // Height iphone 8, SE - 667, 11 - 896, 12 - 844
-        if UIScreen.main.bounds.height <= 700 && itemInfoTextField.tag == 0 {
+        if UIScreen.main.bounds.height <= 700 && textField.tag == 0 {
             UIView.animate(withDuration: 0.3) {
                 self.view.frame.origin.y -= 80
             }

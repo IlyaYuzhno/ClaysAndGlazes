@@ -12,6 +12,7 @@ protocol PurchaseListTableViewViewModelType {
     var purchaseList: [String] { get }
 
     func numberOfRowsInSection(forSection section: Int) -> Int
+    func loadData(completion: (@escaping () -> ()?))
     func showEmptyTablePlaceholder(tableView: UITableView)
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
     func deleteItem(forIndexPath indexPath: IndexPath)
@@ -21,11 +22,20 @@ protocol PurchaseListTableViewViewModelType {
 
 class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
 
-    var purchaseList: [String] = ["test1", "test2", "test3", "test4"]
+    var purchaseList: [String] = []
     private var selectedIndexPath: IndexPath?
 
     func numberOfRowsInSection(forSection section: Int) -> Int {
         return purchaseList.count
+    }
+
+    func loadData(completion: (@escaping () -> ()?)) {
+        LocalStorageService.retrievePurchaseList { [weak self] purchaseList in
+            purchaseList?.forEach({ material in
+                self?.purchaseList.append(material.name)
+            })
+            completion()
+        }
     }
 
     func showEmptyTablePlaceholder(tableView: UITableView) {

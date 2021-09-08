@@ -12,11 +12,17 @@ class MaterialsListTableViewController: UITableViewController {
     var viewModel: MaterialsListTableViewViewModelType?
     var isCollapsed: [String : Bool] = [:]
 
-   // MARK: - ViewDidLoad
+    var addToPurchaseListView: AddItemsToPurchaseListView = {
+        let view = AddItemsToPurchaseListView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), text: "")
+        return view
+    }()
+
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewModel = MaterialsListViewModel()
+        viewModel?.delegate = self
         setupTableView()
     }
 
@@ -27,9 +33,10 @@ class MaterialsListTableViewController: UITableViewController {
     }
 
     // MARK: - Load materials data
-      func loadData() {
+    func loadData() {
         viewModel?.loadData { [weak self] in
             DispatchQueue.main.async {
+                self?.viewModel?.addItemsToPurchaseListIfZeroQuantity()
                 self?.tableView.reloadData()
             }
         }
@@ -66,8 +73,8 @@ class MaterialsListTableViewController: UITableViewController {
 
     // True for enabling the editing mode
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-          return true
-        }
+        return true
+    }
 
     // MARK: - Leading swipe handler - mark the Material item cell
     override func tableView(_ tableView: UITableView,
@@ -127,7 +134,7 @@ class MaterialsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-         60
+        60
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -145,19 +152,11 @@ class MaterialsListTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "materialsListTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(MaterialCell.self, forCellReuseIdentifier: "materialCell")
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemTapped))
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         58
     }
-
-//    // MARK: - Add Item Button tapped
-//    @objc func addItemTapped() {
-//        // Go to add material VC
-//        let addMaterialViewController = AddMaterialViewController()
-//        self.navigationController?.pushViewController(addMaterialViewController, animated: true)
-//    }
 }
 
 // MARK: Collapse or not collapse sections
@@ -182,4 +181,28 @@ extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
     }
+}
+
+// MARK: - Show and hide AddToPurchaseListView if any material is 0
+extension MaterialsListTableViewController: MaterialsListViewModelDelegate {
+    func reloadDataSource() {
+        loadData()
+        hideAddToPurchaseListView()
+    }
+
+    func showAddToPurchaseListView() {
+        view.addSubview(addToPurchaseListView)
+
+        addToPurchaseListView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        addToPurchaseListView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        addToPurchaseListView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        addToPurchaseListView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
+        addToPurchaseListView.delegate = viewModel as? AddItemsToPurchaseListViewDelegate
+    }
+
+    func hideAddToPurchaseListView() {
+        addToPurchaseListView.removeFromSuperview()
+    }
+
+
 }

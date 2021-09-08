@@ -22,9 +22,9 @@ class SupportingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var textLabel: UILabel = {
+    lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = .black
@@ -33,7 +33,7 @@ class SupportingView: UIView {
         return label
     }()
 
-    private func setupView() {
+     func setupView() {
         layer.cornerRadius = 20
         backgroundColor = .systemGray5
         translatesAutoresizingMaskIntoConstraints = false

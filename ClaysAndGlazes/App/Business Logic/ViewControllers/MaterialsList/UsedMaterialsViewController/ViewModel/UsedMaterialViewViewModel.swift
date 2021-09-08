@@ -38,6 +38,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
     }
 
     func okButtonTapped(stack: UIStackView, self: UIViewController) {
+
         (0..<stack.arrangedSubviews.count).forEach { i in
             let view = stack.arrangedSubviews[i] as! UsedMaterialView
             let selectedText = view.selectedText
@@ -46,13 +47,13 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
             guard let itemToRemove = materialsDictionary[selectedText] else { return }
             LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
-            //Correcting quantity
-            let newQuantity:Int? = Int(view.materialQuantityTextField.text ?? "0")
-            let oldQuantity = itemToRemove.quantity
+            // Correcting quantity
+            let newQuantity:Float? = Float(view.materialQuantityTextField.text ?? "0")
+            let oldQuantity = Float(itemToRemove.quantity)
             var updatedQuantity = oldQuantity - (newQuantity ?? 0)
             if updatedQuantity <= 0 { updatedQuantity = 0 }
 
-            //Create new item
+            // Create new item
             let type = materialsDictionary[selectedText]?.type
             let name = selectedText
             let info = materialsDictionary[selectedText]?.info
@@ -66,9 +67,6 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
         }
         // Get back to Materials Main VC
         self.navigationController?.popViewController(animated: true)
-
     }
 
-
-    
 }

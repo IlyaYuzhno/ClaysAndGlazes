@@ -9,7 +9,7 @@
 struct Material: Codable, Hashable {
     var type: String
     var name: String
-    var quantity: Int
+    var quantity: Float
     var unit: String
     var info: String
     var marked: Bool

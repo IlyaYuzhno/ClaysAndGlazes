@@ -37,7 +37,7 @@ class AddItemsToPurchaseListView: SupportingView {
     }()
 
     override func setupView() {
-        text = "Add zero item to purchase list?"
+        text = "В списке есть материалы с нулевым количеством.\n\nДобавить их в список покупок?"
         layer.cornerRadius = 20
         backgroundColor = .systemGray6
         translatesAutoresizingMaskIntoConstraints = false

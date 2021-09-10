@@ -182,7 +182,13 @@ protocol InformationViewViewModelType {
 protocol UsedMaterialViewViewModelType {
     var dropDownItemsArray: [String] { get }
     var materialsDictionary: [String : Material] { get }
-
     func fetchData(view: UsedMaterialView)
     func okButtonTapped(stack: UIStackView, self: UIViewController)
+}
+
+// MARK: - AddMaterialToPurchaseListManuallyView View ViewModel protocol
+protocol AddItemToPurchaseListManuallyViewViewModelType {
+    var dropDownItemsArray: [String] { get }
+    var selectedText: String { get set }
+    func loadData()
 }

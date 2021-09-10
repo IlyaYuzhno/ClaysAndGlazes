@@ -31,9 +31,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
 
     func loadData(completion: (@escaping () -> ()?)) {
         LocalStorageService.retrievePurchaseList { [weak self] purchaseList in
-            purchaseList?.forEach({ material in
-                self?.purchaseList.append(material.name)
-            })
+            self?.purchaseList = purchaseList ?? [""]
             completion()
         }
     }
@@ -57,24 +55,13 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
 
     func deleteItem(forIndexPath indexPath: IndexPath) {
 
-//        let name = sections[indexPath.section].items[indexPath.row]
-//        let info = sections[indexPath.section].info[indexPath.row]
-//        let quantity = sections[indexPath.section].quantity?[indexPath.row] ?? 0
-//        let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
-//        let type = sections[indexPath.section].name
-//        let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
-//
-//        let itemToRemove = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
-//
-//        // Remove deleted item and save edited datasource to UserDefaults
-//        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-//
-//        // Delete the row from the data source
-//        sections[indexPath.section].info.remove(at: indexPath.row)
-//        sections[indexPath.section].items.remove(at: indexPath.row)
-//        sections[indexPath.section].quantity?.remove(at: indexPath.row)
-//        sections[indexPath.section].marked?.remove(at: indexPath.row)
+        let itemToRemove = purchaseList[indexPath.row]
 
+        // Remove deleted item and save edited datasource to UserDefaults
+        LocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+
+        // Delete the row from the data source
+        purchaseList.remove(at: indexPath.row)
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {

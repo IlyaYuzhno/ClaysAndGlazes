@@ -26,11 +26,19 @@ class MaterialsListMainViewController: UIViewController {
         return view
     }()
 
-    private var addMaterialsView: MaterialsListTileView = {
-        let view = MaterialsListTileView()
-        view.setTitle("Добавить материал", for: .normal)
-        view.setTitleColor(.black, for: .normal)
-        view.addTarget(self, action: #selector(addMaterialButtonTapped), for: .touchUpInside)
+//    private var addMaterialsView: MaterialsListTileView = {
+//        let view = MaterialsListTileView()
+//        view.setTitle("Добавить материал", for: .normal)
+//        view.setTitleColor(.black, for: .normal)
+//        view.addTarget(self, action: #selector(addMaterialButtonTapped), for: .touchUpInside)
+//        return view
+//    }()
+
+    private var addMaterialsView: MainMaterialsListTileView = {
+        let view = MainMaterialsListTileView()
+        view.imageView.image = UIImage(named: "jarIcon.png")
+        view.titleLabel.text = "Добавить материал"
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -61,6 +69,7 @@ class MaterialsListMainViewController: UIViewController {
         stack.distribution = .fillEqually
         stack.backgroundColor = .clear
         stack.spacing = 20
+        stack.isUserInteractionEnabled = true
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -94,6 +103,9 @@ class MaterialsListMainViewController: UIViewController {
         basicView.addSubview(lowerStack)
 
         view.addSubview(basicView)
+
+        addRecognizers()
+
         setupConstraints()
     }
 
@@ -117,12 +129,13 @@ class MaterialsListMainViewController: UIViewController {
 
             upperStack.leadingAnchor.constraint(equalTo: basicView.leadingAnchor, constant: 20),
             upperStack.trailingAnchor.constraint(equalTo: basicView.trailingAnchor, constant: -20),
-            upperStack.heightAnchor.constraint(equalToConstant: 100),
+            upperStack.heightAnchor.constraint(equalToConstant: 150),
             upperStack.centerXAnchor.constraint(equalTo: basicView.centerXAnchor),
             upperStack.topAnchor.constraint(equalTo: basicView.topAnchor, constant: 20),
 
             lowerStack.leadingAnchor.constraint(equalTo: upperStack.leadingAnchor),
             lowerStack.trailingAnchor.constraint(equalTo: upperStack.trailingAnchor),
+            lowerStack.heightAnchor.constraint(equalTo: upperStack.heightAnchor),
             lowerStack.topAnchor.constraint(equalTo: upperStack.bottomAnchor, constant: 20)
         ])
 
@@ -130,7 +143,13 @@ class MaterialsListMainViewController: UIViewController {
         topConstraint.isActive = true
     }
 
-    @objc func addMaterialButtonTapped() {
+    private func addRecognizers() {
+        let addMaterialsViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addMaterialButtonTapped(sender:)))
+        addMaterialsView.addGestureRecognizer(addMaterialsViewTapGestureRecognizer)
+
+    }
+
+    @objc func addMaterialButtonTapped(sender: UITapGestureRecognizer) {
         // Go to add material VC
         let addMaterialViewController = AddMaterialViewController()
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)

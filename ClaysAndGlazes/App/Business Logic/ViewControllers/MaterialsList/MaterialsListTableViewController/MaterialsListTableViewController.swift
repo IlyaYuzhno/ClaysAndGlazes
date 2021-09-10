@@ -36,8 +36,8 @@ class MaterialsListTableViewController: UITableViewController {
     func loadData() {
         viewModel?.loadData { [weak self] in
             DispatchQueue.main.async {
-                self?.viewModel?.addItemsToPurchaseListIfZeroQuantity()
                 self?.tableView.reloadData()
+                self?.viewModel?.addItemsToPurchaseListIfZeroQuantity()
             }
         }
     }
@@ -181,6 +181,7 @@ extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
     }
+    
 }
 
 // MARK: - Show and hide AddToPurchaseListView if any material is 0

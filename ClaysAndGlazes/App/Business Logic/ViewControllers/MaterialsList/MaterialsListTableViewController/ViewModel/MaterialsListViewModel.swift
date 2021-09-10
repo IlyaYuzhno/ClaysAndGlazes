@@ -134,14 +134,14 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 extension MaterialsListViewModel: AddItemsToPurchaseListViewDelegate {
     func okButtonTapped() {
 
-// Check every section and every item if quantity == 0 and delete item from storage
+// Check every section and every item if quantity == 0, save item to purchaseList then delete item from main dataSource
         (0..<sections.count).forEach { j in
             (0..<sections[j].items.count).forEach { i in
                 if sections[j].quantity?[i] == 0 {
 
                     let zeroQuantityMaterial = Material(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
 
-                    LocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial)
+                    LocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial.name)
 
                     LocalStorageService.removeItemFromDataSource(itemToRemove: zeroQuantityMaterial)
 

@@ -76,8 +76,14 @@
 		5BAB806126E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */; };
 		5BAB806526E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */; };
 		5BAB806926EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */; };
-		5BAB806B26EB545700D32D06 /* jarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB806A26EB545700D32D06 /* jarIcon.png */; };
 		5BAB806D26EB549C00D32D06 /* MainMaterialsListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */; };
+		5BAB806F26EF399400D32D06 /* addMaterialIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB806E26EF399400D32D06 /* addMaterialIcon.png */; };
+		5BAB807226EF434F00D32D06 /* usedMaterialsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB807026EF434E00D32D06 /* usedMaterialsIcon.png */; };
+		5BAB807726EF4E8700D32D06 /* handsWithClayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB807626EF4E8700D32D06 /* handsWithClayIcon.png */; };
+		5BAB807D26EF648F00D32D06 /* purchaseListIcon200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB807C26EF648E00D32D06 /* purchaseListIcon200x200.png */; };
+		5BAB807F26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB807E26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift */; };
+		5BAB808126F2273500D32D06 /* checkedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808026F2273400D32D06 /* checkedBox.png */; };
+		5BAB808326F2319500D32D06 /* uncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808226F2319500D32D06 /* uncheckedBox.png */; };
 		5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */; };
 		5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */; };
 		5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */; };
@@ -85,7 +91,6 @@
 		5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */; };
 		5BDA426126DE61A1009523A1 /* plusButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA426026DE61A1009523A1 /* plusButton.png */; };
 		5BDA426426DF8233009523A1 /* DescribingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA426326DF8232009523A1 /* DescribingView.swift */; };
-		5BDA426826E0B829009523A1 /* okButton25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA426726E0B829009523A1 /* okButton25x25.png */; };
 		5BDA426A26E20FF9009523A1 /* UsedMaterialViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA426926E20FF9009523A1 /* UsedMaterialViewViewModel.swift */; };
 		5BDA426E26E23F60009523A1 /* PurchaseListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA426D26E23F60009523A1 /* PurchaseListTableViewController.swift */; };
 		5BDA427026E24017009523A1 /* PurchaseListTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA426F26E24017009523A1 /* PurchaseListTableViewViewModel.swift */; };
@@ -190,8 +195,14 @@
 		5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToPurchaseListIfZeroQuantityView.swift; sourceTree = "<group>"; };
 		5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyView.swift; sourceTree = "<group>"; };
 		5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyViewViewModel.swift; sourceTree = "<group>"; };
-		5BAB806A26EB545700D32D06 /* jarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jarIcon.png; sourceTree = "<group>"; };
 		5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMaterialsListTileView.swift; sourceTree = "<group>"; };
+		5BAB806E26EF399400D32D06 /* addMaterialIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addMaterialIcon.png; sourceTree = "<group>"; };
+		5BAB807026EF434E00D32D06 /* usedMaterialsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usedMaterialsIcon.png; sourceTree = "<group>"; };
+		5BAB807626EF4E8700D32D06 /* handsWithClayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handsWithClayIcon.png; sourceTree = "<group>"; };
+		5BAB807C26EF648E00D32D06 /* purchaseListIcon200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchaseListIcon200x200.png; sourceTree = "<group>"; };
+		5BAB807E26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListHeaderActionView.swift; sourceTree = "<group>"; };
+		5BAB808026F2273400D32D06 /* checkedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedBox.png; sourceTree = "<group>"; };
+		5BAB808226F2319500D32D06 /* uncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheckedBox.png; sourceTree = "<group>"; };
 		5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewController.swift; sourceTree = "<group>"; };
 		5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTileView.swift; sourceTree = "<group>"; };
 		5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialsViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +210,6 @@
 		5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialView.swift; sourceTree = "<group>"; };
 		5BDA426026DE61A1009523A1 /* plusButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusButton.png; sourceTree = "<group>"; };
 		5BDA426326DF8232009523A1 /* DescribingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribingView.swift; sourceTree = "<group>"; };
-		5BDA426726E0B829009523A1 /* okButton25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = okButton25x25.png; sourceTree = "<group>"; };
 		5BDA426926E20FF9009523A1 /* UsedMaterialViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialViewViewModel.swift; sourceTree = "<group>"; };
 		5BDA426D26E23F60009523A1 /* PurchaseListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListTableViewController.swift; sourceTree = "<group>"; };
 		5BDA426F26E24017009523A1 /* PurchaseListTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListTableViewViewModel.swift; sourceTree = "<group>"; };
@@ -403,10 +413,10 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BAB806626EA002600D32D06 /* AddItemToPurchaseList */,
-				5BDA427226E24F10009523A1 /* SupportingView.swift */,
+				5BAB808426F231EE00D32D06 /* PurchaseListViews */,
 				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
 				5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */,
+				5BDA427226E24F10009523A1 /* SupportingView.swift */,
 				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 				5B6E14DB26BD40210072FB7E /* InformationView */,
@@ -463,8 +473,12 @@
 		5B2C04F026539B7F00FB1CED /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				5BAB806A26EB545700D32D06 /* jarIcon.png */,
-				5BDA426726E0B829009523A1 /* okButton25x25.png */,
+				5BAB808026F2273400D32D06 /* checkedBox.png */,
+				5BAB808226F2319500D32D06 /* uncheckedBox.png */,
+				5BAB807C26EF648E00D32D06 /* purchaseListIcon200x200.png */,
+				5BAB807626EF4E8700D32D06 /* handsWithClayIcon.png */,
+				5BAB807026EF434E00D32D06 /* usedMaterialsIcon.png */,
+				5BAB806E26EF399400D32D06 /* addMaterialIcon.png */,
 				5BDA426026DE61A1009523A1 /* plusButton.png */,
 				5B2C04D4262B3A9400FB1CED /* glazeBrushGrayIcon.png */,
 				5B2C04CA262B3A7A00FB1CED /* clayGrayIcon.png */,
@@ -791,13 +805,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		5BAB806626EA002600D32D06 /* AddItemToPurchaseList */ = {
+		5BAB806626EA002600D32D06 /* AddItemToPurchaseListView */ = {
 			isa = PBXGroup;
 			children = (
 				5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */,
 				5BAB806726EB337600D32D06 /* AddItemToPurchaseListManuallyView */,
 			);
-			path = AddItemToPurchaseList;
+			path = AddItemToPurchaseListView;
 			sourceTree = "<group>";
 		};
 		5BAB806726EB337600D32D06 /* AddItemToPurchaseListManuallyView */ = {
@@ -807,6 +821,15 @@
 				5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */,
 			);
 			path = AddItemToPurchaseListManuallyView;
+			sourceTree = "<group>";
+		};
+		5BAB808426F231EE00D32D06 /* PurchaseListViews */ = {
+			isa = PBXGroup;
+			children = (
+				5BAB807E26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift */,
+				5BAB806626EA002600D32D06 /* AddItemToPurchaseListView */,
+			);
+			path = PurchaseListViews;
 			sourceTree = "<group>";
 		};
 		5BDA425426DCF334009523A1 /* MaterialsListMainViewController */ = {
@@ -983,15 +1006,19 @@
 				5BDA426126DE61A1009523A1 /* plusButton.png in Resources */,
 				5B2C04B0262709E200FB1CED /* GlazesInfo.json in Resources */,
 				5B060F40261233550090E250 /* LaunchScreen.storyboard in Resources */,
+				5BAB807D26EF648F00D32D06 /* purchaseListIcon200x200.png in Resources */,
 				5B2C04CB262B3A7B00FB1CED /* clayGrayIcon.png in Resources */,
-				5BDA426826E0B829009523A1 /* okButton25x25.png in Resources */,
+				5BAB807226EF434F00D32D06 /* usedMaterialsIcon.png in Resources */,
+				5BAB808326F2319500D32D06 /* uncheckedBox.png in Resources */,
 				5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */,
+				5BAB808126F2273500D32D06 /* checkedBox.png in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
 				5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */,
 				5B2C04F62654F67F00FB1CED /* GoogleService-Info.plist in Resources */,
-				5BAB806B26EB545700D32D06 /* jarIcon.png in Resources */,
 				5B060FDB2615FD520090E250 /* GlazesList.json in Resources */,
+				5BAB807726EF4E8700D32D06 /* handsWithClayIcon.png in Resources */,
 				5B2C052E2656920300FB1CED /* placeholder.png in Resources */,
+				5BAB806F26EF399400D32D06 /* addMaterialIcon.png in Resources */,
 				5B2C04C6262B3A6E00FB1CED /* clayIconBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1164,6 +1191,7 @@
 				5BDA427326E24F10009523A1 /* SupportingView.swift in Sources */,
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
+				5BAB807F26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift in Sources */,
 				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
 				5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */,
 				5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */,

@@ -19,7 +19,7 @@ class AddItemToPurchaseListManuallyView: SupportingView {
     weak var delegate: AddItemToPurchaseListManuallyViewDelegate?
 
     private lazy var segmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["Добавить из остатков", "Добавить вручную"])
+        let view = UISegmentedControl(items: ["Добавить из остатков", "Добавить новый"])
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(segmentedControlTapped), for: .valueChanged)

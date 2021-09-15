@@ -17,6 +17,7 @@ protocol PurchaseListTableViewViewModelType {
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
     func deleteItem(forIndexPath indexPath: IndexPath)
     func selectRow(atIndexPath indexPath: IndexPath)
+    func deleteSelectedItems(forIndexPaths set: [IndexPath])
 
 }
 
@@ -43,7 +44,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         messageLabel.textAlignment = .center
         messageLabel.sizeToFit()
         tableView.backgroundView = messageLabel
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = .none
     }
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType? {
@@ -61,7 +62,18 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         LocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
 
         // Delete the row from the data source
-        purchaseList.remove(at: indexPath.row)
+        purchaseList.removeAll(where: { $0 == itemToRemove })
+    }
+
+    func deleteSelectedItems(forIndexPaths set: [IndexPath]) {
+        var items: [String] = []
+        for indexPath in set {
+            let itemToRemove = purchaseList[indexPath.row]
+            items.append(itemToRemove)
+            LocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+        }
+        purchaseList = purchaseList.filter { !items.contains($0) }
+
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {

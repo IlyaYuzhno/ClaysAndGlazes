@@ -26,40 +26,37 @@ class MaterialsListMainViewController: UIViewController {
         return view
     }()
 
-//    private var addMaterialsView: MaterialsListTileView = {
-//        let view = MaterialsListTileView()
-//        view.setTitle("Добавить материал", for: .normal)
-//        view.setTitleColor(.black, for: .normal)
-//        view.addTarget(self, action: #selector(addMaterialButtonTapped), for: .touchUpInside)
-//        return view
-//    }()
-
     private var addMaterialsView: MainMaterialsListTileView = {
         let view = MainMaterialsListTileView()
-        view.imageView.image = UIImage(named: "jarIcon.png")
+        view.imageView.image = UIImage(named: "addMaterialIcon.png")
         view.titleLabel.text = "Добавить материал"
         view.isUserInteractionEnabled = true
         return view
     }()
 
-    private var materialsRemainView: MaterialsListTileView = {
-        let view = MaterialsListTileView()
-        view.setTitle("Остатки", for: .normal)
-        view.addTarget(self, action: #selector(materialsRemainButtonTapped), for: .touchUpInside)
+    private var materialsRemainView: MainMaterialsListTileView = {
+        let view = MainMaterialsListTileView()
+        view.imageView.image = UIImage(named: "handsWithClayIcon.png")
+        view.titleLabel.text = "Остатки"
+        view.isUserInteractionEnabled = true
+        view.imageTrailingOffset = -40
         return view
     }()
 
-    private var usedMaterialsView: MaterialsListTileView = {
-        let view = MaterialsListTileView()
-        view.setTitle("Использовано", for: .normal)
-        view.addTarget(self, action: #selector(usedMaterialsButtonTapped), for: .touchUpInside)
+    private var usedMaterialsView: MainMaterialsListTileView = {
+        let view = MainMaterialsListTileView()
+        view.imageView.image = UIImage(named: "usedMaterialsIcon.png")
+        view.titleLabel.text = "Использовано"
+        view.isUserInteractionEnabled = true
+        view.imageTrailingOffset = -75
         return view
     }()
 
-    private var purchaseListView: MaterialsListTileView = {
-        let view = MaterialsListTileView()
-        view.setTitle("Список\nпокупок", for: .normal)
-        view.addTarget(self, action: #selector(purchaseListButtonTapped), for: .touchUpInside)
+    private var purchaseListView: MainMaterialsListTileView = {
+        let view = MainMaterialsListTileView()
+        view.imageView.image = UIImage(named: "purchaseListIcon200x200.png")
+        view.titleLabel.text = "Список\nпокупок"
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -147,6 +144,15 @@ class MaterialsListMainViewController: UIViewController {
         let addMaterialsViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addMaterialButtonTapped(sender:)))
         addMaterialsView.addGestureRecognizer(addMaterialsViewTapGestureRecognizer)
 
+        let materialsRemainsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(materialsRemainButtonTapped(sender:)))
+        materialsRemainView.addGestureRecognizer(materialsRemainsTapGestureRecognizer)
+
+        let usedMaterialsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(usedMaterialsButtonTapped(sender:)))
+        usedMaterialsView.addGestureRecognizer(usedMaterialsTapGestureRecognizer)
+
+        let purchaseListTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(purchaseListButtonTapped(sender:)))
+        purchaseListView.addGestureRecognizer(purchaseListTapGestureRecognizer)
+
     }
 
     @objc func addMaterialButtonTapped(sender: UITapGestureRecognizer) {
@@ -155,19 +161,19 @@ class MaterialsListMainViewController: UIViewController {
         self.navigationController?.pushViewController(addMaterialViewController, animated: true)
     }
 
-    @objc func materialsRemainButtonTapped() {
+    @objc func materialsRemainButtonTapped(sender: UITapGestureRecognizer) {
         // Go to add materials table view VC
         let materialsListTableViewController = MaterialsListTableViewController()
         self.navigationController?.pushViewController(materialsListTableViewController, animated: true)
     }
 
-    @objc func usedMaterialsButtonTapped() {
+    @objc func usedMaterialsButtonTapped(sender: UITapGestureRecognizer) {
         // Go to used materials table view VC
         let usedMaterialViewController = UsedMaterialsViewController()
         self.navigationController?.pushViewController(usedMaterialViewController, animated: true)
     }
 
-    @objc func purchaseListButtonTapped() {
+    @objc func purchaseListButtonTapped(sender: UITapGestureRecognizer) {
         // Go to purchase list table view VC
         let purchaseListTableViewController = PurchaseListTableViewController()
         self.navigationController?.pushViewController(purchaseListTableViewController, animated: true)

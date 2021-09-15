@@ -11,6 +11,9 @@ class PurchaseListTableViewController: UITableViewController {
 
     var viewModel: PurchaseListTableViewViewModelType?
     var addManuallyView: AddItemToPurchaseListManuallyView?
+    var headerHeight = 0
+    var selectedIndexPaths: [IndexPath] = []
+    var isSelectAllSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,18 @@ class PurchaseListTableViewController: UITableViewController {
             }
         }
     }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let viewForHeader = PurchaseListHeaderActionView()
+        viewForHeader.delegate = self
+        return viewForHeader
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(headerHeight)
+    }
+
+
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,6 +81,14 @@ class PurchaseListTableViewController: UITableViewController {
         return "КУПЛЕНО"
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndexPaths.append(indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        selectedIndexPaths.removeAll(where: { $0 == indexPath })
+    }
+
     // MARK: - Setup TableView
     fileprivate func setupTableView() {
         tableView.estimatedRowHeight = 44.0
@@ -77,7 +100,11 @@ class PurchaseListTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "purchaseListTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(DefaultCell.self, forCellReuseIdentifier: "purchaseListCell")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+
+        let addItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        let selectItemsButton = UIBarButtonItem(image: UIImage(systemName: "checkmark.circle"), style: .plain, target: self, action: #selector(selectItemsTapped))
+
+        navigationItem.rightBarButtonItems = [addItemButton, selectItemsButton]
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,6 +126,25 @@ class PurchaseListTableViewController: UITableViewController {
         addItemView.delegate = self
     }
 
+    @objc func selectItemsTapped() {
+        isSelectAllSelected = !isSelectAllSelected
+        if isSelectAllSelected {
+            tableView.beginUpdates()
+            headerHeight = 60
+            tableView.endUpdates()
+            tableView.allowsMultipleSelectionDuringEditing = true
+            tableView.setEditing(true, animated: true)
+        } else {
+            tableView.beginUpdates()
+            headerHeight = 0
+            tableView.endUpdates()
+            tableView.allowsMultipleSelectionDuringEditing = false
+            tableView.setEditing(false, animated: true)
+
+        }
+
+    }
+
 }
 
 extension PurchaseListTableViewController: AddItemToPurchaseListManuallyViewDelegate {
@@ -113,4 +159,30 @@ extension PurchaseListTableViewController: AddItemToPurchaseListManuallyViewDele
         addManuallyView?.removeFromSuperview()
         Animation.removeBlur()
     }
+}
+
+
+extension PurchaseListTableViewController: PurchaseListHeaderActionViewDelegate {
+
+    func selectAll(isSelected: Bool) {
+        let totalRows = tableView.numberOfRows(inSection: 0)
+        for row in 0..<totalRows {
+            let indexPath = IndexPath(row: row, section: 0)
+
+            if isSelected {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                selectedIndexPaths.append(indexPath)
+            } else {
+                tableView.deselectRow(at: indexPath, animated: true)
+                selectedIndexPaths.removeAll()
+            }
+        }
+    }
+
+    func deleteSelected() {
+        guard let viewModel = viewModel else { return }
+        viewModel.deleteSelectedItems(forIndexPaths: selectedIndexPaths)
+        loadData()
+    }
+
 }

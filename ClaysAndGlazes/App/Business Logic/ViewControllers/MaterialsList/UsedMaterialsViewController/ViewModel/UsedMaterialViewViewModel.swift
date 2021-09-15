@@ -37,7 +37,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
         }
     }
 
-    func okButtonTapped(stack: UIStackView, self: UIViewController) {
+    func saveButtonTapped(stack: UIStackView, self: UIViewController) {
 
         (0..<stack.arrangedSubviews.count).forEach { i in
             let view = stack.arrangedSubviews[i] as! UsedMaterialView

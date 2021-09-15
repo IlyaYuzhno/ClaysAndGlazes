@@ -8,17 +8,24 @@
 import UIKit
 
 final class UILabelPadded: UILabel {
-     override func drawText(in rect: CGRect) {
-     let insets = UIEdgeInsets.init(top: -20, left: 0, bottom: 0, right: 0)
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets.init(top: -20, left: 0, bottom: 0, right: 0)
         super.drawText(in: rect.inset(by: insets))
     }
 }
 
 class MainMaterialsListTileView: UIView {
 
-     var titleLabel: UILabelPadded = {
+    var imageTrailingOffset: Int = 0 {
+        willSet {
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(newValue)).isActive = true
+        }
+    }
+
+    var titleLabel: UILabelPadded = {
         let label = UILabelPadded()
-        label.font = UIFont.systemFont(ofSize: 22, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.textColor = .systemGray
         label.textAlignment = .left
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,6 +35,7 @@ class MainMaterialsListTileView: UIView {
     var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
         return imageView
     }()
 
@@ -56,9 +64,11 @@ class MainMaterialsListTileView: UIView {
 
         imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+
+        imageView.clipsToBounds = true
     }
 
     override func layoutSubviews() {

@@ -69,7 +69,7 @@ class UsedMaterialsViewController: UIViewController {
         usedMaterialView.delegate = self
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentMode = .scaleAspectFit
-        addOkButton()
+        addSaveButton()
 
         stack.addArrangedSubview(usedMaterialView)
         scrollView.addSubview(stack)
@@ -117,19 +117,15 @@ class UsedMaterialsViewController: UIViewController {
     }
 
     // MARK: - Add OK button to navbar
-    private func addOkButton() {
-        let okButton = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        okButton.setImage(UIImage(named: "okButton25x25.png"), for: .normal)
-        okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okButton)
+    private func addSaveButton() {
+        let saveButton = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveButtonTapped)  )
+        navigationItem.rightBarButtonItems = [saveButton]
     }
 
-    @objc private func okButtonTapped() {
+    @objc private func saveButtonTapped() {
         guard let viewModel = viewModel else { return }
-        viewModel.okButtonTapped(stack: stack, self: self)
+        viewModel.saveButtonTapped(stack: stack, self: self)
     }
-
-
 }
 
 // MARK: - Show material quantity depending on dropDown index

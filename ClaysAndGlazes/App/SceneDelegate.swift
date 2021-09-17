@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         glazesRecipesController.tabBarItem = UITabBarItem(title: "Рецепты", image: UIImage(systemName: "list.number"), selectedImage: UIImage(systemName: "list.number"))
 
-        let controllers = [claysListController, glazesListController, glazesRecipesController, materialsListController]
+        let controllers = [claysListController, glazesListController, materialsListController]
 
         tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
 

@@ -12,6 +12,7 @@ class LocalStorageService {
 
     private static let key = "Materials"
     private static let purchaseListKey = "purchaseList"
+    private static let materialsStatisticListKey = "materialStatistic"
 
     // MARK: - Purchase List methods
     class func saveToPurchaseList(object: String) {
@@ -123,6 +124,50 @@ class LocalStorageService {
             }
         }
     }
+
+    // MARK: - Materials Statistic methods
+    class func saveToStatistic(object: MaterialStatisticItem) {
+        do {
+            let currentArray = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+
+            if currentArray == nil {
+                let initialArray: [MaterialStatisticItem] = []
+                do {
+                    try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            var newArray = currentArray ?? []
+            newArray.append(object)
+            try UserDefaults.standard.setObject(newArray, forKey: materialsStatisticListKey)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    class func retrieveMaterialStatisticList(completion: @escaping ([MaterialStatisticItem]?) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            do {
+                let statistic = try UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+                completion(statistic)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    class func retrieveStatisticItem(item: MaterialStatisticItem) -> MaterialStatisticItem {
+        var item = MaterialStatisticItem(name: "", quantity: 0, unit: "")
+
+        let itemsList = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+        if let idx = itemsList?.firstIndex(where: { $0 == item }) {
+            item = itemsList?[idx] ?? MaterialStatisticItem(name: "", quantity: 0, unit: "")
+        }
+        return item
+    }
+
+
 
     // MARK: - For future use
     class func genericSave<T: Codable>(object: T, key: String) {

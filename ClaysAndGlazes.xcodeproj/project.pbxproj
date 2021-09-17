@@ -30,6 +30,10 @@
 		5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06102C261DA2A80090E250 /* DefaultHeader.swift */; };
 		5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061031261DA9B00090E250 /* DefaultCell.swift */; };
 		5B061037261EF0B70090E250 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061036261EF0B70090E250 /* StartView.swift */; };
+		5B188EA426F4AC94002A2EBE /* MaterialsStatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B188EA326F4AC94002A2EBE /* MaterialsStatisticView.swift */; };
+		5B188EA626F4B799002A2EBE /* MaterialStatisticItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */; };
+		5B188EA926F4BA67002A2EBE /* StatisticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B188EA826F4BA67002A2EBE /* StatisticController.swift */; };
+		5B188EAC26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B188EAB26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift */; };
 		5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */; };
 		5B2C046A2625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04692625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift */; };
 		5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */; };
@@ -85,7 +89,6 @@
 		5BAB808126F2273500D32D06 /* checkedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808026F2273400D32D06 /* checkedBox.png */; };
 		5BAB808326F2319500D32D06 /* uncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808226F2319500D32D06 /* uncheckedBox.png */; };
 		5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */; };
-		5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */; };
 		5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */; };
 		5BDA425D26DE46F4009523A1 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */; };
 		5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */; };
@@ -149,6 +152,10 @@
 		5B06102C261DA2A80090E250 /* DefaultHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHeader.swift; sourceTree = "<group>"; };
 		5B061031261DA9B00090E250 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		5B061036261EF0B70090E250 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		5B188EA326F4AC94002A2EBE /* MaterialsStatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsStatisticView.swift; sourceTree = "<group>"; };
+		5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialStatisticItem.swift; sourceTree = "<group>"; };
+		5B188EA826F4BA67002A2EBE /* StatisticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticController.swift; sourceTree = "<group>"; };
+		5B188EAB26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewViewModel.swift; sourceTree = "<group>"; };
 		5B2C04632625D06700FB1CED /* ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGlazeTableViewController.swift; sourceTree = "<group>"; };
 		5B2C04692625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift"; sourceTree = "<group>"; };
 		5B2C04A22626E88D00FB1CED /* ClaysForGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysForGlazeTableViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +211,6 @@
 		5BAB808026F2273400D32D06 /* checkedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedBox.png; sourceTree = "<group>"; };
 		5BAB808226F2319500D32D06 /* uncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheckedBox.png; sourceTree = "<group>"; };
 		5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewController.swift; sourceTree = "<group>"; };
-		5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListTileView.swift; sourceTree = "<group>"; };
 		5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialsViewController.swift; sourceTree = "<group>"; };
 		5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDA425E26DE4A53009523A1 /* UsedMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialView.swift; sourceTree = "<group>"; };
@@ -349,6 +355,7 @@
 				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
 				5B2C04B72627164B00FB1CED /* GlazesResponse.swift */,
 				5B63CE5F26A6CA7A00AB81AC /* Material.swift */,
+				5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -413,11 +420,8 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BAB808426F231EE00D32D06 /* PurchaseListViews */,
-				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
-				5BDA425726DCF769009523A1 /* MaterialsListTileView.swift */,
+				5B188EA226F4AC47002A2EBE /* MaterialsViews */,
 				5BDA427226E24F10009523A1 /* SupportingView.swift */,
-				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 				5B6E14DB26BD40210072FB7E /* InformationView */,
 			);
@@ -439,6 +443,33 @@
 				5B06102C261DA2A80090E250 /* DefaultHeader.swift */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		5B188EA226F4AC47002A2EBE /* MaterialsViews */ = {
+			isa = PBXGroup;
+			children = (
+				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
+				5B188EA326F4AC94002A2EBE /* MaterialsStatisticView.swift */,
+				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
+				5BAB808426F231EE00D32D06 /* PurchaseListViews */,
+			);
+			path = MaterialsViews;
+			sourceTree = "<group>";
+		};
+		5B188EA726F4BA53002A2EBE /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				5B188EA826F4BA67002A2EBE /* StatisticController.swift */,
+			);
+			path = Statistic;
+			sourceTree = "<group>";
+		};
+		5B188EAA26F4C15D002A2EBE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B188EAB26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5B2C04612625D02B00FB1CED /* Clays */ = {
@@ -502,6 +533,7 @@
 		5B63CE5426A6942700AB81AC /* MaterialsList */ = {
 			isa = PBXGroup;
 			children = (
+				5B188EA726F4BA53002A2EBE /* Statistic */,
 				5BDA425426DCF334009523A1 /* MaterialsListMainViewController */,
 				5B6E149F26B17B180072FB7E /* MaterialsListTableViewController */,
 				5BDA426C26E23F0A009523A1 /* PurchaseListTableViewController */,
@@ -836,6 +868,7 @@
 			isa = PBXGroup;
 			children = (
 				5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */,
+				5B188EAA26F4C15D002A2EBE /* ViewModel */,
 			);
 			path = MaterialsListMainViewController;
 			sourceTree = "<group>";
@@ -1187,7 +1220,9 @@
 				5B63CE5B26A6AB2A00AB81AC /* AddMaterialViewController.swift in Sources */,
 				5B060F76261233AF0090E250 /* ClaysTemperatureTableViewController.swift in Sources */,
 				5B2C04A32626E88D00FB1CED /* ClaysForGlazeTableViewController.swift in Sources */,
+				5B188EA926F4BA67002A2EBE /* StatisticController.swift in Sources */,
 				5BAB806926EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift in Sources */,
+				5B188EA626F4B799002A2EBE /* MaterialStatisticItem.swift in Sources */,
 				5BDA427326E24F10009523A1 /* SupportingView.swift in Sources */,
 				5B2C04A82626ED9D00FB1CED /* GlazeTemperatureTableViewController.swift in Sources */,
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
@@ -1199,13 +1234,13 @@
 				5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */,
 				5B63CE6026A6CA7A00AB81AC /* Material.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
-				5BDA425826DCF769009523A1 /* MaterialsListTileView.swift in Sources */,
 				5B63CE6326A6CE9300AB81AC /* LocalStorageService.swift in Sources */,
 				5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
 				5B060FFA26174D340090E250 /* InformationView.swift in Sources */,
 				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesSearchResponse.swift in Sources */,
+				5B188EA426F4AC94002A2EBE /* MaterialsStatisticView.swift in Sources */,
 				5BDA426A26E20FF9009523A1 /* UsedMaterialViewViewModel.swift in Sources */,
 				5B6E14A326B18DCE0072FB7E /* EditMaterialViewModel.swift in Sources */,
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
@@ -1213,6 +1248,7 @@
 				5B63CE5626A694D600AB81AC /* MaterialsListTableViewController.swift in Sources */,
 				5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */,
 				5B63CE6626A6DB7200AB81AC /* Extension + UserDefaults.swift in Sources */,
+				5B188EAC26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

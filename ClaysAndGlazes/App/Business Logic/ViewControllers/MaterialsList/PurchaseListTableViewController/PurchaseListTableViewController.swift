@@ -34,14 +34,13 @@ class PurchaseListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let viewForHeader = PurchaseListHeaderActionView()
         viewForHeader.delegate = self
+        viewForHeader.insertSubview(getGradientBackgroundView(), at: 0)
         return viewForHeader
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(headerHeight)
     }
-
-
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,12 +136,23 @@ class PurchaseListTableViewController: UITableViewController {
         } else {
             tableView.beginUpdates()
             headerHeight = 0
+            tableView.tableHeaderView = nil
             tableView.endUpdates()
             tableView.allowsMultipleSelectionDuringEditing = false
             tableView.setEditing(false, animated: true)
-
         }
+    }
 
+    private func getGradientBackgroundView() -> UIView {
+        let gradientBackgroundView = UIView()
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame.size = CGSize(width: tableView.frame.size.width, height: 58)
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.colors = [UIColor.SectionColor.cgColor, UIColor.BackgroundColor1.cgColor, UIColor.BackgroundColor2.cgColor]
+        gradientBackgroundView.layer.addSublayer(gradientLayer)
+        return gradientBackgroundView
     }
 
 }

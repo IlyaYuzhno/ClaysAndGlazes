@@ -11,10 +11,23 @@ class MaterialsListMainViewController: UIViewController {
 
     var topConstraint: NSLayoutConstraint!
     var startingConstant: CGFloat  = 0.0
+    var viewModel: MaterialsListMainViewViewModelType?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = MaterialsListMainViewViewModel()
         setupView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        // Load statistic
+        viewModel?.loadStatisticData { [weak self] statistic in
+            DispatchQueue.main.async {
+                self?.materialStatisticView.infoLabel.text = statistic[0].name
+            }
+        }
     }
 
     private var basicView: UIView = {
@@ -81,6 +94,11 @@ class MaterialsListMainViewController: UIViewController {
         return stack
     }()
 
+    private let materialStatisticView: MaterialsStatisticView = {
+        let view = MaterialsStatisticView()
+        return view
+    }()
+
     func setupView() {
         view.backgroundColor = .SectionColor
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
@@ -98,12 +116,14 @@ class MaterialsListMainViewController: UIViewController {
 
         basicView.addSubview(upperStack)
         basicView.addSubview(lowerStack)
+        basicView.addSubview(materialStatisticView)
 
-        view.addSubview(basicView)
+        view.addSubviews(basicView)
 
         addRecognizers()
 
         setupConstraints()
+
     }
 
     func setupConstraints() {
@@ -133,7 +153,12 @@ class MaterialsListMainViewController: UIViewController {
             lowerStack.leadingAnchor.constraint(equalTo: upperStack.leadingAnchor),
             lowerStack.trailingAnchor.constraint(equalTo: upperStack.trailingAnchor),
             lowerStack.heightAnchor.constraint(equalTo: upperStack.heightAnchor),
-            lowerStack.topAnchor.constraint(equalTo: upperStack.bottomAnchor, constant: 20)
+            lowerStack.topAnchor.constraint(equalTo: upperStack.bottomAnchor, constant: 20),
+
+            materialStatisticView.topAnchor.constraint(equalTo: lowerStack.bottomAnchor, constant: 10),
+            materialStatisticView.leadingAnchor.constraint(equalTo: basicView.leadingAnchor, constant: 10),
+            materialStatisticView.trailingAnchor.constraint(equalTo: basicView.trailingAnchor, constant: -10),
+            materialStatisticView.heightAnchor.constraint(equalToConstant: 200)
         ])
 
         topConstraint = basicView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50)

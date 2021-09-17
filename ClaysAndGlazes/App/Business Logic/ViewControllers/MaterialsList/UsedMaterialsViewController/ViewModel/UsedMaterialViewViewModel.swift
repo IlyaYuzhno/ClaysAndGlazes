@@ -11,6 +11,11 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
 
     var dropDownItemsArray: [String] = []
     var materialsDictionary: [String : Material] = [:]
+    var statisticController: StatisticControllerType?
+
+    init() {
+        statisticController = StatisticController()
+    }
 
     func fetchData(view: UsedMaterialView) {
         LocalStorageService.retrieve() { [weak self] materials, _ in
@@ -64,9 +69,19 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
 
             // Save new item to storage
             LocalStorageService.save(object: updatedItem)
+
+            saveToStatistic(name: name, quantity: updatedQuantity, unit: unit ?? "")
         }
         // Get back to Materials Main VC
         self.navigationController?.popViewController(animated: true)
+    }
+
+    // Save updated item info to statistic
+    private func saveToStatistic(name: String, quantity: Float, unit: String) {
+
+        let statisticItem = MaterialStatisticItem(name: name, quantity: quantity, unit: unit)
+
+        statisticController?.saveToStatistic(itemToSave: statisticItem)
     }
 
 }

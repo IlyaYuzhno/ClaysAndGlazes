@@ -105,7 +105,6 @@ class AddMaterialViewController: UIViewController {
         title = "ДОБАВИТЬ МАТЕРИАЛ"
         viewModel = AddMaterialViewControllerViewModel()
         setupViews()
-        //subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillHide))
     }
 
     override func viewWillLayoutSubviews() {

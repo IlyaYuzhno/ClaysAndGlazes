@@ -192,3 +192,23 @@ protocol AddItemToPurchaseListManuallyViewViewModelType {
     var selectedText: String { get set }
     func loadData()
 }
+
+// MARK: - Materials Statistic protocols
+protocol StatisticControllerType: AnyObject {
+    var statisticList: [MaterialStatisticItem] { get set }
+    func saveToStatistic(itemToSave: MaterialStatisticItem)
+    func loadStatisticData(completion: (@escaping () -> ()?))
+}
+
+protocol MaterialsListMainViewViewModelType: AnyObject {
+    func loadStatisticData(completion: (@escaping () -> ()?))
+    func numberOfRowsInSection(forSection section: Int, tableView: UITableView) -> Int
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> StatisticTableViewCellViewModelType?
+    func viewForHeaderInSection(tableView: UITableView) -> UIView
+}
+
+protocol StatisticTableViewCellViewModelType: AnyObject {
+    var title: String { get }
+    var quantity: String { get }
+    var unit: String { get }
+}

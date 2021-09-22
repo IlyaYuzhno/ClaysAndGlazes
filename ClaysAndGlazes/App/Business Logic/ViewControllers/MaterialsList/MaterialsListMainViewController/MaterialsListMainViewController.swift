@@ -9,8 +9,8 @@ import UIKit
 
 class MaterialsListMainViewController: UIViewController {
 
-    var topConstraint: NSLayoutConstraint!
-    var startingConstant: CGFloat  = 0.0
+    private var topConstraint: NSLayoutConstraint!
+    private var startingConstant: CGFloat  = 0.0
     var viewModel: MaterialsListMainViewViewModelType?
 
     override func viewDidLoad() {
@@ -20,14 +20,8 @@ class MaterialsListMainViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-        // Load statistic
-        viewModel?.loadStatisticData { [weak self] statistic in
-            DispatchQueue.main.async {
-                self?.materialStatisticView.infoLabel.text = statistic[0].name
-            }
-        }
+        super.viewWillAppear(animated)
+        loadData()
     }
 
     private var basicView: UIView = {
@@ -96,10 +90,11 @@ class MaterialsListMainViewController: UIViewController {
 
     private let materialStatisticView: MaterialsStatisticView = {
         let view = MaterialsStatisticView()
+
         return view
     }()
 
-    func setupView() {
+    private func setupView() {
         view.backgroundColor = .SectionColor
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
         navigationItem.title = "МОИ МАТЕРИАЛЫ"
@@ -108,7 +103,7 @@ class MaterialsListMainViewController: UIViewController {
         setupViews()
     }
 
-    func setupViews() {
+    private func setupViews() {
         upperStack.addArrangedSubview(addMaterialsView)
         upperStack.addArrangedSubview(materialsRemainView)
         lowerStack.addArrangedSubview(usedMaterialsView)
@@ -124,9 +119,12 @@ class MaterialsListMainViewController: UIViewController {
 
         setupConstraints()
 
+        materialStatisticView.topFiveTableView.delegate = self
+        materialStatisticView.topFiveTableView.dataSource = self
+        materialStatisticView.topFiveTableView.register(StatisticTableViewCell.self, forCellReuseIdentifier: "statisticCell")
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint .activate([
             addMaterialsView.heightAnchor.constraint(equalToConstant: 100),
             addMaterialsView.widthAnchor.constraint(equalToConstant: 100),
@@ -158,7 +156,7 @@ class MaterialsListMainViewController: UIViewController {
             materialStatisticView.topAnchor.constraint(equalTo: lowerStack.bottomAnchor, constant: 10),
             materialStatisticView.leadingAnchor.constraint(equalTo: basicView.leadingAnchor, constant: 10),
             materialStatisticView.trailingAnchor.constraint(equalTo: basicView.trailingAnchor, constant: -10),
-            materialStatisticView.heightAnchor.constraint(equalToConstant: 200)
+            materialStatisticView.heightAnchor.constraint(equalToConstant: 250)
         ])
 
         topConstraint = basicView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50)
@@ -204,6 +202,15 @@ class MaterialsListMainViewController: UIViewController {
         self.navigationController?.pushViewController(purchaseListTableViewController, animated: true)
     }
 
+    private func loadData() {
+        // Load statistic
+        viewModel?.loadStatisticData { [weak self] in
+            DispatchQueue.main.async {
+                self?.materialStatisticView.topFiveTableView.reloadData()
+            }
+        }
+    }
+
     // MARK: - Scroll basic view
     @objc func scrollBasicView(sender: UIPanGestureRecognizer) {
 
@@ -222,5 +229,38 @@ class MaterialsListMainViewController: UIViewController {
         }
     }
 
+
+}
+
+// MARK: - Statistic TableView Delegate
+extension MaterialsListMainViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.numberOfRowsInSection(forSection: section, tableView: materialStatisticView.topFiveTableView) ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "statisticCell", for: indexPath) as? StatisticTableViewCell
+
+        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell() }
+
+        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+
+        tableViewCell.viewModel = cellViewModel
+
+        return tableViewCell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return viewModel?.viewForHeaderInSection(tableView: tableView)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 35
+    }
 
 }

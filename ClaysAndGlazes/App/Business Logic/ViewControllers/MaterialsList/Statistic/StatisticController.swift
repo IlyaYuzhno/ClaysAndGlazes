@@ -7,28 +7,44 @@
 
 import Foundation
 
-protocol StatisticControllerType: AnyObject {
-    func saveToStatistic(itemToSave: MaterialStatisticItem)
-
-}
-
 class StatisticController: StatisticControllerType {
-    var items: [MaterialStatisticItem] = []
+
+    var statisticList: [MaterialStatisticItem] = []
 
     func saveToStatistic(itemToSave: MaterialStatisticItem) {
-
         let itemToEdit = LocalStorageService.retrieveStatisticItem(item: itemToSave)
+
+        LocalStorageService.removeStatisticItem(itemToRemove: itemToEdit)
 
         let newQuantity = itemToEdit.quantity + itemToSave.quantity
 
         let newItem = MaterialStatisticItem(name: itemToSave.name, quantity: newQuantity, unit: itemToSave.unit)
 
         LocalStorageService.saveToStatistic(object: newItem)
-        
     }
 
+    func loadStatisticData(completion: (@escaping () -> ()?)) {
+        LocalStorageService.retrieveMaterialStatisticList { [weak self] list in
+            guard let list = list else { return }
+            self?.statisticList = list
+            self?.statisticList = self?.getStatisticTopFiveList() ?? []
+            completion()
+        }
+    }
 
+    private func getStatisticTopFiveList() -> [MaterialStatisticItem] {
+        statisticList = statisticList.sorted(by: { $0.quantity > $1.quantity })
+        
+        var topList: [MaterialStatisticItem] = []
 
-
-
+        if statisticList.count > 0 {
+            (0..<statisticList.count).forEach { i in
+                let item = statisticList[i]
+                if item.name != "" && i < 5 {
+                    topList.append(item)
+                } else { return }
+            }
+        }
+        return topList
+    }
 }

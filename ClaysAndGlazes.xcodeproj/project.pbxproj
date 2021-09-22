@@ -88,6 +88,8 @@
 		5BAB807F26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB807E26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift */; };
 		5BAB808126F2273500D32D06 /* checkedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808026F2273400D32D06 /* checkedBox.png */; };
 		5BAB808326F2319500D32D06 /* uncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB808226F2319500D32D06 /* uncheckedBox.png */; };
+		5BBD354A26F9FD3F000B7DF6 /* StatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD354926F9FD3F000B7DF6 /* StatisticTableViewCell.swift */; };
+		5BBD354C26F9FDA1000B7DF6 /* StatisticTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD354B26F9FDA1000B7DF6 /* StatisticTableViewCellViewModel.swift */; };
 		5BDA425626DCF356009523A1 /* MaterialsListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */; };
 		5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */; };
 		5BDA425D26DE46F4009523A1 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */; };
@@ -210,6 +212,8 @@
 		5BAB807E26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListHeaderActionView.swift; sourceTree = "<group>"; };
 		5BAB808026F2273400D32D06 /* checkedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedBox.png; sourceTree = "<group>"; };
 		5BAB808226F2319500D32D06 /* uncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheckedBox.png; sourceTree = "<group>"; };
+		5BBD354926F9FD3F000B7DF6 /* StatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCell.swift; sourceTree = "<group>"; };
+		5BBD354B26F9FDA1000B7DF6 /* StatisticTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		5BDA425526DCF356009523A1 /* MaterialsListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListMainViewController.swift; sourceTree = "<group>"; };
 		5BDA425A26DE423B009523A1 /* UsedMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedMaterialsViewController.swift; sourceTree = "<group>"; };
 		5BDA425C26DE46F4009523A1 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +397,7 @@
 		5B060F962614842A0090E250 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5BBD354826F9FD15000B7DF6 /* StatisticCell */,
 				5B6E14BF26B3EC130072FB7E /* ClayCell */,
 				5B6E14AF26B2CDE00072FB7E /* DefaultCell */,
 				5B6E14B226B2CE420072FB7E /* MaterialCell */,
@@ -422,6 +427,7 @@
 			children = (
 				5B188EA226F4AC47002A2EBE /* MaterialsViews */,
 				5BDA427226E24F10009523A1 /* SupportingView.swift */,
+				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 				5B6E14DB26BD40210072FB7E /* InformationView */,
 			);
@@ -448,8 +454,7 @@
 		5B188EA226F4AC47002A2EBE /* MaterialsViews */ = {
 			isa = PBXGroup;
 			children = (
-				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
-				5B188EA326F4AC94002A2EBE /* MaterialsStatisticView.swift */,
+				5B188EB226F9C847002A2EBE /* MaterialStatisticView */,
 				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
 				5BAB808426F231EE00D32D06 /* PurchaseListViews */,
 			);
@@ -470,6 +475,14 @@
 				5B188EAB26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B188EB226F9C847002A2EBE /* MaterialStatisticView */ = {
+			isa = PBXGroup;
+			children = (
+				5B188EA326F4AC94002A2EBE /* MaterialsStatisticView.swift */,
+			);
+			path = MaterialStatisticView;
 			sourceTree = "<group>";
 		};
 		5B2C04612625D02B00FB1CED /* Clays */ = {
@@ -864,6 +877,15 @@
 			path = PurchaseListViews;
 			sourceTree = "<group>";
 		};
+		5BBD354826F9FD15000B7DF6 /* StatisticCell */ = {
+			isa = PBXGroup;
+			children = (
+				5BBD354926F9FD3F000B7DF6 /* StatisticTableViewCell.swift */,
+				5BBD354B26F9FDA1000B7DF6 /* StatisticTableViewCellViewModel.swift */,
+			);
+			path = StatisticCell;
+			sourceTree = "<group>";
+		};
 		5BDA425426DCF334009523A1 /* MaterialsListMainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,6 +1202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBD354C26F9FDA1000B7DF6 /* StatisticTableViewCellViewModel.swift in Sources */,
 				5B060FA12614A3C60090E250 /* CollapsibleTableViewHeader.swift in Sources */,
 				5B2C046A2625D29C00FB1CED /* Extensions + UIColor + UITableViewController + UIViewController + UIView + UIImageView + Array.swift in Sources */,
 				5BDA425B26DE423B009523A1 /* UsedMaterialsViewController.swift in Sources */,
@@ -1228,6 +1251,7 @@
 				5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */,
 				5BAB807F26F1E1DA00D32D06 /* PurchaseListHeaderActionView.swift in Sources */,
 				5B63CE5326A5A91C00AB81AC /* Network Service.swift in Sources */,
+				5BBD354A26F9FD3F000B7DF6 /* StatisticTableViewCell.swift in Sources */,
 				5BDA425F26DE4A53009523A1 /* UsedMaterialView.swift in Sources */,
 				5B6E14CE26B966A90072FB7E /* GlazeTemperatureTableViewViewModel.swift in Sources */,
 				5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */,

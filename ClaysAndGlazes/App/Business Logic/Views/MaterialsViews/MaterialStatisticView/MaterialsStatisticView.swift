@@ -9,7 +9,7 @@ import UIKit
 
 class MaterialsStatisticView: UIView {
 
-    private var label: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Статистика"
@@ -23,7 +23,6 @@ class MaterialsStatisticView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.cornerRadius = 20
-        
         return view
     }()
 
@@ -32,10 +31,23 @@ class MaterialsStatisticView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Здесь пока что пусто"
         label.backgroundColor = .clear
-        label.textAlignment = .left
+        label.textAlignment = .natural
+        label.contentMode = .scaleAspectFit
+        label.numberOfLines = 0
         return label
     }()
 
+    let topFiveTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
+        tableView.allowsSelection = false
+        tableView.allowsMultipleSelection = false
+        return tableView
+    }()
+
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -47,28 +59,23 @@ class MaterialsStatisticView: UIView {
 
     func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        mainView.addSubview(infoLabel)
-        addSubviews(label, mainView)
+        mainView.addSubview(topFiveTableView)
+        addSubviews(titleLabel, mainView)
 
-        infoLabel.topAnchor.constraint(equalTo: mainView.topAnchor).isActive = true
-        infoLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor).isActive = true
-        infoLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor).isActive = true
-        infoLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor).isActive = true
+        topFiveTableView.topAnchor.constraint(equalTo: mainView.topAnchor).isActive = true
+        topFiveTableView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20).isActive = true
+        topFiveTableView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20).isActive = true
+        topFiveTableView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor).isActive = true
 
-        label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
-        mainView.topAnchor.constraint(equalTo: label.bottomAnchor).isActive = true
+        mainView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         mainView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         mainView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         mainView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
     }
-
-
-
-    
-
 }

@@ -34,7 +34,6 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
 
     private func showSupportingView(self: UIViewController) {
         let supportingView = SupportingView(frame: CGRect(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY, width: 200, height: 200), text: "Добавлено")
-        //supportingView.backgroundColor = .systemGray2
 
         self.view.addSubview(supportingView)
 

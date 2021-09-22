@@ -89,7 +89,7 @@ class LocalStorageService {
         }
     }
 
-    // Save array of Material after editing
+    // Remove item from storage
     class func removeItemFromDataSource(itemToRemove: Material) {
         do {
             let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
@@ -140,7 +140,9 @@ class LocalStorageService {
             }
             var newArray = currentArray ?? []
             newArray.append(object)
+
             try UserDefaults.standard.setObject(newArray, forKey: materialsStatisticListKey)
+
         } catch {
             print(error.localizedDescription)
         }
@@ -149,22 +151,47 @@ class LocalStorageService {
     class func retrieveMaterialStatisticList(completion: @escaping ([MaterialStatisticItem]?) -> Void) {
         DispatchQueue.global(qos: .default).async {
             do {
-                let statistic = try UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+                let statistic = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+
+                if statistic == nil {
+                    let initialArray: [MaterialStatisticItem] = []
+                    do {
+                        try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
                 completion(statistic)
-            } catch {
-                print(error.localizedDescription)
             }
         }
     }
 
     class func retrieveStatisticItem(item: MaterialStatisticItem) -> MaterialStatisticItem {
-        var item = MaterialStatisticItem(name: "", quantity: 0, unit: "")
+        var itemToReturn = MaterialStatisticItem(name: "", quantity: 0, unit: "")
 
-        let itemsList = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
-        if let idx = itemsList?.firstIndex(where: { $0 == item }) {
-            item = itemsList?[idx] ?? MaterialStatisticItem(name: "", quantity: 0, unit: "")
+        guard let itemsList = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self) else { return itemToReturn }
+
+        if let index = itemsList.firstIndex(where: { $0.name == item.name }) {
+            itemToReturn = itemsList[index]
         }
-        return item
+        return itemToReturn
+    }
+
+    // Remove statistic item from storage
+    class func removeStatisticItem(itemToRemove: MaterialStatisticItem) {
+        do {
+            let statisticList = try UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
+            var statisticListToEdit = statisticList
+
+            if let index = statisticListToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.unit == itemToRemove.unit}) {
+
+                statisticListToEdit.remove(at: index)
+            }
+            try UserDefaults.standard.setObject(statisticListToEdit, forKey: materialsStatisticListKey)
+        } catch {
+            print(error.localizedDescription)
+        }
+
     }
 
 

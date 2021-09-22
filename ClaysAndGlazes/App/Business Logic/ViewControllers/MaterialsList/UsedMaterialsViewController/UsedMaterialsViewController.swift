@@ -116,7 +116,7 @@ class UsedMaterialsViewController: UIViewController {
         newItem.heightAnchor.constraint(equalTo: usedMaterialView.heightAnchor).isActive = true
     }
 
-    // MARK: - Add OK button to navbar
+    // MARK: - Add Save button to navbar
     private func addSaveButton() {
         let saveButton = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveButtonTapped)  )
         navigationItem.rightBarButtonItems = [saveButton]
@@ -125,6 +125,11 @@ class UsedMaterialsViewController: UIViewController {
     @objc private func saveButtonTapped() {
         guard let viewModel = viewModel else { return }
         viewModel.saveButtonTapped(stack: stack, self: self)
+        
+        // Get back to Materials List VC
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 

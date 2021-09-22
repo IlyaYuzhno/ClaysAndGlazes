@@ -6,57 +6,67 @@
 //
 
 import Foundation
-
-
-protocol MaterialsListMainViewViewModelType: AnyObject {
-    var statisticList: [MaterialStatisticItem] { get }
-    
-    func loadStatisticData(completion: @escaping ([MaterialStatisticItem])-> Void)
-}
-
+import UIKit
 
 class MaterialsListMainViewViewModel: MaterialsListMainViewViewModelType {
 
-    var statisticList = [
-        MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-        MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-        MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-        MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-        MaterialStatisticItem(name: "", quantity: 0, unit: "")
-    ]
+    //MARK: - Materials Statistic methods
+    var statisticController: StatisticControllerType?
 
-    func loadStatisticData(completion: @escaping ([MaterialStatisticItem])-> Void) {
-        LocalStorageService.retrieveMaterialStatisticList { [weak self] list in
-            guard let list = list else { return }
+    init() {
+        statisticController = StatisticController()
+    }
 
-            (0..<list.count).forEach { i in
-                let item = list[i]
-                self?.statisticList[i] = item
-            }
+    func loadStatisticData(completion: (@escaping () -> ()?)) {
+        statisticController?.loadStatisticData(completion: {
+            completion()
+        })
+    }
 
-            let topFive = self?.getStatisticTopFiveList()
-            completion(topFive ?? [])
+    // MARK: - Statistic TableView methods
+    func numberOfRowsInSection(forSection section: Int, tableView: UITableView) -> Int {
+        guard let statisticController = statisticController else {
+            return 0
+        }
+
+        if  statisticController.statisticList.count > 0 {
+            tableView.backgroundView = nil
+            return statisticController.statisticList.count
+        } else {
+            showEmptyTablePlaceholder(tableView: tableView)
+            return 0
         }
     }
 
-    private func getStatisticTopFiveList() -> [MaterialStatisticItem] {
-        statisticList = statisticList.sorted(by: { $0.quantity > $1.quantity })
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> StatisticTableViewCellViewModelType? {
+        guard let item = statisticController?.statisticList[indexPath.row] else { return nil }
 
-        var topList = [
-            MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-            MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-            MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-            MaterialStatisticItem(name: "", quantity: 0, unit: ""),
-            MaterialStatisticItem(name: "", quantity: 0, unit: "")]
-
-        (0...4).forEach { i in
-            let item = statisticList[i]
-            topList[i] = item
-        }
-        return topList
+        return StatisticTableViewCellViewModel(item: item)
     }
 
+    func viewForHeaderInSection(tableView: UITableView) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
 
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 20, weight: .ultraLight)
 
-    
+        label.text = "Toп-5 материалов:"
+        view.addSubview(label)
+
+        return view
+    }
+
+    private func showEmptyTablePlaceholder(tableView: UITableView) {
+        let messageLabel = UILabel(frame: CGRect(x: 20.0, y: 0, width: tableView.bounds.size.width - 40.0, height: tableView.bounds.size.height))
+        messageLabel.text = "Список пока что пуст"
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.sizeToFit()
+        tableView.backgroundView = messageLabel
+    }
+
 }

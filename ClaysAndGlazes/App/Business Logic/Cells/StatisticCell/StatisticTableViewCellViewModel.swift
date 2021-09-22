@@ -10,9 +10,10 @@ import Foundation
 class StatisticTableViewCellViewModel: StatisticTableViewCellViewModelType {
 
     private var item: MaterialStatisticItem
+    private var indexPath: IndexPath
 
     var title: String {
-        return item.name
+        return "\(indexPath.row + 1)." + " " + item.name
     }
 
     var quantity: String {
@@ -23,8 +24,9 @@ class StatisticTableViewCellViewModel: StatisticTableViewCellViewModelType {
         return item.unit
     }
 
-    init(item: MaterialStatisticItem) {
+    init(item: MaterialStatisticItem, indexPath: IndexPath) {
         self.item = item
+        self.indexPath = indexPath
     }
 
 }

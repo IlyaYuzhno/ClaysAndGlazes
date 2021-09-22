@@ -41,7 +41,7 @@ class MaterialsListMainViewViewModel: MaterialsListMainViewViewModelType {
     func cellViewModel(forIndexPath indexPath: IndexPath) -> StatisticTableViewCellViewModelType? {
         guard let item = statisticController?.statisticList[indexPath.row] else { return nil }
 
-        return StatisticTableViewCellViewModel(item: item)
+        return StatisticTableViewCellViewModel(item: item, indexPath: indexPath)
     }
 
     func viewForHeaderInSection(tableView: UITableView) -> UIView {

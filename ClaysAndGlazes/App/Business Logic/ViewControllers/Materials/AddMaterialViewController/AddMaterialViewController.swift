@@ -10,8 +10,6 @@ import iOSDropDown
 
 class AddMaterialViewController: UIViewController {
 
-    let pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Глазурная химия", "Разное"]
-    let unitsDropDownListOptions = ["кг", "л", "шт", "oz."]
     private var unit = ""
     private var scrollView = UIScrollView()
 
@@ -51,6 +49,7 @@ class AddMaterialViewController: UIViewController {
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
         textField.returnKeyType = .done
+        textField.keyboardType = .numbersAndPunctuation
         textField.tag = 100
         return textField
     }()
@@ -58,6 +57,7 @@ class AddMaterialViewController: UIViewController {
     var unitsDropDownList: DropDown = {
         let dropDown = DropDown()
         dropDown.backgroundColor = .systemBackground
+        dropDown.rowBackgroundColor = .systemBackground
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.layer.cornerRadius = 10
         dropDown.layer.borderWidth = 2
@@ -121,13 +121,15 @@ class AddMaterialViewController: UIViewController {
     }
 
     func setupViews() {
+        guard let viewModel = viewModel else { return }
+
         view.backgroundColor = .BackgroundColor1
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubviews(itemPicker, itemNameTextField, itemQuantityTextField, unitsDropDownList, itemInfoTextField, addButton)
         view.addSubview(scrollView)
         itemInfoTextField.delegate = self
         itemQuantityTextField.delegate = self
-        unitsDropDownList.optionArray = unitsDropDownListOptions
+        unitsDropDownList.optionArray = viewModel.unitsDropDownListOptions
         selectUnit()
         setPicker()
         setupConstraints()
@@ -179,24 +181,29 @@ class AddMaterialViewController: UIViewController {
         guard let viewModel = viewModel else { return }
 
         // Get item parameters
-        let itemType = pickerItems[itemPicker.selectedRow(inComponent: 0)]
+        let itemType = viewModel.pickerItems[itemPicker.selectedRow(inComponent: 0)]
         let itemName = itemNameTextField.text ?? ""
         let itemQuantity = itemQuantityTextField.text ?? ""
         let itemInfo = itemInfoTextField.text ?? ""
 
         // Add new material to storage
-        if itemName != "" && itemQuantity != "" {
+        if itemName.count > 0 && itemQuantity.isNumeric {
             viewModel.addNewMaterial(type: itemType, quantity: itemQuantity, unit: unit, name: itemName, info: itemInfo, viewController: self)
 
             // Get back to Materials List VC
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 self.navigationController?.popViewController(animated: true)
             }
-        } else {
-            
-            Animation.circularBorderAnimate(sender: itemNameTextField)
-            Animation.circularBorderAnimate(sender: itemQuantityTextField)
-    }
+        } else if itemName.count > 0 && !itemQuantity.isNumeric {
+            Animation.circularBorderAnimateGray(sender: itemNameTextField)
+            Animation.circularBorderAnimateRed(sender: itemQuantityTextField)
+        } else if itemName.count == 0 && itemQuantity.isNumeric {
+            Animation.circularBorderAnimateGray(sender: itemQuantityTextField)
+            Animation.circularBorderAnimateRed(sender: itemNameTextField)
+        } else if itemName.count == 0 && !itemQuantity.isNumeric {
+            Animation.circularBorderAnimateRed(sender: itemNameTextField)
+            Animation.circularBorderAnimateRed(sender: itemQuantityTextField)
+        }
 
     }
 

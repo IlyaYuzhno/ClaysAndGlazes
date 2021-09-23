@@ -70,7 +70,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let itemToRemove = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         // Remove deleted item and save edited datasource to UserDefaults
-        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
         // Delete the row from the data source
         sections[indexPath.section].info.remove(at: indexPath.row)
@@ -95,13 +95,13 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         // Remove unmarked material from storage
         let itemToRemove = markedMaterial
-        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
         // Check if material marked or not
         markedMaterial.marked = markedMaterial.marked ? false : true
 
         // Save marked Material to storage
-        LocalStorageService.save(object: markedMaterial)
+        MaterialsLocalStorageService.save(object: markedMaterial)
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {
@@ -141,9 +141,9 @@ extension MaterialsListViewModel: AddItemsToPurchaseListViewDelegate {
 
                     let zeroQuantityMaterial = Material(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
 
-                    LocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial.name)
+                    MaterialsLocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial.name)
 
-                    LocalStorageService.removeItemFromDataSource(itemToRemove: zeroQuantityMaterial)
+                    MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: zeroQuantityMaterial)
 
                 }
             }

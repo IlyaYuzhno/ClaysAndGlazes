@@ -12,19 +12,19 @@ class StatisticController: StatisticControllerType {
     var statisticList: [MaterialStatisticItem] = []
 
     func saveToStatistic(itemToSave: MaterialStatisticItem) {
-        let itemToEdit = LocalStorageService.retrieveStatisticItem(item: itemToSave)
+        let itemToEdit = MaterialsLocalStorageService.retrieveStatisticItem(item: itemToSave)
 
-        LocalStorageService.removeStatisticItem(itemToRemove: itemToEdit)
+        MaterialsLocalStorageService.removeStatisticItem(itemToRemove: itemToEdit)
 
         let newQuantity = itemToEdit.quantity + itemToSave.quantity
 
         let newItem = MaterialStatisticItem(name: itemToSave.name, quantity: newQuantity, unit: itemToSave.unit)
 
-        LocalStorageService.saveToStatistic(object: newItem)
+        MaterialsLocalStorageService.saveToStatistic(object: newItem)
     }
 
     func loadStatisticData(completion: (@escaping () -> ()?)) {
-        LocalStorageService.retrieveMaterialStatisticList { [weak self] list in
+        MaterialsLocalStorageService.retrieveMaterialStatisticList { [weak self] list in
             guard let list = list else { return }
             self?.statisticList = list
             self?.statisticList = self?.getStatisticTopFiveList() ?? []

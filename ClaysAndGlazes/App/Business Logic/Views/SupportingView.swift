@@ -27,7 +27,7 @@ class SupportingView: UIView {
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = .label
         label.text = text
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

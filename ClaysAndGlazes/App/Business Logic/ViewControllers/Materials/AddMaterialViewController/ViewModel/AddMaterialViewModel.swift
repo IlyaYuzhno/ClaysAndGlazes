@@ -13,6 +13,9 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
     var claysList: [String] = []
     var glazesList: [String] = []
 
+    var pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Глазурная химия", "Разное"]
+    var unitsDropDownListOptions = ["кг", "л", "шт", "oz."]
+
     func loadClaysList(completion: @escaping (() -> ()?)) {
         guard let presenter = presenter else { return }
 
@@ -28,7 +31,7 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
         let material = Material(type: type, name: name, quantity: Float(quantity) ?? 0, unit: unit, info: info, marked: false)
 
         // Save material to UserDefaults
-        LocalStorageService.save(object: material)
+        MaterialsLocalStorageService.save(object: material)
         showSupportingView(self: viewController)
     }
 

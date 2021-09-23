@@ -21,7 +21,7 @@ class MaterialsStatisticView: UIView {
     private var mainView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 20
         return view
     }()
@@ -41,6 +41,7 @@ class MaterialsStatisticView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .systemBackground
         tableView.isScrollEnabled = false
         tableView.allowsSelection = false
         tableView.allowsMultipleSelection = false

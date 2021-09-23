@@ -20,7 +20,7 @@ class AddItemsToPurchaseListView: SupportingView {
         let button = UIButton()
         button.layer.cornerRadius = 20
         button.setTitle("Ок", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
         return button
@@ -30,7 +30,7 @@ class AddItemsToPurchaseListView: SupportingView {
         let button = UIButton()
         button.layer.cornerRadius = 20
         button.setTitle("Отменить", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         return button

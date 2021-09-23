@@ -8,13 +8,13 @@ import UIKit
 
 class ChooseGlazeTableViewController: UITableViewController {
 
-    let interactor: Interactor
+    let interactor: ClaysGlazeLocalStorageService
     lazy var searchBar: UISearchBar = UISearchBar()
     var initialCenter = CGPoint()
     var viewModel: ChooseGlazeTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }

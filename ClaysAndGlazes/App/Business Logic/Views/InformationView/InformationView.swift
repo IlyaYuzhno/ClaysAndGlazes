@@ -146,10 +146,10 @@ class InformationView: UIView {
         switch viewModel.mode {
         case "clay":
             //Get image from Firebase and set to imageview
-            Interactor.getClayImageFromFirebase(imageName: extractClayImageName(from: viewModel.itemName), imageView: imageView)
+            ClaysGlazeLocalStorageService.getClayImageFromFirebase(imageName: extractClayImageName(from: viewModel.itemName), imageView: imageView)
         case "glaze":
             //Get image from Firebase and set to imageview
-            Interactor.getGlazeImageFromFirebase(imageName: extractImageName(from: viewModel.itemName), imageView: imageView)
+            ClaysGlazeLocalStorageService.getGlazeImageFromFirebase(imageName: extractImageName(from: viewModel.itemName), imageView: imageView)
         default:
             break
         }

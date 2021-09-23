@@ -13,8 +13,10 @@ class StatisticTableViewCell: UITableViewCell {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             accessibilityIdentifier = "statisticCell"
-            backgroundColor = .white
+            backgroundColor = .systemBackground
             textLabel?.numberOfLines = 0
+            textLabel?.textColor = .label
+            detailTextLabel?.textColor = .label
             textLabel?.text = viewModel.title
             detailTextLabel?.text = viewModel.quantity + viewModel.unit
         }

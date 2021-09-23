@@ -122,7 +122,7 @@ class EditMaterialViewController: UIViewController {
 
         // Remove initial material item
         let itemToRemove = viewModel.getMaterial()
-        LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
         // Get new item parameters
         let itemName = itemNameTextField.text ?? ""
@@ -133,7 +133,7 @@ class EditMaterialViewController: UIViewController {
         let material = Material.init(type: viewModel.type , name: itemName, quantity: itemQuantity ?? 0, unit: viewModel.unit, info: itemInfo, marked: viewModel.marked )
 
         // Save new material to UserDefaults
-        LocalStorageService.save(object: material)
+        MaterialsLocalStorageService.save(object: material)
 
         // Get back to MaterialsList VC
         self.navigationController?.popViewController(animated: true)

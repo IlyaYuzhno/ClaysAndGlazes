@@ -9,7 +9,7 @@ import Foundation
 
 class ClaysTableViewViewModel: ClaysTableViewViewModelType {
 
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
     var presenter: ClaysTableViewPresenterType?
     private var selectedIndexPath: IndexPath?
     var claysList: [String] = []
@@ -19,7 +19,7 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
     var sections: [Section] = []
     var isSearching = false
 
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
         presenter = ClaysTableViewPresenter(interactor: interactor)
     }

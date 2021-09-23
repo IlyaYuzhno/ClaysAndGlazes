@@ -11,13 +11,13 @@ class CrackleTableViewViewModel: CrackleTableViewViewModelType {
 
     internal var crackle = ["Много цека", "Мало цека", "Нет цека"]
 
-    var interactor: Interactor
+    var interactor: ClaysGlazeLocalStorageService
     var clay: String
     var glaze: String
     var temperature: String
     var mode: String
 
-    init(interactor: Interactor,  clay: String, glaze: String, temperature: String, mode: String) {
+    init(interactor: ClaysGlazeLocalStorageService,  clay: String, glaze: String, temperature: String, mode: String) {
         self.clay = clay
         self.glaze = glaze
         self.temperature = temperature

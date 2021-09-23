@@ -18,7 +18,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
     }
 
     func fetchData(view: UsedMaterialView) {
-        LocalStorageService.retrieve() { [weak self] materials, _ in
+        MaterialsLocalStorageService.retrieve() { [weak self] materials, _ in
 
             let items = materials.map { $0.map { $0.name }}?.removingDuplicates()
             let quantity = materials.map { $0.map { $0.quantity }}
@@ -50,7 +50,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
 
             // Remove item from storage
             guard let itemToRemove = materialsDictionary[selectedText] else { return }
-            LocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+            MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
 
             // Correcting quantity
             let newQuantity:Float? = Float(view.materialQuantityTextField.text ?? "0")
@@ -68,7 +68,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
             let updatedItem = Material(type: type ?? "", name: name, quantity: updatedQuantity , unit: unit ?? "", info: info ?? "", marked: marked ?? false)
 
             // Save new item to storage
-            LocalStorageService.save(object: updatedItem)
+            MaterialsLocalStorageService.save(object: updatedItem)
 
             // Save updated item info to statistic
             saveToStatistic(name: name, quantity: newQuantity ?? 0, unit: unit ?? "")

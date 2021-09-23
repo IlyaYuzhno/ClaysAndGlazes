@@ -46,23 +46,23 @@ class MaterialsListMainViewViewModel: MaterialsListMainViewViewModelType {
 
     func viewForHeaderInSection(tableView: UITableView) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
 
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.backgroundColor = .systemBackground
+        label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 20, weight: .ultraLight)
-
         label.text = "Toп-5 материалов:"
         view.addSubview(label)
-
         return view
     }
 
     private func showEmptyTablePlaceholder(tableView: UITableView) {
         let messageLabel = UILabel(frame: CGRect(x: 20.0, y: 0, width: tableView.bounds.size.width - 40.0, height: tableView.bounds.size.height))
         messageLabel.text = "Список пока что пуст"
+        messageLabel.textColor = .label
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.sizeToFit()

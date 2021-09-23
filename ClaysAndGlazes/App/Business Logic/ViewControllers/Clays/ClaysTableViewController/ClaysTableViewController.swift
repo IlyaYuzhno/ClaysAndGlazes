@@ -9,14 +9,14 @@ import UIKit
 class ClaysTableViewController: UITableViewController {
 
     var isShown = false
-    let interactor: Interactor
+    let interactor: ClaysGlazeLocalStorageService
     lazy var searchBar: UISearchBar = UISearchBar()
     let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
     var initialCenter = CGPoint()
     var viewModel: ClaysTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }

@@ -11,7 +11,7 @@ final class MaterialsListPresenter {
 
     class func present(completion: @escaping ([Section]) -> Void) {
 
-        LocalStorageService.retrieve() { materials, isCollapsed in
+        MaterialsLocalStorageService.retrieve() { materials, isCollapsed in
 
         var sections: [Section] = []
 

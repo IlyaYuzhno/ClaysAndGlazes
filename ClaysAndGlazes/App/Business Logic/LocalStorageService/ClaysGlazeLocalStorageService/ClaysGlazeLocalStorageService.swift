@@ -9,7 +9,7 @@ import Firebase
 import FirebaseUI
 import UIKit
 
-class Interactor {
+class ClaysGlazeLocalStorageService {
 
     let claysBasicJSON = "ClaysInfo"
     static var storage = Storage.storage()
@@ -28,7 +28,7 @@ class Interactor {
         }
     }
 
-     func getClayTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
+    func getClayTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
         if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -36,7 +36,7 @@ class Interactor {
                 let clay = jsonResult.filter { $0.clay == clay }
                 let temperature = clay.map { $0.temperature }
 
-                    completion(temperature[0].keys.map { $0 })
+                completion(temperature[0].keys.map { $0 })
                 
             } catch {
                 print(error)
@@ -81,9 +81,7 @@ class Interactor {
             } catch {
                 print(error)
             }
-
         }
-
     }
 
      func getClaysInfo(completion: @escaping ([String]) -> Void) {

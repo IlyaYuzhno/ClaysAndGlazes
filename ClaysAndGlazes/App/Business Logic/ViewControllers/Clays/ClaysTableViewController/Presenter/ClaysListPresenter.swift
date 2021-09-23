@@ -9,9 +9,9 @@ import Foundation
 
 final class ClaysTableViewPresenter: ClaysTableViewPresenterType {
 
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
 
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
     }
 

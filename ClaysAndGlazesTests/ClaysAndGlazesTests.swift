@@ -9,10 +9,10 @@ import XCTest
 @testable import ClaysAndGlazes
 
 class ClaysAndGlazesTests: XCTestCase {
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
 
     override func setUpWithError() throws {
-        interactor = Interactor()
+        interactor = ClaysGlazeLocalStorageService()
     }
 
     override func tearDownWithError() throws {

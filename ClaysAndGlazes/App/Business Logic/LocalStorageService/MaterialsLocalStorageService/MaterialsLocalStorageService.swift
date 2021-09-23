@@ -1,5 +1,5 @@
 //
-//  LocalStorageService.swift
+//  MaterialsLocalStorageService.swift
 //  ClaysAndGlazes
 //
 //  Created by Ilya Doroshkevitch on 20.07.2021.
@@ -8,9 +8,16 @@
 import Foundation
 import UIKit
 
-class LocalStorageService {
 
-    private static let key = "Materials"
+struct MaterialsLocalStorageKeys {
+    static let materialsStatisticListKey = "materialStatistic"
+    static let purchaseListKey = "purchaseList"
+    static let materialsKey = "materials"
+}
+
+class MaterialsLocalStorageService {
+
+    private static let key = "materials"
     private static let purchaseListKey = "purchaseList"
     private static let materialsStatisticListKey = "materialStatistic"
 
@@ -51,8 +58,8 @@ class LocalStorageService {
     class func removeItemFromPurchaseList(itemToRemove: String) {
         do {
             var purchaseList = try? UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [String].self)
-            if let idx = purchaseList?.firstIndex(where: { $0 == itemToRemove }) {
-                purchaseList?.remove(at: idx)
+            if let index = purchaseList?.firstIndex(where: { $0 == itemToRemove }) {
+                purchaseList?.remove(at: index)
             }
             try UserDefaults.standard.setObject(purchaseList, forKey: purchaseListKey)
         } catch {
@@ -63,9 +70,22 @@ class LocalStorageService {
     // MARK: - Materials List methods
     // Save new Material object
     class func save(object: Material) {
+
+        checkIfDataExists()
+
         do {
-            let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            var newArray = currentArray
+            let currentArray = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
+
+            if currentArray == nil {
+                let initialArray: [MaterialStatisticItem] = []
+                do {
+                    try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+
+            var newArray = currentArray ?? []
             newArray.append(object)
             try UserDefaults.standard.setObject(newArray, forKey: key)
         } catch {
@@ -78,7 +98,6 @@ class LocalStorageService {
 
         checkIfDataExists()
 
-        DispatchQueue.global(qos: .default).async {
             do {
                 let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
                 let isCollapsed = try UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
@@ -86,7 +105,7 @@ class LocalStorageService {
             } catch {
                 print(error.localizedDescription)
             }
-        }
+
     }
 
     // Remove item from storage
@@ -94,9 +113,9 @@ class LocalStorageService {
         do {
             let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
             var materialsToEdit = materials
-            if let idx = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type && $0.unit == itemToRemove.unit && $0.marked == itemToRemove.marked}) {
+            if let index = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type && $0.unit == itemToRemove.unit && $0.marked == itemToRemove.marked}) {
 
-                materialsToEdit.remove(at: idx)
+                materialsToEdit.remove(at: index)
             }
             try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
         } catch {
@@ -111,12 +130,12 @@ class LocalStorageService {
             let initialArray: [Material] = []
             let initialIsCollapsed = ["" : true]
 
-            let array = try? UserDefaults.standard.getObject(forKey: "Materials", castTo: [Material].self)
+            let array = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
             let isCollapsed = try? UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
 
             if (array == nil || isCollapsed == nil) {
                 do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: "Materials")
+                    try UserDefaults.standard.setObject(initialArray, forKey: key)
                     try UserDefaults.standard.setObject(initialIsCollapsed, forKey: "isCollapsed")
                 } catch {
                     print(error.localizedDescription)

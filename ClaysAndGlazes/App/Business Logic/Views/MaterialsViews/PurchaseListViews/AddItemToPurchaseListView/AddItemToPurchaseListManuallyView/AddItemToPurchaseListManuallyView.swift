@@ -30,7 +30,7 @@ class AddItemToPurchaseListManuallyView: SupportingView {
         let button = UIButton()
         button.layer.cornerRadius = 20
         button.setTitle("Ок", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
         return button
@@ -40,7 +40,7 @@ class AddItemToPurchaseListManuallyView: SupportingView {
         let button = UIButton()
         button.layer.cornerRadius = 20
         button.setTitle("Отменить", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         return button
@@ -49,6 +49,7 @@ class AddItemToPurchaseListManuallyView: SupportingView {
     let dropDownList: DropDown = {
         let dropDown = DropDown()
         dropDown.backgroundColor = .systemBackground
+        dropDown.rowBackgroundColor = .systemBackground
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.layer.cornerRadius = 10
         dropDown.layer.borderWidth = 2
@@ -65,7 +66,8 @@ class AddItemToPurchaseListManuallyView: SupportingView {
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemBackground
+        textField.textColor = .label
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.systemGray5.cgColor
@@ -163,7 +165,7 @@ class AddItemToPurchaseListManuallyView: SupportingView {
             viewModel?.selectedText = text
             delegate?.okButtonTapped()
         } else if let text = textField.text, text.isEmpty && segmentedControl.selectedSegmentIndex == 1 {
-            Animation.circularBorderAnimate(sender: textField)
+            Animation.circularBorderAnimateRed(sender: textField)
         } else if segmentedControl.selectedSegmentIndex == 0 {
             delegate?.okButtonTapped()
         }

@@ -16,11 +16,11 @@ extension AddMaterialViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerItems.count
+        viewModel?.pickerItems.count ?? 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return pickerItems[row]
+        return viewModel?.pickerItems[row]
     }
 }
 

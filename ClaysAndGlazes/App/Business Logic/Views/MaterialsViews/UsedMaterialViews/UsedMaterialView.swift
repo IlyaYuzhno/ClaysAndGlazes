@@ -44,6 +44,7 @@ class UsedMaterialView: UIView {
     var dropDown: DropDown = {
         let dropDown = DropDown()
         dropDown.backgroundColor = .BackgroundColor1
+        dropDown.rowBackgroundColor = .systemBackground
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.layer.borderWidth = 2
         dropDown.layer.borderColor = UIColor.SearchBarColor.cgColor
@@ -54,7 +55,7 @@ class UsedMaterialView: UIView {
         return dropDown
     }()
 
-     var materialQuantityTextField: UITextField = {
+    var materialQuantityTextField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .center
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +64,7 @@ class UsedMaterialView: UIView {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
+        textField.keyboardType = .numbersAndPunctuation
         textField.returnKeyType = .done
         return textField
     }()
@@ -70,7 +72,7 @@ class UsedMaterialView: UIView {
     private lazy var materialUnitLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .label
         label.textAlignment = .center
         label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +82,7 @@ class UsedMaterialView: UIView {
 
     func setupViews() {
         layer.cornerRadius = 10
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         alpha = 1
         translatesAutoresizingMaskIntoConstraints = false
         materialQuantityTextField.delegate = self

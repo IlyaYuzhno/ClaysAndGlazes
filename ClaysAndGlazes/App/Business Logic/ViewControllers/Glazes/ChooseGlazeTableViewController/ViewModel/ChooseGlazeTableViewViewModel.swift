@@ -15,11 +15,11 @@ class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
     var itemsInfoDictionary: [String : String] = [:]
     var sections: [Section] = []
     var isSearching: Bool = false
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
     var presenter: ClaysTableViewPresenterType?
     private var selectedIndexPath: IndexPath?
 
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
         presenter = ChooseGlazeTableViewPresenter(interactor: interactor)
     }

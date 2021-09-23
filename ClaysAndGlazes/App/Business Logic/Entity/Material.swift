@@ -6,7 +6,7 @@
 //
 
 
-struct Material: Codable, Hashable {
+struct Material: Codable, Hashable, Equatable {
     var type: String
     var name: String
     var quantity: Float

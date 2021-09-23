@@ -52,7 +52,7 @@ class MainMaterialsListTileView: UIView {
     // MARK: - Private
     private func setupViews() {
         layer.cornerRadius = 20
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         translatesAutoresizingMaskIntoConstraints = false
 
         addSubviews(titleLabel, imageView)

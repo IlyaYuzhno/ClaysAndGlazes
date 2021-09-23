@@ -31,7 +31,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
     }
 
     func loadData(completion: (@escaping () -> ()?)) {
-        LocalStorageService.retrievePurchaseList { [weak self] purchaseList in
+        MaterialsLocalStorageService.retrievePurchaseList { [weak self] purchaseList in
             self?.purchaseList = purchaseList ?? [""]
             completion()
         }
@@ -59,7 +59,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         let itemToRemove = purchaseList[indexPath.row]
 
         // Remove deleted item and save edited datasource to UserDefaults
-        LocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
 
         // Delete the row from the data source
         purchaseList.removeAll(where: { $0 == itemToRemove })
@@ -70,7 +70,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         for indexPath in set {
             let itemToRemove = purchaseList[indexPath.row]
             items.append(itemToRemove)
-            LocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+            MaterialsLocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
         }
         purchaseList = purchaseList.filter { !items.contains($0) }
 

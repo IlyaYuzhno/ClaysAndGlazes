@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
 
-        let interactor = Interactor()
+        let interactor = ClaysGlazeLocalStorageService()
         
         // Creating VC for Tab Bar
         let claysListController = ClaysTableViewController(interactor: interactor)

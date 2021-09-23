@@ -9,14 +9,14 @@ import Foundation
 
 class GlazesForClayTableViewViewModel: GlazesForClayTableViewViewModelType {
 
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
     var clay: String
     var temperature: String
     var crackleId: String
     var glazes: [String] = []
     var brand: [String] = []
 
-    init(interactor: Interactor, clay: String, temperature: String, crackleId: String) {
+    init(interactor: ClaysGlazeLocalStorageService, clay: String, temperature: String, crackleId: String) {
         self.interactor = interactor
         self.clay = clay
         self.temperature = temperature

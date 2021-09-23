@@ -10,12 +10,12 @@ import Foundation
 class GlazeTemperatureTableViewViewModel: GlazeTemperatureTableViewViewModelType {
 
     var temperatures: [String] = []
-    var interactor: Interactor?
+    var interactor: ClaysGlazeLocalStorageService?
     var mode: String?
     var item: String
     private var selectedIndexPath: IndexPath?
 
-    init(interactor: Interactor, item: String) {
+    init(interactor: ClaysGlazeLocalStorageService, item: String) {
         self.interactor = interactor
         self.item = item
     }

@@ -9,11 +9,11 @@ import UIKit
 
 class ClaysTemperatureTableViewController: UITableViewController {
 
-    let interactor: Interactor
+    let interactor: ClaysGlazeLocalStorageService
     var viewModel: TemperatureTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: Interactor) {
+    init(interactor: ClaysGlazeLocalStorageService) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }

@@ -52,7 +52,7 @@ final class Animation {
 
 
     // MARK: Animate border color circularry
-   class func circularBorderAnimate(sender: UIView) {
+   class func circularBorderAnimateRed(sender: UIView) {
     let strokeLayer = CAShapeLayer()
         strokeLayer.fillColor = UIColor.clear.cgColor
         strokeLayer.strokeColor = UIColor.red.cgColor
@@ -72,6 +72,27 @@ final class Animation {
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         strokeLayer.add(animation, forKey: "circleAnimation")
     }
+
+    class func circularBorderAnimateGray(sender: UIView) {
+     let strokeLayer = CAShapeLayer()
+         strokeLayer.fillColor = UIColor.clear.cgColor
+         strokeLayer.strokeColor = UIColor.systemGray2.cgColor
+         strokeLayer.lineWidth = 2
+
+         // Create a rounded rect path using button's bounds.
+         strokeLayer.path = CGPath.init(roundedRect: sender.bounds, cornerWidth: 10, cornerHeight: 10, transform: nil) // same path like the empty one ...
+         // Add layer to the button
+         sender.layer.addSublayer(strokeLayer)
+
+         // Create animation layer and add it to the stroke layer.
+         let animation = CABasicAnimation(keyPath: "strokeEnd")
+         animation.fromValue = CGFloat(0.0)
+         animation.toValue = CGFloat(1.0)
+        animation.duration = 0.1
+         animation.fillMode = CAMediaTimingFillMode.forwards
+         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+         strokeLayer.add(animation, forKey: "circleAnimation")
+     }
 
 
 }

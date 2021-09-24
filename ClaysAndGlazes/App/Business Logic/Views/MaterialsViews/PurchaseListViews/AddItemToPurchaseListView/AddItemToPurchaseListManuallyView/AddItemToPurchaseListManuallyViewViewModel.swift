@@ -15,9 +15,10 @@ class AddItemToPurchaseListManuallyViewViewModel: AddItemToPurchaseListManuallyV
             saveSelectedItemToPurchaseList()
         }
     }
+    let storageKey = MaterialsLocalStorageKeys.purchaseListKey
 
     func loadData() {
-        MaterialsLocalStorageService.retrieve() { [weak self] materials, _ in
+        MaterialsLocalStorageService.retrieveMaterialsData() { [weak self] materials, _ in
             let items = materials.map { $0.map { $0.name }}?.removingDuplicates()
             guard let names = items else { return }
             self?.dropDownItemsArray = names
@@ -25,7 +26,7 @@ class AddItemToPurchaseListManuallyViewViewModel: AddItemToPurchaseListManuallyV
     }
 
     private func saveSelectedItemToPurchaseList() {
-        MaterialsLocalStorageService.saveToPurchaseList(object: selectedText)
+        MaterialsLocalStorageService.saveDataToStorage(object: selectedText, key: storageKey)
     }
 
 }

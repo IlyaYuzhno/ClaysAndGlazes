@@ -8,135 +8,104 @@
 import Foundation
 import UIKit
 
-
-struct MaterialsLocalStorageKeys {
-    static let materialsStatisticListKey = "materialStatistic"
-    static let purchaseListKey = "purchaseList"
-    static let materialsKey = "materials"
-}
-
 class MaterialsLocalStorageService {
 
-    private static let key = "materials"
-    private static let purchaseListKey = "purchaseList"
-    private static let materialsStatisticListKey = "materialStatistic"
+    private static let materialsKey = MaterialsLocalStorageKeys.materialsKey
+    private static let purchaseListKey = MaterialsLocalStorageKeys.purchaseListKey
+    private static let materialsStatisticListKey = MaterialsLocalStorageKeys.materialsStatisticListKey
+    private static let isCollapsedKey = MaterialsLocalStorageKeys.isCollapsedKey
 
-    // MARK: - Purchase List methods
-    class func saveToPurchaseList(object: String) {
+    // MARK: - Generic methods
+    class func saveDataToStorage<T: Codable>(object: T, key: String) {
+
+        if T.self == Material.self {
+            checkIfMaterialsListDataExists()
+        }
+
         do {
-            let currentArray = try? UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [String].self)
+            let currentData = try? UserDefaults.standard.getObject(forKey: key, castTo: [T].self)
 
-            if currentArray == nil {
-                let initialArray: [String] = []
+            if currentData == nil {
+                let initialData: [T] = []
                 do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: purchaseListKey)
+                    try UserDefaults.standard.saveObject(initialData, forKey: key)
                 } catch {
                     print(error.localizedDescription)
                 }
             }
-            var newArray = currentArray ?? []
-            newArray.append(object)
-            try UserDefaults.standard.setObject(newArray, forKey: purchaseListKey)
+
+            var newData = currentData ?? []
+            newData.append(object)
+            try UserDefaults.standard.saveObject(newData, forKey: key)
         } catch {
             print(error.localizedDescription)
         }
     }
 
-    // Retrieve purchase list
-    class func retrievePurchaseList(completion: @escaping ([String]?) -> Void) {
+    class func retrieveDataFromStorage<T: Codable>(key: String, type: T.Type, completion: @escaping ([T]?) -> Void) {
+
+        if T.self == Material.self {
+            checkIfMaterialsListDataExists()
+        }
+        
         DispatchQueue.global(qos: .default).async {
             do {
-                let purchaseList = try UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [String].self)
-                completion(purchaseList)
-            } catch {
-                print(error.localizedDescription)
+                let data = try? UserDefaults.standard.getObject(forKey: key, castTo: [T].self)
+
+                if data == nil {
+                    let initialData: [T] = []
+                    do {
+                        try UserDefaults.standard.saveObject(initialData, forKey: key)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                completion(data)
             }
         }
     }
 
-    // Remove item from purchase list
-    class func removeItemFromPurchaseList(itemToRemove: String) {
+    class func removeItemInStorage<T: Codable & Equatable>(itemToRemove: T, key: String) {
         do {
-            var purchaseList = try? UserDefaults.standard.getObject(forKey: purchaseListKey, castTo: [String].self)
-            if let index = purchaseList?.firstIndex(where: { $0 == itemToRemove }) {
-                purchaseList?.remove(at: index)
+            var data = try? UserDefaults.standard.getObject(forKey: key, castTo: [T].self)
+            if let index = data?.firstIndex(where: { $0 == itemToRemove }) {
+                data?.remove(at: index)
             }
-            try UserDefaults.standard.setObject(purchaseList, forKey: purchaseListKey)
+            try UserDefaults.standard.saveObject(data, forKey: key)
         } catch {
             print(error.localizedDescription)
         }
     }
 
     // MARK: - Materials List methods
-    // Save new Material object
-    class func save(object: Material) {
 
-        checkIfDataExists()
+    // Retrieve array of Material, non-genericable
+    class func retrieveMaterialsData(completion: @escaping ([Material]?, [String : Bool]) -> Void) {
+
+        checkIfMaterialsListDataExists()
 
         do {
-            let currentArray = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-
-            if currentArray == nil {
-                let initialArray: [MaterialStatisticItem] = []
-                do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-
-            var newArray = currentArray ?? []
-            newArray.append(object)
-            try UserDefaults.standard.setObject(newArray, forKey: key)
+            let materials = try UserDefaults.standard.getObject(forKey: materialsKey, castTo: [Material].self)
+            let isCollapsed = try UserDefaults.standard.getObject(forKey: isCollapsedKey, castTo: [String : Bool].self)
+            completion(materials, isCollapsed)
         } catch {
             print(error.localizedDescription)
         }
     }
 
-    // Retrieve array of Material
-    class func retrieve(completion: @escaping ([Material]?, [String : Bool]) -> Void) {
-
-        checkIfDataExists()
-
-            do {
-                let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-                let isCollapsed = try UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
-                completion(materials, isCollapsed)
-            } catch {
-                print(error.localizedDescription)
-            }
-
-    }
-
-    // Remove item from storage
-    class func removeItemFromDataSource(itemToRemove: Material) {
+    // Check if Materials List data exists in UserDefaults
+    static func checkIfMaterialsListDataExists() {
         do {
-            let materials = try UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            var materialsToEdit = materials
-            if let index = materialsToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.info == itemToRemove.info && $0.type == itemToRemove.type && $0.unit == itemToRemove.unit && $0.marked == itemToRemove.marked}) {
+            let initialData: [Material] = []
+            let initialIsCollapsedData = ["" : true]
 
-                materialsToEdit.remove(at: index)
-            }
-            try UserDefaults.standard.setObject(materialsToEdit, forKey: key)
-        } catch {
-            print(error.localizedDescription)
-        }
+            let data = try? UserDefaults.standard.getObject(forKey: materialsKey, castTo: [Material].self)
+            let isCollapsedData = try? UserDefaults.standard.getObject(forKey: isCollapsedKey, castTo: [String : Bool].self)
 
-    }
-
-    // Check if any data exists in UserDefaults
-    static func checkIfDataExists() {
-        do {
-            let initialArray: [Material] = []
-            let initialIsCollapsed = ["" : true]
-
-            let array = try? UserDefaults.standard.getObject(forKey: key, castTo: [Material].self)
-            let isCollapsed = try? UserDefaults.standard.getObject(forKey: "isCollapsed", castTo: [String : Bool].self)
-
-            if (array == nil || isCollapsed == nil) {
+            if (data == nil || isCollapsedData == nil) {
                 do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: key)
-                    try UserDefaults.standard.setObject(initialIsCollapsed, forKey: "isCollapsed")
+                    try UserDefaults.standard.saveObject(initialData, forKey: materialsKey)
+                    try UserDefaults.standard.saveObject(initialIsCollapsedData, forKey: isCollapsedKey)
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -145,46 +114,6 @@ class MaterialsLocalStorageService {
     }
 
     // MARK: - Materials Statistic methods
-    class func saveToStatistic(object: MaterialStatisticItem) {
-        do {
-            let currentArray = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
-
-            if currentArray == nil {
-                let initialArray: [MaterialStatisticItem] = []
-                do {
-                    try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-            var newArray = currentArray ?? []
-            newArray.append(object)
-
-            try UserDefaults.standard.setObject(newArray, forKey: materialsStatisticListKey)
-
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-
-    class func retrieveMaterialStatisticList(completion: @escaping ([MaterialStatisticItem]?) -> Void) {
-        DispatchQueue.global(qos: .default).async {
-            do {
-                let statistic = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
-
-                if statistic == nil {
-                    let initialArray: [MaterialStatisticItem] = []
-                    do {
-                        try UserDefaults.standard.setObject(initialArray, forKey: materialsStatisticListKey)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-                completion(statistic)
-            }
-        }
-    }
-
     class func retrieveStatisticItem(item: MaterialStatisticItem) -> MaterialStatisticItem {
         var itemToReturn = MaterialStatisticItem(name: "", quantity: 0, unit: "")
 
@@ -196,45 +125,12 @@ class MaterialsLocalStorageService {
         return itemToReturn
     }
 
-    // Remove statistic item from storage
-    class func removeStatisticItem(itemToRemove: MaterialStatisticItem) {
+    // MARK: - Materials List Section isCollapsed state save
+    class func isSectionCollapsedStateSave<T: Codable>(object: T, key: String) {
         do {
-            let statisticList = try UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self)
-            var statisticListToEdit = statisticList
-
-            if let index = statisticListToEdit.firstIndex(where: { $0.name == itemToRemove.name && $0.quantity == itemToRemove.quantity && $0.unit == itemToRemove.unit}) {
-
-                statisticListToEdit.remove(at: index)
-            }
-            try UserDefaults.standard.setObject(statisticListToEdit, forKey: materialsStatisticListKey)
-        } catch {
-            print(error.localizedDescription)
-        }
-
-    }
-
-
-
-    // MARK: - For future use
-    class func genericSave<T: Codable>(object: T, key: String) {
-        do {
-            try UserDefaults.standard.setObject(object, forKey: key)
+            try UserDefaults.standard.saveObject(object, forKey: key)
         } catch {
             print(error.localizedDescription)
         }
     }
-
-    class func genericStorageUpdate<T: Codable>(object: T, key: String) {
-        do {
-            let currentArray = try UserDefaults.standard.getObject(forKey: key, castTo: T.self)
-            let newArray = currentArray
-            //newArray.append(object)
-            try UserDefaults.standard.setObject(newArray, forKey: key)
-        } catch {
-            print(error.localizedDescription)
-        }
-
-    }
-
-
 }

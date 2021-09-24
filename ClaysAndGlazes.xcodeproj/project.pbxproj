@@ -77,6 +77,7 @@
 		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
 		5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */; };
 		5B88EF8226FCA8AF002493B6 /* MaterialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */; };
+		5B88EF8526FDBE26002493B6 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8426FDBE26002493B6 /* StorageKeys.swift */; };
 		5BAB806126E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */; };
 		5BAB806526E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */; };
 		5BAB806926EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */; };
@@ -201,6 +202,7 @@
 		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + AddMaterialViewController.swift"; sourceTree = "<group>"; };
 		5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialsListTableViewController.swift; sourceTree = "<group>"; };
+		5B88EF8426FDBE26002493B6 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToPurchaseListIfZeroQuantityView.swift; sourceTree = "<group>"; };
 		5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyView.swift; sourceTree = "<group>"; };
 		5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyViewViewModel.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				5B060F73261233AF0090E250 /* ClaysGlazeLocalStorageService */,
 				5BBD355326FCA61E000B7DF6 /* MaterialsLocalStorageService */,
 				5B88EF8326FCA978002493B6 /* Extensions */,
+				5B88EF8426FDBE26002493B6 /* StorageKeys.swift */,
 			);
 			path = LocalStorageService;
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 				5B060F36261233510090E250 /* SceneDelegate.swift in Sources */,
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
 				5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */,
+				5B88EF8526FDBE26002493B6 /* StorageKeys.swift in Sources */,
 				5B63CE6626A6DB7200AB81AC /* Extension + UserDefaults.swift in Sources */,
 				5B188EAC26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift in Sources */,
 			);

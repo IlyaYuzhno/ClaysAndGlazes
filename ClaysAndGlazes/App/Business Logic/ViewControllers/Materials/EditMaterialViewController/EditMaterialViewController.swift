@@ -52,6 +52,7 @@ class EditMaterialViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.systemGray2.cgColor
         textField.backgroundColor = .systemBackground
+        textField.keyboardType = .numbersAndPunctuation
         return textField
     }()
 
@@ -120,20 +121,12 @@ class EditMaterialViewController: UIViewController {
     @objc func editButtonPressed(sender: UIButton) {
         guard let viewModel = viewModel else { return }
 
-        // Remove initial material item
-        let itemToRemove = viewModel.getMaterial()
-        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
-
         // Get new item parameters
         let itemName = itemNameTextField.text ?? ""
         let itemQuantity:Float? = Float(itemQuantityTextField.text ?? "")
         let itemInfo = itemInfoTextField.text ?? ""
 
-        // Create new material from item parameters
-        let material = Material.init(type: viewModel.type , name: itemName, quantity: itemQuantity ?? 0, unit: viewModel.unit, info: itemInfo, marked: viewModel.marked )
-
-        // Save new material to UserDefaults
-        MaterialsLocalStorageService.save(object: material)
+        viewModel.editMaterial(itemName: itemName, itemQuantity: itemQuantity ?? 0, itemInfo: itemInfo)
 
         // Get back to MaterialsList VC
         self.navigationController?.popViewController(animated: true)

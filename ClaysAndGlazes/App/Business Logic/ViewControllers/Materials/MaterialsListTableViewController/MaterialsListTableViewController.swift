@@ -173,7 +173,7 @@ extension MaterialsListTableViewController: CollapsibleTableViewHeaderDelegate {
 
         // Set isCollapsed dictionary value for section name and save it, i.e. store section state
         isCollapsed[sectionName] = collapsed
-        MaterialsLocalStorageService.genericSave(object: isCollapsed, key: "isCollapsed")
+        MaterialsLocalStorageService.isSectionCollapsedStateSave(object: isCollapsed, key: "isCollapsed")
 
         header.setCollapsed(collapsed: collapsed)
         tableView.setContentOffset(.zero, animated: true)

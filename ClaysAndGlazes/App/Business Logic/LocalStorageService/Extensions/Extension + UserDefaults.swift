@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ObjectSavable {
-    func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
+    func saveObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
     func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable
 }
 
@@ -23,7 +23,7 @@ enum ObjectSavableError: String, LocalizedError {
 }
 
 extension UserDefaults: ObjectSavable {
-    func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable {
+    func saveObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(object)

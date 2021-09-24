@@ -12,13 +12,14 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
     var dropDownItemsArray: [String] = []
     var materialsDictionary: [String : Material] = [:]
     var statisticController: StatisticControllerType?
+    let storageKey = MaterialsLocalStorageKeys.materialsKey
 
     init() {
         statisticController = StatisticController()
     }
 
-    func fetchData(view: UsedMaterialView) {
-        MaterialsLocalStorageService.retrieve() { [weak self] materials, _ in
+    func loadData(view: UsedMaterialView) {
+        MaterialsLocalStorageService.retrieveMaterialsData() { [weak self] materials, _ in
 
             let items = materials.map { $0.map { $0.name }}?.removingDuplicates()
             let quantity = materials.map { $0.map { $0.quantity }}
@@ -50,7 +51,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
 
             // Remove item from storage
             guard let itemToRemove = materialsDictionary[selectedText] else { return }
-            MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+            MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: storageKey)
 
             // Correcting quantity
             let newQuantity:Float? = Float(view.materialQuantityTextField.text ?? "0")
@@ -68,7 +69,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
             let updatedItem = Material(type: type ?? "", name: name, quantity: updatedQuantity , unit: unit ?? "", info: info ?? "", marked: marked ?? false)
 
             // Save new item to storage
-            MaterialsLocalStorageService.save(object: updatedItem)
+            MaterialsLocalStorageService.saveDataToStorage(object: updatedItem, key: storageKey)
 
             // Save updated item info to statistic
             saveToStatistic(name: name, quantity: newQuantity ?? 0, unit: unit ?? "")

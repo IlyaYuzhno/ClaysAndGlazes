@@ -7,33 +7,21 @@
 
 import UIKit
 
-
-protocol PurchaseListTableViewViewModelType {
-    var purchaseList: [String] { get }
-
-    func numberOfRowsInSection(forSection section: Int) -> Int
-    func loadData(completion: (@escaping () -> ()?))
-    func showEmptyTablePlaceholder(tableView: UITableView)
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
-    func deleteItem(forIndexPath indexPath: IndexPath)
-    func selectRow(atIndexPath indexPath: IndexPath)
-    func deleteSelectedItems(forIndexPaths set: [IndexPath])
-
-}
-
 class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
 
     var purchaseList: [String] = []
     private var selectedIndexPath: IndexPath?
+    let storageKey = MaterialsLocalStorageKeys.purchaseListKey
 
     func numberOfRowsInSection(forSection section: Int) -> Int {
         return purchaseList.count
     }
 
     func loadData(completion: (@escaping () -> ()?)) {
-        MaterialsLocalStorageService.retrievePurchaseList { [weak self] purchaseList in
-            self?.purchaseList = purchaseList ?? [""]
-            completion()
+        MaterialsLocalStorageService.retrieveDataFromStorage(key: storageKey, type: String.self) {
+            [weak self] purchaseList in
+                self?.purchaseList = purchaseList ?? [""]
+                completion()
         }
     }
 
@@ -59,7 +47,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         let itemToRemove = purchaseList[indexPath.row]
 
         // Remove deleted item and save edited datasource to UserDefaults
-        MaterialsLocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: storageKey)
 
         // Delete the row from the data source
         purchaseList.removeAll(where: { $0 == itemToRemove })
@@ -70,7 +58,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
         for indexPath in set {
             let itemToRemove = purchaseList[indexPath.row]
             items.append(itemToRemove)
-            MaterialsLocalStorageService.removeItemFromPurchaseList(itemToRemove: itemToRemove)
+            MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: storageKey)
         }
         purchaseList = purchaseList.filter { !items.contains($0) }
 

@@ -44,6 +44,7 @@ protocol EditMaterialViewModelType {
     var marked: Bool { get }
     var unit: String { get }
     func getMaterial() -> Material
+    func editMaterial(itemName: String, itemQuantity: Float, itemInfo: String)
 }
 
 // AddMaterialsView
@@ -185,7 +186,7 @@ protocol InformationViewViewModelType {
 protocol UsedMaterialViewViewModelType {
     var dropDownItemsArray: [String] { get }
     var materialsDictionary: [String : Material] { get }
-    func fetchData(view: UsedMaterialView)
+    func loadData(view: UsedMaterialView)
     func saveButtonTapped(stack: UIStackView, self: UIViewController)
 }
 
@@ -194,6 +195,19 @@ protocol AddItemToPurchaseListManuallyViewViewModelType {
     var dropDownItemsArray: [String] { get }
     var selectedText: String { get set }
     func loadData()
+}
+
+// MARK: - PurchaseList TableView ViewModel Type
+protocol PurchaseListTableViewViewModelType {
+    var purchaseList: [String] { get }
+
+    func numberOfRowsInSection(forSection section: Int) -> Int
+    func loadData(completion: (@escaping () -> ()?))
+    func showEmptyTablePlaceholder(tableView: UITableView)
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
+    func deleteItem(forIndexPath indexPath: IndexPath)
+    func selectRow(atIndexPath indexPath: IndexPath)
+    func deleteSelectedItems(forIndexPaths set: [IndexPath])
 }
 
 // MARK: - Materials Statistic protocols

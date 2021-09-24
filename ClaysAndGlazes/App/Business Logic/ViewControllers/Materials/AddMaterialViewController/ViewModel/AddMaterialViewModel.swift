@@ -9,21 +9,11 @@ import UIKit
 
 class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType {
 
-    var presenter: ClaysTableViewPresenterType?
     var claysList: [String] = []
     var glazesList: [String] = []
 
     var pickerItems = ["Массы", "Глазури", "Инструменты", "Пигменты", "Оксиды", "Краски", "Глазурная химия", "Разное"]
     var unitsDropDownListOptions = ["кг", "л", "шт", "oz."]
-
-    func loadClaysList(completion: @escaping (() -> ()?)) {
-        guard let presenter = presenter else { return }
-
-        presenter.present() { [weak self] (_, claysList, _, _, _) in
-            self?.claysList = claysList
-        }
-        completion()
-    }
 
     func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String, viewController: UIViewController) {
 
@@ -31,7 +21,7 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
         let material = Material(type: type, name: name, quantity: Float(quantity) ?? 0, unit: unit, info: info, marked: false)
 
         // Save material to UserDefaults
-        MaterialsLocalStorageService.save(object: material)
+        MaterialsLocalStorageService.saveDataToStorage(object: material, key: MaterialsLocalStorageKeys.materialsKey)
         showSupportingView(self: viewController)
     }
 

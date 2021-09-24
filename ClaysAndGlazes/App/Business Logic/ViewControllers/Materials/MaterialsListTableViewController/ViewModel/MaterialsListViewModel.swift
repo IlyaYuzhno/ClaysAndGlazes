@@ -18,6 +18,8 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
     private var selectedIndexPath: IndexPath?
     var sections: [Section] = []
     weak var delegate: MaterialsListViewModelDelegate?
+    let purchaseListStorageKey = MaterialsLocalStorageKeys.purchaseListKey
+    let materialsListStorageKey = MaterialsLocalStorageKeys.materialsKey
 
     func loadData(completion: (@escaping () -> ()?)) {
         MaterialsListPresenter.present() { [weak self] sections in
@@ -70,7 +72,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let itemToRemove = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         // Remove deleted item and save edited datasource to UserDefaults
-        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: materialsListStorageKey)
 
         // Delete the row from the data source
         sections[indexPath.section].info.remove(at: indexPath.row)
@@ -95,13 +97,13 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
 
         // Remove unmarked material from storage
         let itemToRemove = markedMaterial
-        MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: itemToRemove)
+        MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: materialsListStorageKey)
 
         // Check if material marked or not
         markedMaterial.marked = markedMaterial.marked ? false : true
 
         // Save marked Material to storage
-        MaterialsLocalStorageService.save(object: markedMaterial)
+        MaterialsLocalStorageService.saveDataToStorage(object: markedMaterial, key: materialsListStorageKey)
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {
@@ -141,10 +143,9 @@ extension MaterialsListViewModel: AddItemsToPurchaseListViewDelegate {
 
                     let zeroQuantityMaterial = Material(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
 
-                    MaterialsLocalStorageService.saveToPurchaseList(object: zeroQuantityMaterial.name)
+                    MaterialsLocalStorageService.saveDataToStorage(object: zeroQuantityMaterial.name, key: purchaseListStorageKey)
 
-                    MaterialsLocalStorageService.removeItemFromDataSource(itemToRemove: zeroQuantityMaterial)
-
+                    MaterialsLocalStorageService.removeItemInStorage(itemToRemove: zeroQuantityMaterial, key: materialsListStorageKey)
                 }
             }
         }

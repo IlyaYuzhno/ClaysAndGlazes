@@ -53,7 +53,7 @@ class UsedMaterialsViewController: UIViewController {
         viewModel = UsedMaterialViewViewModel()
         setupView()
 
-        viewModel?.fetchData(view: usedMaterialView)
+        viewModel?.loadData(view: usedMaterialView)
     }
 
     override func viewWillLayoutSubviews() {

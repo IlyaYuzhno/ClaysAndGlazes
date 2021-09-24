@@ -9,15 +9,16 @@ import Foundation
 
 class ClaysForGlazesTableViewViewModel: ClaysForGlazesTableViewViewModelType {
 
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var glaze: String
     var temperature: String
     var crackleId: String
     var clays: [String] = []
     var brand: [String] = []
+    let glazesBasicJSON = "GlazesInfo"
 
-    init(interactor: ClaysGlazeLocalStorageService, glaze: String, temperature: String, crackleId: String) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService, glaze: String, temperature: String, crackleId: String) {
+        self.storageService = storageService
         self.glaze = glaze
         self.temperature = temperature
         self.crackleId = crackleId
@@ -34,12 +35,19 @@ class ClaysForGlazesTableViewViewModel: ClaysForGlazesTableViewViewModelType {
     }
 
     func loadData(completion: @escaping (() -> ()?)) {
-        guard let interactor = interactor else { return }
+        guard let storageService = storageService else { return }
 
-        interactor.getClaysForGlaze(for: glaze, temperature: temperature, crackleId: crackleId) { [weak self] clays in
+        storageService.getItemsForSelectedItem(resource: glazesBasicJSON, for: glaze, temperature: temperature, crackleId: crackleId) { [weak self] clays in
             self?.clays = clays
+            completion()
         }
-        completion()
+
+        
+
+//        storageService.getClaysForGlaze(for: glaze, temperature: temperature, crackleId: crackleId) { [weak self] clays in
+//            self?.clays = clays
+//        }
+//        completion()
     }
 
 }

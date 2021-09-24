@@ -11,18 +11,18 @@ class CrackleTableViewViewModel: CrackleTableViewViewModelType {
 
     internal var crackle = ["Много цека", "Мало цека", "Нет цека"]
 
-    var interactor: ClaysGlazeLocalStorageService
+    var storageService: ClaysGlazeLocalStorageService
     var clay: String
     var glaze: String
     var temperature: String
     var mode: String
 
-    init(interactor: ClaysGlazeLocalStorageService,  clay: String, glaze: String, temperature: String, mode: String) {
+    init(storageService: ClaysGlazeLocalStorageService,  clay: String, glaze: String, temperature: String, mode: String) {
         self.clay = clay
         self.glaze = glaze
         self.temperature = temperature
         self.mode = mode
-        self.interactor = interactor
+        self.storageService = storageService
     }
 
     func numberOfRowsInSection(forSection section: Int) -> Int {
@@ -38,12 +38,12 @@ class CrackleTableViewViewModel: CrackleTableViewViewModelType {
 
     func viewModelForGlazesForClay(clay: String, temperature: String, crackleId: String) -> GlazesForClayTableViewViewModelType? {
 
-      return GlazesForClayTableViewViewModel(interactor: interactor, clay: clay, temperature: temperature, crackleId: crackleId)
+        return GlazesForClayTableViewViewModel(storageService: storageService, clay: clay, temperature: temperature, crackleId: crackleId)
     }
 
     func viewModelForClaysForGlaze(glaze: String, temperature: String, crackleId: String) -> ClaysForGlazesTableViewViewModelType? {
 
-        return ClaysForGlazesTableViewViewModel(interactor: interactor, glaze: glaze, temperature: temperature, crackleId: crackleId)
+        return ClaysForGlazesTableViewViewModel(storageService: storageService, glaze: glaze, temperature: temperature, crackleId: crackleId)
     }
 
 }

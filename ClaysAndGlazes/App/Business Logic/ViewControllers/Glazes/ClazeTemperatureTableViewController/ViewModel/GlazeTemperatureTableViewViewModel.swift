@@ -10,13 +10,14 @@ import Foundation
 class GlazeTemperatureTableViewViewModel: GlazeTemperatureTableViewViewModelType {
 
     var temperatures: [String] = []
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var mode: String?
     var item: String
     private var selectedIndexPath: IndexPath?
+    let glazesBasicJSON = "GlazesInfo"
 
-    init(interactor: ClaysGlazeLocalStorageService, item: String) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService, item: String) {
+        self.storageService = storageService
         self.item = item
     }
 
@@ -32,12 +33,12 @@ class GlazeTemperatureTableViewViewModel: GlazeTemperatureTableViewViewModelType
     }
 
     func loadData(completion: @escaping (() -> ()?)) {
-        guard let interactor = interactor else { return }
+        guard let storageService = storageService else { return }
 
-        interactor.getGlazeTemperature(for: item) { [weak self] temps in
+        storageService.getItemTemperature(resource: glazesBasicJSON, for: item) { [weak self] temps in
             self?.temperatures = temps
+            completion()
         }
-        completion()
     }
 
     func selectRow(atIndexPath indexPath: IndexPath) {
@@ -49,11 +50,11 @@ class GlazeTemperatureTableViewViewModel: GlazeTemperatureTableViewViewModelType
     }
 
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath, let interactor = interactor else { return nil}
+        guard let selectedIndexPath = self.selectedIndexPath, let storageService = storageService else { return nil}
 
         let temperature = temperatures[selectedIndexPath.row].description
 
-        return CrackleTableViewViewModel(interactor: interactor, clay:"" , glaze: item, temperature: temperature, mode: mode ?? "")
+        return CrackleTableViewViewModel(storageService: storageService, clay:"" , glaze: item, temperature: temperature, mode: mode ?? "")
     }
 
 }

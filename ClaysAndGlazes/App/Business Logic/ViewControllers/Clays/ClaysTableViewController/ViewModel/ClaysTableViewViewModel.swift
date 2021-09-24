@@ -9,7 +9,7 @@ import Foundation
 
 class ClaysTableViewViewModel: ClaysTableViewViewModelType {
 
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var presenter: ClaysTableViewPresenterType?
     private var selectedIndexPath: IndexPath?
     var claysList: [String] = []
@@ -19,9 +19,9 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
     var sections: [Section] = []
     var isSearching = false
 
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
-        presenter = ClaysTableViewPresenter(interactor: interactor)
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
+        presenter = ClaysTableViewPresenter(storageService: storageService)
     }
 
     func numberOfSections() -> Int {
@@ -64,7 +64,7 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
     }
 
     func viewModelForSelectedRow() -> TemperatureTableViewViewModelType? {
-        guard let interactor = interactor, let selectedIndexPath = selectedIndexPath else { return nil}
+        guard let storageService = storageService, let selectedIndexPath = selectedIndexPath else { return nil}
 
         var clay = ""
 
@@ -74,7 +74,7 @@ class ClaysTableViewViewModel: ClaysTableViewViewModelType {
             clay = sections[selectedIndexPath.section].items[selectedIndexPath.row]
         }
 
-        return ClayTemperatureTableViewViewModel(interactor: interactor, item: clay)
+        return ClayTemperatureTableViewViewModel(storageService: storageService, item: clay)
     }
 
     func viewModelForInformationView() -> InformationViewViewModelType? {

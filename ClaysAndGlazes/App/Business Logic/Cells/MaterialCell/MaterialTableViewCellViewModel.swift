@@ -9,7 +9,7 @@ import Foundation
 
 class MaterialTableViewCellViewModel: MaterialsTableViewCellViewModelType {
 
-    private var material: Material
+    private var material: MaterialItem
 
     var name: String {
         return material.name
@@ -27,7 +27,7 @@ class MaterialTableViewCellViewModel: MaterialsTableViewCellViewModelType {
         return material.marked
     }
 
-    init(material: Material) {
+    init(material: MaterialItem) {
         self.material = material
     }
 

@@ -55,7 +55,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let unit = sections[indexPath.section].unit?[indexPath.row] ?? ""
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
-        let material = Material(type: "", name: name, quantity: quantity, unit: unit, info: info, marked: marked)
+        let material = MaterialItem(type: "", name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         return MaterialTableViewCellViewModel(material: material)
     }
@@ -69,7 +69,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let type = sections[indexPath.section].name 
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
-        let itemToRemove = Material(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
+        let itemToRemove = MaterialItem(type: type, name: name, quantity: quantity, unit: unit, info: info, marked: marked)
 
         // Remove deleted item and save edited datasource to UserDefaults
         MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: materialsListStorageKey)
@@ -93,7 +93,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let marked = sections[indexPath.section].marked?[indexPath.row] ?? false
 
         // Create marked material
-        var markedMaterial = Material(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
+        var markedMaterial = MaterialItem(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
 
         // Remove unmarked material from storage
         let itemToRemove = markedMaterial
@@ -120,7 +120,7 @@ class MaterialsListViewModel: MaterialsListTableViewViewModelType {
         let type = sections[selectedIndexPath.section].name
         let marked = sections[selectedIndexPath.section].marked?[selectedIndexPath.row] ?? false
 
-        let itemToEdit = Material(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
+        let itemToEdit = MaterialItem(type: type, name: name, quantity: Float(quantity), unit: unit, info: info, marked: marked)
 
         return EditMaterialViewModel(material: itemToEdit)
     }
@@ -141,7 +141,7 @@ extension MaterialsListViewModel: AddItemsToPurchaseListViewDelegate {
             (0..<sections[j].items.count).forEach { i in
                 if sections[j].quantity?[i] == 0 {
 
-                    let zeroQuantityMaterial = Material(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
+                    let zeroQuantityMaterial = MaterialItem(type: sections[j].name, name: sections[j].items[i], quantity: sections[j].quantity?[i] ?? 0, unit: sections[j].unit?[i] ?? "", info: sections[j].info[i], marked: sections[j].marked?[i] ?? false)
 
                     MaterialsLocalStorageService.saveDataToStorage(object: zeroQuantityMaterial.name, key: purchaseListStorageKey)
 

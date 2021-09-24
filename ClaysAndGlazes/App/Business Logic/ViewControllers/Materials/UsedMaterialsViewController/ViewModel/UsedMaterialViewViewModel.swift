@@ -10,7 +10,7 @@ import UIKit
 class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
 
     var dropDownItemsArray: [String] = []
-    var materialsDictionary: [String : Material] = [:]
+    var materialsDictionary: [String : MaterialItem] = [:]
     var statisticController: StatisticControllerType?
     let storageKey = MaterialsLocalStorageKeys.materialsKey
 
@@ -28,12 +28,12 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
             let marked = materials.map { $0.map { $0.marked }}
             let unit = materials.map { $0.map { $0.unit }}
 
-            var materials: [Material] = []
+            var materials: [MaterialItem] = []
 
             guard let names = items, let quant = quantity, let inform = info, let t = type, let mark = marked, let un = unit  else { return }
 
             (0..<names.count).forEach { i in
-                let material = Material(type: t[i], name: names[i], quantity: quant[i], unit: un[i], info: inform[i], marked: mark[i])
+                let material = MaterialItem(type: t[i], name: names[i], quantity: quant[i], unit: un[i], info: inform[i], marked: mark[i])
                 materials.append(material)
             }
             self?.dropDownItemsArray = names
@@ -66,7 +66,7 @@ class UsedMaterialViewViewModel: UsedMaterialViewViewModelType {
             let marked = materialsDictionary[selectedText]?.marked
             let unit = materialsDictionary[selectedText]?.unit
 
-            let updatedItem = Material(type: type ?? "", name: name, quantity: updatedQuantity , unit: unit ?? "", info: info ?? "", marked: marked ?? false)
+            let updatedItem = MaterialItem(type: type ?? "", name: name, quantity: updatedQuantity , unit: unit ?? "", info: info ?? "", marked: marked ?? false)
 
             // Save new item to storage
             MaterialsLocalStorageService.saveDataToStorage(object: updatedItem, key: storageKey)

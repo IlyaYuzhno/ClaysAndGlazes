@@ -15,13 +15,13 @@ class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
     var itemsInfoDictionary: [String : String] = [:]
     var sections: [Section] = []
     var isSearching: Bool = false
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var presenter: ClaysTableViewPresenterType?
     private var selectedIndexPath: IndexPath?
 
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
-        presenter = ChooseGlazeTableViewPresenter(interactor: interactor)
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
+        presenter = ChooseGlazeTableViewPresenter(storageService: storageService)
     }
 
     func numberOfSections() -> Int {
@@ -61,7 +61,7 @@ class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
     }
 
     func viewModelForSelectedRow() -> GlazeTemperatureTableViewViewModelType? {
-        guard let interactor = interactor, let selectedIndexPath = selectedIndexPath else { return nil}
+        guard let storageService = storageService, let selectedIndexPath = selectedIndexPath else { return nil}
 
         var item = ""
 
@@ -71,7 +71,7 @@ class ChooseGlazeTableViewViewModel: ChooseGlazeTableViewViewModelType {
             item = sections[selectedIndexPath.section].items[selectedIndexPath.row]
         }
 
-        return GlazeTemperatureTableViewViewModel(interactor: interactor, item: item)
+        return GlazeTemperatureTableViewViewModel(storageService: storageService, item: item)
     }
 
 

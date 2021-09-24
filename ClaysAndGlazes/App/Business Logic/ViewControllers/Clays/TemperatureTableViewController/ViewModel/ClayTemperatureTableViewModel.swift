@@ -10,13 +10,14 @@ import Foundation
 class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
 
     var temperatures: [String] = []
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var mode: String?
     var item: String
     private var selectedIndexPath: IndexPath?
+    let claysBasicJSON = "ClaysInfo"
 
-    init(interactor: ClaysGlazeLocalStorageService, item: String) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService, item: String) {
+        self.storageService = storageService
         self.item = item
     }
 
@@ -40,20 +41,20 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
     }
 
     func loadData(completion: @escaping (() -> ()?)) {
-        guard let interactor = interactor else { return }
+        guard let storageService = storageService else { return }
 
-        interactor.getClayTemperature(for: item) { [weak self] temps in
+        storageService.getItemTemperature(resource: claysBasicJSON, for: item) { [weak self] temps in
             self?.temperatures = temps
             completion()
         }
     }
 
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath, let interactor = interactor else { return nil}
+        guard let selectedIndexPath = self.selectedIndexPath, let storageService = storageService else { return nil}
 
         let temperature = temperatures[selectedIndexPath.row].description
 
-        return CrackleTableViewViewModel(interactor: interactor, clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
+        return CrackleTableViewViewModel(storageService: storageService, clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
     }
 }
 

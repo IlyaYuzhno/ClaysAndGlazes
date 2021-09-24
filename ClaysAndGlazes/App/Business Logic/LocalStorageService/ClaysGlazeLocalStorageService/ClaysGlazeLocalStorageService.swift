@@ -12,15 +12,17 @@ import UIKit
 class ClaysGlazeLocalStorageService {
 
     let claysBasicJSON = "ClaysInfo"
+    let glazesBasicJSON = "GlazesInfo"
     static var storage = Storage.storage()
 
-    // MARK: - Clays stuff
+    // MARK: - Generic methods
 
-    func getClays(completion: @escaping ([Response]) -> Void) {
-        if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
+    // Get clays or glazes list
+    func getData<T: Codable>(resource: String, completion: @escaping ([T]) -> Void) {
+        if let path = Bundle.main.path(forResource: resource, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([Response].self, from: data)
+                let jsonResult = try JSONDecoder().decode([T].self, from: data)
                 completion(jsonResult)
             } catch {
                 print(error)
@@ -28,48 +30,60 @@ class ClaysGlazeLocalStorageService {
         }
     }
 
-    func getClayTemperature(for clay: String, completion: @escaping (Array<String>) -> Void) {
-        if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
+    // Get temperatures info for selected item
+    func getItemTemperature(resource: String, for item: String, completion: @escaping (Array<String>) -> Void) {
+        if let path = Bundle.main.path(forResource: resource, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-                let clay = jsonResult.filter { $0.clay == clay }
-                let temperature = clay.map { $0.temperature }
+                let jsonResult = try JSONDecoder().decode([ClaysGlazeItem].self, from: data)
+                let itemToReturn = jsonResult.filter { $0.item == item }
+                let temperature = itemToReturn.map { $0.temperature }
 
                 completion(temperature[0].keys.map { $0 })
-                
+
             } catch {
                 print(error)
             }
         }
     }
 
-    func getGlazes(for clay: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
-        if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
+    // Get list of items for selected item temperature etc.
+    func getItemsForSelectedItem(resource: String, for item: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
+        if let path = Bundle.main.path(forResource: resource, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-                let clay = jsonResult.filter { $0.clay == clay }
-                let crackle = clay.map { $0.temperature }.first?.first(where: { $0.key == temperature })?.value
-                var glazes: [String] = []
+                let jsonResult = try JSONDecoder().decode([ClaysGlazeItem].self, from: data)
+                let claysGlazes = jsonResult.filter { $0.item == item }
+                let crackle = claysGlazes.map { $0.temperature }.first?.first(where: { $0.key == temperature })?.value
+                var items: [String] = []
 
                 switch crackleId {
                 case "mnogo":
-                    glazes = crackle?.mnogo ?? [""]
+                    items = crackle?.mnogo ?? [""]
                 case "malo":
-                    glazes = crackle?.malo ?? [""]
+                    items = crackle?.malo ?? [""]
                 case "no":
-                    glazes = crackle?.no ?? [""]
+                    items = crackle?.no ?? [""]
                 default:
                     break
                 }
-                completion(glazes)
+                completion(items)
             } catch {
                 print(error)
             }
         }
     }
 
+   // Get item image from Firebase storage
+    class func getItemImageFromFirebase(path: String, imageName: String, imageView: UIImageView) {
+        let itemsImagesRef = storage.reference(withPath: path)
+        let image = itemsImagesRef.child("\(imageName).png")
+        let placeholderImage = UIImage(named: "placeholder.png")
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
+    }
+
+    // MARK: - Non-generic
      func getGlazesBrand(for glaze: String, completion: @escaping ([String]) -> Void) {
         if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
             do {
@@ -84,116 +98,7 @@ class ClaysGlazeLocalStorageService {
         }
     }
 
-     func getClaysInfo(completion: @escaping ([String]) -> Void) {
-        if let path = Bundle.main.path(forResource: claysBasicJSON, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([Response].self, from: data)
-                let clayInfo = jsonResult.map { $0.info }
-                DispatchQueue.main.async {
-                    completion(clayInfo)
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-
-    // MARK: Get clay image from Firebase storage
-    class func getClayImageFromFirebase(imageName: String, imageView: UIImageView) {
-        let claysImagesRef = storage.reference(withPath: "images/clays")
-        let image = claysImagesRef.child("\(imageName).png")
-        let placeholderImage = UIImage(named: "placeholder.png")
-        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
-    }
-
-    // MARK: - Glazes stuff
-
-    let glazesBasicJSON = "GlazesInfo"
-
-     func getGlazesList(completion: @escaping ([GlazesResponse]) -> Void) {
-        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
-                    completion(jsonResult)
-            } catch {
-                print(error)
-            }
-
-        }
-    }
-
-     func getGlazeTemperature(for glaze: String, completion: @escaping (Array<String>) -> Void) {
-        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
-                let glaze = jsonResult.filter { $0.glaze == glaze }
-                let temperature = glaze.map { $0.temperature }
-
-                    completion(temperature[0].keys.map { $0 })
-
-            } catch {
-                print(error)
-            }
-        }
-    }
-
-     func getClaysForGlaze(for glaze: String, temperature: String, crackleId: String, completion: @escaping ([String]) -> Void) {
-        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
-                let glaze = jsonResult.filter { $0.glaze == glaze }
-                let crackle = glaze.map { $0.temperature }.first?.first(where: { $0.key == temperature })?.value
-                var clays: [String] = []
-
-                switch crackleId {
-                case "mnogo":
-                    clays = crackle?.mnogo ?? [""]
-                case "malo":
-                    clays = crackle?.malo ?? [""]
-                case "no":
-                    clays = crackle?.no ?? [""]
-                default:
-                    break
-                }
-                DispatchQueue.main.async {
-                    completion(clays)
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-
-     func getGlazeInfo(completion: @escaping ([String]) -> Void) {
-        if let path = Bundle.main.path(forResource: glazesBasicJSON, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONDecoder().decode([GlazesResponse].self, from: data)
-                let glazeInfo = jsonResult.map { $0.info }
-                DispatchQueue.main.async {
-                    completion(glazeInfo)
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-
-    // MARK: Get glaze image from Firebase storage
-    class func getGlazeImageFromFirebase(imageName: String, imageView: UIImageView) {
-        let glazesImagesRef = storage.reference(withPath: "images/glazes")
-        let image = glazesImagesRef.child("\(imageName).png")
-        let placeholderImage = UIImage(named: "placeholder.png")
-        imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        imageView.sd_setImage(with: image, placeholderImage: placeholderImage)
-    }
-
-
+    // MARK: - For future use
 /*
     func fetchGenericJSONData<T: Decodable>(resource: String, completion: @escaping ([T]) -> Void) {
         jsonRequest(resource: resource) { data in

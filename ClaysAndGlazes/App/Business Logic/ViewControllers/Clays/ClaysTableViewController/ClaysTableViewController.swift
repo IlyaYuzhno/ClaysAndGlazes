@@ -9,15 +9,15 @@ import UIKit
 class ClaysTableViewController: UITableViewController {
 
     var isShown = false
-    let interactor: ClaysGlazeLocalStorageService
+    let storageService: ClaysGlazeLocalStorageService
     lazy var searchBar: UISearchBar = UISearchBar()
     let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
     var initialCenter = CGPoint()
     var viewModel: ClaysTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,7 +31,7 @@ class ClaysTableViewController: UITableViewController {
         setupTableView()
         setupSearchBar()
         hideKeyboardWhenTappedAroundOnTableView()
-        viewModel = ClaysTableViewViewModel(interactor: interactor)
+        viewModel = ClaysTableViewViewModel(storageService: storageService)
 
         // Load data via viewModel
         viewModel?.loadData { [weak self] in
@@ -74,7 +74,7 @@ class ClaysTableViewController: UITableViewController {
         viewModel.selectRow(atIndexPath: indexPath)
 
         // Go to next VC
-        let temperatureViewController = ClaysTemperatureTableViewController(interactor: interactor)
+        let temperatureViewController = ClaysTemperatureTableViewController(interactor: storageService)
         viewModel.selectRow(atIndexPath: indexPath)
 
         temperatureViewController.viewModel = viewModel.viewModelForSelectedRow()

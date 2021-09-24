@@ -9,10 +9,11 @@ import UIKit
 
 final class ChooseGlazeTableViewPresenter: ClaysTableViewPresenterType {
 
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
+    let glazesBasicJSON = "GlazesInfo"
 
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
     }
 
     func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void) {
@@ -23,20 +24,20 @@ final class ChooseGlazeTableViewPresenter: ClaysTableViewPresenterType {
         var glazesInfo: [String] = []
         var glazesInfoDictionary: [String : String] = [:]
 
-        interactor?.getGlazesList() { response in
-            let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.glaze }
+        storageService?.getData(resource: glazesBasicJSON) { (response: [ClaysGlazeItem]) in
+            let labCeramica = response.filter { $0.brand == "Lab Ceramica" }.map { $0.item }
             let labCeramicaInfo = response.filter { $0.brand == "Lab Ceramica" }.map { $0.info}
-            let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.glaze }
+            let prodesco = response.filter { $0.brand == "Prodesco" }.map { $0.item }
             let prodescoInfo = response.filter { $0.brand == "Prodesco" }.map { $0.info}
-            let amaco = response.filter { $0.brand == "Amaco" }.map { $0.glaze }
+            let amaco = response.filter { $0.brand == "Amaco" }.map { $0.item }
             let amacoInfo = response.filter { $0.brand == "Amaco" }.map { $0.info}
-            let terracolor = response.filter { $0.brand == "Terracolor" }.map { $0.glaze }
+            let terracolor = response.filter { $0.brand == "Terracolor" }.map { $0.item }
             let terracolorInfo = response.filter { $0.brand == "Terracolor" }.map { $0.info}
-            let mayco = response.filter { $0.brand == "Mayco" }.map { $0.glaze }
+            let mayco = response.filter { $0.brand == "Mayco" }.map { $0.item }
             let maycoInfo = response.filter { $0.brand == "Mayco" }.map { $0.info}
-            let botz = response.filter { $0.brand == "Botz" }.map { $0.glaze }
+            let botz = response.filter { $0.brand == "Botz" }.map { $0.item }
             let botzInfo = response.filter { $0.brand == "Botz" }.map { $0.info}
-            let spectrum = response.filter { $0.brand == "Spectrum" }.map { $0.glaze }
+            let spectrum = response.filter { $0.brand == "Spectrum" }.map { $0.item }
             let spectrumInfo = response.filter { $0.brand == "Spectrum" }.map { $0.info}
 
             let subList = labCeramica + prodesco + amaco

@@ -8,14 +8,14 @@ import UIKit
 
 class ChooseGlazeTableViewController: UITableViewController {
 
-    let interactor: ClaysGlazeLocalStorageService
+    let storageService: ClaysGlazeLocalStorageService
     lazy var searchBar: UISearchBar = UISearchBar()
     var initialCenter = CGPoint()
     var viewModel: ChooseGlazeTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -29,7 +29,7 @@ class ChooseGlazeTableViewController: UITableViewController {
         setupTableView()
         setupSearchBar()
         hideKeyboardWhenTappedAroundOnTableView()
-        viewModel = ChooseGlazeTableViewViewModel(interactor: interactor)
+        viewModel = ChooseGlazeTableViewViewModel(storageService: storageService)
 
         // Load data via viewModel
         viewModel?.loadData { [weak self] in

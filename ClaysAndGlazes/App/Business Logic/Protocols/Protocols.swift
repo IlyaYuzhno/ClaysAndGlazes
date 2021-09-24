@@ -43,7 +43,7 @@ protocol EditMaterialViewModelType {
     var type: String { get }
     var marked: Bool { get }
     var unit: String { get }
-    func getMaterial() -> Material
+    func getMaterial() -> MaterialItem
     func editMaterial(itemName: String, itemQuantity: Float, itemInfo: String)
 }
 
@@ -65,7 +65,7 @@ protocol ClaysTableViewViewModelType {
     var claysInfoDictionary: [String: String] { get }
     var sections: [Section] { get set }
     var isSearching: Bool { get set }
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var presenter: ClaysTableViewPresenterType? { get set }
 
     func numberOfSections() -> Int
@@ -79,14 +79,14 @@ protocol ClaysTableViewViewModelType {
 
 // ClaysTableViewPresenter
 protocol ClaysTableViewPresenterType: AnyObject {
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     func present(completion: @escaping ([Section], [String], [String], [String], [String : String]) -> Void)
 }
 
 // TemperatureTableView
 protocol TemperatureTableViewViewModelType {
     var temperatures: [String] { get set }
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var mode: String? { get set}
     var item: String { get set }
     func numberOfRowsInSection(forSection section: Int) -> Int
@@ -99,7 +99,7 @@ protocol TemperatureTableViewViewModelType {
 
 // CrackleTableView
 protocol CrackleTableViewViewModelType {
-    var interactor: ClaysGlazeLocalStorageService { get set }
+    var storageService: ClaysGlazeLocalStorageService { get set }
     var crackle: [String] { get }
     var clay: String { get }
     var glaze: String { get }
@@ -113,7 +113,7 @@ protocol CrackleTableViewViewModelType {
 
 // Glazes for clay TableView
 protocol GlazesForClayTableViewViewModelType {
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var clay: String { get }
     var temperature: String { get }
     var crackleId: String { get }
@@ -136,7 +136,7 @@ protocol ChooseGlazeTableViewViewModelType {
     var itemsInfoDictionary: [String: String] { get }
     var sections: [Section] { get set }
     var isSearching: Bool { get set }
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var presenter: ClaysTableViewPresenterType? { get set }
 
     func numberOfSections() -> Int
@@ -151,7 +151,7 @@ protocol ChooseGlazeTableViewViewModelType {
 // Glazes temperatures
 protocol GlazeTemperatureTableViewViewModelType {
     var temperatures: [String] { get set }
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var mode: String? { get set}
     var item: String { get set }
     func numberOfRowsInSection(forSection section: Int) -> Int
@@ -164,7 +164,7 @@ protocol GlazeTemperatureTableViewViewModelType {
 
 // ClaysForGlazeTableView
 protocol ClaysForGlazesTableViewViewModelType {
-    var interactor: ClaysGlazeLocalStorageService? { get set }
+    var storageService: ClaysGlazeLocalStorageService? { get set }
     var glaze: String { get }
     var temperature: String { get }
     var crackleId: String { get }
@@ -185,7 +185,7 @@ protocol InformationViewViewModelType {
 // MARK: - Used Material View ViewModel protocol
 protocol UsedMaterialViewViewModelType {
     var dropDownItemsArray: [String] { get }
-    var materialsDictionary: [String : Material] { get }
+    var materialsDictionary: [String : MaterialItem] { get }
     func loadData(view: UsedMaterialView)
     func saveButtonTapped(stack: UIStackView, self: UIViewController)
 }

@@ -13,7 +13,7 @@ class StatisticController: StatisticControllerType {
     var statisticList: [MaterialStatisticItem] = []
 
     func saveToStatistic(itemToSave: MaterialStatisticItem) {
-        let itemToEdit = MaterialsLocalStorageService.retrieveStatisticItem(item: itemToSave)
+        let itemToEdit = MaterialsLocalStorageService.retrieveStatisticItemFromStorage(item: itemToSave)
 
         MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToEdit, key: storageKey)
 

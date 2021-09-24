@@ -18,7 +18,7 @@ class AddMaterialViewControllerViewModel: AddMaterialViewControllerViewModelType
     func addNewMaterial(type: String, quantity: String, unit: String, name: String, info: String, viewController: UIViewController) {
 
         // Create material from item parameters
-        let material = Material(type: type, name: name, quantity: Float(quantity) ?? 0, unit: unit, info: info, marked: false)
+        let material = MaterialItem(type: type, name: name, quantity: Float(quantity) ?? 0, unit: unit, info: info, marked: false)
 
         // Save material to UserDefaults
         MaterialsLocalStorageService.saveDataToStorage(object: material, key: MaterialsLocalStorageKeys.materialsKey)

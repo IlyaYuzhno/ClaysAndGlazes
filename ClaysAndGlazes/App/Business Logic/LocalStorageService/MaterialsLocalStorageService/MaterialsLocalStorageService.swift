@@ -16,9 +16,11 @@ class MaterialsLocalStorageService {
     private static let isCollapsedKey = MaterialsLocalStorageKeys.isCollapsedKey
 
     // MARK: - Generic methods
+
+    // Save data to UserDefaults
     class func saveDataToStorage<T: Codable>(object: T, key: String) {
 
-        if T.self == Material.self {
+        if T.self == MaterialItem.self {
             checkIfMaterialsListDataExists()
         }
 
@@ -42,9 +44,10 @@ class MaterialsLocalStorageService {
         }
     }
 
+    // Retrieve data from UserDefaults
     class func retrieveDataFromStorage<T: Codable>(key: String, type: T.Type, completion: @escaping ([T]?) -> Void) {
 
-        if T.self == Material.self {
+        if T.self == MaterialItem.self {
             checkIfMaterialsListDataExists()
         }
         
@@ -65,6 +68,7 @@ class MaterialsLocalStorageService {
         }
     }
 
+    // Remove particular item from UserDefaults
     class func removeItemInStorage<T: Codable & Equatable>(itemToRemove: T, key: String) {
         do {
             var data = try? UserDefaults.standard.getObject(forKey: key, castTo: [T].self)
@@ -77,15 +81,17 @@ class MaterialsLocalStorageService {
         }
     }
 
-    // MARK: - Materials List methods
+
+
+    // MARK: - Non-generic methods
 
     // Retrieve array of Material, non-genericable
-    class func retrieveMaterialsData(completion: @escaping ([Material]?, [String : Bool]) -> Void) {
+    class func retrieveMaterialsData(completion: @escaping ([MaterialItem]?, [String : Bool]) -> Void) {
 
         checkIfMaterialsListDataExists()
 
         do {
-            let materials = try UserDefaults.standard.getObject(forKey: materialsKey, castTo: [Material].self)
+            let materials = try UserDefaults.standard.getObject(forKey: materialsKey, castTo: [MaterialItem].self)
             let isCollapsed = try UserDefaults.standard.getObject(forKey: isCollapsedKey, castTo: [String : Bool].self)
             completion(materials, isCollapsed)
         } catch {
@@ -96,10 +102,10 @@ class MaterialsLocalStorageService {
     // Check if Materials List data exists in UserDefaults
     static func checkIfMaterialsListDataExists() {
         do {
-            let initialData: [Material] = []
+            let initialData: [MaterialItem] = []
             let initialIsCollapsedData = ["" : true]
 
-            let data = try? UserDefaults.standard.getObject(forKey: materialsKey, castTo: [Material].self)
+            let data = try? UserDefaults.standard.getObject(forKey: materialsKey, castTo: [MaterialItem].self)
             let isCollapsedData = try? UserDefaults.standard.getObject(forKey: isCollapsedKey, castTo: [String : Bool].self)
 
             if (data == nil || isCollapsedData == nil) {
@@ -113,19 +119,19 @@ class MaterialsLocalStorageService {
         }
     }
 
-    // MARK: - Materials Statistic methods
-    class func retrieveStatisticItem(item: MaterialStatisticItem) -> MaterialStatisticItem {
-        var itemToReturn = MaterialStatisticItem(name: "", quantity: 0, unit: "")
+    // Retrieve particular statistic item from UserDefaults
+    class func retrieveStatisticItemFromStorage(item: MaterialStatisticItem) -> MaterialStatisticItem {
+           var itemToReturn = MaterialStatisticItem(name: "", quantity: 0, unit: "")
 
-        guard let itemsList = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self) else { return itemToReturn }
+           guard let itemsList = try? UserDefaults.standard.getObject(forKey: materialsStatisticListKey, castTo: [MaterialStatisticItem].self) else { return itemToReturn }
 
-        if let index = itemsList.firstIndex(where: { $0.name == item.name }) {
-            itemToReturn = itemsList[index]
-        }
-        return itemToReturn
-    }
+           if let index = itemsList.firstIndex(where: { $0.name == item.name }) {
+               itemToReturn = itemsList[index]
+           }
+           return itemToReturn
+       }
 
-    // MARK: - Materials List Section isCollapsed state save
+    // MARK: - MaterialsList Section isCollapsed state save
     class func isSectionCollapsedStateSave<T: Codable>(object: T, key: String) {
         do {
             try UserDefaults.standard.saveObject(object, forKey: key)

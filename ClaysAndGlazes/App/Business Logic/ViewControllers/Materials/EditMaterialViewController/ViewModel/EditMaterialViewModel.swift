@@ -9,10 +9,10 @@ import Foundation
 
 class EditMaterialViewModel: EditMaterialViewModelType {
 
-    var material: Material
+    var material: MaterialItem
     let storageKey = MaterialsLocalStorageKeys.materialsKey
 
-    init(material: Material) {
+    init(material: MaterialItem) {
         self.material = material
     }
 
@@ -40,7 +40,7 @@ class EditMaterialViewModel: EditMaterialViewModelType {
         return material.marked
     }
 
-    func getMaterial() -> Material {
+    func getMaterial() -> MaterialItem {
         return material
     }
 
@@ -49,7 +49,7 @@ class EditMaterialViewModel: EditMaterialViewModelType {
         MaterialsLocalStorageService.removeItemInStorage(itemToRemove: itemToRemove, key: storageKey)
 
         // Create new material from item parameters
-        let material = Material(type: type, name: itemName, quantity: itemQuantity, unit: unit, info: itemInfo, marked: marked )
+        let material = MaterialItem(type: type, name: itemName, quantity: itemQuantity, unit: unit, info: itemInfo, marked: marked )
 
         // Save new material to UserDefaults
         MaterialsLocalStorageService.saveDataToStorage(object: material, key: storageKey)

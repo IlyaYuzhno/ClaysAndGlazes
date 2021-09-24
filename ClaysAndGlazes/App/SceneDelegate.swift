@@ -21,11 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
 
-        let interactor = ClaysGlazeLocalStorageService()
+        let storageService = ClaysGlazeLocalStorageService()
         
         // Creating VC for Tab Bar
-        let claysListController = ClaysTableViewController(interactor: interactor)
-        let glazesListController = ChooseGlazeTableViewController(interactor: interactor)
+        let claysListController = ClaysTableViewController(storageService: storageService)
+        let glazesListController = ChooseGlazeTableViewController(storageService: storageService)
         //let materialsListController = MaterialsListTableViewController()
         let materialsListController = MaterialsListMainViewController()
         let glazesRecipesController = GlazesRecipesCollectionViewController()

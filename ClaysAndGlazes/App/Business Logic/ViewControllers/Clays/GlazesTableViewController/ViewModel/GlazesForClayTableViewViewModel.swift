@@ -9,15 +9,16 @@ import Foundation
 
 class GlazesForClayTableViewViewModel: GlazesForClayTableViewViewModelType {
 
-    var interactor: ClaysGlazeLocalStorageService?
+    var storageService: ClaysGlazeLocalStorageService?
     var clay: String
     var temperature: String
     var crackleId: String
     var glazes: [String] = []
     var brand: [String] = []
+    let claysBasicJSON = "ClaysInfo"
 
-    init(interactor: ClaysGlazeLocalStorageService, clay: String, temperature: String, crackleId: String) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService, clay: String, temperature: String, crackleId: String) {
+        self.storageService = storageService
         self.clay = clay
         self.temperature = temperature
         self.crackleId = crackleId
@@ -38,19 +39,19 @@ class GlazesForClayTableViewViewModel: GlazesForClayTableViewViewModelType {
     }
 
     func loadData(completion: @escaping (() -> ()?)) {
-        guard let interactor = interactor else { return }
+        guard let storageService = storageService else { return }
 
         let serialQueue = DispatchQueue(label: "com.queue.Serial")
         serialQueue.sync {
 
-        // Get glazes
-        interactor.getGlazes(for: clay, temperature: temperature, crackleId: self.crackleId) { [weak self] items in
+            // Get glazes
+            storageService.getItemsForSelectedItem(resource: claysBasicJSON, for: clay, temperature: temperature, crackleId: self.crackleId) { [weak self] items in
                 self?.glazes = items
             }
         }
 
         // Get glazes brand
-        interactor.getGlazesBrand(for: glazes.first ?? "") { [weak self] brand in
+        storageService.getGlazesBrand(for: glazes.first ?? "") { [weak self] brand in
             self?.brand = brand
             completion()
         }

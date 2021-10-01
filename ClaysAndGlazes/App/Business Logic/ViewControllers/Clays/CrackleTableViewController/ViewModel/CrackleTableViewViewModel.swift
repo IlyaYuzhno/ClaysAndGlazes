@@ -15,9 +15,9 @@ class CrackleTableViewViewModel: CrackleTableViewViewModelType {
     var clay: String
     var glaze: String
     var temperature: String
-    var mode: String
+    var mode: Mode
 
-    init(storageService: ClaysGlazeLocalStorageService,  clay: String, glaze: String, temperature: String, mode: String) {
+    init(storageService: ClaysGlazeLocalStorageService,  clay: String, glaze: String, temperature: String, mode: Mode) {
         self.clay = clay
         self.glaze = glaze
         self.temperature = temperature

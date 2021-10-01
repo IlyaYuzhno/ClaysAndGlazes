@@ -15,7 +15,7 @@ class GlazesForClayTableViewViewModel: GlazesForClayTableViewViewModelType {
     var crackleId: String
     var glazes: [String] = []
     var brand: [String] = []
-    let claysBasicJSON = "ClaysInfo"
+    let claysBasicJSON = DataResources.claysBasicJSON
 
     init(storageService: ClaysGlazeLocalStorageService, clay: String, temperature: String, crackleId: String) {
         self.storageService = storageService

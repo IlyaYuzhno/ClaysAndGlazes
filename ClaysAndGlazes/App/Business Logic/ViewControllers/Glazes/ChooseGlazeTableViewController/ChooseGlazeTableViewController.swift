@@ -132,5 +132,6 @@ class ChooseGlazeTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "chooseGlazeTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(ClayCell.self, forCellReuseIdentifier: "glazeCell")
+        tableView.setBackgroundImage(imageName: "backgroundImage")
     }
 }

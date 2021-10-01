@@ -113,3 +113,16 @@ extension String {
         return Set(self).isSubset(of: nums)
     }
 }
+
+extension UITableView {
+    func setBackgroundImage(imageName: String) {
+        let background = UIImage(named: imageName)
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = center
+        backgroundView = imageView
+    }
+}

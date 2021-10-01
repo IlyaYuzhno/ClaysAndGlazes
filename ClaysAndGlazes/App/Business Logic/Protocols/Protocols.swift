@@ -87,14 +87,14 @@ protocol ClaysTableViewPresenterType: AnyObject {
 protocol TemperatureTableViewViewModelType {
     var temperatures: [String] { get set }
     var storageService: ClaysGlazeLocalStorageService? { get set }
-    var mode: String? { get set}
+    var mode: Mode? { get set}
     var item: String { get set }
     func numberOfRowsInSection(forSection section: Int) -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
     func loadData(completion: (@escaping () -> ()?))
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
-    func mode(mode: String)
+    func mode(mode: Mode)
 }
 
 // CrackleTableView
@@ -104,7 +104,7 @@ protocol CrackleTableViewViewModelType {
     var clay: String { get }
     var glaze: String { get }
     var temperature: String { get }
-    var mode: String { get }
+    var mode: Mode { get }
     func numberOfRowsInSection(forSection section: Int) -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
     func viewModelForGlazesForClay(clay: String, temperature: String, crackleId: String) -> GlazesForClayTableViewViewModelType?
@@ -152,14 +152,14 @@ protocol ChooseGlazeTableViewViewModelType {
 protocol GlazeTemperatureTableViewViewModelType {
     var temperatures: [String] { get set }
     var storageService: ClaysGlazeLocalStorageService? { get set }
-    var mode: String? { get set}
+    var mode: Mode? { get set}
     var item: String { get set }
     func numberOfRowsInSection(forSection section: Int) -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> DefaultCellViewModelType?
     func loadData(completion: (@escaping () -> ()?))
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType?
     func selectRow(atIndexPath indexPath: IndexPath)
-    func mode(mode: String)
+    func mode(mode: Mode)
 }
 
 // ClaysForGlazeTableView

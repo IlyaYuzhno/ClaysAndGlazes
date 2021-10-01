@@ -20,7 +20,7 @@ class PurchaseListTableViewViewModel: PurchaseListTableViewViewModelType {
     func loadData(completion: (@escaping () -> ()?)) {
         MaterialsLocalStorageService.retrieveDataFromStorage(key: storageKey, type: String.self) {
             [weak self] purchaseList in
-                self?.purchaseList = purchaseList ?? [""]
+                self?.purchaseList = purchaseList ?? []
                 completion()
         }
     }

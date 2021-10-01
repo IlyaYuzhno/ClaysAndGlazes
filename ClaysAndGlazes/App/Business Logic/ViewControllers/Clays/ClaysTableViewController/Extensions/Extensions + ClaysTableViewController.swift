@@ -16,7 +16,7 @@ extension ClaysTableViewController: UISearchBarDelegate {
         searchBar.sizeToFit()
         searchBar.isTranslucent = true
         searchBar.backgroundImage = UIImage()
-        searchBar.backgroundColor = .clear
+        searchBar.backgroundColor = .BackgroundColor1
         searchBar.searchTextField.backgroundColor = .SearchBarColor
         searchBar.delegate = self
         searchBar.returnKeyType = .done

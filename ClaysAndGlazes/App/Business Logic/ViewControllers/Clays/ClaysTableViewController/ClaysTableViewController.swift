@@ -11,7 +11,7 @@ class ClaysTableViewController: UITableViewController {
     var isShown = false
     let storageService: ClaysGlazeLocalStorageService
     lazy var searchBar: UISearchBar = UISearchBar()
-    let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 270))
+    let startView = StartView(frame: CGRect(x: 5, y: 50, width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 220))
     var initialCenter = CGPoint()
     var viewModel: ClaysTableViewViewModelType?
 
@@ -30,6 +30,7 @@ class ClaysTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
+        setTabBarOpacityAndColor()
         hideKeyboardWhenTappedAroundOnTableView()
         viewModel = ClaysTableViewViewModel(storageService: storageService)
 
@@ -74,7 +75,7 @@ class ClaysTableViewController: UITableViewController {
         viewModel.selectRow(atIndexPath: indexPath)
 
         // Go to next VC
-        let temperatureViewController = ClaysTemperatureTableViewController(interactor: storageService)
+        let temperatureViewController = ClaysTemperatureTableViewController(storageService: storageService)
         viewModel.selectRow(atIndexPath: indexPath)
 
         temperatureViewController.viewModel = viewModel.viewModelForSelectedRow()
@@ -142,11 +143,21 @@ class ClaysTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .BackgroundColor1
+        
         navigationController?.navigationBar.barTintColor = .BackgroundColor1
         navigationItem.title = "ВЫБЕРИ МАССУ:"
         tableView.tableFooterView = UIView()
         tableView.accessibilityIdentifier = "claysTableView"
         clearsSelectionOnViewWillAppear = true
         tableView.register(ClayCell.self, forCellReuseIdentifier: "clayCell")
+
+        tableView.setBackgroundImage(imageName: "backgroundImage")
+    }
+
+    private func setTabBarOpacityAndColor() {
+        tabBarController?.tabBar.backgroundColor = .BackgroundColor1
+        tabBarController?.tabBar.alpha = 0.9
+        tabBarController?.tabBar.backgroundImage = UIImage()
+        tabBarController?.tabBar.shadowImage = UIImage()
     }
 }

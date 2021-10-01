@@ -11,10 +11,10 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
 
     var temperatures: [String] = []
     var storageService: ClaysGlazeLocalStorageService?
-    var mode: String?
+    var mode: Mode?
     var item: String
     private var selectedIndexPath: IndexPath?
-    let claysBasicJSON = "ClaysInfo"
+    let claysBasicJSON = DataResources.claysBasicJSON
 
     init(storageService: ClaysGlazeLocalStorageService, item: String) {
         self.storageService = storageService
@@ -29,7 +29,7 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
         self.selectedIndexPath = indexPath
     }
 
-    func mode(mode: String) {
+    func mode(mode: Mode) {
         self.mode = mode
     }
 
@@ -50,11 +50,11 @@ class ClayTemperatureTableViewViewModel: TemperatureTableViewViewModelType {
     }
 
     func viewModelForSelectedRow() -> CrackleTableViewViewModelType? {
-        guard let selectedIndexPath = self.selectedIndexPath, let storageService = storageService else { return nil}
+        guard let selectedIndexPath = self.selectedIndexPath, let storageService = storageService, let mode = mode else { return nil}
 
         let temperature = temperatures[selectedIndexPath.row].description
 
-        return CrackleTableViewViewModel(storageService: storageService, clay: item , glaze: "", temperature: temperature, mode: mode ?? "")
+        return CrackleTableViewViewModel(storageService: storageService, clay: item , glaze: "", temperature: temperature, mode: mode)
     }
 }
 

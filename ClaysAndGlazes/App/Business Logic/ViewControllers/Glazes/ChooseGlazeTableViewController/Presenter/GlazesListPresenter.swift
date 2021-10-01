@@ -10,7 +10,7 @@ import UIKit
 final class ChooseGlazeTableViewPresenter: ClaysTableViewPresenterType {
 
     var storageService: ClaysGlazeLocalStorageService?
-    let glazesBasicJSON = "GlazesInfo"
+    let glazesBasicJSON = DataResources.glazesBasicJSON
 
     init(storageService: ClaysGlazeLocalStorageService) {
         self.storageService = storageService

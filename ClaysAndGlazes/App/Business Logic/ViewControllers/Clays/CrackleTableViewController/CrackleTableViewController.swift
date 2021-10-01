@@ -56,22 +56,19 @@ class CrackleTableViewController: UITableViewController {
 
         // MARK: Go to next VC
         switch viewModel.mode {
-        case "clay":
+        case .clay:
             let glazesViewController = GlazesForClayTableViewController()
 
             glazesViewController.viewModel = viewModel.viewModelForGlazesForClay(clay: viewModel.clay, temperature: viewModel.temperature, crackleId: crackleId)
 
             self.navigationController?.pushViewController(glazesViewController, animated: true)
 
-        case "glaze":
+        case .glaze:
             let claysForGlazeViewController = ClaysForGlazeTableViewController()
 
             claysForGlazeViewController.viewModel = viewModel.viewModelForClaysForGlaze(glaze: viewModel.glaze, temperature: viewModel.temperature, crackleId: crackleId)
 
             self.navigationController?.pushViewController(claysForGlazeViewController, animated: true)
-
-        default:
-            break
         }
     }
 

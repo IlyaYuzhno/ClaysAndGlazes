@@ -23,7 +23,7 @@ final class ClaysTableViewPresenter: ClaysTableViewPresenterType {
         var filteredClaysList: [String] = []
         var claysInfo: [String] = []
         var claysInfoDictionary: [String : String] = [:]
-        let claysBasicJSON = "ClaysInfo"
+        let claysBasicJSON = DataResources.claysBasicJSON
 
         storageService.getData(resource: claysBasicJSON) { (response: [ClaysGlazeItem]) in
             let witgert = response.filter { $0.brand == "Witgert" }.map { $0.item}

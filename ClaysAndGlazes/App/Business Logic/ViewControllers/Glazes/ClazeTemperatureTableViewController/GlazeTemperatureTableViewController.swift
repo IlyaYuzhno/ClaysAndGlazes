@@ -9,19 +9,8 @@ import UIKit
 
 class GlazeTemperatureTableViewController: UITableViewController {
 
-    //let interactor: Interactor
     var viewModel: GlazeTemperatureTableViewViewModelType?
     
-    // MARK: - Init
-//    init(interactor: Interactor) {
-//        self.interactor = interactor
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +53,13 @@ class GlazeTemperatureTableViewController: UITableViewController {
         guard let viewModel = viewModel else { return }
 
         viewModel.selectRow(atIndexPath: indexPath)
-        viewModel.mode(mode: "glaze")
+        viewModel.mode(mode: .glaze)
 
         let crackleViewController = CrackleTableViewController()
 
         crackleViewController.viewModel = viewModel.viewModelForSelectedRow()
 
         self.navigationController?.pushViewController(crackleViewController, animated: true)
-
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

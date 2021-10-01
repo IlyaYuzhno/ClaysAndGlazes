@@ -74,6 +74,10 @@
 		5B6E14D826BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */; };
 		5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */; };
 		5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */; };
+		5B833E2326FF109F007D6D0E /* DataResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E2226FF109F007D6D0E /* DataResources.swift */; };
+		5B833E2926FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B833E2826FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png */; };
+		5B833E2B26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B833E2A26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png */; };
+		5B833E2D27048FFC007D6D0E /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E2C27048FFC007D6D0E /* Mode.swift */; };
 		5B88EF8226FCA8AF002493B6 /* MaterialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */; };
 		5B88EF8526FDBE26002493B6 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8426FDBE26002493B6 /* StorageKeys.swift */; };
 		5B88EF8726FDF2C5002493B6 /* ClaysGlazeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */; };
@@ -198,6 +202,10 @@
 		5B6E14D726BD26C20072FB7E /* Extensions + ChooseGlazeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + ChooseGlazeTableViewController.swift"; sourceTree = "<group>"; };
 		5B6E14D926BD2A4E0072FB7E /* InformationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewViewModel.swift; sourceTree = "<group>"; };
 		5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + AddMaterialViewController.swift"; sourceTree = "<group>"; };
+		5B833E2226FF109F007D6D0E /* DataResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResources.swift; sourceTree = "<group>"; };
+		5B833E2826FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImageBackgroundColor1Light.png; sourceTree = "<group>"; };
+		5B833E2A26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImageBackgroundColor1Dark.png; sourceTree = "<group>"; };
+		5B833E2C27048FFC007D6D0E /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialsListTableViewController.swift; sourceTree = "<group>"; };
 		5B88EF8426FDBE26002493B6 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysGlazeItem.swift; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
 				5B63CE5F26A6CA7A00AB81AC /* MaterialItem.swift */,
 				5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */,
+				5B833E2C27048FFC007D6D0E /* Mode.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -514,6 +523,8 @@
 		5B2C04F026539B7F00FB1CED /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5B833E2826FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png */,
+				5B833E2A26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png */,
 				5BBD355126FCA3C7000B7DF6 /* addMaterialIcon.png */,
 				5BAB808026F2273400D32D06 /* checkedBox.png */,
 				5BAB808226F2319500D32D06 /* uncheckedBox.png */,
@@ -533,9 +544,9 @@
 		5B2C04F126539B8E00FB1CED /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
 				5B2C04AF262709E200FB1CED /* GlazesInfo.json */,
 				5B060FDA2615FD520090E250 /* GlazesList.json */,
-				5B060FCC2614C3B90090E250 /* ClaysInfo.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -579,6 +590,7 @@
 				5BBD355326FCA61E000B7DF6 /* MaterialsLocalStorageService */,
 				5B88EF8326FCA978002493B6 /* Extensions */,
 				5B88EF8426FDBE26002493B6 /* StorageKeys.swift */,
+				5B833E2226FF109F007D6D0E /* DataResources.swift */,
 			);
 			path = LocalStorageService;
 			sourceTree = "<group>";
@@ -1084,8 +1096,10 @@
 				5BAB808326F2319500D32D06 /* uncheckedBox.png in Resources */,
 				5B2C04D0262B3A8900FB1CED /* glazeBrushBlue.png in Resources */,
 				5BAB808126F2273500D32D06 /* checkedBox.png in Resources */,
+				5B833E2B26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png in Resources */,
 				5B060F3D261233550090E250 /* Assets.xcassets in Resources */,
 				5B2C04D5262B3A9400FB1CED /* glazeBrushGrayIcon.png in Resources */,
+				5B833E2926FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png in Resources */,
 				5B2C04F62654F67F00FB1CED /* GoogleService-Info.plist in Resources */,
 				5B060FDB2615FD520090E250 /* GlazesList.json in Resources */,
 				5BAB807726EF4E8700D32D06 /* handsWithClayIcon.png in Resources */,
@@ -1237,6 +1251,7 @@
 				5B6E14BE26B3EBA10072FB7E /* ClaysTableViewViewModel.swift in Sources */,
 				5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */,
 				5BDA426E26E23F60009523A1 /* PurchaseListTableViewController.swift in Sources */,
+				5B833E2326FF109F007D6D0E /* DataResources.swift in Sources */,
 				5BAB806526E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift in Sources */,
 				5BDA426426DF8233009523A1 /* DescribingView.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
@@ -1244,6 +1259,7 @@
 				5B6E14AE26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5BAB806D26EB549C00D32D06 /* MainMaterialsListTileView.swift in Sources */,
+				5B833E2D27048FFC007D6D0E /* Mode.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* ClaysGlazeLocalStorageService.swift in Sources */,
 				5B060F78261233AF0090E250 /* GlazesForClayTableViewController.swift in Sources */,

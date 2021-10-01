@@ -11,8 +11,7 @@ import UIKit
 
 class ClaysGlazeLocalStorageService {
 
-    let claysBasicJSON = "ClaysInfo"
-    let glazesBasicJSON = "GlazesInfo"
+    let glazesListJSON = DataResources.glazesListJSON
     static var storage = Storage.storage()
 
     // MARK: - Generic methods
@@ -85,7 +84,7 @@ class ClaysGlazeLocalStorageService {
 
     // MARK: - Non-generic
      func getGlazesBrand(for glaze: String, completion: @escaping ([String]) -> Void) {
-        if let path = Bundle.main.path(forResource: "GlazesList", ofType: "json") {
+        if let path = Bundle.main.path(forResource: glazesListJSON, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONDecoder().decode(GlazesSearchResponse.self, from: data)

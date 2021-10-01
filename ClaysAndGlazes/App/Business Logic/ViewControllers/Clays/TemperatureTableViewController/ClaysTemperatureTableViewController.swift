@@ -9,12 +9,12 @@ import UIKit
 
 class ClaysTemperatureTableViewController: UITableViewController {
 
-    let interactor: ClaysGlazeLocalStorageService
+    let storageService: ClaysGlazeLocalStorageService
     var viewModel: TemperatureTableViewViewModelType?
 
     // MARK: - Init
-    init(interactor: ClaysGlazeLocalStorageService) {
-        self.interactor = interactor
+    init(storageService: ClaysGlazeLocalStorageService) {
+        self.storageService = storageService
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -61,7 +61,7 @@ class ClaysTemperatureTableViewController: UITableViewController {
 
         guard let viewModel = viewModel else { return }
         viewModel.selectRow(atIndexPath: indexPath)
-        viewModel.mode(mode: "clay")
+        viewModel.mode(mode: .clay)
 
         let crackleViewController = CrackleTableViewController()
 

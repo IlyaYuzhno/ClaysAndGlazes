@@ -101,6 +101,7 @@ class MaterialsListMainViewController: UIViewController {
         let panGesture = UIPanGestureRecognizer(target: self, action:#selector(scrollBasicView(sender:)))
         basicView.addGestureRecognizer(panGesture)
         setupViews()
+        setBackgroundImage()
     }
 
     private func setupViews() {
@@ -122,6 +123,18 @@ class MaterialsListMainViewController: UIViewController {
         materialStatisticView.topFiveTableView.delegate = self
         materialStatisticView.topFiveTableView.dataSource = self
         materialStatisticView.topFiveTableView.register(StatisticTableViewCell.self, forCellReuseIdentifier: "statisticCell")
+    }
+
+    private func setBackgroundImage() {
+        let background = UIImage(named: "backgroundImage")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        view.sendSubviewToBack(imageView)
     }
 
     private func setupConstraints() {

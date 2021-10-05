@@ -54,7 +54,6 @@
 		5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */; };
 		5B63CE6E26A83AE600AB81AC /* MaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */; };
 		5B63CE7426A9532400AB81AC /* GlazesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE7326A9532400AB81AC /* GlazesListPresenter.swift */; };
-		5B63CE7926A956A900AB81AC /* GlazesRecipesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE7826A956A900AB81AC /* GlazesRecipesCollectionViewController.swift */; };
 		5B6E149B26B161BF0072FB7E /* MaterialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E149A26B161BF0072FB7E /* MaterialsListViewModel.swift */; };
 		5B6E149E26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E149D26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift */; };
 		5B6E14A326B18DCE0072FB7E /* EditMaterialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */; };
@@ -78,6 +77,12 @@
 		5B833E2926FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B833E2826FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png */; };
 		5B833E2B26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B833E2A26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png */; };
 		5B833E2D27048FFC007D6D0E /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E2C27048FFC007D6D0E /* Mode.swift */; };
+		5B833E2F270C3834007D6D0E /* GlazesRecipesMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E2E270C3834007D6D0E /* GlazesRecipesMainViewController.swift */; };
+		5B833E32270C3A40007D6D0E /* RecipesMainActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E31270C3A40007D6D0E /* RecipesMainActionsView.swift */; };
+		5B833E37270C4E66007D6D0E /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E36270C4E66007D6D0E /* RecipeCollectionViewCell.swift */; };
+		5B833E39270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E38270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift */; };
+		5B833E3C270C5251007D6D0E /* GlazesRecipesMainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E3B270C5251007D6D0E /* GlazesRecipesMainViewViewModel.swift */; };
+		5B833E41270C5D29007D6D0E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B833E40270C5D29007D6D0E /* Recipe.swift */; };
 		5B88EF8226FCA8AF002493B6 /* MaterialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */; };
 		5B88EF8526FDBE26002493B6 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8426FDBE26002493B6 /* StorageKeys.swift */; };
 		5B88EF8726FDF2C5002493B6 /* ClaysGlazeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */; };
@@ -182,7 +187,6 @@
 		5B63CE6A26A82F5600AB81AC /* EditMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewController.swift; sourceTree = "<group>"; };
 		5B63CE6D26A83AE600AB81AC /* MaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCell.swift; sourceTree = "<group>"; };
 		5B63CE7326A9532400AB81AC /* GlazesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesListPresenter.swift; sourceTree = "<group>"; };
-		5B63CE7826A956A900AB81AC /* GlazesRecipesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesRecipesCollectionViewController.swift; sourceTree = "<group>"; };
 		5B6E149A26B161BF0072FB7E /* MaterialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsListViewModel.swift; sourceTree = "<group>"; };
 		5B6E149D26B168AE0072FB7E /* MaterialTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		5B6E14A226B18DCE0072FB7E /* EditMaterialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMaterialViewModel.swift; sourceTree = "<group>"; };
@@ -206,6 +210,12 @@
 		5B833E2826FF1F07007D6D0E /* backgroundImageBackgroundColor1Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImageBackgroundColor1Light.png; sourceTree = "<group>"; };
 		5B833E2A26FF243A007D6D0E /* backgroundImageBackgroundColor1Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImageBackgroundColor1Dark.png; sourceTree = "<group>"; };
 		5B833E2C27048FFC007D6D0E /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		5B833E2E270C3834007D6D0E /* GlazesRecipesMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesRecipesMainViewController.swift; sourceTree = "<group>"; };
+		5B833E31270C3A40007D6D0E /* RecipesMainActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesMainActionsView.swift; sourceTree = "<group>"; };
+		5B833E36270C4E66007D6D0E /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B833E38270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		5B833E3B270C5251007D6D0E /* GlazesRecipesMainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlazesRecipesMainViewViewModel.swift; sourceTree = "<group>"; };
+		5B833E40270C5D29007D6D0E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		5B88EF8126FCA8AF002493B6 /* MaterialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialsListTableViewController.swift; sourceTree = "<group>"; };
 		5B88EF8426FDBE26002493B6 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaysGlazeItem.swift; sourceTree = "<group>"; };
@@ -362,11 +372,9 @@
 		5B060F6C261233AF0090E250 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */,
-				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
-				5B63CE5F26A6CA7A00AB81AC /* MaterialItem.swift */,
-				5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */,
-				5B833E2C27048FFC007D6D0E /* Mode.swift */,
+				5B833E3F270C5D00007D6D0E /* RecipiesEnitities */,
+				5B833E3E270C5CE1007D6D0E /* ClaysandGlazeEnitites */,
+				5B833E3D270C5CC4007D6D0E /* MaterialsEntities */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -403,6 +411,7 @@
 		5B060F962614842A0090E250 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5B833E35270C4E53007D6D0E /* RecipeCollectionViewCell */,
 				5BBD354826F9FD15000B7DF6 /* StatisticCell */,
 				5B6E14BF26B3EC130072FB7E /* ClayCell */,
 				5B6E14AF26B2CDE00072FB7E /* DefaultCell */,
@@ -431,9 +440,9 @@
 		5B060FF826174D150090E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5B833E30270C3A0E007D6D0E /* RecipesViews */,
 				5B188EA226F4AC47002A2EBE /* MaterialsViews */,
 				5BDA427226E24F10009523A1 /* SupportingView.swift */,
-				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
 				5B061036261EF0B70090E250 /* StartView.swift */,
 				5B6E14DB26BD40210072FB7E /* InformationView */,
 			);
@@ -460,6 +469,7 @@
 		5B188EA226F4AC47002A2EBE /* MaterialsViews */ = {
 			isa = PBXGroup;
 			children = (
+				5BAB806C26EB549C00D32D06 /* MainMaterialsListTileView.swift */,
 				5B188EB226F9C847002A2EBE /* MaterialStatisticView */,
 				5BDA426226DF8206009523A1 /* UsedMaterialViews */,
 				5BAB808426F231EE00D32D06 /* PurchaseListViews */,
@@ -623,7 +633,8 @@
 		5B63CE7726A9566300AB81AC /* GlazesRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				5B63CE7826A956A900AB81AC /* GlazesRecipesCollectionViewController.swift */,
+				5B833E2E270C3834007D6D0E /* GlazesRecipesMainViewController.swift */,
+				5B833E3A270C5215007D6D0E /* ViewModel */,
 			);
 			path = GlazesRecipes;
 			sourceTree = "<group>";
@@ -859,6 +870,58 @@
 				5B6E14DD26C262B10072FB7E /* Extension + AddMaterialViewController.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		5B833E30270C3A0E007D6D0E /* RecipesViews */ = {
+			isa = PBXGroup;
+			children = (
+				5B833E31270C3A40007D6D0E /* RecipesMainActionsView.swift */,
+			);
+			path = RecipesViews;
+			sourceTree = "<group>";
+		};
+		5B833E35270C4E53007D6D0E /* RecipeCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5B833E36270C4E66007D6D0E /* RecipeCollectionViewCell.swift */,
+				5B833E38270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift */,
+			);
+			path = RecipeCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		5B833E3A270C5215007D6D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B833E3B270C5251007D6D0E /* GlazesRecipesMainViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B833E3D270C5CC4007D6D0E /* MaterialsEntities */ = {
+			isa = PBXGroup;
+			children = (
+				5B63CE5F26A6CA7A00AB81AC /* MaterialItem.swift */,
+				5B188EA526F4B799002A2EBE /* MaterialStatisticItem.swift */,
+			);
+			path = MaterialsEntities;
+			sourceTree = "<group>";
+		};
+		5B833E3E270C5CE1007D6D0E /* ClaysandGlazeEnitites */ = {
+			isa = PBXGroup;
+			children = (
+				5B88EF8626FDF2C5002493B6 /* ClaysGlazeItem.swift */,
+				5B833E2C27048FFC007D6D0E /* Mode.swift */,
+				5B060FDF261605190090E250 /* GlazesSearchResponse.swift */,
+			);
+			path = ClaysandGlazeEnitites;
+			sourceTree = "<group>";
+		};
+		5B833E3F270C5D00007D6D0E /* RecipiesEnitities */ = {
+			isa = PBXGroup;
+			children = (
+				5B833E40270C5D29007D6D0E /* Recipe.swift */,
+			);
+			path = RecipiesEnitities;
 			sourceTree = "<group>";
 		};
 		5B88EF8326FCA978002493B6 /* Extensions */ = {
@@ -1239,7 +1302,7 @@
 				5B6E14BA26B2E6150072FB7E /* GlazesForClayTableViewViewModel.swift in Sources */,
 				5B88EF8226FCA8AF002493B6 /* MaterialsListTableViewController.swift in Sources */,
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
-				5B63CE7926A956A900AB81AC /* GlazesRecipesCollectionViewController.swift in Sources */,
+				5B833E39270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift in Sources */,
 				5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */,
 				5B88EF8726FDF2C5002493B6 /* ClaysGlazeItem.swift in Sources */,
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
@@ -1252,13 +1315,16 @@
 				5B6E14DE26C262B10072FB7E /* Extension + AddMaterialViewController.swift in Sources */,
 				5BDA426E26E23F60009523A1 /* PurchaseListTableViewController.swift in Sources */,
 				5B833E2326FF109F007D6D0E /* DataResources.swift in Sources */,
+				5B833E32270C3A40007D6D0E /* RecipesMainActionsView.swift in Sources */,
 				5BAB806526E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift in Sources */,
+				5B833E3C270C5251007D6D0E /* GlazesRecipesMainViewViewModel.swift in Sources */,
 				5BDA426426DF8233009523A1 /* DescribingView.swift in Sources */,
 				5B63CE5E26A6BCFC00AB81AC /* Section.swift in Sources */,
 				5B6E14D226B97AA30072FB7E /* ClaysForGlazeTableViewViewModel.swift in Sources */,
 				5B6E14AE26B2C9040072FB7E /* ClayTemperatureTableViewModel.swift in Sources */,
 				5B060F77261233AF0090E250 /* CrackleTableViewController.swift in Sources */,
 				5BAB806D26EB549C00D32D06 /* MainMaterialsListTileView.swift in Sources */,
+				5B833E2F270C3834007D6D0E /* GlazesRecipesMainViewController.swift in Sources */,
 				5B833E2D27048FFC007D6D0E /* Mode.swift in Sources */,
 				5B060F98261484440090E250 /* ClayCell.swift in Sources */,
 				5B060F7A261233AF0090E250 /* ClaysGlazeLocalStorageService.swift in Sources */,
@@ -1294,6 +1360,7 @@
 				5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */,
 				5B060F34261233510090E250 /* AppDelegate.swift in Sources */,
 				5B060FFA26174D340090E250 /* InformationView.swift in Sources */,
+				5B833E37270C4E66007D6D0E /* RecipeCollectionViewCell.swift in Sources */,
 				5B06102D261DA2A80090E250 /* DefaultHeader.swift in Sources */,
 				5B060FE0261605190090E250 /* GlazesSearchResponse.swift in Sources */,
 				5B188EA426F4AC94002A2EBE /* MaterialsStatisticView.swift in Sources */,
@@ -1303,6 +1370,7 @@
 				5B06101E261B356D0090E250 /* Animation.swift in Sources */,
 				5B6E14B626B2D2720072FB7E /* CrackleTableViewViewModel.swift in Sources */,
 				5B88EF8526FDBE26002493B6 /* StorageKeys.swift in Sources */,
+				5B833E41270C5D29007D6D0E /* Recipe.swift in Sources */,
 				5B63CE6626A6DB7200AB81AC /* Extension + UserDefaults.swift in Sources */,
 				5B188EAC26F4C174002A2EBE /* MaterialsListMainViewViewModel.swift in Sources */,
 			);

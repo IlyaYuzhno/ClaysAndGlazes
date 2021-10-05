@@ -26,9 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Creating VC for Tab Bar
         let claysListController = ClaysTableViewController(storageService: storageService)
         let glazesListController = ChooseGlazeTableViewController(storageService: storageService)
-        //let materialsListController = MaterialsListTableViewController()
         let materialsListController = MaterialsListMainViewController()
-        let glazesRecipesController = GlazesRecipesCollectionViewController()
+        let glazesRecipesController = GlazesRecipesMainViewController()
 
         // Setup TabBar Controller
         let tabBarController = UITabBarController()
@@ -43,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         glazesRecipesController.tabBarItem = UITabBarItem(title: "Рецепты", image: UIImage(systemName: "list.number"), selectedImage: UIImage(systemName: "list.number"))
 
-        let controllers = [claysListController, glazesListController, materialsListController]
+        let controllers = [claysListController, glazesListController, materialsListController, glazesRecipesController]
 
         tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
 

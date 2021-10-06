@@ -76,37 +76,19 @@ class RecipesMainActionsView: UIView {
         return stack
     }()
 
-   func setupView() {
+    func setupView() {
         backgroundColor = .systemBackground
-       alpha = 0.9
+        alpha = 0.9
         translatesAutoresizingMaskIntoConstraints = false
-       stack.addArrangedSubview(addRecipeButton)
-       stack.addArrangedSubview(searchRecipeButton)
-       stack.addArrangedSubview(favoriteRecipeButton)
-       addSubview(stack)
+        stack.addArrangedSubview(addRecipeButton)
+        stack.addArrangedSubview(searchRecipeButton)
+        stack.addArrangedSubview(favoriteRecipeButton)
+        addSubview(stack)
 
-
-       stack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-       stack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-       stack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-       stack.topAnchor.constraint(equalTo: topAnchor).isActive = true
-
-       
-
-//       addRecipeButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//       addRecipeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-//       addRecipeButton.widthAnchor.constraint(equalTo: addRecipeButton.heightAnchor).isActive = true
-//       addRecipeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-//
-//       searchRecipeButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//       searchRecipeButton.leadingAnchor.constraint(equalTo: addRecipeButton.trailingAnchor, constant: 20).isActive = true
-//       searchRecipeButton.widthAnchor.constraint(equalTo: addRecipeButton.heightAnchor).isActive = true
-//       searchRecipeButton.heightAnchor.constraint(equalTo: addRecipeButton.heightAnchor).isActive = true
-//
-//       favoriteRecipeButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//       favoriteRecipeButton.leadingAnchor.constraint(equalTo: searchRecipeButton.trailingAnchor, constant: 20).isActive = true
-//       favoriteRecipeButton.heightAnchor.constraint(equalTo: addRecipeButton.heightAnchor).isActive = true
-//       favoriteRecipeButton.widthAnchor.constraint(equalTo: addRecipeButton.heightAnchor).isActive = true
+        stack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        stack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        stack.topAnchor.constraint(equalTo: topAnchor).isActive = true
     }
 
     @objc func addButtonTapped() {

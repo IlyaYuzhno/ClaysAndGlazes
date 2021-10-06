@@ -11,6 +11,7 @@ class GlazesRecipesMainViewController: UIViewController {
 
     var viewModel: GlazesRecipesMainViewViewModelType?
     let actionsView = RecipesMainActionsView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let filterView = RecipesFilterView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
     let recipesCollectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -36,29 +37,14 @@ class GlazesRecipesMainViewController: UIViewController {
         recipesCollectionView.delegate = self
         recipesCollectionView.dataSource = self
         recipesCollectionView.register(RecipeCollectionViewCell.self, forCellWithReuseIdentifier: "recipeCollectionViewCell")
-
-
-
         setBackgroundImage()
         setupConstraints()
 
         actionsView.delegate = self
     }
 
-    private func setBackgroundImage() {
-        let background = UIImage(named: "backgroundImage")
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        view.sendSubviewToBack(imageView)
-    }
-
     private func setupConstraints() {
-        view.addSubviews(actionsView, recipesCollectionView)
+        view.addSubviews(actionsView, recipesCollectionView, filterView)
 
         actionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         actionsView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -69,13 +55,20 @@ class GlazesRecipesMainViewController: UIViewController {
         recipesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         recipesCollectionView.bottomAnchor.constraint(equalTo: actionsView.topAnchor).isActive = true
         recipesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+
+        filterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        filterView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        filterView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        filterView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
 }
 
 extension GlazesRecipesMainViewController: RecipesMainActionsViewDelegate {
+
     func addRecipe() {
-        print(#function)
+       let addRecipeVC = AddRecipeViewController()
+       navigationController?.pushViewController(addRecipeVC, animated: true)
     }
 
     func searchRecipe() {

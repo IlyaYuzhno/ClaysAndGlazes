@@ -33,12 +33,12 @@ class ClayCell: UITableViewCell {
 
     }
 
-    func configure(item: String) {
-        accessoryType = .detailButton
-        accessibilityIdentifier = "clayCell"
-        backgroundColor = .systemGray6
-        textLabel?.numberOfLines = 0
-        textLabel?.text = item
-    }
+//    func configure(item: String) {
+//        accessoryType = .detailButton
+//        accessibilityIdentifier = "clayCell"
+//        backgroundColor = .systemGray6
+//        textLabel?.numberOfLines = 0
+//        textLabel?.text = item
+//    }
 
 }

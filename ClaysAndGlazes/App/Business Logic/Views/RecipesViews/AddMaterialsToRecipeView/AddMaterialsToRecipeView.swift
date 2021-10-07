@@ -24,6 +24,16 @@ class AddMaterialsToRecipeView: UIView {
         return textField
     }()
 
+    var addMaterialsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
+        tableView.tableFooterView = UIView()
+        tableView.isScrollEnabled = false
+
+        return tableView
+    }()
+
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -40,22 +50,25 @@ class AddMaterialsToRecipeView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         recipeTitleTextField.delegate = self
 
-         addSubviews(recipeTitleTextField)
+        addSubviews(recipeTitleTextField, addMaterialsTableView)
 
         recipeTitleTextField.topAnchor.constraint(equalTo: topAnchor).isActive = true
         recipeTitleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
         recipeTitleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         recipeTitleTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+        addMaterialsTableView.topAnchor.constraint(equalTo: recipeTitleTextField.bottomAnchor, constant: 10).isActive = true
+        addMaterialsTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        addMaterialsTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        addMaterialsTableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-
-
 }
+
+
 
 extension AddMaterialsToRecipeView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
         textField.resignFirstResponder()
-
         return true
     }
 }

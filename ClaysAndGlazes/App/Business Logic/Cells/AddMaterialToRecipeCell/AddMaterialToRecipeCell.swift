@@ -38,9 +38,19 @@ class AddMaterialToRecipeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
+
+        label.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(materialNameLabelTapped(sender:)))
+        label.addGestureRecognizer(tapGestureRecognizer)
+
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: 30, width: 200, height: 1)
+        border.backgroundColor = UIColor.black.cgColor;
+
+        label.layer.addSublayer(border)
+
         return label
     }()
-
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -58,7 +68,7 @@ class AddMaterialToRecipeCell: UITableViewCell {
         contentView.addSubview(addNewLineButton)
         contentView.addSubview(materialNameLabel)
         contentView.addSubview(stepperControl)
-        
+
         setupConstraints()
     }
 
@@ -75,18 +85,20 @@ class AddMaterialToRecipeCell: UITableViewCell {
             materialNameLabel.trailingAnchor.constraint(equalTo: stepperControl.leadingAnchor),
             materialNameLabel.heightAnchor.constraint(equalToConstant: 30),
 
-//            stepperControl.leadingAnchor.constraint(equalTo: materialNameLabel.trailingAnchor),
             stepperControl.centerYAnchor.constraint(equalTo: centerYAnchor),
             stepperControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             stepperControl.widthAnchor.constraint(equalToConstant: 100),
-            stepperControl.heightAnchor.constraint(equalToConstant: 30),
-
+            stepperControl.heightAnchor.constraint(equalToConstant: 30)
         ])
 
         addNewLineButton.addTarget(self, action: #selector(addNewLineButtonTapped), for: .touchUpInside)
     }
 
     @objc func addNewLineButtonTapped() {
+        delegate?.addRow()
+    }
+
+    @objc func materialNameLabelTapped(sender: UITapGestureRecognizer) {
         delegate?.addRow()
     }
 }

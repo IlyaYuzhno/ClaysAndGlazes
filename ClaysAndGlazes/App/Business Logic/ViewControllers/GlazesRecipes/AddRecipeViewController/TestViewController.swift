@@ -1,13 +1,13 @@
 //
-//  AddRecipeViewController.swift
+//  TestViewController.swift
 //  ClaysAndGlazes
 //
-//  Created by Ilya Doroshkevitch on 06.10.2021.
+//  Created by Ilya Doroshkevitch on 08.10.2021.
 //
 
 import UIKit
 
-class AddRecipeViewController: UIViewController {
+class TestViewController: UIViewController {
 
     var viewModel: AddRecipeViewControllerViewModelType?
     private var materialsTableViewHeight = 93.0
@@ -71,7 +71,7 @@ class AddRecipeViewController: UIViewController {
 }
 
 // MARK: - Materials Tableview delegate and datasource
-extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
+extension TestViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.numberOfRowsInSection() ?? 0
@@ -89,47 +89,15 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
 
         return tableViewCell
     }
-
-    // MARK: - Delete the material item and table row
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-        if editingStyle == .delete && indexPath.row != 0 {
-            guard let viewModel = viewModel else { return }
-
-            // Delete item from datasource
-            viewModel.deleteItem(forIndexPath: indexPath)
-
-            // Delete row
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
-
-            // Decrease view height
-            materialsTableViewHeight -= 44
-            materialsTableViewHeightConstraint.constant = materialsTableViewHeight
-            UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseIn) {
-                self.addMaterialsToRecipeView.layoutIfNeeded()
-            }
-        }
-    }
-
-    // Make first cell uneditable
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
-    {
-        if indexPath.row == 0 {
-            return .none
-        } else {
-            return .delete
-        }
-    }
 }
 
 // MARK: - Add new row to materials tableview
-extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
+extension TestViewController: AddMaterialToRecipeCellDelegate {
 
     func addRow() {
         guard let viewModel = viewModel else { return }
 
-        // Add new item to datasource
+        // Add new data to datasource
         viewModel.addData("test 2")
 
         // Add new row to tableview
@@ -138,14 +106,11 @@ extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
         addMaterialsToRecipeView.addMaterialsTableView.endUpdates()
 
         // Increase view height
-        self.materialsTableViewHeight += 44
-        self.materialsTableViewHeightConstraint.constant = self.materialsTableViewHeight
-        UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseIn) {
-            self.addMaterialsToRecipeView.layoutIfNeeded()
-
-        }
+        addMaterialsToRecipeView.layoutIfNeeded()
+        materialsTableViewHeight += 44
+        materialsTableViewHeightConstraint.constant = materialsTableViewHeight
     }
 
+
+
 }
-
-

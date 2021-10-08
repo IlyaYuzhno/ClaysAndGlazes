@@ -11,8 +11,8 @@ protocol AddRecipeViewControllerViewModelType: AnyObject {
     func numberOfRowsInSection() -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> AddMaterialToRecipeCellViewModelType?
     func addData(_ data: String)
+    func deleteItem(forIndexPath indexPath: IndexPath)
 }
-
 
 class AddRecipeViewControllerViewModel: AddRecipeViewControllerViewModelType {
 
@@ -31,6 +31,10 @@ class AddRecipeViewControllerViewModel: AddRecipeViewControllerViewModelType {
         let item = dataArray[indexPath.row]
 
         return AddMaterialToRecipeCellViewModel(item: item)
+    }
+
+    func deleteItem(forIndexPath indexPath: IndexPath) {
+        dataArray.remove(at: indexPath.row)
     }
 
 }

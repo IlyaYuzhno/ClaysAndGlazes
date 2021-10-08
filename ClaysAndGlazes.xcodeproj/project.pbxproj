@@ -96,6 +96,8 @@
 		5BA08616270EEB7A00A328DD /* StepperControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA08615270EEB7A00A328DD /* StepperControl.swift */; };
 		5BA08619270F085D00A328DD /* AddRecipeViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA08618270F085D00A328DD /* AddRecipeViewControllerViewModel.swift */; };
 		5BA0861B270F09AB00A328DD /* AddMaterialToRecipeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0861A270F09AB00A328DD /* AddMaterialToRecipeCellViewModel.swift */; };
+		5BA0861D27101FC500A328DD /* AddMaterialToRecipeBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0861C27101FC400A328DD /* AddMaterialToRecipeBottomView.swift */; };
+		5BA0861F2710341D00A328DD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA0861E2710341D00A328DD /* TestViewController.swift */; };
 		5BAB806126E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */; };
 		5BAB806526E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */; };
 		5BAB806926EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */; };
@@ -239,6 +241,8 @@
 		5BA08615270EEB7A00A328DD /* StepperControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperControl.swift; sourceTree = "<group>"; };
 		5BA08618270F085D00A328DD /* AddRecipeViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewControllerViewModel.swift; sourceTree = "<group>"; };
 		5BA0861A270F09AB00A328DD /* AddMaterialToRecipeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialToRecipeCellViewModel.swift; sourceTree = "<group>"; };
+		5BA0861C27101FC400A328DD /* AddMaterialToRecipeBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialToRecipeBottomView.swift; sourceTree = "<group>"; };
+		5BA0861E2710341D00A328DD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		5BAB806026E7910300D32D06 /* AddItemsToPurchaseListIfZeroQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToPurchaseListIfZeroQuantityView.swift; sourceTree = "<group>"; };
 		5BAB806426E9FEFA00D32D06 /* AddItemToPurchaseListManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyView.swift; sourceTree = "<group>"; };
 		5BAB806826EB339E00D32D06 /* AddItemToPurchaseListManuallyViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToPurchaseListManuallyViewViewModel.swift; sourceTree = "<group>"; };
@@ -971,6 +975,7 @@
 			children = (
 				5B833E4B270D95E2007D6D0E /* AddRecipeViewController.swift */,
 				5BA08617270F084000A328DD /* ViewModel */,
+				5BA0861E2710341D00A328DD /* TestViewController.swift */,
 			);
 			path = AddRecipeViewController;
 			sourceTree = "<group>";
@@ -998,6 +1003,7 @@
 			children = (
 				5BA08610270DC3AB00A328DD /* AddMaterialsToRecipeView.swift */,
 				5BA08615270EEB7A00A328DD /* StepperControl.swift */,
+				5BA0861C27101FC400A328DD /* AddMaterialToRecipeBottomView.swift */,
 			);
 			path = AddMaterialsToRecipeView;
 			sourceTree = "<group>";
@@ -1390,6 +1396,7 @@
 				5B061032261DA9B00090E250 /* DefaultCell.swift in Sources */,
 				5B833E39270C4E6C007D6D0E /* RecipeCollectionCellViewModel.swift in Sources */,
 				5B63CE6B26A82F5600AB81AC /* EditMaterialViewController.swift in Sources */,
+				5BA0861D27101FC500A328DD /* AddMaterialToRecipeBottomView.swift in Sources */,
 				5B88EF8726FDF2C5002493B6 /* ClaysGlazeItem.swift in Sources */,
 				5B2C04642625D06700FB1CED /* ChooseGlazeTableViewController.swift in Sources */,
 				5BA08619270F085D00A328DD /* AddRecipeViewControllerViewModel.swift in Sources */,
@@ -1450,6 +1457,7 @@
 				5B6E14DA26BD2A4E0072FB7E /* InformationViewViewModel.swift in Sources */,
 				5B6E14CA26B424300072FB7E /* ChooseGlazeTableViewViewModel.swift in Sources */,
 				5B63CE6026A6CA7A00AB81AC /* MaterialItem.swift in Sources */,
+				5BA0861F2710341D00A328DD /* TestViewController.swift in Sources */,
 				5B63CE6826A8065B00AB81AC /* MaterialsListPresenter.swift in Sources */,
 				5B63CE6326A6CE9300AB81AC /* MaterialsLocalStorageService.swift in Sources */,
 				5B6E14C426B3F88A0072FB7E /* ClaysListPresenter.swift in Sources */,

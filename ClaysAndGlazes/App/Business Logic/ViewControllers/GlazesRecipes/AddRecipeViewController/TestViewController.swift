@@ -93,12 +93,16 @@ extension TestViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Add new row to materials tableview
 extension TestViewController: AddMaterialToRecipeCellDelegate {
+    func showChemicalsList() {
+
+    }
+
 
     func addRow() {
         guard let viewModel = viewModel else { return }
 
         // Add new data to datasource
-        viewModel.addData("test 2")
+        //viewModel.addEmptyItemRow()
 
         // Add new row to tableview
         addMaterialsToRecipeView.addMaterialsTableView.beginUpdates()

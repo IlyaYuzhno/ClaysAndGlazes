@@ -12,6 +12,7 @@ class AddRecipeViewController: UIViewController {
     var viewModel: AddRecipeViewControllerViewModelType?
     private var materialsTableViewHeight = 93.0
     private var materialsTableViewHeightConstraint: NSLayoutConstraint!
+    private var rowHeight = 44.0
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -29,6 +30,7 @@ class AddRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = AddRecipeViewControllerViewModel()
+        viewModel?.delegate = self
         setupView()
         hideKeyboardWhenTappedAroundOnView()
     }
@@ -104,9 +106,9 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
 
             // Decrease view height
-            materialsTableViewHeight -= 44
+            materialsTableViewHeight -= rowHeight
             materialsTableViewHeightConstraint.constant = materialsTableViewHeight
-            UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseIn) {
+            UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseOut) {
                 self.addMaterialsToRecipeView.layoutIfNeeded()
             }
         }
@@ -121,6 +123,7 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
             return .delete
         }
     }
+
 }
 
 // MARK: - Add new row to materials tableview
@@ -129,8 +132,8 @@ extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
     func addRow() {
         guard let viewModel = viewModel else { return }
 
-        // Add new item to datasource
-        viewModel.addData("test 2")
+        // Add new empty item to datasource
+        viewModel.addEmptyItemRow()
 
         // Add new row to tableview
         addMaterialsToRecipeView.addMaterialsTableView.beginUpdates()
@@ -138,14 +141,31 @@ extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
         addMaterialsToRecipeView.addMaterialsTableView.endUpdates()
 
         // Increase view height
-        self.materialsTableViewHeight += 44
-        self.materialsTableViewHeightConstraint.constant = self.materialsTableViewHeight
+        materialsTableViewHeight += rowHeight
+        materialsTableViewHeightConstraint.constant = materialsTableViewHeight
         UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseIn) {
             self.addMaterialsToRecipeView.layoutIfNeeded()
-
         }
     }
 
+    func showChemicalsList() {
+        let chemicalsListViewController = RecipeMaterialsListViewController()
+        chemicalsListViewController.delegate = self
+        navigationController?.pushViewController(chemicalsListViewController, animated: true)
+    }
 }
 
+// MARK: - Reload TableView after new chemical is added
+extension AddRecipeViewController: AddRecipeViewControllerViewModelDelegate {
+    func reloadTableView() {
+        addMaterialsToRecipeView.addMaterialsTableView.reloadData()
+    }
+}
+
+// MARK: - Add new chemical to chemicals list
+extension AddRecipeViewController: RecipeMaterialsListViewControllerDelegate {
+    func passData(item: String, selectedIndexPath: IndexPath) {
+        viewModel?.addNewItem(item: item)
+    }
+}
 

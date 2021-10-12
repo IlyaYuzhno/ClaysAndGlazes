@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddMaterialToRecipeCellDelegate: AnyObject {
     func addRow()
+    func showChemicalsList()
 }
 
 class AddMaterialToRecipeCell: UITableViewCell {
@@ -99,6 +100,6 @@ class AddMaterialToRecipeCell: UITableViewCell {
     }
 
     @objc func materialNameLabelTapped(sender: UITapGestureRecognizer) {
-        delegate?.addRow()
+        delegate?.showChemicalsList()
     }
 }

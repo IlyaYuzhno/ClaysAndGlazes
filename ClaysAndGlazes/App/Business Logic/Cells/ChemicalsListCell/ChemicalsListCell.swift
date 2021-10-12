@@ -1,27 +1,27 @@
 //
-//  ClayCell.swift
+//  ChemicalsListCell.swift
 //  ClaysAndGlazes
 //
-//  Created by Ilya Doroshkevitch on 31.03.2021.
+//  Created by Ilya Doroshkevitch on 11.10.2021.
 //
 
 import UIKit
 
-class ClayCell: UITableViewCell {
+class ChemicalsListCell: UITableViewCell {
 
-    weak var viewModel: ClayCellViewModelType? {
+    weak var viewModel: ChemicalsListCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
-            accessoryType = .detailButton
-            accessibilityIdentifier = "clayCell"
-            backgroundColor = .systemGray6
-            textLabel?.numberOfLines = 0
+            accessibilityIdentifier = "chemicalsListCell"
+            backgroundColor = .systemBackground
             textLabel?.text = viewModel.text
         }
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .gray
+        isUserInteractionEnabled = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,5 +30,6 @@ class ClayCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
 }

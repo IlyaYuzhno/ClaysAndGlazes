@@ -94,12 +94,12 @@ class SegerFormulaView: UIView {
         return stack
     }()
 
-    private let alcaliStack: UIStackView = {
+    let alcaliStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillEqually
         stack.backgroundColor = .red
-        stack.spacing = 20
+        stack.spacing = 2
         //stack.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.translatesAutoresizingMaskIntoConstraints = false

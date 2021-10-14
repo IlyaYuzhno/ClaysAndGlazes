@@ -7,7 +7,21 @@
 
 import UIKit
 
+protocol StepperControlDelegate: AnyObject {
+    func passValue(value: Float)
+    func minusValue()
+    func plusValue()
+}
+
 class StepperControl: UIView {
+
+    weak var delegate: StepperControlDelegate?
+
+//    var defaultValue = 0.0 {
+//        didSet {
+//            delegate?.passValue(value: Float(defaultValue))
+//        }
+//    }
 
     var defaultValue = 0.0
 
@@ -29,7 +43,7 @@ class StepperControl: UIView {
         return button
     }()
 
-    private lazy var valueLabel: UITextField = {
+     lazy var valueLabel: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = .label
@@ -68,23 +82,27 @@ class StepperControl: UIView {
 
 
     @objc func minusButtonTapped() {
-        if defaultValue <= 0.0 {
-            valueLabel.text = String(0.0)
-        } else if defaultValue > 0.0 {
-            defaultValue -= 1.0
-            valueLabel.text = String(defaultValue)
-        }
+        delegate?.minusValue()
 
+//        if defaultValue <= 0.0 {
+//            valueLabel.text = String(0.0)
+//        } else if defaultValue > 0.0 {
+//            defaultValue -= 1.0
+//            valueLabel.text = String(defaultValue)
+//            delegate?.minusValue()
+//        }
     }
 
     @objc func plusButtonTapped() {
-        if defaultValue < 0.0 {
-            valueLabel.text = String(0.0)
-        } else if defaultValue >= 0.0 {
-            defaultValue += 1.0
-            valueLabel.text = String(defaultValue)
-        }
+        delegate?.plusValue()
 
+//        if defaultValue < 0.0 {
+//            valueLabel.text = String(0.0)
+//        } else if defaultValue >= 0.0 {
+//            defaultValue += 1.0
+//            valueLabel.text = String(defaultValue)
+//            delegate?.plusValue()
+//        }
     }
 
 

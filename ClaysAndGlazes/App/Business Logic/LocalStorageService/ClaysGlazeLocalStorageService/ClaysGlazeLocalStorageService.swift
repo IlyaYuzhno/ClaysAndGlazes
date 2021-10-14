@@ -9,7 +9,12 @@ import Firebase
 import FirebaseUI
 import UIKit
 
-class ClaysGlazeLocalStorageService {
+
+protocol JSONDataGetable: AnyObject {
+    func getData<T: Codable>(resource: String, completion: @escaping ([T]) -> Void)
+}
+
+class ClaysGlazeLocalStorageService: JSONDataGetable {
 
     let glazesListJSON = DataResources.glazesListJSON
     static var storage = Storage.storage()

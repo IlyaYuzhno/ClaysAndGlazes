@@ -37,13 +37,13 @@ class AddMaterialToRecipeBottomView: UIView {
         return label
     }()
 
-    private lazy var totalValueLabel: UILabel = {
+     lazy var totalValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.cornerRadius = 10
         label.layer.borderColor = UIColor.label.cgColor
         label.layer.borderWidth = 1
-        label.text = "100%"
+        label.text = "%"
         label.textAlignment = .center
         return label
     }()

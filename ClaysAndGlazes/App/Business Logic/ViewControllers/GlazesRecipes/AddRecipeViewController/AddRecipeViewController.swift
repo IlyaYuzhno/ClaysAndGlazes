@@ -10,9 +10,15 @@ import UIKit
 class AddRecipeViewController: UIViewController {
 
     var viewModel: AddRecipeViewControllerViewModelType?
+    var segerFormulaCalculator: SegerFormulaCalculatorType?
     private var materialsTableViewHeight = 93.0
     private var materialsTableViewHeightConstraint: NSLayoutConstraint!
     private var rowHeight = 44.0
+    private var totalValue: Float = 0.0 {
+        didSet {
+            bottomView.totalValueLabel.text = String(totalValue)
+        }
+    }
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -29,10 +35,12 @@ class AddRecipeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AddRecipeViewControllerViewModel()
+        segerFormulaCalculator = SegerFormulaCalculator()
+        viewModel = AddRecipeViewControllerViewModel(segerFormulaCalculator: segerFormulaCalculator!)
         viewModel?.delegate = self
         setupView()
         hideKeyboardWhenTappedAroundOnView()
+        bottomView.delegate = self
     }
 
     private func setupView() {
@@ -128,6 +136,18 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Add new row to materials tableview
 extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
+    
+    func minusValue() {
+        if totalValue <= 0.0 {
+            totalValue = 0.0
+        } else if totalValue > 0.0 {
+            totalValue -= 1.0
+        }
+    }
+
+    func plusValue() {
+        totalValue += 1.0
+    }
 
     func addRow() {
         guard let viewModel = viewModel else { return }
@@ -153,6 +173,11 @@ extension AddRecipeViewController: AddMaterialToRecipeCellDelegate {
         chemicalsListViewController.delegate = self
         navigationController?.pushViewController(chemicalsListViewController, animated: true)
     }
+
+    func passStepperControlValue(value: Float) {
+        let currentValue = value
+        totalValue += currentValue
+    }
 }
 
 // MARK: - Reload TableView after new chemical is added
@@ -162,10 +187,51 @@ extension AddRecipeViewController: AddRecipeViewControllerViewModelDelegate {
     }
 }
 
-// MARK: - Add new chemical to chemicals list
+// MARK: - Add new chemical to chemicals list and calculate formula
 extension AddRecipeViewController: RecipeMaterialsListViewControllerDelegate {
-    func passData(item: String, selectedIndexPath: IndexPath) {
+    func passData(item: Chemical, selectedIndexPath: IndexPath) {
         viewModel?.addNewItem(item: item)
+
+        // Show formula
+        let formula = segerFormulaCalculator?.showFormula()
+
+//        let label: UILabel = {
+//            let label = UILabel()
+//            label.textColor = .label
+//            label.textAlignment = .left
+//            label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+//            return label
+//        }()
+//        segerFormulaView.alcaliStack.addArrangedSubview(label)
+//        label.text = "SiO2: " + String(formula?["SiO2"] ?? 0)
+//        segerFormulaView.layoutIfNeeded()
+    }
+}
+
+// MARK: - Save, Clear, 100% buttons delegate
+extension AddRecipeViewController: AddMaterialToRecipeBottomViewDelegate {
+    func percentageButtonTapped() {
+        totalValue = 100.0
+    }
+
+    func saveRecipeButtonTapped() {
+
+    }
+
+    func clearRecipeButtonTapped() {
+
+        // Clear items list
+        viewModel?.clearItemsList()
+
+        totalValue = 0.0
+
+        // Return tableview height to initial value
+        materialsTableViewHeight = 93.0
+        materialsTableViewHeightConstraint.constant = materialsTableViewHeight
+        UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseOut) {
+            self.addMaterialsToRecipeView.layoutIfNeeded()
+        }
+
     }
 }
 

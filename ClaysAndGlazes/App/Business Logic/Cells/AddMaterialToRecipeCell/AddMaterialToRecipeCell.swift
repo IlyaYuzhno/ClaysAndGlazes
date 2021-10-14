@@ -10,11 +10,15 @@ import UIKit
 protocol AddMaterialToRecipeCellDelegate: AnyObject {
     func addRow()
     func showChemicalsList()
+    func passStepperControlValue(value: Float)
+    func minusValue()
+    func plusValue()
 }
 
 class AddMaterialToRecipeCell: UITableViewCell {
 
     weak var delegate: AddMaterialToRecipeCellDelegate?
+    var defaultValue: Float = 0.0
 
     weak var viewModel: AddMaterialToRecipeCellViewModelType? {
         willSet(viewModel) {
@@ -70,6 +74,7 @@ class AddMaterialToRecipeCell: UITableViewCell {
         contentView.addSubview(materialNameLabel)
         contentView.addSubview(stepperControl)
 
+        stepperControl.delegate = self
         setupConstraints()
     }
 
@@ -102,4 +107,33 @@ class AddMaterialToRecipeCell: UITableViewCell {
     @objc func materialNameLabelTapped(sender: UITapGestureRecognizer) {
         delegate?.showChemicalsList()
     }
+}
+
+extension AddMaterialToRecipeCell: StepperControlDelegate {
+
+    func minusValue() {
+        if defaultValue <= 0.0 {
+            stepperControl.valueLabel.text = String(0.0)
+        } else if defaultValue > 0.0 {
+            defaultValue -= 1.0
+            stepperControl.valueLabel.text = String(defaultValue)
+            delegate?.minusValue()
+        }
+    }
+
+    func plusValue() {
+        if defaultValue < 0.0 {
+            stepperControl.valueLabel.text = String(0.0)
+        } else if defaultValue >= 0.0 {
+            defaultValue += 1.0
+            stepperControl.valueLabel.text = String(defaultValue)
+            delegate?.plusValue()
+        }
+    }
+
+    func passValue(value: Float) {
+        delegate?.passStepperControlValue(value: value)
+    }
+
+
 }

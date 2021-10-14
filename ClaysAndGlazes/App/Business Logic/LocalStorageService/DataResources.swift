@@ -11,4 +11,5 @@ struct DataResources {
     static let claysBasicJSON = "ClaysInfo"
     static let glazesBasicJSON = "GlazesInfo"
     static let glazesListJSON = "GlazesList"
+    static let chemicalsListJSON  = "ChemicalsList"
 }

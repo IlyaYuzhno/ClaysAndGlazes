@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RecipeMaterialsListViewControllerDelegate: AnyObject {
-    func passData(item: String, selectedIndexPath: IndexPath)
+    func passData(item: Chemical, selectedIndexPath: IndexPath)
 }
 
 class RecipeMaterialsListViewController: UIViewController {
@@ -42,6 +42,13 @@ class RecipeMaterialsListViewController: UIViewController {
         chemicalsTableView.delegate = self
         chemicalsTableView.dataSource = self
         chemicalsTableView.register(ChemicalsListCell.self, forCellReuseIdentifier: "chemicalsListCell")
+
+        // Load chemicals list data via viewModel
+        viewModel?.loadData { [weak self] in
+            DispatchQueue.main.async {
+                self?.chemicalsTableView.reloadData()
+            }
+        }
     }
 
     private func setupView() {
